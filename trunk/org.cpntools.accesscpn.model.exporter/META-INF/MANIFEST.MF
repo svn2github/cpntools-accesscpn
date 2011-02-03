@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: dk.au.daimi.ascoveco.cpn.model.exporter
+Bundle-SymbolicName: org.cpntools.accesscpn.model.exporter
+Bundle-Version: 1.0.0
+Require-Bundle: org.cpntools.accesscpn.model.importer;bundle-version="1.0.0",
+ org.cpntools.accesscpn.model;bundle-version="1.0.0",
+ org.eclipse.emf.common;bundle-version="2.5.0",
+ org.eclipse.emf.ecore;bundle-version="2.5.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.cpntools.accesscpn.model.exporter

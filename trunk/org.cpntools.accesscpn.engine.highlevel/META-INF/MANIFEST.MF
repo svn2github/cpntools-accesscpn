@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Engine Highlevel Plug-in
+Bundle-SymbolicName: org.cpntools.accesscpn.engine.highlevel;singleton:=true
+Bundle-Version: 1.0.0
+Require-Bundle: org.cpntools.accesscpn.model;bundle-version="1.0.0",
+ org.eclipse.emf.ecore;bundle-version="2.5.0",
+ org.eclipse.emf.ecore.sdo;bundle-version="2.4.0",
+ org.cpntools.accesscpn.engine;bundle-version="1.0.0"
+Export-Package: org.cpntools.accesscpn.engine.highlevel,
+ org.cpntools.accesscpn.engine.highlevel.checker,
+ org.cpntools.accesscpn.engine.highlevel.instance,
+ org.cpntools.accesscpn.engine.highlevel.instance.adapter,
+ org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues,
+ org.cpntools.accesscpn.engine.highlevel.instance.impl,
+ org.cpntools.accesscpn.engine.highlevel.instance.util,
+ org.cpntools.accesscpn.engine.highlevel.utils
+Bundle-Vendor: CPN Group, University of Aarhus
+Bundle-RequiredExecutionEnvironment: J2SE-1.5,
+ JavaSE-1.6
+Bundle-ActivationPolicy: lazy

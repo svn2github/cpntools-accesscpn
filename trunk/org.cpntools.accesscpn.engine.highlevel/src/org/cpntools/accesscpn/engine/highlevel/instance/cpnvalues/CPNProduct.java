@@ -1,0 +1,104 @@
+package org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
+import org.cpntools.accesscpn.engine.highlevel.instance.adapter.ModelData;
+import org.cpntools.accesscpn.model.cpntypes.CPNType;
+
+
+/**
+ * @author mwesterg
+ * 
+ */
+public class CPNProduct extends CPNValue {
+	private final List<CPNValue> values;
+
+	/**
+	 * @param values
+	 */
+	public CPNProduct(final List<CPNValue> values) {
+		super("");
+		this.values = Collections.unmodifiableList(values);
+
+	}
+
+	/**
+	 * @param values
+	 */
+	public CPNProduct(final String time, final List<CPNValue> values) {
+		super(time);
+		this.values = Collections.unmodifiableList(values);
+
+	}
+
+	/**
+	 * @param values
+	 */
+	public CPNProduct(final CPNValue... values) {
+		this(Arrays.asList(values));
+	}
+
+	/**
+	 * @return
+	 */
+	public List<CPNValue> getValues() {
+		return values;
+	}
+
+	/**
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder();
+		sb.append('(');
+		boolean first = true;
+		for (final CPNValue v : values) {
+			if (!first) {
+				sb.append(", ");
+			}
+			first = false;
+			sb.append(v);
+		}
+		sb.append(')');
+		return sb.toString();
+	}
+
+	/**
+	 * @see org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues.CPNValue#matches(org.cpntools.accesscpn.engine.highlevel.instance.adapter.ModelData,
+	 *      org.cpntools.accesscpn.model.cpntypes.CPNType)
+	 */
+	@Override
+	protected boolean matchesInternal(final ModelData modelData, final CPNType type) {
+		if (!(type instanceof org.cpntools.accesscpn.model.cpntypes.CPNProduct)) return false;
+		final org.cpntools.accesscpn.model.cpntypes.CPNProduct product = (org.cpntools.accesscpn.model.cpntypes.CPNProduct) type;
+		if (values.size() != product.getTypes().size()) return false;
+		final Iterator<String> it = product.getTypes().iterator();
+		for (final CPNValue value : values) {
+			if (!value.matches(modelData, modelData.getType(it.next()))) return false;
+		}
+		return true;
+	}
+	
+	
+	/**
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return values.hashCode();
+	}
+	
+	/**
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object o) {
+		if (o == null || !(o instanceof CPNProduct)) return false;
+		CPNProduct other = (CPNProduct) o; 
+		return values.equals(other.values);
+	}
+}
