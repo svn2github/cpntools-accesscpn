@@ -7,8 +7,8 @@ Bundle-ClassPath: .
 Bundle-Vendor: CPN Group, University of Aarhus
 Bundle-Localization: plugin
 Export-Package: org.cpntools.accesscpn.model;
-  uses:="dk.au.daimi.ascoveco.cpn.model.graphics,
-   dk.au.daimi.ascoveco.cpn.model.declaration,
+  uses:="org.cpntools.accesscpn.model.graphics,
+   org.cpntools.accesscpn.model.declaration,
    org.eclipse.emf.common.util,
    org.eclipse.emf.ecore",
  org.cpntools.accesscpn.model.cpntypes,
@@ -20,28 +20,28 @@ Export-Package: org.cpntools.accesscpn.model;
  org.cpntools.accesscpn.model.graphics;uses:="org.eclipse.emf.common.util,org.eclipse.emf.ecore",
  org.cpntools.accesscpn.model.graphics.impl;
   uses:="org.eclipse.emf.ecore.impl,
-   dk.au.daimi.ascoveco.cpn.model.graphics,
+   org.cpntools.accesscpn.model.graphics,
    org.eclipse.emf.common.notify,
    org.eclipse.emf.common.util,
    org.eclipse.emf.ecore",
  org.cpntools.accesscpn.model.graphics.util;
   uses:="org.eclipse.emf.common.notify.impl,
-   dk.au.daimi.ascoveco.cpn.model.graphics,
+   org.cpntools.accesscpn.model.graphics,
    org.eclipse.emf.common.notify,
    org.eclipse.emf.ecore",
  org.cpntools.accesscpn.model.impl;
   uses:="org.eclipse.emf.ecore.impl,
-   dk.au.daimi.ascoveco.cpn.model.graphics,
-   dk.au.daimi.ascoveco.cpn.model.declaration,
+   org.cpntools.accesscpn.model.graphics,
+   org.cpntools.accesscpn.model.declaration,
    org.eclipse.emf.common.notify,
-   dk.au.daimi.ascoveco.cpn.model,
+   org.cpntools.accesscpn.model,
    org.eclipse.emf.common.util,
    org.eclipse.emf.ecore",
  org.cpntools.accesscpn.model.util;
   uses:="org.eclipse.emf.common.notify.impl,
-   dk.au.daimi.ascoveco.cpn.model.graphics,
+   org.cpntools.accesscpn.model.graphics,
    org.eclipse.emf.common.notify,
-   dk.au.daimi.ascoveco.cpn.model,
+   org.cpntools.accesscpn.model,
    org.eclipse.emf.ecore"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5,
