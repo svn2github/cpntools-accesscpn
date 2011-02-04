@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: dk.au.daimi.ascoveco.cpn.model.exporter
+Bundle-Name: org.cpntools.accesscpn.model.exporter
 Bundle-SymbolicName: org.cpntools.accesscpn.model.exporter
 Bundle-Version: 1.0.0
 Require-Bundle: org.cpntools.accesscpn.model.importer;bundle-version="1.0.0",
