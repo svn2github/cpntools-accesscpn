@@ -4,22 +4,14 @@
    <extension
          point="org.eclipse.ui.popupMenus">
       <objectContribution
-            id="dk.au.daimi.ascoveco.cpn.engine.highlevel.checker"
+            id="org.cpntools.accesscpn.engine.highlevel.checker"
             nameFilter="*.model"
             objectClass="org.eclipse.core.resources.IFile">
          <action
-               class="dk.au.daimi.ascoveco.cpn.engine.highlevel.checker.action.SyntaxCheckAction"
-               id="dk.au.daimi.ascoveco.cpn.engine.highlevel.checker.action"
+               class="org.cpntools.accesscpn.engine.highlevel.checker.action.SyntaxCheckAction"
+               id="org.cpntools.accesscpn.engine.highlevel.checker.action"
                label="Syntax check">
          </action>
       </objectContribution>
-   </extension>
-   <extension
-         point="org.eclipse.ui.newWizards">
-      <category
-            id="dk.au.daimi.ascoveco.asap.category"
-            name="ASAP">
-      </category>
-   </extension>
-         
+   </extension>         
 </plugin>

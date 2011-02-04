@@ -2,11 +2,11 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="instance"
-    nsURI="http:///dk/au/daimi/ascoveco/cpn/engine/highlevel/instance.ecore" nsPrefix="dk.au.daimi.ascoveco.cpn.engine.highlevel.instance">
+    nsURI="http:///org/cpntools/accesscpn/engine/highlevel/instance.ecore" nsPrefix="org.cpntools.accesscpn.engine.highlevel.instance">
   <eClassifiers xsi:type="ecore:EClass" name="Binding">
     <eStructuralFeatures xsi:type="ecore:EReference" name="transitionInstance">
       <eGenericType eClassifier="#//Instance">
-        <eTypeArguments eClassifier="ecore:EClass ../../dk.au.daimi.ascoveco.cpn.model/model/model.ecore#//Transition"/>
+        <eTypeArguments eClassifier="ecore:EClass ../../org.cpntools.accesscpn.model/model/model.ecore#//Transition"/>
       </eGenericType>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="allAssignments" upperBound="-1"
@@ -19,7 +19,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transitionPath">
       <eGenericType eClassifier="#//Instance">
-        <eTypeArguments eClassifier="ecore:EClass ../../dk.au.daimi.ascoveco.cpn.model/model/model.ecore#//Instance"/>
+        <eTypeArguments eClassifier="ecore:EClass ../../org.cpntools.accesscpn.model/model/model.ecore#//Instance"/>
       </eGenericType>
     </eStructuralFeatures>
   </eClassifiers>
@@ -27,7 +27,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="placeInstance">
       <eGenericType eClassifier="#//Instance">
         <eTypeArguments>
-          <eUpperBound eClassifier="ecore:EClass ../../dk.au.daimi.ascoveco.cpn.model/model/model.ecore#//PlaceNode"/>
+          <eUpperBound eClassifier="ecore:EClass ../../org.cpntools.accesscpn.model/model/model.ecore#//PlaceNode"/>
         </eTypeArguments>
       </eGenericType>
     </eStructuralFeatures>
