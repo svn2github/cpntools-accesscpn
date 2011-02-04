@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model"
-    nsURI="http:///dk/au/daimi/ascoveco/cpn/model.ecore" nsPrefix="dk.au.daimi.ascoveco.cpn.model">
+    nsURI="http:///org/cpntools/accesscpn/model.ecore" nsPrefix="org.cpntools.accesscpn.model">
   <eClassifiers xsi:type="ecore:EClass" name="Annotation" abstract="true" eSuperTypes="#//Label graphics.ecore#//HasGraphics #//HLAnnotationAddin"/>
   <eClassifiers xsi:type="ecore:EClass" name="Arc" eSuperTypes="#//HasId #//HLArcAddin">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"

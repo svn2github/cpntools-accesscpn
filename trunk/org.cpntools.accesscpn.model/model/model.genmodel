@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/dk.au.daimi.ascoveco.cpn.model/src"
-    modelPluginID="dk.au.daimi.ascoveco.cpn.model" templateDirectory="" redirection=""
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.cpntools.accesscpn.model/src"
+    modelPluginID="org.cpntools.accesscpn.model" templateDirectory="" redirection=""
     modelName="Model" rootExtendsInterface="" rootExtendsClass="org.eclipse.emf.ecore.sdo.impl.EDataObjectImpl"
     rootImplementsInterface="org.eclipse.emf.ecore.sdo.InternalEDataObject" suppressEMFTypes="true"
     suppressEMFMetaData="true" featureMapWrapperInterface="commonj.sdo.Sequence" featureMapWrapperInternalInterface="org.eclipse.emf.ecore.sdo.util.ESequence"
@@ -12,7 +12,7 @@
   <staticPackages>http://www.eclipse.org/emf/2003/SDO</staticPackages>
   <modelPluginVariables>EMF_COMMONJ_SDO=org.eclipse.emf.commonj.sdo</modelPluginVariables>
   <modelPluginVariables>EMF_ECORE_SDO=org.eclipse.emf.ecore.sdo</modelPluginVariables>
-  <genPackages prefix="Model" basePackage="dk.au.daimi.ascoveco.cpn" disposableProviderFactory="true"
+  <genPackages prefix="Model" basePackage="org.cpntools.accesscpn" disposableProviderFactory="true"
       generateExampleClass="false" ecorePackage="model.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//HLArcType">
       <genEnumLiterals ecoreEnumLiteral="model.ecore#//HLArcType/Normal"/>
@@ -118,7 +118,7 @@
     <genClasses ecoreClass="model.ecore#//Transition"/>
     <genClasses image="false" ecoreClass="model.ecore#//TransitionNode"/>
   </genPackages>
-  <genPackages prefix="Cpntypes" basePackage="dk.au.daimi.ascoveco.cpn.model" disposableProviderFactory="true"
+  <genPackages prefix="Cpntypes" basePackage="org.cpntools.accesscpn.model" disposableProviderFactory="true"
       generateExampleClass="false" ecorePackage="cpntypes.ecore#/">
     <genClasses ecoreClass="cpntypes.ecore#//CPNAlias">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cpntypes.ecore#//CPNAlias/sort"/>
@@ -180,7 +180,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cpntypes.ecore#//NameTypePair/sort"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="Declaration" basePackage="dk.au.daimi.ascoveco.cpn.model" disposableProviderFactory="true"
+  <genPackages prefix="Declaration" basePackage="org.cpntools.accesscpn.model" disposableProviderFactory="true"
       generateExampleClass="false" ecorePackage="declaration.ecore#/">
     <genClasses image="false" ecoreClass="declaration.ecore#//DeclarationStructure"/>
     <genClasses ecoreClass="declaration.ecore#//GlobalReferenceDeclaration">
@@ -202,7 +202,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute declaration.ecore#//VariableDeclaration/variables"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="Graphics" basePackage="dk.au.daimi.ascoveco.cpn.model" disposableProviderFactory="true"
+  <genPackages prefix="Graphics" basePackage="org.cpntools.accesscpn.model" disposableProviderFactory="true"
       generateExampleClass="false" ecorePackage="graphics.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="graphics.ecore#//Align">
       <genEnumLiterals ecoreEnumLiteral="graphics.ecore#//Align/Left"/>

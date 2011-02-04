@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="graphics"
-    nsURI="http:///dk/au/daimi/ascoveco/cpn/model/graphics.ecore" nsPrefix="dk.au.daimi.ascoveco.cpn.model.graphics">
+    nsURI="http:///org/cpntools/accesscpn/model/graphics.ecore" nsPrefix="org.cpntools.accesscpn.model.graphics">
   <eClassifiers xsi:type="ecore:EEnum" name="Align">
     <eLiterals name="Left"/>
     <eLiterals name="Right" value="1"/>
@@ -86,6 +86,6 @@
   <eClassifiers xsi:type="ecore:EDataType" name="CSS2FontSize" instanceClassName="java.lang.String"/>
   <eClassifiers xsi:type="ecore:EDataType" name="NonNegativeDecimal" instanceClassName="double"/>
   <eClassifiers xsi:type="ecore:EDataType" name="URL" instanceClassName="java.net.URL"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="Rotation" instanceClassName="dk.au.daimi.ascoveco.cpn.model.graphics.Rotation"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="Decoration" instanceClassName="dk.au.daimi.ascoveco.cpn.model.graphics.Decoration"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Rotation" instanceClassName="org.cpntools.accesscpn.model.graphics.Rotation"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Decoration" instanceClassName="org.cpntools.accesscpn.model.graphics.Decoration"/>
 </ecore:EPackage>
