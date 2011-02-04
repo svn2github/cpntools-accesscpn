@@ -1,3 +1,22 @@
+/************************************************************************/
+/* Access/CPN                                                           */
+/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology    */
+/*                                                                      */
+/* This library is free software; you can redistribute it and/or        */
+/* modify it under the terms of the GNU Lesser General Public           */
+/* License as published by the Free Software Foundation; either         */
+/* version 2.1 of the License, or (at your option) any later version.   */
+/*                                                                      */
+/* This library is distributed in the hope that it will be useful,      */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of       */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
+/* Lesser General Public License for more details.                      */
+/*                                                                      */
+/* You should have received a copy of the GNU Lesser General Public     */
+/* License along with this library; if not, write to the Free Software  */
+/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,           */
+/* MA  02110-1301  USA                                                  */
+/************************************************************************/
 /**
  * <copyright>
  * </copyright>
@@ -57,7 +76,7 @@ public class GraphicsPackageImpl extends EPackageImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String eNS_URI = "http:///dk/au/daimi/ascoveco/cpn/model/graphics.ecore";
+	public static final String eNS_URI = "http:///org/cpntools/accesscpn/model/graphics.ecore";
 
 	/**
 	 * The package namespace name.
@@ -65,7 +84,7 @@ public class GraphicsPackageImpl extends EPackageImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String eNS_PREFIX = "dk.au.daimi.ascoveco.cpn.model.graphics";
+	public static final String eNS_PREFIX = "org.cpntools.accesscpn.model.graphics";
 
 	/**
 	 * The singleton instance of the package.
@@ -1489,7 +1508,7 @@ public class GraphicsPackageImpl extends EPackageImpl {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Rotation</em>'.
 	 * @see org.cpntools.accesscpn.model.graphics.Rotation
-	 * @model instanceClass="dk.au.daimi.ascoveco.cpn.model.graphics.Rotation"
+	 * @model instanceClass="org.cpntools.accesscpn.model.graphics.Rotation"
 	 * @generated
 	 */
 	public EDataType getRotation() {
@@ -1502,7 +1521,7 @@ public class GraphicsPackageImpl extends EPackageImpl {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Decoration</em>'.
 	 * @see org.cpntools.accesscpn.model.graphics.Decoration
-	 * @model instanceClass="dk.au.daimi.ascoveco.cpn.model.graphics.Decoration"
+	 * @model instanceClass="org.cpntools.accesscpn.model.graphics.Decoration"
 	 * @generated
 	 */
 	public EDataType getDecoration() {
