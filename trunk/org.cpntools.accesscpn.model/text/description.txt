@@ -6,12 +6,12 @@ code generator can be extended.
 This can be disabled with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
 
 Contains packages:
-  model <http:///dk/au/daimi/ascoveco/cpn/model.ecore>
-  cpntypes <http:///dk/au/daimi/ascoveco/cpn/model/cpntypes.ecore>
-  declaration <http:///dk/au/daimi/ascoveco/cpn/model/declaration.ecore>
-  graphics <http:///dk/au/daimi/ascoveco/cpn/model/graphics.ecore>
+  model <http:///org/cpntools/accesscpn/model.ecore>
+  cpntypes <http:///org/cpntools/accesscpn/model/cpntypes.ecore>
+  declaration <http:///org/cpntools/accesscpn/model/declaration.ecore>
+  graphics <http:///org/cpntools/accesscpn/model/graphics.ecore>
 
-Package model <http:///dk/au/daimi/ascoveco/cpn/model.ecore>
+Package model <http:///org/cpntools/accesscpn/model.ecore>
 
   Class Annotation -> Label, HasGraphics, HLAnnotationAddin
 
@@ -129,7 +129,7 @@ Package model <http:///dk/au/daimi/ascoveco/cpn/model.ecore>
     Literal Normal = 0
     Literal Test = 0
 
-Package cpntypes <http:///dk/au/daimi/ascoveco/cpn/model/cpntypes.ecore>
+Package cpntypes <http:///org/cpntools/accesscpn/model/cpntypes.ecore>
 
   Class CPNType
     Attribute declares : EString<<0..*>>
@@ -190,7 +190,7 @@ Package cpntypes <http:///dk/au/daimi/ascoveco/cpn/model/cpntypes.ecore>
     Attribute name : EString
     Attribute type : EString
 
-Package declaration <http:///dk/au/daimi/ascoveco/cpn/model/declaration.ecore>
+Package declaration <http:///org/cpntools/accesscpn/model/declaration.ecore>
 
   Class VariableDeclaration -> DeclarationStructure
     Attribute typeName : EString<<1..1>>
@@ -212,7 +212,7 @@ Package declaration <http:///dk/au/daimi/ascoveco/cpn/model/declaration.ecore>
     Attribute typeName : EString<<1..1>>
     Reference type : CPNType
 
-Package graphics <http:///dk/au/daimi/ascoveco/cpn/model/graphics.ecore>
+Package graphics <http:///org/cpntools/accesscpn/model/graphics.ecore>
 
   Class AnnotationGraphics -> Graphics
     Reference fill : Fill
@@ -289,6 +289,6 @@ Package graphics <http:///dk/au/daimi/ascoveco/cpn/model/graphics.ecore>
 
   DataType URL <java.net.URL>
 
-  DataType Rotation <dk.au.daimi.ascoveco.cpn.model.graphics.Rotation>
+  DataType Rotation <org.cpntools.accesscpn.model.graphics.Rotation>
 
-  DataType Decoration <dk.au.daimi.ascoveco.cpn.model.graphics.Decoration>
+  DataType Decoration <org.cpntools.accesscpn.model.graphics.Decoration>
