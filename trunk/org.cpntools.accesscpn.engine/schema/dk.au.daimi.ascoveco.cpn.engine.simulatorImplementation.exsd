@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="dk.au.daimi.ascoveco.cpn.engine">
+<schema targetNamespace="org.cpntools.accesscpn.engine">
 <annotation>
       <appInfo>
-         <meta.schema plugin="dk.au.daimi.ascoveco.cpn.engine" id="simulatorImplementation" name="Simulator Implementation"/>
+         <meta.schema plugin="org.cpntools.accesscpn.engine" id="simulatorImplementation" name="Simulator Implementation"/>
       </appInfo>
       <documentation>
          Concrete implementations of engines.
@@ -55,7 +55,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":dk.au.daimi.ascoveco.cpn.engine.SimulatorImplementation"/>
+                  <meta.attribute kind="java" basedOn=":org.cpntools.accesscpn.engine.SimulatorImplementation"/>
                </appInfo>
             </annotation>
          </attribute>

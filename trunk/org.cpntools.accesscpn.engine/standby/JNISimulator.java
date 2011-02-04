@@ -18,12 +18,12 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, *
  *  USA.                                                                   *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-package dk.au.daimi.ascoveco.cpn.engine;
+package org.cpntools.accesscpn.engine;
 
 import java.io.*;
 import java.net.URL;
 
-import dk.au.daimi.ascoveco.cpn.engine.SimulatorImplementation;
+import org.cpntools.accesscpn.engine.SimulatorImplementation;
 
 /**
  * @author Michael Westergaard
