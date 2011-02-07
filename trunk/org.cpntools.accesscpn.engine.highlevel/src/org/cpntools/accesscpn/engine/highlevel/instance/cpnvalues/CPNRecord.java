@@ -21,8 +21,8 @@ package org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues;
 
 import java.util.Collections;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import org.cpntools.accesscpn.engine.highlevel.instance.adapter.ModelData;
 import org.cpntools.accesscpn.model.cpntypes.CPNType;

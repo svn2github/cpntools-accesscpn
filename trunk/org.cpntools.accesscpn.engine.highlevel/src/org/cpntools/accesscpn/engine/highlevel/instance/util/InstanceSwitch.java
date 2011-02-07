@@ -30,6 +30,12 @@ package org.cpntools.accesscpn.engine.highlevel.instance.util;
 import java.util.List;
 
 import org.cpntools.accesscpn.engine.highlevel.instance.*;
+import org.cpntools.accesscpn.engine.highlevel.instance.Binding;
+import org.cpntools.accesscpn.engine.highlevel.instance.Instance;
+import org.cpntools.accesscpn.engine.highlevel.instance.Marking;
+import org.cpntools.accesscpn.engine.highlevel.instance.MultisetEntry;
+import org.cpntools.accesscpn.engine.highlevel.instance.State;
+import org.cpntools.accesscpn.engine.highlevel.instance.ValueAssignment;
 import org.cpntools.accesscpn.engine.highlevel.instance.impl.InstancePackageImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;

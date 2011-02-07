@@ -19,7 +19,6 @@
 /************************************************************************/
 package org.cpntools.accesscpn.engine.highlevel.instance;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * @model

@@ -24,6 +24,7 @@ package org.cpntools.accesscpn.model.graphics.impl;
 
 import java.net.URL;
 
+import org.cpntools.accesscpn.model.graphics.*;
 import org.cpntools.accesscpn.model.graphics.Align;
 import org.cpntools.accesscpn.model.graphics.AnnotationGraphics;
 import org.cpntools.accesscpn.model.graphics.ArcGraphics;

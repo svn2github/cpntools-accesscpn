@@ -8,6 +8,7 @@ package org.cpntools.accesscpn.model.graphics.util;
 
 
 
+import org.cpntools.accesscpn.model.graphics.*;
 import org.cpntools.accesscpn.model.graphics.AnnotationGraphics;
 import org.cpntools.accesscpn.model.graphics.ArcGraphics;
 import org.cpntools.accesscpn.model.graphics.Coordinate;

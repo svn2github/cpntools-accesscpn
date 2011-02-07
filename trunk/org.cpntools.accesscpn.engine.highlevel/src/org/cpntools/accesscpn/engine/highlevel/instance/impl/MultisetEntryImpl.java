@@ -26,7 +26,7 @@ import org.cpntools.accesscpn.engine.highlevel.instance.MultisetEntry;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.sdo.impl.EDataObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 
 /**
@@ -42,14 +42,7 @@ import org.eclipse.emf.ecore.sdo.impl.EDataObjectImpl;
  *
  * @generated
  */
-public class MultisetEntryImpl extends EDataObjectImpl implements MultisetEntry {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
+public class MultisetEntryImpl extends EObjectImpl implements MultisetEntry {
 	/**
 	 * The default value of the '{@link #getCoefficient() <em>Coefficient</em>}' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->

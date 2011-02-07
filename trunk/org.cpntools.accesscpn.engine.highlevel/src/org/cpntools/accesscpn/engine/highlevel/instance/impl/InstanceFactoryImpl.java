@@ -22,13 +22,19 @@
  */
 package org.cpntools.accesscpn.engine.highlevel.instance.impl;
 
+import org.cpntools.accesscpn.engine.highlevel.instance.*;
 import java.util.List;
 
-import org.cpntools.accesscpn.engine.highlevel.instance.*;
+import org.cpntools.accesscpn.engine.highlevel.instance.Binding;
+import org.cpntools.accesscpn.engine.highlevel.instance.Instance;
+import org.cpntools.accesscpn.engine.highlevel.instance.InstanceFactory;
+import org.cpntools.accesscpn.engine.highlevel.instance.Marking;
+import org.cpntools.accesscpn.engine.highlevel.instance.MultisetEntry;
+import org.cpntools.accesscpn.engine.highlevel.instance.State;
+import org.cpntools.accesscpn.engine.highlevel.instance.ValueAssignment;
 import org.cpntools.accesscpn.model.PlaceNode;
 import org.cpntools.accesscpn.model.Transition;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;

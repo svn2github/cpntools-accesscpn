@@ -22,6 +22,7 @@
  */
 package org.cpntools.accesscpn.model.cpntypes.impl;
 
+import org.cpntools.accesscpn.model.cpntypes.*;
 import org.cpntools.accesscpn.model.cpntypes.CPNAlias;
 import org.cpntools.accesscpn.model.cpntypes.CPNBool;
 import org.cpntools.accesscpn.model.cpntypes.CPNEnum;

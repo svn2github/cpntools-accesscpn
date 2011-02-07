@@ -28,12 +28,16 @@ package org.cpntools.accesscpn.engine.highlevel.instance.util;
 
 
 import org.cpntools.accesscpn.engine.highlevel.instance.*;
+import org.cpntools.accesscpn.engine.highlevel.instance.Binding;
+import org.cpntools.accesscpn.engine.highlevel.instance.Instance;
+import org.cpntools.accesscpn.engine.highlevel.instance.Marking;
+import org.cpntools.accesscpn.engine.highlevel.instance.MultisetEntry;
+import org.cpntools.accesscpn.engine.highlevel.instance.State;
+import org.cpntools.accesscpn.engine.highlevel.instance.ValueAssignment;
 import org.cpntools.accesscpn.engine.highlevel.instance.impl.InstancePackageImpl;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

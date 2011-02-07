@@ -26,7 +26,6 @@ import java.util.List;
 
 import org.cpntools.accesscpn.model.PlaceNode;
 import org.cpntools.accesscpn.model.Transition;
-import org.eclipse.emf.ecore.EFactory;
 
 
 /**

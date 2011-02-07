@@ -27,6 +27,7 @@ package org.cpntools.accesscpn.model.declaration.util;
 
 
 
+import org.cpntools.accesscpn.model.declaration.*;
 import org.cpntools.accesscpn.model.declaration.DeclarationStructure;
 import org.cpntools.accesscpn.model.declaration.GlobalReferenceDeclaration;
 import org.cpntools.accesscpn.model.declaration.MLDeclaration;

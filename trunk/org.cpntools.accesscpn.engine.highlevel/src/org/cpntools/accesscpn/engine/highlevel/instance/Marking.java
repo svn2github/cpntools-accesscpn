@@ -22,7 +22,6 @@ package org.cpntools.accesscpn.engine.highlevel.instance;
 import java.util.List;
 
 import org.cpntools.accesscpn.model.PlaceNode;
-import org.eclipse.emf.ecore.EObject;
 
 
 /**
