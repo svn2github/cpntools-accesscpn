@@ -42,13 +42,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class CPNRealImpl extends CPNTypeImpl implements CPNReal {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The default value of the '{@link #getHigh() <em>High</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 

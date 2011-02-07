@@ -33,15 +33,7 @@ import junit.framework.TestCase;
  * <!-- end-user-doc -->
  * @generated
  */
-public abstract class ObjectTest extends TestCase {
-
-	/**
-	 * The fixture for this Object test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected org.cpntools.accesscpn.model.Object fixture = null;
+public abstract class ObjectTest extends HasIdTest {
 
 	/**
 	 * Constructs a new Object test case with the given name.
@@ -54,23 +46,14 @@ public abstract class ObjectTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Object test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void setFixture(org.cpntools.accesscpn.model.Object fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
 	 * Returns the fixture for this Object test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected org.cpntools.accesscpn.model.Object getFixture() {
-		return fixture;
+		return (org.cpntools.accesscpn.model.Object)fixture;
 	}
 
 } //ObjectTest

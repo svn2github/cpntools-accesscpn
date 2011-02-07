@@ -29,13 +29,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public abstract class AnnotationImpl extends LabelImpl implements Annotation {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The cached value of the '{@link #getGraphics() <em>Graphics</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

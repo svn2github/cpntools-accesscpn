@@ -33,7 +33,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 
 /**
@@ -51,11 +50,14 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class FusionGroupImpl extends PlaceImpl implements FusionGroup {
 	/**
+	 * The cached value of the '{@link #getPetriNet() <em>Petri Net</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see #getPetriNet()
 	 * @generated
+	 * @ordered
 	 */
-	private static final long serialVersionUID = 1L;
+	protected PetriNet petriNet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -82,8 +84,24 @@ public class FusionGroupImpl extends PlaceImpl implements FusionGroup {
 	 * @generated
 	 */
 	public PetriNet getPetriNet() {
-		if (eContainerFeatureID() != ModelPackageImpl.FUSION_GROUP__PETRI_NET) return null;
-		return (PetriNet)eContainer();
+		if (petriNet != null && ((EObject)petriNet).eIsProxy()) {
+			InternalEObject oldPetriNet = (InternalEObject)petriNet;
+			petriNet = (PetriNet)eResolveProxy(oldPetriNet);
+			if (petriNet != oldPetriNet) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackageImpl.FUSION_GROUP__PETRI_NET, oldPetriNet, petriNet));
+			}
+		}
+		return petriNet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PetriNet basicGetPetriNet() {
+		return petriNet;
 	}
 
 	/**
@@ -92,7 +110,12 @@ public class FusionGroupImpl extends PlaceImpl implements FusionGroup {
 	 * @generated
 	 */
 	public NotificationChain basicSetPetriNet(PetriNet newPetriNet, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newPetriNet, ModelPackageImpl.FUSION_GROUP__PETRI_NET, msgs);
+		PetriNet oldPetriNet = petriNet;
+		petriNet = newPetriNet;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackageImpl.FUSION_GROUP__PETRI_NET, oldPetriNet, newPetriNet);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
 		return msgs;
 	}
 
@@ -102,12 +125,10 @@ public class FusionGroupImpl extends PlaceImpl implements FusionGroup {
 	 * @generated
 	 */
 	public void setPetriNet(PetriNet newPetriNet) {
-		if (newPetriNet != eInternalContainer() || (eContainerFeatureID() != ModelPackageImpl.FUSION_GROUP__PETRI_NET && newPetriNet != null)) {
-			if (EcoreUtil.isAncestor(this, (EObject)newPetriNet))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+		if (newPetriNet != petriNet) {
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
+			if (petriNet != null)
+				msgs = ((InternalEObject)petriNet).eInverseRemove(this, ModelPackageImpl.PETRI_NET__FUSION_GROUPS, PetriNet.class, msgs);
 			if (newPetriNet != null)
 				msgs = ((InternalEObject)newPetriNet).eInverseAdd(this, ModelPackageImpl.PETRI_NET__FUSION_GROUPS, PetriNet.class, msgs);
 			msgs = basicSetPetriNet(newPetriNet, msgs);
@@ -126,8 +147,8 @@ public class FusionGroupImpl extends PlaceImpl implements FusionGroup {
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ModelPackageImpl.FUSION_GROUP__PETRI_NET:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
+				if (petriNet != null)
+					msgs = ((InternalEObject)petriNet).eInverseRemove(this, ModelPackageImpl.PETRI_NET__FUSION_GROUPS, PetriNet.class, msgs);
 				return basicSetPetriNet((PetriNet)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -153,24 +174,11 @@ public class FusionGroupImpl extends PlaceImpl implements FusionGroup {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case ModelPackageImpl.FUSION_GROUP__PETRI_NET:
-				return eInternalContainer().eInverseRemove(this, ModelPackageImpl.PETRI_NET__FUSION_GROUPS, PetriNet.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ModelPackageImpl.FUSION_GROUP__PETRI_NET:
-				return getPetriNet();
+				if (resolve) return getPetriNet();
+				return basicGetPetriNet();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -214,7 +222,7 @@ public class FusionGroupImpl extends PlaceImpl implements FusionGroup {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ModelPackageImpl.FUSION_GROUP__PETRI_NET:
-				return getPetriNet() != null;
+				return petriNet != null;
 		}
 		return super.eIsSet(featureID);
 	}

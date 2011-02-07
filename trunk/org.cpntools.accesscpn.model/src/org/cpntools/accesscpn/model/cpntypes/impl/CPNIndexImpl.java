@@ -43,13 +43,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class CPNIndexImpl extends CPNTypeImpl implements CPNIndex {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 

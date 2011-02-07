@@ -28,6 +28,7 @@ package org.cpntools.accesscpn.model.declaration.tests;
 import org.cpntools.accesscpn.model.declaration.DeclarationFactory;
 import org.cpntools.accesscpn.model.declaration.GlobalReferenceDeclaration;
 
+import org.cpntools.accesscpn.model.declaration.impl.DeclarationFactoryImpl;
 import junit.textui.TestRunner;
 
 /**
@@ -76,7 +77,7 @@ public class GlobalReferenceDeclarationTest extends DeclarationStructureTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(DeclarationFactory.eINSTANCE.createGlobalReferenceDeclaration());
+		setFixture(DeclarationFactoryImpl.eINSTANCE.createGlobalReferenceDeclaration());
 	}
 
 	/**

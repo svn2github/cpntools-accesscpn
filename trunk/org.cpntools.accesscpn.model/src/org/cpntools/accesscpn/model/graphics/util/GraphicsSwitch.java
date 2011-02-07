@@ -27,26 +27,37 @@ package org.cpntools.accesscpn.model.graphics.util;
 
 
 
-import org.cpntools.accesscpn.model.graphics.*;
+import java.util.List;
+
+import org.cpntools.accesscpn.model.graphics.AnnotationGraphics;
+import org.cpntools.accesscpn.model.graphics.ArcGraphics;
+import org.cpntools.accesscpn.model.graphics.Coordinate;
+import org.cpntools.accesscpn.model.graphics.Fill;
+import org.cpntools.accesscpn.model.graphics.Font;
+import org.cpntools.accesscpn.model.graphics.Graphics;
+import org.cpntools.accesscpn.model.graphics.HasGraphics;
+import org.cpntools.accesscpn.model.graphics.Line;
+import org.cpntools.accesscpn.model.graphics.NodeGraphics;
 import org.cpntools.accesscpn.model.graphics.impl.GraphicsPackageImpl;
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notifier;
-
-import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * The <b>Adapter Factory</b> for the model.
- * It provides an adapter <code>createXXX</code> method for each class of the model.
+ * The <b>Switch</b> for the model's inheritance hierarchy.
+ * It supports the call {@link #doSwitch(EObject) doSwitch(object)}
+ * to invoke the <code>caseXXX</code> method for each class of the model,
+ * starting with the actual class of the object
+ * and proceeding up the inheritance hierarchy
+ * until a non-null result is returned,
+ * which is the result of the switch.
  * <!-- end-user-doc -->
  * @see org.cpntools.accesscpn.model.graphics.impl.GraphicsPackageImpl
  * @generated
  */
-public class GraphicsAdapterFactory extends AdapterFactoryImpl {
+public class GraphicsSwitch<T> {
 	/**
-	 * The cached model package.
+	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -54,236 +65,266 @@ public class GraphicsAdapterFactory extends AdapterFactoryImpl {
 	protected static GraphicsPackageImpl modelPackage;
 
 	/**
-	 * Creates an instance of the adapter factory.
+	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GraphicsAdapterFactory() {
+	public GraphicsSwitch() {
 		if (modelPackage == null) {
 			modelPackage = GraphicsPackageImpl.eINSTANCE;
 		}
 	}
 
 	/**
-	 * Returns whether this factory is applicable for the type of the object.
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
 	 * <!-- end-user-doc -->
-	 * @return whether this factory is applicable for the type of the object.
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	@Override
-	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
-			return true;
+	public T doSwitch(EObject theEObject) {
+		return doSwitch(theEObject.eClass(), theEObject);
+	}
+
+	/**
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @generated
+	 */
+	protected T doSwitch(EClass theEClass, EObject theEObject) {
+		if (theEClass.eContainer() == modelPackage) {
+			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
-		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
+		else {
+			List<EClass> eSuperTypes = theEClass.getESuperTypes();
+			return
+				eSuperTypes.isEmpty() ?
+					defaultCase(theEObject) :
+					doSwitch(eSuperTypes.get(0), theEObject);
 		}
-		return false;
 	}
 
 	/**
-	 * The switch that delegates to the <code>createXXX</code> methods.
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected GraphicsSwitch<Adapter> modelSwitch =
-		new GraphicsSwitch<Adapter>() {
-			@Override
-			public Adapter caseAnnotationGraphics(AnnotationGraphics object) {
-				return createAnnotationGraphicsAdapter();
+	protected T doSwitch(int classifierID, EObject theEObject) {
+		switch (classifierID) {
+			case GraphicsPackageImpl.ANNOTATION_GRAPHICS: {
+				AnnotationGraphics annotationGraphics = (AnnotationGraphics)theEObject;
+				T result = caseAnnotationGraphics(annotationGraphics);
+				if (result == null) result = caseGraphics(annotationGraphics);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			@Override
-			public Adapter caseArcGraphics(ArcGraphics object) {
-				return createArcGraphicsAdapter();
+			case GraphicsPackageImpl.ARC_GRAPHICS: {
+				ArcGraphics arcGraphics = (ArcGraphics)theEObject;
+				T result = caseArcGraphics(arcGraphics);
+				if (result == null) result = caseGraphics(arcGraphics);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			@Override
-			public Adapter caseCoordinate(Coordinate object) {
-				return createCoordinateAdapter();
+			case GraphicsPackageImpl.COORDINATE: {
+				Coordinate coordinate = (Coordinate)theEObject;
+				T result = caseCoordinate(coordinate);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			@Override
-			public Adapter caseFill(Fill object) {
-				return createFillAdapter();
+			case GraphicsPackageImpl.FILL: {
+				Fill fill = (Fill)theEObject;
+				T result = caseFill(fill);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			@Override
-			public Adapter caseFont(Font object) {
-				return createFontAdapter();
+			case GraphicsPackageImpl.FONT: {
+				Font font = (Font)theEObject;
+				T result = caseFont(font);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			@Override
-			public Adapter caseGraphics(Graphics object) {
-				return createGraphicsAdapter();
+			case GraphicsPackageImpl.GRAPHICS: {
+				Graphics graphics = (Graphics)theEObject;
+				T result = caseGraphics(graphics);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			@Override
-			public Adapter caseHasGraphics(HasGraphics object) {
-				return createHasGraphicsAdapter();
+			case GraphicsPackageImpl.HAS_GRAPHICS: {
+				HasGraphics hasGraphics = (HasGraphics)theEObject;
+				T result = caseHasGraphics(hasGraphics);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			@Override
-			public Adapter caseLine(Line object) {
-				return createLineAdapter();
+			case GraphicsPackageImpl.LINE: {
+				Line line = (Line)theEObject;
+				T result = caseLine(line);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			@Override
-			public Adapter caseNodeGraphics(NodeGraphics object) {
-				return createNodeGraphicsAdapter();
+			case GraphicsPackageImpl.NODE_GRAPHICS: {
+				NodeGraphics nodeGraphics = (NodeGraphics)theEObject;
+				T result = caseNodeGraphics(nodeGraphics);
+				if (result == null) result = caseGraphics(nodeGraphics);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
-
-	/**
-	 * Creates an adapter for the <code>target</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param target the object to adapt.
-	 * @return the adapter for the <code>target</code>.
-	 * @generated
-	 */
-	@Override
-	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
+			default: return defaultCase(theEObject);
+		}
 	}
 
-
 	/**
-	 * Creates a new adapter for an object of class '{@link org.cpntools.accesscpn.model.graphics.AnnotationGraphics <em>Annotation Graphics</em>}'.
+	 * Returns the result of interpreting the object as an instance of '<em>Annotation Graphics</em>'.
 	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.cpntools.accesscpn.model.graphics.AnnotationGraphics
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Annotation Graphics</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Adapter createAnnotationGraphicsAdapter() {
+	public T caseAnnotationGraphics(AnnotationGraphics object) {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.cpntools.accesscpn.model.graphics.ArcGraphics <em>Arc Graphics</em>}'.
+	 * Returns the result of interpreting the object as an instance of '<em>Arc Graphics</em>'.
 	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.cpntools.accesscpn.model.graphics.ArcGraphics
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Arc Graphics</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Adapter createArcGraphicsAdapter() {
+	public T caseArcGraphics(ArcGraphics object) {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.cpntools.accesscpn.model.graphics.Coordinate <em>Coordinate</em>}'.
+	 * Returns the result of interpreting the object as an instance of '<em>Coordinate</em>'.
 	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.cpntools.accesscpn.model.graphics.Coordinate
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Coordinate</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Adapter createCoordinateAdapter() {
+	public T caseCoordinate(Coordinate object) {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.cpntools.accesscpn.model.graphics.Fill <em>Fill</em>}'.
+	 * Returns the result of interpreting the object as an instance of '<em>Fill</em>'.
 	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.cpntools.accesscpn.model.graphics.Fill
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fill</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Adapter createFillAdapter() {
+	public T caseFill(Fill object) {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.cpntools.accesscpn.model.graphics.Font <em>Font</em>}'.
+	 * Returns the result of interpreting the object as an instance of '<em>Font</em>'.
 	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.cpntools.accesscpn.model.graphics.Font
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Font</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Adapter createFontAdapter() {
+	public T caseFont(Font object) {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.cpntools.accesscpn.model.graphics.Graphics <em>Graphics</em>}'.
+	 * Returns the result of interpreting the object as an instance of '<em>Graphics</em>'.
 	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.cpntools.accesscpn.model.graphics.Graphics
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Graphics</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Adapter createGraphicsAdapter() {
+	public T caseGraphics(Graphics object) {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.cpntools.accesscpn.model.graphics.HasGraphics <em>Has Graphics</em>}'.
+	 * Returns the result of interpreting the object as an instance of '<em>Has Graphics</em>'.
 	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.cpntools.accesscpn.model.graphics.HasGraphics
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Has Graphics</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Adapter createHasGraphicsAdapter() {
+	public T caseHasGraphics(HasGraphics object) {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.cpntools.accesscpn.model.graphics.Line <em>Line</em>}'.
+	 * Returns the result of interpreting the object as an instance of '<em>Line</em>'.
 	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.cpntools.accesscpn.model.graphics.Line
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Line</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Adapter createLineAdapter() {
+	public T caseLine(Line object) {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.cpntools.accesscpn.model.graphics.NodeGraphics <em>Node Graphics</em>}'.
+	 * Returns the result of interpreting the object as an instance of '<em>Node Graphics</em>'.
 	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.cpntools.accesscpn.model.graphics.NodeGraphics
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Node Graphics</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Adapter createNodeGraphicsAdapter() {
+	public T caseNodeGraphics(NodeGraphics object) {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for the default case.
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
-	 * This default implementation returns null.
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	public Adapter createEObjectAdapter() {
+	public T defaultCase(EObject object) {
 		return null;
 	}
 
-} //GraphicsAdapterFactory
+} //GraphicsSwitch

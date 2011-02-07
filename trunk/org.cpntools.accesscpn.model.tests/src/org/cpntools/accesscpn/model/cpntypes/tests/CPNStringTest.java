@@ -26,6 +26,7 @@
 package org.cpntools.accesscpn.model.cpntypes.tests;
 
 import org.cpntools.accesscpn.model.cpntypes.CPNString;
+import org.cpntools.accesscpn.model.cpntypes.impl.CpntypesFactoryImpl;
 import org.cpntools.accesscpn.model.cpntypes.CpntypesFactory;
 
 import junit.textui.TestRunner;
@@ -76,7 +77,7 @@ public class CPNStringTest extends CPNTypeTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(CpntypesFactory.eINSTANCE.createCPNString());
+		setFixture(CpntypesFactoryImpl.eINSTANCE.createCPNString());
 	}
 
 	/**

@@ -26,6 +26,7 @@
 package org.cpntools.accesscpn.model.tests;
 
 import org.cpntools.accesscpn.model.Arc;
+import org.cpntools.accesscpn.model.impl.ModelFactoryImpl;
 import org.cpntools.accesscpn.model.ModelFactory;
 
 import junit.framework.TestCase;
@@ -38,15 +39,7 @@ import junit.textui.TestRunner;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ArcTest extends TestCase {
-
-	/**
-	 * The fixture for this Arc test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Arc fixture = null;
+public class ArcTest extends HasIdTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -68,23 +61,14 @@ public class ArcTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Arc test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void setFixture(Arc fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
 	 * Returns the fixture for this Arc test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected Arc getFixture() {
-		return fixture;
+		return (Arc)fixture;
 	}
 
 	/**
@@ -95,7 +79,7 @@ public class ArcTest extends TestCase {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(ModelFactory.eINSTANCE.createArc());
+		setFixture(ModelFactoryImpl.eINSTANCE.createArc());
 	}
 
 	/**

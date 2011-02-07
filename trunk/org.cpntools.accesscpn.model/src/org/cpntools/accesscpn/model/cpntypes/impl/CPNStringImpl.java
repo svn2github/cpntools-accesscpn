@@ -44,12 +44,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class CPNStringImpl extends CPNTypeImpl implements CPNString {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
 	 * The default value of the '{@link #getRangeLow() <em>Range Low</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

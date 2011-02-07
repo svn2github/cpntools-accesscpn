@@ -30,8 +30,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="HLArcAddin" abstract="true" interface="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="hlinscription" eType="#//HLAnnotation"
-        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hlinscription" eType="#//HLAnnotation"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" lowerBound="1" eType="#//HLArcType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="HLArcType">
@@ -105,7 +104,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="page" lowerBound="1" upperBound="-1"
         eType="#//Page" containment="true" resolveProxies="false" eOpposite="#//Page/petriNet"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fusionGroups" upperBound="-1"
-        eType="#//FusionGroup" containment="true" resolveProxies="false" eOpposite="#//FusionGroup/petriNet"/>
+        eType="#//FusionGroup" eOpposite="#//FusionGroup/petriNet"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Place" eSuperTypes="#//PlaceNode">
     <eStructuralFeatures xsi:type="ecore:EReference" name="references" upperBound="-1"

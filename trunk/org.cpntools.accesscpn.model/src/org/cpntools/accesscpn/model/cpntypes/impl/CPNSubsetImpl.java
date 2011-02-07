@@ -43,13 +43,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class CPNSubsetImpl extends CPNTypeImpl implements CPNSubset {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The default value of the '{@link #getSort() <em>Sort</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -286,7 +279,7 @@ public class CPNSubsetImpl extends CPNTypeImpl implements CPNSubset {
 		} else if (getWith() != null) {
 			appendString = " with " + getWith();
 		}
-		return "subset " + getType() + postFixAsString() + appendString;
+		return "subset " + getSort() + postFixAsString() + appendString;
 	}
 
 } // CPNSubsetImpl

@@ -29,7 +29,21 @@ package org.cpntools.accesscpn.model.cpntypes.util;
 
 import java.util.List;
 
-import org.cpntools.accesscpn.model.cpntypes.*;
+import org.cpntools.accesscpn.model.cpntypes.CPNAlias;
+import org.cpntools.accesscpn.model.cpntypes.CPNBool;
+import org.cpntools.accesscpn.model.cpntypes.CPNEnum;
+import org.cpntools.accesscpn.model.cpntypes.CPNIndex;
+import org.cpntools.accesscpn.model.cpntypes.CPNInt;
+import org.cpntools.accesscpn.model.cpntypes.CPNList;
+import org.cpntools.accesscpn.model.cpntypes.CPNProduct;
+import org.cpntools.accesscpn.model.cpntypes.CPNReal;
+import org.cpntools.accesscpn.model.cpntypes.CPNRecord;
+import org.cpntools.accesscpn.model.cpntypes.CPNString;
+import org.cpntools.accesscpn.model.cpntypes.CPNSubset;
+import org.cpntools.accesscpn.model.cpntypes.CPNType;
+import org.cpntools.accesscpn.model.cpntypes.CPNUnion;
+import org.cpntools.accesscpn.model.cpntypes.CPNUnit;
+import org.cpntools.accesscpn.model.cpntypes.NameTypePair;
 import org.cpntools.accesscpn.model.cpntypes.impl.CpntypesPackageImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;

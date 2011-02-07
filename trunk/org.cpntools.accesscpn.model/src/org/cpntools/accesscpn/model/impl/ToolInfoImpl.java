@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.sdo.impl.EDataObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 
@@ -52,14 +52,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *
  * @generated
  */
-public class ToolInfoImpl extends EDataObjectImpl implements ToolInfo {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
+public class ToolInfoImpl extends EObjectImpl implements ToolInfo {
 	/**
 	 * The default value of the '{@link #getTool() <em>Tool</em>}' attribute.
 	 * <!-- begin-user-doc -->

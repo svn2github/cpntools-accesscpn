@@ -94,8 +94,7 @@ public class SyntaxCheckTest extends TestCase {
 		System.out.println("Parse result: " + petriNet);
 
 		System.out.println("getHighLevelSimulator 1");
-		final HighLevelSimulator s = HighLevelSimulator.getHighLevelSimulator(new Simulator(new DaemonSimulator(
-		        InetAddress.getByName("localhost"), 12345, new File("cpn.ML"))), petriNet);
+		final HighLevelSimulator s = HighLevelSimulator.getHighLevelSimulator();
 		System.out.println("getHighLevelSimulator 2");
 		final Checker checker = new Checker(petriNet, null, s);
 		System.out.println("Checker");

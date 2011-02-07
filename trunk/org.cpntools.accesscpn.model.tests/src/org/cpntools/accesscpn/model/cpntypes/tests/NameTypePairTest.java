@@ -28,6 +28,7 @@ package org.cpntools.accesscpn.model.cpntypes.tests;
 import org.cpntools.accesscpn.model.cpntypes.CpntypesFactory;
 import org.cpntools.accesscpn.model.cpntypes.NameTypePair;
 
+import org.cpntools.accesscpn.model.cpntypes.impl.CpntypesFactoryImpl;
 import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
@@ -95,7 +96,7 @@ public class NameTypePairTest extends TestCase {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(CpntypesFactory.eINSTANCE.createNameTypePair());
+		setFixture(CpntypesFactoryImpl.eINSTANCE.createNameTypePair());
 	}
 
 	/**

@@ -47,13 +47,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public abstract class PlaceNodeImpl extends NodeImpl implements PlaceNode {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The cached value of the '{@link #getSort() <em>Sort</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

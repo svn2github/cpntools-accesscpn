@@ -44,6 +44,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 
@@ -64,13 +65,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class PetriNetImpl extends HasIdImpl implements PetriNet {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
 	/**
 	 * The cached value of the '{@link #getToolinfo() <em>Toolinfo</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -245,7 +239,7 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 */
 	public List<FusionGroup> getFusionGroups() {
 		if (fusionGroups == null) {
-			fusionGroups = new EObjectContainmentWithInverseEList<FusionGroup>(FusionGroup.class, this, ModelPackageImpl.PETRI_NET__FUSION_GROUPS, ModelPackageImpl.FUSION_GROUP__PETRI_NET);
+			fusionGroups = new EObjectWithInverseResolvingEList<FusionGroup>(FusionGroup.class, this, ModelPackageImpl.PETRI_NET__FUSION_GROUPS, ModelPackageImpl.FUSION_GROUP__PETRI_NET);
 		}
 		return fusionGroups;
 	}

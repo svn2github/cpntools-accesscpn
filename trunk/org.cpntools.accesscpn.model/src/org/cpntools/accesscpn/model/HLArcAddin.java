@@ -29,14 +29,14 @@ public interface HLArcAddin {
 
 	/**
 	 * @return the inscription of this arc
-	 * @model required="false" containment="true"
+	 * @model required="false" containment="false"
 	 */
 	public HLAnnotation getHlinscription();
 
 	/**
-	 * Sets the value of the '{@link org.cpntools.accesscpn.model.HLArcAddin#getHlinscription <em>Hlinscription</em>}' containment reference.
+	 * Sets the value of the '{@link org.cpntools.accesscpn.model.HLArcAddin#getHlinscription <em>Hlinscription</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Hlinscription</em>' containment reference.
+	 * @param value the new value of the '<em>Hlinscription</em>' reference.
 	 * @see #getHlinscription()
 	 * @generated
 	 */

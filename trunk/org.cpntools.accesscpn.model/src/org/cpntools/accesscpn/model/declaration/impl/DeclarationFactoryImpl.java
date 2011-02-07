@@ -25,7 +25,12 @@
  */
 package org.cpntools.accesscpn.model.declaration.impl;
 
-import org.cpntools.accesscpn.model.declaration.*;
+import org.cpntools.accesscpn.model.declaration.DeclarationFactory;
+import org.cpntools.accesscpn.model.declaration.GlobalReferenceDeclaration;
+import org.cpntools.accesscpn.model.declaration.MLDeclaration;
+import org.cpntools.accesscpn.model.declaration.TypeDeclaration;
+import org.cpntools.accesscpn.model.declaration.UseDeclaration;
+import org.cpntools.accesscpn.model.declaration.VariableDeclaration;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;

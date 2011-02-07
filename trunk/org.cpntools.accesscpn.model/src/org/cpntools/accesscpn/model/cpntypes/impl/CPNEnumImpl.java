@@ -44,12 +44,6 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  */
 public class CPNEnumImpl extends CPNTypeImpl implements CPNEnum {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
 	 * The cached value of the '{@link #getValues() <em>Values</em>}' attribute list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

@@ -44,13 +44,6 @@ public class TransitionImpl extends TransitionNodeImpl implements Transition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected TransitionImpl() {
 		super();
 	}

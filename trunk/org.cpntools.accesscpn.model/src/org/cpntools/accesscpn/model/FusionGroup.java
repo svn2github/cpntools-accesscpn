@@ -12,9 +12,9 @@ public interface FusionGroup extends Place {
 	PetriNet getPetriNet();
 
 	/**
-	 * Sets the value of the '{@link org.cpntools.accesscpn.model.FusionGroup#getPetriNet <em>Petri Net</em>}' container reference.
+	 * Sets the value of the '{@link org.cpntools.accesscpn.model.FusionGroup#getPetriNet <em>Petri Net</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Petri Net</em>' container reference.
+	 * @param value the new value of the '<em>Petri Net</em>' reference.
 	 * @see #getPetriNet()
 	 * @generated
 	 */

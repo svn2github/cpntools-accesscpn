@@ -54,13 +54,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public abstract class TransitionNodeImpl extends NodeImpl implements TransitionNode {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

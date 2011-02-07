@@ -78,7 +78,7 @@ public class ModelPackageImpl extends EPackageImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String eNS_URI = "http:///dk/au/daimi/ascoveco/cpn/model.ecore";
+	public static final String eNS_URI = "http:///org/cpntools/accesscpn/model.ecore";
 
 	/**
 	 * The package namespace name.
@@ -86,7 +86,7 @@ public class ModelPackageImpl extends EPackageImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String eNS_PREFIX = "dk.au.daimi.ascoveco.cpn.model";
+	public static final String eNS_PREFIX = "org.cpntools.accesscpn.model";
 
 	/**
 	 * The singleton instance of the package.
@@ -264,7 +264,7 @@ public class ModelPackageImpl extends EPackageImpl {
 	public static final int ARC__ID = HAS_ID__ID;
 
 	/**
-	 * The feature id for the '<em><b>Hlinscription</b></em>' containment reference.
+	 * The feature id for the '<em><b>Hlinscription</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1211,7 +1211,7 @@ public class ModelPackageImpl extends EPackageImpl {
 	public static final int FUSION_GROUP__REFERENCES = PLACE__REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Petri Net</b></em>' container reference.
+	 * The feature id for the '<em><b>Petri Net</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1292,7 +1292,7 @@ public class ModelPackageImpl extends EPackageImpl {
 	public static final int HL_ANNOTATION_ADDIN_FEATURE_COUNT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Hlinscription</b></em>' containment reference.
+	 * The feature id for the '<em><b>Hlinscription</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1805,7 +1805,7 @@ public class ModelPackageImpl extends EPackageImpl {
 	public static final int PETRI_NET__PAGE = HAS_ID_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Fusion Groups</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Fusion Groups</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3174,10 +3174,10 @@ public class ModelPackageImpl extends EPackageImpl {
 	}
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.cpntools.accesscpn.model.PetriNet#getFusionGroups <em>Fusion Groups</em>}'.
+	 * Returns the meta object for the reference list '{@link org.cpntools.accesscpn.model.PetriNet#getFusionGroups <em>Fusion Groups</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Fusion Groups</em>'.
+	 * @return the meta object for the reference list '<em>Fusion Groups</em>'.
 	 * @see org.cpntools.accesscpn.model.PetriNet#getFusionGroups()
 	 * @see #getPetriNet()
 	 * @generated
@@ -3449,10 +3449,10 @@ public class ModelPackageImpl extends EPackageImpl {
 	}
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.cpntools.accesscpn.model.HLArcAddin#getHlinscription <em>Hlinscription</em>}'.
+	 * Returns the meta object for the reference '{@link org.cpntools.accesscpn.model.HLArcAddin#getHlinscription <em>Hlinscription</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Hlinscription</em>'.
+	 * @return the meta object for the reference '<em>Hlinscription</em>'.
 	 * @see org.cpntools.accesscpn.model.HLArcAddin#getHlinscription()
 	 * @see #getHLArcAddin()
 	 * @generated
@@ -3725,10 +3725,10 @@ public class ModelPackageImpl extends EPackageImpl {
 	}
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.cpntools.accesscpn.model.FusionGroup#getPetriNet <em>Petri Net</em>}'.
+	 * Returns the meta object for the reference '{@link org.cpntools.accesscpn.model.FusionGroup#getPetriNet <em>Petri Net</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Petri Net</em>'.
+	 * @return the meta object for the reference '<em>Petri Net</em>'.
 	 * @see org.cpntools.accesscpn.model.FusionGroup#getPetriNet()
 	 * @see #getFusionGroup()
 	 * @generated
@@ -4012,7 +4012,7 @@ public class ModelPackageImpl extends EPackageImpl {
 		initEClass(conditionEClass, Condition.class, "Condition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(fusionGroupEClass, FusionGroup.class, "FusionGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFusionGroup_PetriNet(), this.getPetriNet(), this.getPetriNet_FusionGroups(), "petriNet", null, 0, 1, FusionGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFusionGroup_PetriNet(), this.getPetriNet(), this.getPetriNet_FusionGroups(), "petriNet", null, 0, 1, FusionGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(hlAnnotationEClass, HLAnnotation.class, "HLAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -4020,7 +4020,7 @@ public class ModelPackageImpl extends EPackageImpl {
 		initEAttribute(getHLAnnotationAddin_Text(), ecorePackage.getEString(), "text", null, 1, 1, HLAnnotationAddin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(hlArcAddinEClass, HLArcAddin.class, "HLArcAddin", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getHLArcAddin_Hlinscription(), this.getHLAnnotation(), null, "hlinscription", null, 0, 1, HLArcAddin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getHLArcAddin_Hlinscription(), this.getHLAnnotation(), null, "hlinscription", null, 0, 1, HLArcAddin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getHLArcAddin_Kind(), this.getHLArcType(), "kind", null, 1, 1, HLArcAddin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(hlDeclarationEClass, HLDeclaration.class, "HLDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4078,7 +4078,7 @@ public class ModelPackageImpl extends EPackageImpl {
 		initEClass(petriNetEClass, PetriNet.class, "PetriNet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPetriNet_Kind(), ecorePackage.getEString(), "kind", null, 1, 1, PetriNet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPetriNet_Page(), this.getPage(), this.getPage_PetriNet(), "page", null, 1, -1, PetriNet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPetriNet_FusionGroups(), this.getFusionGroup(), this.getFusionGroup_PetriNet(), "fusionGroups", null, 0, -1, PetriNet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPetriNet_FusionGroups(), this.getFusionGroup(), this.getFusionGroup_PetriNet(), "fusionGroups", null, 0, -1, PetriNet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(placeEClass, Place.class, "Place", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPlace_References(), this.getRefPlace(), this.getRefPlace_Ref(), "references", null, 0, -1, Place.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4379,7 +4379,7 @@ public class ModelPackageImpl extends EPackageImpl {
 		public static final EReference PETRI_NET__PAGE = eINSTANCE.getPetriNet_Page();
 
 		/**
-		 * The meta object literal for the '<em><b>Fusion Groups</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Fusion Groups</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -4577,7 +4577,7 @@ public class ModelPackageImpl extends EPackageImpl {
 		public static final EClass HL_ARC_ADDIN = eINSTANCE.getHLArcAddin();
 
 		/**
-		 * The meta object literal for the '<em><b>Hlinscription</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Hlinscription</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -4773,7 +4773,7 @@ public class ModelPackageImpl extends EPackageImpl {
 		public static final EClass FUSION_GROUP = eINSTANCE.getFusionGroup();
 
 		/**
-		 * The meta object literal for the '<em><b>Petri Net</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Petri Net</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

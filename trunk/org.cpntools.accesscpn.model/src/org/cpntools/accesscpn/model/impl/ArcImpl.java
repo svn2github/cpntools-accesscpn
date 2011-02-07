@@ -56,13 +56,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class ArcImpl extends HasIdImpl implements Arc {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The cached value of the '{@link #getHlinscription() <em>Hlinscription</em>}' containment reference. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -136,6 +129,23 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	 * @generated
 	 */
 	public HLAnnotation getHlinscription() {
+		if (hlinscription != null && ((EObject)hlinscription).eIsProxy()) {
+			InternalEObject oldHlinscription = (InternalEObject)hlinscription;
+			hlinscription = (HLAnnotation)eResolveProxy(oldHlinscription);
+			if (hlinscription != oldHlinscription) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackageImpl.ARC__HLINSCRIPTION, oldHlinscription, hlinscription));
+			}
+		}
+		return hlinscription;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HLAnnotation basicGetHlinscription() {
 		return hlinscription;
 	}
 
@@ -143,32 +153,11 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetHlinscription(HLAnnotation newHlinscription, NotificationChain msgs) {
+	public void setHlinscription(HLAnnotation newHlinscription) {
 		HLAnnotation oldHlinscription = hlinscription;
 		hlinscription = newHlinscription;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackageImpl.ARC__HLINSCRIPTION, oldHlinscription, newHlinscription);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setHlinscription(HLAnnotation newHlinscription) {
-		if (newHlinscription != hlinscription) {
-			NotificationChain msgs = null;
-			if (hlinscription != null)
-				msgs = ((InternalEObject)hlinscription).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ModelPackageImpl.ARC__HLINSCRIPTION, null, msgs);
-			if (newHlinscription != null)
-				msgs = ((InternalEObject)newHlinscription).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ModelPackageImpl.ARC__HLINSCRIPTION, null, msgs);
-			msgs = basicSetHlinscription(newHlinscription, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackageImpl.ARC__HLINSCRIPTION, newHlinscription, newHlinscription));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackageImpl.ARC__HLINSCRIPTION, oldHlinscription, hlinscription));
 	}
 
 	/**
@@ -372,8 +361,6 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ModelPackageImpl.ARC__HLINSCRIPTION:
-				return basicSetHlinscription(null, msgs);
 			case ModelPackageImpl.ARC__SOURCE:
 				return basicSetSource(null, msgs);
 			case ModelPackageImpl.ARC__TARGET:
@@ -405,7 +392,8 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ModelPackageImpl.ARC__HLINSCRIPTION:
-				return getHlinscription();
+				if (resolve) return getHlinscription();
+				return basicGetHlinscription();
 			case ModelPackageImpl.ARC__KIND:
 				return getKind();
 			case ModelPackageImpl.ARC__SOURCE:

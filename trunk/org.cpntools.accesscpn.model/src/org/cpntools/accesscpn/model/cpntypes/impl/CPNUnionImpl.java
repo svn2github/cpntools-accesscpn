@@ -49,12 +49,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class CPNUnionImpl extends CPNTypeImpl implements CPNUnion {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
 	 * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference list.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->

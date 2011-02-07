@@ -49,13 +49,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class NodeImpl extends ObjectImpl implements Node {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The cached value of the '{@link #getSourceArc() <em>Source Arc</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

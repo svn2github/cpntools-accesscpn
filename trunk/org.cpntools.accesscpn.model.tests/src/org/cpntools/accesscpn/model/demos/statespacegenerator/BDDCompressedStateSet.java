@@ -126,7 +126,6 @@ public class BDDCompressedStateSet implements CompressedStateSet {
 		this(allRealPlaceInstances.size());
 	}
 
-	@Override
 	public synchronized boolean add(final CompressedState compressed) {
 		final int[] indices = compressed.getIndices(placeCount);
 		final BDD newState = buildState(indices);
@@ -144,7 +143,6 @@ public class BDDCompressedStateSet implements CompressedStateSet {
 	 * 
 	 * @see CompressedStateSet#addAll(java.util.Collection)
 	 */
-	@Override
 	public synchronized void addAll(final Collection<CompressedState> unchecked) {
 		for (final CompressedState s : unchecked) {
 			final int[] indices = s.getIndices(placeCount);
@@ -154,18 +152,16 @@ public class BDDCompressedStateSet implements CompressedStateSet {
 		size += unchecked.size();
 	}
 
-	@Override
 	public synchronized void clear() {
 		set.andWith(factory.zero());
 	}
 
-	@Override
+	
 	public Iterator<CompressedState> iterator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public synchronized void printStats() {
 		System.out.println("Variables: " + placeCount + "; size = " + size);
 		System.out.println("SATCount: " + set.satCount() + "; nodeCount: " + set.nodeCount());
@@ -173,7 +169,6 @@ public class BDDCompressedStateSet implements CompressedStateSet {
 		// System.out.println("SATCount: " + set.satCount() + "; nodeCount: " + set.nodeCount());
 	}
 
-	@Override
 	public synchronized int size() {
 		return size;
 	}

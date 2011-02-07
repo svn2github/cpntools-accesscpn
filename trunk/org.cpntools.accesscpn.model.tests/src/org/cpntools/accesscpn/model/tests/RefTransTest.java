@@ -28,6 +28,7 @@ package org.cpntools.accesscpn.model.tests;
 import org.cpntools.accesscpn.model.ModelFactory;
 import org.cpntools.accesscpn.model.RefTrans;
 
+import org.cpntools.accesscpn.model.impl.ModelFactoryImpl;
 import junit.textui.TestRunner;
 
 /**
@@ -76,7 +77,7 @@ public class RefTransTest extends TransitionNodeTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(ModelFactory.eINSTANCE.createRefTrans());
+		setFixture(ModelFactoryImpl.eINSTANCE.createRefTrans());
 	}
 
 	/**

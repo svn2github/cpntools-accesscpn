@@ -24,7 +24,19 @@ package org.cpntools.accesscpn.model.graphics.impl;
 
 import java.net.URL;
 
-import org.cpntools.accesscpn.model.graphics.*;
+import org.cpntools.accesscpn.model.graphics.Align;
+import org.cpntools.accesscpn.model.graphics.AnnotationGraphics;
+import org.cpntools.accesscpn.model.graphics.ArcGraphics;
+import org.cpntools.accesscpn.model.graphics.Coordinate;
+import org.cpntools.accesscpn.model.graphics.Decoration;
+import org.cpntools.accesscpn.model.graphics.Fill;
+import org.cpntools.accesscpn.model.graphics.Font;
+import org.cpntools.accesscpn.model.graphics.GraphicsFactory;
+import org.cpntools.accesscpn.model.graphics.Line;
+import org.cpntools.accesscpn.model.graphics.NodeGraphics;
+import org.cpntools.accesscpn.model.graphics.Rotation;
+import org.cpntools.accesscpn.model.graphics.Shape;
+import org.cpntools.accesscpn.model.graphics.Style;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;

@@ -42,13 +42,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class UseDeclarationImpl extends DeclarationStructureImpl implements UseDeclaration {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The default value of the '{@link #getFileName() <em>File Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

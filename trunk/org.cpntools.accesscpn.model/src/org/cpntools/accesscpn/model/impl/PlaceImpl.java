@@ -53,12 +53,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class PlaceImpl extends PlaceNodeImpl implements Place {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
 	 * The cached value of the '{@link #getReferences() <em>References</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

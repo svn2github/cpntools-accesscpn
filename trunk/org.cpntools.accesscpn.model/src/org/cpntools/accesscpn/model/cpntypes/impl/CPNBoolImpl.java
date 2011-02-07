@@ -42,13 +42,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class CPNBoolImpl extends CPNTypeImpl implements CPNBool {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The default value of the '{@link #getTrueValue() <em>True Value</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

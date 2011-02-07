@@ -55,13 +55,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class AnnotationGraphicsImpl extends GraphicsImpl implements AnnotationGraphics {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The cached value of the '{@link #getFill() <em>Fill</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

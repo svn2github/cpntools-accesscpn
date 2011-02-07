@@ -26,6 +26,7 @@
 package org.cpntools.accesscpn.model.tests;
 
 import org.cpntools.accesscpn.model.FusionGroup;
+import org.cpntools.accesscpn.model.impl.ModelFactoryImpl;
 import org.cpntools.accesscpn.model.ModelFactory;
 
 import junit.textui.TestRunner;
@@ -76,7 +77,7 @@ public class FusionGroupTest extends PlaceTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(ModelFactory.eINSTANCE.createFusionGroup());
+		setFixture(ModelFactoryImpl.eINSTANCE.createFusionGroup());
 	}
 
 	/**

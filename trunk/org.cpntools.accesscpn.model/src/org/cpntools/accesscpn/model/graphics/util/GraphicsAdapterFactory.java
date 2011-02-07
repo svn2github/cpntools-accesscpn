@@ -8,13 +8,19 @@ package org.cpntools.accesscpn.model.graphics.util;
 
 
 
-import org.cpntools.accesscpn.model.graphics.*;
+import org.cpntools.accesscpn.model.graphics.AnnotationGraphics;
+import org.cpntools.accesscpn.model.graphics.ArcGraphics;
+import org.cpntools.accesscpn.model.graphics.Coordinate;
+import org.cpntools.accesscpn.model.graphics.Fill;
+import org.cpntools.accesscpn.model.graphics.Font;
+import org.cpntools.accesscpn.model.graphics.Graphics;
+import org.cpntools.accesscpn.model.graphics.HasGraphics;
+import org.cpntools.accesscpn.model.graphics.Line;
+import org.cpntools.accesscpn.model.graphics.NodeGraphics;
 import org.cpntools.accesscpn.model.graphics.impl.GraphicsPackageImpl;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

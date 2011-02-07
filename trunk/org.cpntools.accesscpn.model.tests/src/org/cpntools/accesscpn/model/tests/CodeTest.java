@@ -26,6 +26,7 @@
 package org.cpntools.accesscpn.model.tests;
 
 import org.cpntools.accesscpn.model.Code;
+import org.cpntools.accesscpn.model.impl.ModelFactoryImpl;
 import org.cpntools.accesscpn.model.ModelFactory;
 
 import junit.textui.TestRunner;
@@ -76,7 +77,7 @@ public class CodeTest extends AnnotationTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(ModelFactory.eINSTANCE.createCode());
+		setFixture(ModelFactoryImpl.eINSTANCE.createCode());
 	}
 
 	/**

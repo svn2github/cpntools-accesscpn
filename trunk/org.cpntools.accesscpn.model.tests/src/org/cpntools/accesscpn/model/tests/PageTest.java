@@ -28,6 +28,7 @@ package org.cpntools.accesscpn.model.tests;
 import org.cpntools.accesscpn.model.ModelFactory;
 import org.cpntools.accesscpn.model.Page;
 
+import org.cpntools.accesscpn.model.impl.ModelFactoryImpl;
 import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
@@ -38,15 +39,7 @@ import junit.textui.TestRunner;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PageTest extends TestCase {
-
-	/**
-	 * The fixture for this Page test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Page fixture = null;
+public class PageTest extends HasIdTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -68,23 +61,14 @@ public class PageTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Page test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void setFixture(Page fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
 	 * Returns the fixture for this Page test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected Page getFixture() {
-		return fixture;
+		return (Page)fixture;
 	}
 
 	/**
@@ -95,7 +79,7 @@ public class PageTest extends TestCase {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(ModelFactory.eINSTANCE.createPage());
+		setFixture(ModelFactoryImpl.eINSTANCE.createPage());
 	}
 
 	/**

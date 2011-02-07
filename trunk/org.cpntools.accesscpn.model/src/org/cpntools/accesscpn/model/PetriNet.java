@@ -59,7 +59,7 @@ public interface PetriNet extends HasId, HasToolInfo, HasLabel, HasName {
 	// This is added to better support fusion groups
 	/**
 	 * @return all fusion groups in this petri net
-	 * @model containment="true" opposite="petriNet" type="FusionGroup"
+	 * @model containment="false" opposite="petriNet" type="FusionGroup"
 	 */
 	List<FusionGroup> getFusionGroups();
 }

@@ -27,7 +27,7 @@ package org.cpntools.accesscpn.model.declaration.impl;
 
 import org.cpntools.accesscpn.model.declaration.DeclarationStructure;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.sdo.impl.EDataObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 
 /**
@@ -39,14 +39,7 @@ import org.eclipse.emf.ecore.sdo.impl.EDataObjectImpl;
  *
  * @generated
  */
-public abstract class DeclarationStructureImpl extends EDataObjectImpl implements DeclarationStructure {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
+public abstract class DeclarationStructureImpl extends EObjectImpl implements DeclarationStructure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

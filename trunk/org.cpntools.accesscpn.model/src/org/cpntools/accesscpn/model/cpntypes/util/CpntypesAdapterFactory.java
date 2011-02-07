@@ -27,13 +27,25 @@ package org.cpntools.accesscpn.model.cpntypes.util;
 
 
 
-import org.cpntools.accesscpn.model.cpntypes.*;
+import org.cpntools.accesscpn.model.cpntypes.CPNAlias;
+import org.cpntools.accesscpn.model.cpntypes.CPNBool;
+import org.cpntools.accesscpn.model.cpntypes.CPNEnum;
+import org.cpntools.accesscpn.model.cpntypes.CPNIndex;
+import org.cpntools.accesscpn.model.cpntypes.CPNInt;
+import org.cpntools.accesscpn.model.cpntypes.CPNList;
+import org.cpntools.accesscpn.model.cpntypes.CPNProduct;
+import org.cpntools.accesscpn.model.cpntypes.CPNReal;
+import org.cpntools.accesscpn.model.cpntypes.CPNRecord;
+import org.cpntools.accesscpn.model.cpntypes.CPNString;
+import org.cpntools.accesscpn.model.cpntypes.CPNSubset;
+import org.cpntools.accesscpn.model.cpntypes.CPNType;
+import org.cpntools.accesscpn.model.cpntypes.CPNUnion;
+import org.cpntools.accesscpn.model.cpntypes.CPNUnit;
+import org.cpntools.accesscpn.model.cpntypes.NameTypePair;
 import org.cpntools.accesscpn.model.cpntypes.impl.CpntypesPackageImpl;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

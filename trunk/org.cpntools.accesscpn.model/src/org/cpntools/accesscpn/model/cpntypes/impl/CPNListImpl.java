@@ -43,12 +43,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class CPNListImpl extends CPNTypeImpl implements CPNList {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
 	 * The default value of the '{@link #getSort() <em>Sort</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -275,7 +269,7 @@ public class CPNListImpl extends CPNTypeImpl implements CPNList {
 	 * @see org.cpntools.accesscpn.model.cpntypes.CPNType#asString()
 	 */
 	public String asString() {
-		return "list " + getType() + postFixAsString();
+		return "list " + getSort() + postFixAsString();
 	}
 
 } // CPNListImpl

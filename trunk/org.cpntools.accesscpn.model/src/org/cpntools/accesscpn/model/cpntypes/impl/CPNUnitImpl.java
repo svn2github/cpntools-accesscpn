@@ -41,13 +41,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class CPNUnitImpl extends CPNTypeImpl implements CPNUnit {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getId()

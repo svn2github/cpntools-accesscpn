@@ -26,6 +26,7 @@
 package org.cpntools.accesscpn.model.tests;
 
 import org.cpntools.accesscpn.model.HLAnnotation;
+import org.cpntools.accesscpn.model.impl.ModelFactoryImpl;
 import org.cpntools.accesscpn.model.ModelFactory;
 
 import junit.textui.TestRunner;
@@ -76,7 +77,7 @@ public class HLAnnotationTest extends AnnotationTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(ModelFactory.eINSTANCE.createHLAnnotation());
+		setFixture(ModelFactoryImpl.eINSTANCE.createHLAnnotation());
 	}
 
 	/**

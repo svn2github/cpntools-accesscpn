@@ -28,6 +28,7 @@ package org.cpntools.accesscpn.model.tests;
 import org.cpntools.accesscpn.model.ModelFactory;
 import org.cpntools.accesscpn.model.ParameterAssignment;
 
+import org.cpntools.accesscpn.model.impl.ModelFactoryImpl;
 import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
@@ -95,7 +96,7 @@ public class ParameterAssignmentTest extends TestCase {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(ModelFactory.eINSTANCE.createParameterAssignment());
+		setFixture(ModelFactoryImpl.eINSTANCE.createParameterAssignment());
 	}
 
 	/**

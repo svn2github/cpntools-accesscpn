@@ -54,14 +54,15 @@ public class ModelTests extends TestSuite {
 	 */
 	public static Test suite() {
 		TestSuite suite = new ModelTests("model Tests");
-		suite.addTestSuite(NameTest.class);
-		suite.addTestSuite(HLMarkingTest.class);
-		suite.addTestSuite(TypeTest.class);
-		suite.addTestSuite(HLAnnotationTest.class);
-		suite.addTestSuite(ConditionTest.class);
 		suite.addTestSuite(CodeTest.class);
-		suite.addTestSuite(TimeTest.class);
+		suite.addTestSuite(ConditionTest.class);
+		suite.addTestSuite(HLAnnotationTest.class);
 		suite.addTestSuite(HLDeclarationTest.class);
+		suite.addTestSuite(HLMarkingTest.class);
+		suite.addTestSuite(NameTest.class);
+		suite.addTestSuite(PriorityTest.class);
+		suite.addTestSuite(SortTest.class);
+		suite.addTestSuite(TimeTest.class);
 		return suite;
 	}
 

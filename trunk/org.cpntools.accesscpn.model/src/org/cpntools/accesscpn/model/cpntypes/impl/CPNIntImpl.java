@@ -42,13 +42,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class CPNIntImpl extends CPNTypeImpl implements CPNInt {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The default value of the '{@link #getLow() <em>Low</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 

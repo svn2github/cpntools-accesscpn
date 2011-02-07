@@ -30,7 +30,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.sdo.impl.EDataObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 
@@ -46,13 +46,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  *
  * @generated
  */
-public abstract class CPNTypeImpl extends EDataObjectImpl implements CPNType {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
+public abstract class CPNTypeImpl extends EObjectImpl implements CPNType {
 	/**
 	 * The default value of the '{@link #getTimed() <em>Timed</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

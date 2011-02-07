@@ -49,12 +49,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class RefTransImpl extends TransitionNodeImpl implements RefTrans {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
 	 * The cached value of the '{@link #getRef() <em>Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -29,7 +29,7 @@ import org.cpntools.accesscpn.model.cpntypes.NameTypePair;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.sdo.impl.EDataObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 
 /**
@@ -46,14 +46,7 @@ import org.eclipse.emf.ecore.sdo.impl.EDataObjectImpl;
  *
  * @generated
  */
-public class NameTypePairImpl extends EDataObjectImpl implements NameTypePair {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
+public class NameTypePairImpl extends EObjectImpl implements NameTypePair {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->

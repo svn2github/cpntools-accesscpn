@@ -29,7 +29,7 @@ import org.cpntools.accesscpn.model.HasId;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.sdo.impl.EDataObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 
 /**
@@ -45,14 +45,7 @@ import org.eclipse.emf.ecore.sdo.impl.EDataObjectImpl;
  *
  * @generated
  */
-public abstract class HasIdImpl extends EDataObjectImpl implements HasId {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
+public abstract class HasIdImpl extends EObjectImpl implements HasId {
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->

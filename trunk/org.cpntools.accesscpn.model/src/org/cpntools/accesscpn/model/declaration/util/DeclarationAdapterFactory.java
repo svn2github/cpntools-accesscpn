@@ -27,13 +27,16 @@ package org.cpntools.accesscpn.model.declaration.util;
 
 
 
-import org.cpntools.accesscpn.model.declaration.*;
+import org.cpntools.accesscpn.model.declaration.DeclarationStructure;
+import org.cpntools.accesscpn.model.declaration.GlobalReferenceDeclaration;
+import org.cpntools.accesscpn.model.declaration.MLDeclaration;
+import org.cpntools.accesscpn.model.declaration.TypeDeclaration;
+import org.cpntools.accesscpn.model.declaration.UseDeclaration;
+import org.cpntools.accesscpn.model.declaration.VariableDeclaration;
 import org.cpntools.accesscpn.model.declaration.impl.DeclarationPackageImpl;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

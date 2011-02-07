@@ -38,20 +38,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  * <li>{@link org.cpntools.accesscpn.model.declaration.impl.TypeDeclarationImpl#getTypeName <em>Type Name</em>}</li>
- * <li>{@link org.cpntools.accesscpn.model.declaration.impl.TypeDeclarationImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
 public class TypeDeclarationImpl extends DeclarationStructureImpl implements TypeDeclaration {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
 	/**
 	 * The default value of the '{@link #getTypeName() <em>Type Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
@@ -269,7 +261,7 @@ public class TypeDeclarationImpl extends DeclarationStructureImpl implements Typ
 	 * @see org.cpntools.accesscpn.model.declaration.DeclarationStructure#asString()
 	 */
 	public String asString() {
-		if (getType() == null) {
+		if (getSort() == null) {
 			return asShortString();
 		} else {
 			return asShortString() + " = " + getSort().asString() + ';';

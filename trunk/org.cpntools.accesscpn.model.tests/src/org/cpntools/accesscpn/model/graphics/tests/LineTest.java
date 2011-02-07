@@ -28,6 +28,7 @@ package org.cpntools.accesscpn.model.graphics.tests;
 import org.cpntools.accesscpn.model.graphics.GraphicsFactory;
 import org.cpntools.accesscpn.model.graphics.Line;
 
+import org.cpntools.accesscpn.model.graphics.impl.GraphicsFactoryImpl;
 import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
@@ -95,7 +96,7 @@ public class LineTest extends TestCase {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(GraphicsFactory.eINSTANCE.createLine());
+		setFixture(GraphicsFactoryImpl.eINSTANCE.createLine());
 	}
 
 	/**

@@ -54,13 +54,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class NodeGraphicsImpl extends GraphicsImpl implements NodeGraphics {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The cached value of the '{@link #getPosition() <em>Position</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

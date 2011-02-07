@@ -26,6 +26,7 @@
 package org.cpntools.accesscpn.model.graphics.tests;
 
 import org.cpntools.accesscpn.model.graphics.Fill;
+import org.cpntools.accesscpn.model.graphics.impl.GraphicsFactoryImpl;
 import org.cpntools.accesscpn.model.graphics.GraphicsFactory;
 
 import junit.framework.TestCase;
@@ -95,7 +96,7 @@ public class FillTest extends TestCase {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(GraphicsFactory.eINSTANCE.createFill());
+		setFixture(GraphicsFactoryImpl.eINSTANCE.createFill());
 	}
 
 	/**

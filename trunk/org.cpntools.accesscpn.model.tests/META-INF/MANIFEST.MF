@@ -20,5 +20,4 @@ Require-Bundle: org.cpntools.accesscpn.model;visibility:=reexport,
  org.eclipse.core.runtime;bundle-version="3.5.0",
  org.cpntools.accesscpn.engine.proxy;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5,
- JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
