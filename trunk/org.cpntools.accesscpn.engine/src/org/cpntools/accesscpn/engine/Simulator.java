@@ -100,6 +100,14 @@ public final class Simulator extends Observable {
 	public abstract class SimulatorUpdate {
 		// Empty base class
 	}
+	
+	/**
+	 * @author mwesterg
+	 *
+	 */
+	public abstract class SimulationExecuted extends SimulatorUpdate {
+		// Empty base calss
+	}
 
 	/**
 	 * @author mwesterg

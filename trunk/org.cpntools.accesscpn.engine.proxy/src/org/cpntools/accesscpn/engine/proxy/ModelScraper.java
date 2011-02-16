@@ -24,19 +24,48 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Set;
 
 import org.cpntools.accesscpn.engine.Packet;
-import org.cpntools.accesscpn.engine.Simulator;
-import org.cpntools.accesscpn.engine.Simulator.PacketSent;
 import org.cpntools.accesscpn.engine.highlevel.HighLevelSimulator;
 import org.cpntools.accesscpn.engine.highlevel.checker.Checker;
 import org.cpntools.accesscpn.engine.highlevel.checker.ErrorInitializingSMLInterface;
-import org.cpntools.accesscpn.model.*;
-import org.cpntools.accesscpn.model.cpntypes.*;
+import org.cpntools.accesscpn.model.Arc;
+import org.cpntools.accesscpn.model.Code;
+import org.cpntools.accesscpn.model.Condition;
+import org.cpntools.accesscpn.model.FusionGroup;
+import org.cpntools.accesscpn.model.HLAnnotation;
+import org.cpntools.accesscpn.model.HLArcType;
+import org.cpntools.accesscpn.model.HLDeclaration;
+import org.cpntools.accesscpn.model.HLMarking;
+import org.cpntools.accesscpn.model.HasName;
+import org.cpntools.accesscpn.model.Instance;
+import org.cpntools.accesscpn.model.ModelFactory;
+import org.cpntools.accesscpn.model.Name;
+import org.cpntools.accesscpn.model.Page;
+import org.cpntools.accesscpn.model.ParameterAssignment;
+import org.cpntools.accesscpn.model.PetriNet;
+import org.cpntools.accesscpn.model.Place;
+import org.cpntools.accesscpn.model.PlaceNode;
+import org.cpntools.accesscpn.model.Priority;
+import org.cpntools.accesscpn.model.RefPlace;
+import org.cpntools.accesscpn.model.Sort;
+import org.cpntools.accesscpn.model.Time;
+import org.cpntools.accesscpn.model.Transition;
+import org.cpntools.accesscpn.model.cpntypes.CPNAlias;
+import org.cpntools.accesscpn.model.cpntypes.CPNBool;
+import org.cpntools.accesscpn.model.cpntypes.CPNEnum;
+import org.cpntools.accesscpn.model.cpntypes.CPNIndex;
+import org.cpntools.accesscpn.model.cpntypes.CPNInt;
+import org.cpntools.accesscpn.model.cpntypes.CPNList;
+import org.cpntools.accesscpn.model.cpntypes.CPNProduct;
+import org.cpntools.accesscpn.model.cpntypes.CPNRecord;
+import org.cpntools.accesscpn.model.cpntypes.CPNString;
+import org.cpntools.accesscpn.model.cpntypes.CPNSubset;
+import org.cpntools.accesscpn.model.cpntypes.CPNType;
+import org.cpntools.accesscpn.model.cpntypes.CPNUnion;
+import org.cpntools.accesscpn.model.cpntypes.CPNUnit;
+import org.cpntools.accesscpn.model.cpntypes.CpntypesFactory;
 import org.cpntools.accesscpn.model.declaration.DeclarationFactory;
 import org.cpntools.accesscpn.model.declaration.DeclarationStructure;
 import org.cpntools.accesscpn.model.declaration.GlobalReferenceDeclaration;
@@ -47,55 +76,25 @@ import org.cpntools.accesscpn.model.declaration.VariableDeclaration;
 import org.eclipse.emf.ecore.EObject;
 
 
-public class ModelScraper implements Observer {
+public class ModelScraper extends PacketInspector {
 	private final PetriNet petriNet;
 	Map<String, Page> pages;
 	Map<String, FusionGroup> fusionGroups;
 	Map<String, Set<String>> portPlaces;
 
 	boolean fullyLoaded = false;
-	private final HighLevelSimulator simulator;
 	private Exception e;
 
 	public ModelScraper(HighLevelSimulator simulator) {
-		this.simulator = simulator;
+		super(simulator);
 		petriNet = ModelFactory.INSTANCE.createPetriNet();
 		pages = new HashMap<String, Page>();
 		fusionGroups = new HashMap<String, FusionGroup>();
 		portPlaces = new HashMap<String, Set<String>>();
+		attach();
 	}
 
-	public void update(final Observable arg0, final java.lang.Object arg1) {
-		if (arg1 != null && arg1 instanceof Simulator.PacketSent) {
-			try {
-				handlePacket(((PacketSent) arg1).getPacket());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	private void handlePacket(final Packet packet) throws Exception {
-		if (packet.getOpcode() == 9) {
-			packet.reset();
-			try {
-			final int command = packet.getInteger();
-			if (command == 200) {
-				handleMiscPacket(packet);
-			} else if (command == 300) {
-				handleDeclPacket(packet);
-			} else if (command == 400) {
-				handleSyntaxPacket(packet);
-			} else if (command == 500) {
-				handleSimulatePacket(packet);
-			}
-			} catch (NoSuchElementException e) {
-				
-			}
-		}
-	}
-
-	private void handleSimulatePacket(final Packet packet) {
+	protected void handleSimulatePacket(final Packet packet) {
 		packet.reset();
 		packet.getInteger();
 		final int subcommand = packet.getInteger();
@@ -120,7 +119,7 @@ public class ModelScraper implements Observer {
 	}
 
 	@SuppressWarnings("unused")
-	private void handleSyntaxPacket(final Packet packet) throws Exception {
+	protected void handleSyntaxPacket(final Packet packet) throws Exception {
 		packet.reset();
 		packet.getInteger();
 		final int subcommand = packet.getInteger();
@@ -319,7 +318,7 @@ public class ModelScraper implements Observer {
 		}
 	}
 
-	private void handleDeclPacket(final Packet packet) {
+	protected void handleDeclPacket(final Packet packet) {
 		packet.reset();
 		packet.getInteger();
 		final int subcommand = packet.getInteger();
@@ -536,7 +535,7 @@ public class ModelScraper implements Observer {
 		return typeDeclaration;
 	}
 
-	private void handleMiscPacket(final Packet packet) {
+	protected void handleMiscPacket(final Packet packet) {
 		packet.reset();
 		packet.getInteger();
 		final int subcommand = packet.getInteger();

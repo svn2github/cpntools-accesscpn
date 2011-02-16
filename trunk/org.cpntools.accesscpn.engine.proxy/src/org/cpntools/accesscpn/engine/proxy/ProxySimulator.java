@@ -77,7 +77,6 @@ public class ProxySimulator extends Thread {
 	public HighLevelSimulator getSimulatorClone() throws Exception {
 		final HighLevelSimulator simulator = HighLevelSimulator.getHighLevelSimulator();
 		ModelScraper modelScraper = new ModelScraper(simulator);
-		simulator.getSimulator().addObserver(modelScraper);
 		for (final Packet p : new ArrayList<Packet>(log))
 			if (p.getOpcode() == 9 || p.getOpcode() == 7 || p.getOpcode() == 5
 					|| p.getOpcode() == 6) {
