@@ -30,7 +30,7 @@ import org.cpntools.accesscpn.engine.proxy.ProxySimulator;
 
 
 public class SillyTime {
-	private static final String[] approx = new String[] { "1", "2", "Threeish", "Four, I think",
+	static final String[] approx = new String[] { "1", "2", "Threeish", "Four, I think",
 			"Five or six", "Not too many", "Not too many", "Think it's about ten",
 			"Think it's about ten", "Think it's about ten", "Lost count several steps ago",
 			"Lost count several steps ago", "Lost count several steps ago", "Lets say it's 37",

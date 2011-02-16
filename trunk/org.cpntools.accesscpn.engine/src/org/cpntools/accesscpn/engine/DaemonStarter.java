@@ -111,7 +111,7 @@ public class DaemonStarter implements Runnable {
 		Runtime.getRuntime().addShutdownHook(new Thread(this, "Daemon shutdown hook")); //$NON-NLS-1$
 	}
 
-	@SuppressWarnings( { "null", "deprecation" })
+	@SuppressWarnings( { "null" })
 	private void ensureExists(final File dir, final String resource) throws IOException {
 		final File file = new File(new File(dir, ".."), resource);
 		if (file.exists() && file.isFile()) { return; }

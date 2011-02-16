@@ -119,6 +119,7 @@ public class ModelScraper implements Observer {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void handleSyntaxPacket(final Packet packet) throws Exception {
 		packet.reset();
 		packet.getInteger();

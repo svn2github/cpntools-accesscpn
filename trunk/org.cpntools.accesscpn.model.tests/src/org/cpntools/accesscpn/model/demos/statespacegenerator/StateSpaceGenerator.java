@@ -103,9 +103,9 @@ public class StateSpaceGenerator {
 
 	private static int arcs = 0;
 
-	private static final BlockingQueue<CompressedState> toSerialize = new LinkedBlockingQueue<CompressedState>();
-	private static final BlockingQueue<String> toSerializeBindings = new LinkedBlockingQueue<String>();
-	private static final AtomicBoolean done = new AtomicBoolean(false);
+	static final BlockingQueue<CompressedState> toSerialize = new LinkedBlockingQueue<CompressedState>();
+	static final BlockingQueue<String> toSerializeBindings = new LinkedBlockingQueue<String>();
+	static final AtomicBoolean done = new AtomicBoolean(false);
 	private static final boolean CHECKPOINTING = false;
 
 	static private AtomicBoolean checkpointing = new AtomicBoolean(false);
@@ -146,7 +146,7 @@ public class StateSpaceGenerator {
 
 	static int stateCount = 1;
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "unused" })
 	public static void main(final String[] args) {
 		if (args.length > 0) StateSpaceGenerator.THREADS = Integer.parseInt(args[0]);
 		StateSpaceGenerator.threadCount = new AtomicInteger(StateSpaceGenerator.THREADS);
@@ -247,6 +247,7 @@ public class StateSpaceGenerator {
 												StateSpaceGenerator.toSerializeBindings.take());
 								}
 							} catch (final InterruptedException e) {
+								// Ignore
 							}
 						}
 						outputStream.flush();
@@ -256,10 +257,10 @@ public class StateSpaceGenerator {
 					}
 				}
 
-				private void saveBindings(final DataOutputStream outputStream,
+				private void saveBindings(final DataOutputStream o,
 						final String bindings) throws IOException {
 					{
-						outputStream.writeUTF(bindings);
+						o.writeUTF(bindings);
 					}
 				}
 			}.start();
@@ -326,6 +327,7 @@ public class StateSpaceGenerator {
 			final Map<Instance<? extends PlaceNode>, List<CPNValue>> msmax,
 			final Map<Instance<? extends PlaceNode>, List<CPNValue>> msmin) throws Exception {
 		int i;
+		HighLevelSimulator ss = simulator;
 		System.out.print("Calculating bounds\n0:  ");
 		final Date start = new Date();
 		i = 0;
@@ -335,9 +337,9 @@ public class StateSpaceGenerator {
 			Map<Instance<? extends PlaceNode>, List<CPNValue>> structuredMarking = null;
 			while (structuredMarking == null)
 				try {
-					structuredMarking = simulator.getStructuredMarking(s, mscache);
+					structuredMarking = ss.getStructuredMarking(s, mscache);
 				} catch (final Exception e) {
-					simulator = StateSpaceGenerator.ps.getSimulatorClone();
+					ss = StateSpaceGenerator.ps.getSimulatorClone();
 				}
 			for (final Entry<Instance<? extends PlaceNode>, List<CPNValue>> entry : structuredMarking
 					.entrySet()) {
@@ -356,14 +358,15 @@ public class StateSpaceGenerator {
 		StateSpaceGenerator.handleEOL(start, 0);
 	}
 
-	private static void generateStateSpace(HighLevelSimulator simulator,
+	@SuppressWarnings("unused")
+	static void generateStateSpace(HighLevelSimulator simulator,
 			final CompressedStateSet storage, final List<Instance<Place>> allRealPlaceInstances,
 			final BlockingDeque<CompressedState> waiting, final List<State> dead, final Date start)
 			throws Exception, IOException {
 
 		final List<Instance<Transition>> allTransitionInstances = simulator
 				.getAllTransitionInstances();
-		State last = null, s = null;
+		State previous = null, s = null;
 		outer: while (true)
 			try {
 				CompressedState c = null;
@@ -381,9 +384,9 @@ public class StateSpaceGenerator {
 				}
 				s = c.decompress(allRealPlaceInstances);
 				StateSpaceGenerator.profileStart();
-				simulator.setMarkingFast(s, last, true);
+				simulator.setMarkingFast(s, previous, true);
 				StateSpaceGenerator.profileEnd("setMarking");
-				last = s;
+				previous = s;
 				final List<Instance<? extends Transition>> enabled = simulator
 						.isEnabled(allTransitionInstances);
 				final List<Binding> bindings = new ArrayList<Binding>();
@@ -460,7 +463,7 @@ public class StateSpaceGenerator {
 			} catch (final Exception e) {
 				simulator.destroy();
 				if (s != null) waiting.add(new CompressedState(allRealPlaceInstances, s));
-				last = null;
+				previous = null;
 				simulator = StateSpaceGenerator.ps.getSimulatorClone();
 			}
 	}

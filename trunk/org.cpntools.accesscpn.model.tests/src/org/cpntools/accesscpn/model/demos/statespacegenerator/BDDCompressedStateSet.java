@@ -39,7 +39,7 @@ public class BDDCompressedStateSet implements CompressedStateSet {
 	private static final int TEST_SIZE = 4;
 
 	public static void dummyCallback() {
-
+		// Needed to hide debug output from BDD lib
 	}
 
 	public static void main(final String[] args) {
@@ -101,12 +101,12 @@ public class BDDCompressedStateSet implements CompressedStateSet {
 		try {
 			factory.registerGCCallback(null, null);
 		} catch (final Exception _) {
-
+			// Ignore
 		}
 		try {
 			factory.registerResizeCallback(null, null);
 		} catch (final Exception _) {
-
+			// Mask err
 		}
 		if (BDDCompressedStateSet.INTERLEAVED) {
 			final long[] domainSizes = new long[placeCount];
@@ -188,14 +188,14 @@ public class BDDCompressedStateSet implements CompressedStateSet {
 		if (BDDCompressedStateSet.REVERSED)
 			return domain.ithVar(value);
 		else {
-			final BDDFactory factory = domain.getFactory();
-			final BDD v = factory.one();
+			final BDDFactory bddfactory = domain.getFactory();
+			final BDD v = bddfactory.one();
 			final int[] ivar = domain.vars();
 			for (int n = 0; n < ivar.length; n++) {
 				if (value.testBit(0))
-					v.andWith(factory.ithVar(ivar[ivar.length - 1 - n]));
+					v.andWith(bddfactory.ithVar(ivar[ivar.length - 1 - n]));
 				else
-					v.andWith(factory.nithVar(ivar[ivar.length - 1 - n]));
+					v.andWith(bddfactory.nithVar(ivar[ivar.length - 1 - n]));
 				value = value.shiftRight(1);
 			}
 

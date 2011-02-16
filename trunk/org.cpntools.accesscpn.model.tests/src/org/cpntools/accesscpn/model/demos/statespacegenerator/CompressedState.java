@@ -163,13 +163,13 @@ final class CompressedState implements Serializable {
 			ois.readFully(enabled);
 			int pos = 2;
 			final int size = enabled[0] & 3;
-			final byte[] bytes = new byte[size + 1];
+			final byte[] buffer = new byte[size + 1];
 			for (int i = 0; i < count; i++) {
 				int marking;
 				if ((enabled[pos / 8] & CompressedState.pow2[pos % 8]) != 0) {
 					marking = 0;
-					ois.readFully(bytes);
-					for (final byte b : bytes)
+					ois.readFully(buffer);
+					for (final byte b : buffer)
 						marking = (marking << 8) + (b < 0 ? b + 256 : b);
 				} else
 					marking = -1;
@@ -211,12 +211,12 @@ final class CompressedState implements Serializable {
 		try {
 			final byte[] enabled = new byte[(indices.length + 9) / 8];
 			int pos = 2;
-			final List<Integer> values = new ArrayList<Integer>(indices.length);
+			final List<Integer> v = new ArrayList<Integer>(indices.length);
 			int max = 0;
 			for (final int i : indices) {
 				if (i >= 0) {
 					enabled[pos / 8] |= CompressedState.pow2[pos % 8];
-					values.add(i);
+					v.add(i);
 					max = Math.max(max, i);
 				}
 				pos++;
@@ -229,7 +229,7 @@ final class CompressedState implements Serializable {
 			else if (max >= 256) size = 1;
 			enabled[0] |= size;
 			baos.write(enabled);
-			for (final int value : values)
+			for (final int value : v)
 				for (int i = size; i >= 0; i--)
 					baos.write((value >>> 8 * i));
 			baos.flush();
