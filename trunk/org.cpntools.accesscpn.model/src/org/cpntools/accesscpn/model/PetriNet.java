@@ -62,4 +62,10 @@ public interface PetriNet extends HasId, HasToolInfo, HasLabel, HasName {
 	 * @model containment="false" opposite="petriNet" type="FusionGroup"
 	 */
 	List<FusionGroup> getFusionGroups();
+	
+	/**
+	 * Return whether this model is timed (i.e., if it contains a timed declaration)
+	 * @return
+	 */
+	public boolean isTimed();
 }

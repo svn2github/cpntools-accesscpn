@@ -36,6 +36,7 @@ import org.cpntools.accesscpn.model.Name;
 import org.cpntools.accesscpn.model.Page;
 import org.cpntools.accesscpn.model.PetriNet;
 import org.cpntools.accesscpn.model.ToolInfo;
+import org.cpntools.accesscpn.model.declaration.TypeDeclaration;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -501,6 +502,21 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 				};
 			}
 		};
+	}
+
+	/**
+	 * @see org.cpntools.accesscpn.model.PetriNet#isTimed()
+	 */
+	public boolean isTimed(){
+	for (HLDeclaration decl : declaration()) {
+		if ((decl.getStructure() != null) && (decl.getStructure() instanceof TypeDeclaration)) {
+			TypeDeclaration structure = (TypeDeclaration) decl.getStructure();
+			if (structure.getSort().getTimed()) {
+				return true;
+			}
+		}
+	}
+	return false;
 	}
 
 } // PetriNetImpl
