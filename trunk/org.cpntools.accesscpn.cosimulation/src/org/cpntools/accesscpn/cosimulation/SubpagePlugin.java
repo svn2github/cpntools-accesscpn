@@ -7,6 +7,8 @@ import java.util.Collection;
  * 
  */
 public interface SubpagePlugin extends CPNToolsPlugin, Runnable {
+	public boolean isDone();
+
 	/**
 	 * This method defines all channels this plugin may use to communication with the surroundings.
 	 * This is called before startSimulation.

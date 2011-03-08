@@ -54,6 +54,6 @@ public class ModelDataAdapterFactory extends ModelAdapterFactory {
 	 */
 	@Override
 	public boolean isFactoryForType(final Object type) {
-		return ModelInstance.class.equals(type);
+		return ModelData.class.equals(type);
 	}
 }

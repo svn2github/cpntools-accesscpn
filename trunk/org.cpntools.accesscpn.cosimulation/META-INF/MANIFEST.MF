@@ -5,4 +5,5 @@ Bundle-SymbolicName: org.cpntools.accesscpn.cosimulation
 Bundle-Version: 1.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.cpntools.accesscpn.engine.highlevel;bundle-version="1.0.0",
- org.cpntools.accesscpn.model;bundle-version="1.0.0"
+ org.cpntools.accesscpn.model;bundle-version="1.0.0",
+ org.cpntools.accesscpn.engine.proxy;bundle-version="1.0.0"

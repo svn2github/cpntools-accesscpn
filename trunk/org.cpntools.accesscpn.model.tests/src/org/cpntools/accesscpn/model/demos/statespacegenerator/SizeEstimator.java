@@ -33,9 +33,9 @@ import java.io.FileInputStream;
 public class SizeEstimator {
 
 	/**
-	 * @param args
-	 * @throws Exception
-	 * @throws InterruptedException
+	 * @param args args
+	 * @throws Exception on error
+	 * @throws InterruptedException on error
 	 */
 	public static void main(final String[] args) throws InterruptedException, Exception {
 		int ss = Integer.MAX_VALUE;

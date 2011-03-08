@@ -42,9 +42,9 @@ import org.cpntools.accesscpn.model.Place;
 public class TraceExtractor {
 
 	/**
-	 * @param args
-	 * @throws Exception
-	 * @throws InterruptedException
+	 * @param args args
+	 * @throws Exception on error
+	 * @throws InterruptedException on error
 	 */
 	@SuppressWarnings("unchecked")
 	public static void main(final String[] args) throws InterruptedException, Exception {

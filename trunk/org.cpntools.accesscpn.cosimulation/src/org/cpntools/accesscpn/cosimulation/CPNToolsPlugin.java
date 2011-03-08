@@ -6,14 +6,14 @@ package org.cpntools.accesscpn.cosimulation;
  */
 public interface CPNToolsPlugin {
 	/**
-	 * Called after each run has ended but before endSimulation is called.
+	 * Called after a run.
 	 */
 	void end();
 
 	/**
-	 * Called before each run is started but after startSimulation has been called.
+	 * Called before a run.
 	 * 
 	 * @throws Exception
 	 */
-	void start() throws Exception;
+	void start(ExecutionContext context) throws Exception;
 }
