@@ -15,6 +15,5 @@ Export-Package: org.cpntools.accesscpn.engine.highlevel,
  org.cpntools.accesscpn.engine.highlevel.instance.util,
  org.cpntools.accesscpn.engine.highlevel.utils
 Bundle-Vendor: CPN Group, University of Aarhus
-Bundle-RequiredExecutionEnvironment: J2SE-1.5,
- JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
