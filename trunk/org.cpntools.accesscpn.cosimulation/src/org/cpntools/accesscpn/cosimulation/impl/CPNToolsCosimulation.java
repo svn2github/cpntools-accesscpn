@@ -48,23 +48,21 @@ public class CPNToolsCosimulation implements Cosimulation {
 	private final ModelInstance modelInstance;
 
 	public CPNToolsCosimulation(final PetriNet model, final HighLevelSimulator simulator,
-			final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
-			final Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
-			final Map<Instance<Transition>, TransitionPlugin> transitionPlugins) {
+	        final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
+	        final Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
+	        final Map<Instance<Transition>, TransitionPlugin> transitionPlugins) {
 		this.model = model;
 		this.simulator = simulator;
 		this.subpagePlugins = subpagePlugins;
 		this.placePlugins = placePlugins;
 		this.transitionPlugins = transitionPlugins;
 		modelData = (ModelData) ModelDataAdapterFactory.getInstance().adapt(model, ModelData.class);
-		modelInstance = (ModelInstance) ModelInstanceAdapterFactory.getInstance().adapt(model,
-				ModelInstance.class);
+		modelInstance = (ModelInstance) ModelInstanceAdapterFactory.getInstance().adapt(model, ModelInstance.class);
 		inputs = new HashMap<Instance<PlaceNode>, InputChannel>();
 		outputs = new HashMap<Instance<PlaceNode>, OutputChannel>();
 		data = new HashMap<Instance<PlaceNode>, DataStore>();
 		try {
-			allTransitionInstances = Collections.unmodifiableList(simulator
-					.getAllTransitionInstances());
+			allTransitionInstances = Collections.unmodifiableList(simulator.getAllTransitionInstances());
 
 			inputs.putAll(placePlugins);
 			outputs.putAll(placePlugins);
@@ -136,8 +134,7 @@ public class CPNToolsCosimulation implements Cosimulation {
 			public Iterator<CPNToolsPlugin> iterator() {
 				return new Iterator<CPNToolsPlugin>() {
 					int level = 0;
-					Iterator<? extends CPNToolsPlugin> nextIterator = subpagePlugins.values()
-							.iterator();
+					Iterator<? extends CPNToolsPlugin> nextIterator = subpagePlugins.values().iterator();
 
 					@Override
 					public boolean hasNext() {
@@ -157,7 +154,7 @@ public class CPNToolsCosimulation implements Cosimulation {
 					}
 
 					private void hoist() {
-						if (nextIterator.hasNext()) return;
+						if (nextIterator.hasNext()) { return; }
 						level++;
 						if (level == 1) {
 							nextIterator = placePlugins.values().iterator();
@@ -184,8 +181,7 @@ public class CPNToolsCosimulation implements Cosimulation {
 
 	private void addModules(final Map<Instance<Page>, SubpagePlugin> subpagePlugins) {
 		for (final Entry<Instance<Page>, SubpagePlugin> entry : subpagePlugins.entrySet()) {
-			final Instance<org.cpntools.accesscpn.model.Instance> transitionPath = entry.getKey()
-					.getTransitionPath();
+			final Instance<org.cpntools.accesscpn.model.Instance> transitionPath = entry.getKey().getTransitionPath();
 			assert transitionPath != null;
 			final List<ChannelDescription<InputChannel>> i = new ArrayList<ChannelDescription<InputChannel>>();
 			final List<ChannelDescription<OutputChannel>> o = new ArrayList<ChannelDescription<OutputChannel>>();
@@ -202,28 +198,25 @@ public class CPNToolsCosimulation implements Cosimulation {
 				if (isInput(socket, port, instance, arcInfo)) {
 					isUsed = true;
 					final PipeChannel channel = new PipeChannel();
-					i.add(new ChannelDescription<InputChannel>(socket.getName().getText(),
-							modelData.getType(socket), channel));
-					oo.put(InstanceFactory.INSTANCE.createInstance(socket,
-							transitionPath.getTransitionPath()), channel);
+					i.add(new ChannelDescription<InputChannel>(socket.getName().getText(), modelData.getType(socket),
+					        channel));
+					oo.put(InstanceFactory.INSTANCE.createInstance(socket, transitionPath.getTransitionPath()), channel);
 				}
 				if (isOutput(socket, port, instance, arcInfo)) {
 					assert !isUsed;
 					isUsed = true;
 					final PipeChannel channel = new PipeChannel();
-					o.add(new ChannelDescription<OutputChannel>(socket.getName().getText(),
-							modelData.getType(socket), channel));
-					ii.put(InstanceFactory.INSTANCE.createInstance(socket,
-							transitionPath.getTransitionPath()), channel);
+					o.add(new ChannelDescription<OutputChannel>(socket.getName().getText(), modelData.getType(socket),
+					        channel));
+					ii.put(InstanceFactory.INSTANCE.createInstance(socket, transitionPath.getTransitionPath()), channel);
 				}
 				if (isData(socket, port, instance, arcInfo)) {
 					assert !isUsed;
 					isUsed = true;
 					final DataStore channel = new DefaultDataStore();
-					d.add(new ChannelDescription<DataStore>(socket.getName().getText(), modelData
-							.getType(socket), channel));
-					dd.put(InstanceFactory.INSTANCE.createInstance(socket,
-							transitionPath.getTransitionPath()), channel);
+					d.add(new ChannelDescription<DataStore>(socket.getName().getText(), modelData.getType(socket),
+					        channel));
+					dd.put(InstanceFactory.INSTANCE.createInstance(socket, transitionPath.getTransitionPath()), channel);
 				}
 				assert isUsed;
 			}
@@ -241,14 +234,13 @@ public class CPNToolsCosimulation implements Cosimulation {
 	}
 
 	private boolean isData(final PlaceNode socket, final RefPlace port,
-			final org.cpntools.accesscpn.model.Instance instance, final ArcInfo arcInfo) {
+	        final org.cpntools.accesscpn.model.Instance instance, final ArcInfo arcInfo) {
 		// Port must have arc from instance (including test), no other input and no output arcs and
 		// no tests to instances other than instance unless corresponding port only has test arcs on
 		// that level, also neither input not output
-		if (!empty(arcInfo.getOutputs().get(socket))) return false;
+		if (!empty(arcInfo.getOutputs().get(socket))) { return false; }
 		if (!empty(arcInfo.getInputs().get(socket))) {
-			if (!size(arcInfo.getInputs().get(port), 1)
-					&& arcInfo.getInputs().get(port).get(0) == instance) return false;
+			if (!size(arcInfo.getInputs().get(port), 1) && arcInfo.getInputs().get(port).get(0) == instance) { return false; }
 		}
 		if (!empty(arcInfo.getTests().get(socket))) {
 			for (final Node n : arcInfo.getTests().get(socket)) {
@@ -258,54 +250,49 @@ public class CPNToolsCosimulation implements Cosimulation {
 						if (pa.getParameter().equals(socket.getId())) {
 							final PlaceNode otherPort = modelInstance.getPlace(pa.getValue());
 							if (!empty(arcInfo.getInputs().get(otherPort))
-									|| !empty(arcInfo.getOutputs().get(otherPort))) return false;
+							        || !empty(arcInfo.getOutputs().get(otherPort))) { return false; }
 						}
 					}
 				}
 			}
 		}
-		if (!(size(arcInfo.getInputs().get(socket), 1)
-				&& arcInfo.getInputs().get(socket).get(0) == instance || !empty(arcInfo.getTests()
-				.get(socket)) && arcInfo.getTests().get(socket).contains(instance))) return false;
-		return !(isInput(socket, port, instance, arcInfo) || isOutput(socket, port, instance,
-				arcInfo));
+		if (!(size(arcInfo.getInputs().get(socket), 1) && arcInfo.getInputs().get(socket).get(0) == instance || !empty(arcInfo
+		        .getTests().get(socket)) && arcInfo.getTests().get(socket).contains(instance))) { return false; }
+		return !(isInput(socket, port, instance, arcInfo) || isOutput(socket, port, instance, arcInfo));
 	}
 
 	private boolean isInput(final PlaceNode socket, final RefPlace port,
-			final org.cpntools.accesscpn.model.Instance instance, final ArcInfo arcInfo) {
+	        final org.cpntools.accesscpn.model.Instance instance, final ArcInfo arcInfo) {
 		// only arcs from port and only arc from socket must be to instance (test are treated as
 		// both directions)
 		return empty(arcInfo.getInputs().get(port)) && empty(arcInfo.getTests().get(port))
-				&& empty(arcInfo.getTests().get(socket))
-				&& size(arcInfo.getOutputs().get(socket), 1)
-				&& arcInfo.getOutputs().get(socket).get(0) == instance;
+		        && empty(arcInfo.getTests().get(socket)) && size(arcInfo.getOutputs().get(socket), 1)
+		        && arcInfo.getOutputs().get(socket).get(0) == instance;
 	}
 
 	private boolean isOutput(final PlaceNode socket, final RefPlace port,
-			final org.cpntools.accesscpn.model.Instance instance, final ArcInfo arcInfo) {
+	        final org.cpntools.accesscpn.model.Instance instance, final ArcInfo arcInfo) {
 		// Only arcs to socket (test treated as both directions), instance must have arc to port
 		// (not test), also is not input
 		return empty(arcInfo.getOutputs().get(port)) && empty(arcInfo.getTests().get(port))
-				&& !empty(arcInfo.getInputs().get(socket))
-				&& arcInfo.getInputs().get(socket).contains(instance)
-				&& !isInput(socket, port, instance, arcInfo);
+		        && !empty(arcInfo.getInputs().get(socket)) && arcInfo.getInputs().get(socket).contains(instance)
+		        && !isInput(socket, port, instance, arcInfo);
 	}
 
 	private void removeChildTransitions(final List<Instance<Transition>> allTransitionInstances,
-			final Instance<Page> pageInstance) {
+	        final Instance<Page> pageInstance) {
 		for (final Transition t : pageInstance.getNode().transition()) {
-			allTransitionInstances.remove(InstanceFactory.INSTANCE.createInstance(t,
-					pageInstance.getTransitionPath()));
+			allTransitionInstances.remove(InstanceFactory.INSTANCE.createInstance(t, pageInstance.getTransitionPath()));
 		}
 		for (final org.cpntools.accesscpn.model.Instance i : pageInstance.getNode().instance()) {
 			removeChildTransitions(allTransitionInstances, InstanceFactory.INSTANCE.createInstance(
-					modelData.getPage(i.getSubPageID()),
-					InstanceFactory.INSTANCE.createInstance(i, pageInstance.getTransitionPath())));
+			        modelData.getPage(i.getSubPageID()),
+			        InstanceFactory.INSTANCE.createInstance(i, pageInstance.getTransitionPath())));
 		}
 	}
 
 	private boolean size(final List<?> list, final int size) {
-		if (size == 0) return empty(list);
+		if (size == 0) { return empty(list); }
 		return list != null && list.size() == size;
 	}
 

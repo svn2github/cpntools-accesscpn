@@ -1,21 +1,21 @@
 /************************************************************************/
-/* Access/CPN                                                           */
-/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology    */
+/* Access/CPN */
+/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology */
 /*                                                                      */
-/* This library is free software; you can redistribute it and/or        */
-/* modify it under the terms of the GNU Lesser General Public           */
-/* License as published by the Free Software Foundation; either         */
-/* version 2.1 of the License, or (at your option) any later version.   */
+/* This library is free software; you can redistribute it and/or */
+/* modify it under the terms of the GNU Lesser General Public */
+/* License as published by the Free Software Foundation; either */
+/* version 2.1 of the License, or (at your option) any later version. */
 /*                                                                      */
-/* This library is distributed in the hope that it will be useful,      */
-/* but WITHOUT ANY WARRANTY; without even the implied warranty of       */
-/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
-/* Lesser General Public License for more details.                      */
+/* This library is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU */
+/* Lesser General Public License for more details. */
 /*                                                                      */
-/* You should have received a copy of the GNU Lesser General Public     */
-/* License along with this library; if not, write to the Free Software  */
-/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,           */
-/* MA  02110-1301  USA                                                  */
+/* You should have received a copy of the GNU Lesser General Public */
+/* License along with this library; if not, write to the Free Software */
+/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, */
+/* MA 02110-1301 USA */
 /************************************************************************/
 package org.cpntools.accesscpn.engine.highlevel;
 
@@ -82,7 +82,6 @@ import org.cpntools.accesscpn.model.cpntypes.CPNUnit;
 import org.cpntools.accesscpn.model.cpntypes.NameTypePair;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-
 
 /**
  * @author mw
@@ -162,8 +161,8 @@ public class HighLevelSimulator extends AdapterImpl {
 				parameterTypes[i++] = p.getClass();
 			}
 			if (GramHandler.logger.isLoggable(Level.FINE)) {
-				GramHandler.logger.log(Level.FINE, "Call to `" + name + "' " + structured + " : "
-				        + Arrays.toString(parameterTypes));
+				GramHandler.logger.log(Level.FINE,
+				        "Call to `" + name + "' " + structured + " : " + Arrays.toString(parameterTypes));
 			}
 			Method m = null;
 			Object p = null;
@@ -294,7 +293,7 @@ public class HighLevelSimulator extends AdapterImpl {
 			}
 			final List<Binding> result = new ArrayList<Binding>();
 			for (final List<String> val : vals) {
-				assert val.size() == variables.size();
+				assert val.size() == vars.size();
 				final List<ValueAssignment> valueAssignments = new ArrayList<ValueAssignment>();
 				for (int i = 0; i < val.size(); i++) {
 					valueAssignments.add(InstanceFactory.INSTANCE.createValueAssignment(vars.get(i), val.get(i)));
@@ -309,8 +308,8 @@ public class HighLevelSimulator extends AdapterImpl {
 			for (int i = 0; i < variables.size(); i++) {
 				final List<String> value = values.get(i).get(r.nextInt(values.get(i).size()));
 				for (int j = 0; j < value.size(); j++) {
-					valueAssignments.add(InstanceFactory.INSTANCE.createValueAssignment(variables.get(i).get(j), value
-					        .get(j)));
+					valueAssignments.add(InstanceFactory.INSTANCE.createValueAssignment(variables.get(i).get(j),
+					        value.get(j)));
 				}
 			}
 			return InstanceFactory.INSTANCE.createBinding(ti, valueAssignments);
@@ -522,8 +521,8 @@ public class HighLevelSimulator extends AdapterImpl {
 			expression.append(valueAssignment);
 		}
 		expression.append(" })");
-		return evaluate(modelData.getType(arc.getPlaceNode()), arc.getPlaceNode().getSort().getText(), expression
-		        .toString());
+		return evaluate(modelData.getType(arc.getPlaceNode()), arc.getPlaceNode().getSort().getText(),
+		        expression.toString());
 	}
 
 	/**
@@ -636,7 +635,9 @@ public class HighLevelSimulator extends AdapterImpl {
 
 					private CPNValue handleEnum(@SuppressWarnings("hiding") final CPNType type, final Object elm) {
 						final List<?> list = getList(unpackTime(type, elm), 2);
-						return packTime(type, elm,
+						return packTime(
+						        type,
+						        elm,
 						        new org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues.CPNEnum(getString(list
 						                .get(0)), getInteger(list.get(1))));
 					}
@@ -845,8 +846,8 @@ public class HighLevelSimulator extends AdapterImpl {
 		final Instance<Transition> ti = binding.getTransitionInstance();
 		if (isEnabled(ti)) {
 			@SuppressWarnings("hiding")
-			final Bindings bindings = getBindings(ti, send(PacketGenerator.instance.constructGetBindings(ti.getNode()
-			        .getId(), ti.getInstanceNumber())));
+			final Bindings bindings = getBindings(ti,
+			        send(PacketGenerator.instance.constructGetBindings(ti.getNode().getId(), ti.getInstanceNumber())));
 			final Packet packet = PacketGenerator.instance.constructManualBinding(bindings, binding);
 			if (packet != null) {
 				send(packet);
@@ -870,8 +871,8 @@ public class HighLevelSimulator extends AdapterImpl {
 		lock();
 		try {
 			if (isEnabled(ti)) {
-				final Packet p = send(PacketGenerator.instance.constructExecute(ti.getNode().getId(), ti
-				        .getInstanceNumber()));
+				final Packet p = send(PacketGenerator.instance.constructExecute(ti.getNode().getId(),
+				        ti.getInstanceNumber()));
 				p.getString();
 				p.getString();
 				final String whyStopped = p.getString();
@@ -979,8 +980,10 @@ public class HighLevelSimulator extends AdapterImpl {
 			for (final Instance<Transition> ti : tis) {
 				if (isEnabled(ti)) {
 					@SuppressWarnings("hiding")
-					final Bindings bindings = getBindings(ti, send(PacketGenerator.instance.constructGetBindings(ti
-					        .getNode().getId(), ti.getInstanceNumber())));
+					final Bindings bindings = getBindings(
+					        ti,
+					        send(PacketGenerator.instance.constructGetBindings(ti.getNode().getId(),
+					                ti.getInstanceNumber())));
 					final Binding binding = bindings.getAnyBinding();
 					final Packet packet = PacketGenerator.instance.constructManualBinding(bindings, binding);
 					assert packet != null;

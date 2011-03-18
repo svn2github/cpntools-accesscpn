@@ -27,11 +27,7 @@ import org.cpntools.accesscpn.engine.highlevel.instance.Instance;
 import org.cpntools.accesscpn.engine.highlevel.instance.InstanceFactory;
 import org.cpntools.accesscpn.engine.highlevel.instance.Marking;
 import org.cpntools.accesscpn.engine.highlevel.instance.ValueAssignment;
-import org.cpntools.accesscpn.engine.highlevel.instance.adapter.ModelInstance;
-import org.cpntools.accesscpn.engine.highlevel.instance.adapter.ModelInstanceAdapterFactory;
 import org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues.CPNValue;
-import org.cpntools.accesscpn.model.Node;
-import org.cpntools.accesscpn.model.Page;
 import org.cpntools.accesscpn.model.PlaceNode;
 import org.cpntools.accesscpn.model.Transition;
 import org.cpntools.accesscpn.model.cpntypes.CPNType;
@@ -45,10 +41,11 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 	private final List<Instance<PlaceNode>> outgoingplaces;
 	private final Map<ObservableInputChannel, Instance<PlaceNode>> incomingplaces;
 
-	public CPNToolsSimulation(final CPNToolsCosimulation cosimulation) {
+	public CPNToolsSimulation(final CPNToolsCosimulation cosimulation) throws Exception {
 		this.cosimulation = cosimulation;
 		simulator = cosimulation.getSimulator();
 		done = false;
+		setup();
 
 		outgoingplaces = new ArrayList<Instance<PlaceNode>>();
 		for (final Entry<Instance<PlaceNode>, OutputChannel> entry : cosimulation.outputs()) {
@@ -64,6 +61,12 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 			}
 			incomingplaces.put(oin, entry.getKey());
 			oin.addObserver(this);
+			synchronized (this) {
+				if (oin.isClosed()) {
+					incomingplaces.remove(oin);
+					oin.deleteObserver(this);
+				}
+			}
 		}
 	}
 
@@ -94,7 +97,7 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 	public boolean isDirty() {
 		if (!dirty) {
 			for (final SubpagePlugin plugin : cosimulation.subpagePlugins()) {
-				if (!plugin.isDone()) return true;
+				if (!plugin.isDone()) { return true; }
 			}
 			return false;
 		}
@@ -122,12 +125,17 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 			if (dirty) {
 				dirty = false;
 				final boolean result = step(cosimulation.getAllTransitionInstances());
-				if (result) return true;
+				if (result) {
+					dirty = true;
+					return true;
+				}
 			}
-			try {
-				wait();
-			} catch (final InterruptedException _) {
-				// Don't terminate on interrupt
+			if (!incomingplaces.isEmpty()) {
+				try {
+					wait();
+				} catch (final InterruptedException _) {
+					// Don't terminate on interrupt
+				}
 			}
 		} while (isDirty());
 		return false;
@@ -154,8 +162,17 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 	public void update(final Observable arg0, final Object arg1) {
 		if (arg0 instanceof ObservableInputChannel) {
 			final ObservableInputChannel oin = (ObservableInputChannel) arg0;
-			final Instance<PlaceNode> pi = incomingplaces.get(oin);
-			if (pi != null) {
+			final Instance<PlaceNode> pi;
+			synchronized (this) {
+				pi = incomingplaces.get(oin);
+			}
+			if (oin.isClosed()) {
+				synchronized (this) {
+					incomingplaces.remove(oin);
+					oin.deleteObserver(this);
+					notifyAll();
+				}
+			} else if (pi != null) {
 				final Collection<CPNValue> offers = oin.getOffers();
 				if (!offers.isEmpty()) {
 					final StringBuilder sb = new StringBuilder();
@@ -182,23 +199,26 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 		for (final ValueAssignment assignment : binding.getAllAssignments()) {
 			final String name = assignment.getName();
 			final CPNType variableType = cosimulation.getModelData().getVariableType(name);
-			final List<CPNValue> value = simulator.evaluate(variableType, cosimulation
-					.getModelData().getVariableTypeName(name), assignment.getValue());
+			final List<CPNValue> value = simulator.evaluate(variableType, cosimulation.getModelData()
+			        .getVariableTypeName(name), assignment.getValue());
 			assert value.size() == 1;
 			result.put(name, value.get(0));
 		}
 		return result;
 	}
 
-	protected synchronized boolean step(final Binding binding, final boolean executed)
-			throws Exception {
-		if (done) return false;
+	protected synchronized boolean step(final Binding binding, final boolean executed) throws Exception {
+		if (done) { return false; }
 		if (!executed) {
-			if (!cosimulation.getSimulator().execute(binding)) return false;
+			if (!cosimulation.getSimulator().execute(binding)) { return false; }
 		}
-		final TransitionPlugin transition = cosimulation.getTransitionPlugin(binding
-				.getTransitionInstance());
-		if (transition == null) return true;
+		final TransitionPlugin transition = cosimulation.getTransitionPlugin(binding.getTransitionInstance());
+		if (transition == null) {
+			transmitOutputs();
+			dirty = true;
+			notifyAll();
+			return true;
+		}
 		Number time;
 		final String stringTime = simulator.getTime();
 		try {
@@ -212,29 +232,27 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 			if (executeMap != null && !executeMap.isEmpty()) {
 				final Binding newBinding = computeBinding(binding, executeMap);
 				simulator.rebind(binding, newBinding);
-				transmitOutputs();
-				dirty = true;
-				notifyAll();
-				return true;
 			}
+			transmitOutputs();
+			dirty = true;
+			notifyAll();
+			return true;
 		} else {
 			simulator.rollBack(binding);
 		}
 		return false;
 	}
 
-	protected synchronized boolean step(final Collection<Instance<Transition>> transitionInstances)
-			throws Exception {
-		if (done) return false;
-		final List<Instance<Transition>> tis = new ArrayList<Instance<Transition>>(
-				transitionInstances);
+	protected synchronized boolean step(final Collection<Instance<Transition>> transitionInstances) throws Exception {
+		if (done) { return false; }
+		final List<Instance<Transition>> tis = new ArrayList<Instance<Transition>>(transitionInstances);
 		Collections.shuffle(tis);
 		for (final Instance<Transition> ti : tis) {
 			if (simulator.isEnabled(ti)) {
 				final List<Binding> bindings = simulator.getBindings(ti);
 				Collections.shuffle(bindings);
 				for (final Binding b : bindings) {
-					if (step(b)) return true;
+					if (step(b)) { return true; }
 				}
 			}
 		}
@@ -242,7 +260,7 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 	}
 
 	private void addTokens(final Instance<PlaceNode> placeInstance, final StringBuilder sb,
-			final Collection<CPNValue> tokens) {
+	        final Collection<CPNValue> tokens) {
 		final boolean timed = cosimulation.getModelData().isTimed(placeInstance);
 		for (final CPNValue offer : tokens) {
 			if (timed) {
@@ -262,11 +280,9 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 		for (final ValueAssignment va : binding.getAllAssignments()) {
 			final CPNValue o = executeMap.get(va.getName());
 			if (o == null) {
-				values.add(InstanceFactory.INSTANCE.createValueAssignment(va.getName(),
-						va.getValue()));
+				values.add(InstanceFactory.INSTANCE.createValueAssignment(va.getName(), va.getValue()));
 			} else {
-				values.add(InstanceFactory.INSTANCE.createValueAssignment(va.getName(),
-						o.toString()));
+				values.add(InstanceFactory.INSTANCE.createValueAssignment(va.getName(), o.toString()));
 			}
 		}
 		return InstanceFactory.INSTANCE.createBinding(binding.getTransitionInstance(), values);
@@ -275,19 +291,17 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 	// FIXME This updates all places, yet we know that only slaves of a transition have actually
 	// changed
 	private synchronized void transmitOutputs() throws Exception {
-		final List<Instance<PlaceNode>> places = new ArrayList<Instance<PlaceNode>>();
-		for (final Entry<Instance<PlaceNode>, OutputChannel> entry : cosimulation.outputs()) {
-			final Node n = entry.getKey().getNode();
-			places.add(entry.getKey());
-			final ModelInstance modeInstance = (ModelInstance) ModelInstanceAdapterFactory
-					.getInstance().adapt(n.getPage().getPetriNet(), ModelInstance.class);
-			final Instance<Page> parentInstance = modeInstance
-					.getParentInstance((Instance<?>) entry);
-			final Map<Instance<Page>, Integer> instanceNumbers = modeInstance.getInstanceNumbers();
-			instanceNumbers.get(parentInstance);
-		}
-		final org.cpntools.accesscpn.engine.highlevel.instance.State state = simulator
-				.getMarking(outgoingplaces);
+// final List<Instance<PlaceNode>> places = new ArrayList<Instance<PlaceNode>>();
+// for (final Entry<Instance<PlaceNode>, OutputChannel> entry : cosimulation.outputs()) {
+// final Node n = entry.getKey().getNode();
+// places.add(entry.getKey());
+// final ModelInstance modelInstance = (ModelInstance) ModelInstanceAdapterFactory.getInstance().adapt(
+// n.getPage().getPetriNet(), ModelInstance.class);
+// final Instance<Page> parentInstance = modelInstance.getParentInstance(entry.getKey());
+// final Map<Instance<Page>, Integer> instanceNumbers = modelInstance.getInstanceNumbers();
+// instanceNumbers.get(parentInstance);
+// }
+		final org.cpntools.accesscpn.engine.highlevel.instance.State state = simulator.getMarking(outgoingplaces);
 		for (final Entry<Instance<PlaceNode>, OutputChannel> entry : cosimulation.outputs()) {
 			final Marking marking = state.getMarking(entry.getKey());
 			if (marking.getTokenCount() > 0) {

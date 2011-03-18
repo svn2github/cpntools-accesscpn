@@ -9,7 +9,6 @@ import org.cpntools.accesscpn.model.PlaceNode;
  * Abstract representation of a running cosimulation.
  * 
  * @author mwesterg
- * 
  */
 public interface Cosimulation {
 	public Iterable<Entry<Instance<PlaceNode>, DataStore>> data();

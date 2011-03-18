@@ -7,9 +7,7 @@ import org.cpntools.accesscpn.engine.highlevel.instance.Instance;
 import org.cpntools.accesscpn.model.Transition;
 
 /**
- * 
  * @author mwesterg
- * 
  */
 public interface CPNSimulation {
 	public void done();
@@ -31,4 +29,8 @@ public interface CPNSimulation {
 	public boolean step(Instance<Transition> ti) throws Exception;
 
 	public void teardown();
+
+	public boolean isDirty();
+
+	public boolean isDone();
 }

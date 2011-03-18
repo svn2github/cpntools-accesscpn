@@ -15,21 +15,19 @@ import org.cpntools.accesscpn.model.PlaceNode;
 import org.cpntools.accesscpn.model.Transition;
 
 /**
- * 
  * @author mwesterg
- * 
  */
 public class CPNToolsCosimulationManager implements CosimulationManager<CPNToolsCosimulation> {
 
 	@Override
-	public CPNToolsSimulation launch(final CPNToolsCosimulation cosimulation) {
+	public CPNToolsSimulation launch(final CPNToolsCosimulation cosimulation) throws Exception {
 		final CPNToolsSimulation simulation = new CPNToolsSimulation(cosimulation);
 		simulation.start();
 		return simulation;
 	}
 
 	@Override
-	public void launchInCPNTools(final CPNToolsCosimulation cosimulation) {
+	public void launchInCPNTools(final CPNToolsCosimulation cosimulation) throws Exception {
 		final CPNToolsSimulation simulation = launch(cosimulation);
 		final HighLevelSimulator simulator = cosimulation.getSimulator();
 		while (true) {
@@ -39,21 +37,18 @@ public class CPNToolsCosimulationManager implements CosimulationManager<CPNTools
 
 	@Override
 	public CPNToolsCosimulation setup(final PetriNet model, final HighLevelSimulator simulator,
-			final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
-			final Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
-			final Map<Instance<Transition>, TransitionPlugin> transitionPlugins) {
-		return new CPNToolsCosimulation(model, simulator, subpagePlugins, placePlugins,
-				transitionPlugins);
+	        final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
+	        final Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
+	        final Map<Instance<Transition>, TransitionPlugin> transitionPlugins) {
+		return new CPNToolsCosimulation(model, simulator, subpagePlugins, placePlugins, transitionPlugins);
 	}
 
 	@Override
-	public CPNToolsCosimulation setup(final PetriNet model,
-			final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
-			final Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
-			final Map<Instance<Transition>, TransitionPlugin> transitionPlugins) {
+	public CPNToolsCosimulation setup(final PetriNet model, final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
+	        final Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
+	        final Map<Instance<Transition>, TransitionPlugin> transitionPlugins) {
 		try {
-			final HighLevelSimulator highLevelSimulator = HighLevelSimulator
-					.getHighLevelSimulator();
+			final HighLevelSimulator highLevelSimulator = HighLevelSimulator.getHighLevelSimulator();
 			final Checker checker = new Checker(model, null, highLevelSimulator);
 			checker.checkEntireModel();
 			return setup(model, highLevelSimulator, subpagePlugins, placePlugins, transitionPlugins);
