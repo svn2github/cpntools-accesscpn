@@ -62,11 +62,12 @@ public class CPNToolsCosimulation implements Cosimulation {
 		outputs = new HashMap<Instance<PlaceNode>, OutputChannel>();
 		data = new HashMap<Instance<PlaceNode>, DataStore>();
 		try {
-			allTransitionInstances = Collections.unmodifiableList(simulator.getAllTransitionInstances());
+			final List<Instance<Transition>> modifiableTransitionInstances = simulator.getAllTransitionInstances();
+			allTransitionInstances = Collections.unmodifiableList(modifiableTransitionInstances);
 
 			inputs.putAll(placePlugins);
 			outputs.putAll(placePlugins);
-			addModules(subpagePlugins);
+			addModules(subpagePlugins, modifiableTransitionInstances);
 		} catch (final Exception e) {
 			allTransitionInstances = Collections.emptyList();
 		}
@@ -179,7 +180,8 @@ public class CPNToolsCosimulation implements Cosimulation {
 		};
 	}
 
-	private void addModules(final Map<Instance<Page>, SubpagePlugin> subpagePlugins) {
+	private void addModules(final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
+	        final List<Instance<Transition>> modifiableTransitionInstances) {
 		for (final Entry<Instance<Page>, SubpagePlugin> entry : subpagePlugins.entrySet()) {
 			final Instance<org.cpntools.accesscpn.model.Instance> transitionPath = entry.getKey().getTransitionPath();
 			assert transitionPath != null;
@@ -224,7 +226,7 @@ public class CPNToolsCosimulation implements Cosimulation {
 				outputs.putAll(oo);
 				inputs.putAll(ii);
 				data.putAll(dd);
-				removeChildTransitions(allTransitionInstances, entry.getKey());
+				removeChildTransitions(modifiableTransitionInstances, entry.getKey());
 			}
 		}
 	}

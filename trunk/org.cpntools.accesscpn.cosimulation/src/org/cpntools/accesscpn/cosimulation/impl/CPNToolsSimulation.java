@@ -40,6 +40,7 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 	private boolean dirty = true;
 	private final List<Instance<PlaceNode>> outgoingplaces;
 	private final Map<ObservableInputChannel, Instance<PlaceNode>> incomingplaces;
+	private final Map<Observable, Instance<PlaceNode>> datastores;
 
 	public CPNToolsSimulation(final CPNToolsCosimulation cosimulation) throws Exception {
 		this.cosimulation = cosimulation;
@@ -48,10 +49,13 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 		setup();
 
 		outgoingplaces = new ArrayList<Instance<PlaceNode>>();
+		incomingplaces = new HashMap<ObservableInputChannel, Instance<PlaceNode>>();
+		datastores = new HashMap<Observable, Instance<PlaceNode>>();
+
 		for (final Entry<Instance<PlaceNode>, OutputChannel> entry : cosimulation.outputs()) {
 			outgoingplaces.add(entry.getKey());
 		}
-		incomingplaces = new HashMap<ObservableInputChannel, Instance<PlaceNode>>();
+
 		for (final Entry<Instance<PlaceNode>, InputChannel> entry : cosimulation.inputs()) {
 			ObservableInputChannel oin;
 			if (entry.getValue() instanceof ObservableInputChannel) {
@@ -59,12 +63,30 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 			} else {
 				oin = new ObservableInputChannel(entry.getValue());
 			}
-			incomingplaces.put(oin, entry.getKey());
+			synchronized (this) {
+				incomingplaces.put(oin, entry.getKey());
+			}
 			oin.addObserver(this);
 			synchronized (this) {
 				if (oin.isClosed()) {
 					incomingplaces.remove(oin);
 					oin.deleteObserver(this);
+				}
+			}
+		}
+
+		for (final Entry<Instance<PlaceNode>, DataStore> entry : cosimulation.data()) {
+			if (entry.getValue() instanceof Observable) {
+				final Observable observable = (Observable) entry.getValue();
+				synchronized (this) {
+					datastores.put(observable, entry.getKey());
+				}
+				observable.addObserver(this);
+				synchronized (this) {
+					if (entry.getValue().isClosed()) {
+						datastores.remove(observable);
+						observable.deleteObserver(this);
+					}
 				}
 			}
 		}
@@ -130,7 +152,7 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 					return true;
 				}
 			}
-			if (!incomingplaces.isEmpty()) {
+			if (!incomingplaces.isEmpty() || !datastores.isEmpty()) {
 				try {
 					wait();
 				} catch (final InterruptedException _) {
@@ -159,9 +181,9 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 	}
 
 	@Override
-	public void update(final Observable arg0, final Object arg1) {
-		if (arg0 instanceof ObservableInputChannel) {
-			final ObservableInputChannel oin = (ObservableInputChannel) arg0;
+	public void update(final Observable observable, final Object arg1) {
+		if (observable instanceof ObservableInputChannel) {
+			final ObservableInputChannel oin = (ObservableInputChannel) observable;
 			final Instance<PlaceNode> pi;
 			synchronized (this) {
 				pi = incomingplaces.get(oin);
@@ -191,6 +213,32 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 					}
 				}
 			}
+		} else if (observable instanceof DataStore) {
+			final DataStore data = (DataStore) observable;
+			final Instance<PlaceNode> pi;
+			synchronized (this) {
+				pi = datastores.get(observable);
+			}
+			if (data.isClosed()) {
+				datastores.remove(observable);
+				observable.deleteObserver(this);
+			} else if (pi != null) {
+				final StringBuilder sb = new StringBuilder();
+				synchronized (this) {
+					try {
+						sb.append("empty");
+						addTokens(pi, sb, data.getValues());
+						simulator.setMarking(pi, sb.toString());
+						simulator.refreshViews();
+						dirty = true;
+						notifyAll();
+					} catch (final Exception e) {
+						// Mask
+					}
+				}
+
+			}
+
 		}
 	}
 

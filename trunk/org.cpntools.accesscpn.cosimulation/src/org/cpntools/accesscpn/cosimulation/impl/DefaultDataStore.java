@@ -9,15 +9,14 @@ import org.cpntools.accesscpn.cosimulation.DataStore;
 import org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues.CPNValue;
 
 /**
- * 
  * @author mwesterg
- * 
  */
 public class DefaultDataStore extends Observable implements DataStore {
 
 	private boolean changed;
 	private Collection<CPNValue> modifiableValues = new ArrayList<CPNValue>(), values = Collections
-			.unmodifiableCollection(modifiableValues);
+	        .unmodifiableCollection(modifiableValues);
+	private boolean closed;
 
 	@Override
 	public synchronized void addValue(final CPNValue value) {
@@ -30,6 +29,10 @@ public class DefaultDataStore extends Observable implements DataStore {
 	public synchronized Collection<CPNValue> getValues() {
 		changed = false;
 		return values;
+	}
+
+	public void close() {
+		closed = true;
 	}
 
 	@Override
@@ -59,6 +62,11 @@ public class DefaultDataStore extends Observable implements DataStore {
 	protected void setChanged() {
 		changed = true;
 		super.setChanged();
+	}
+
+	@Override
+	public boolean isClosed() {
+		return closed;
 	}
 
 }

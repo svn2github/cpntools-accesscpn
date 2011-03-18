@@ -11,6 +11,8 @@ public interface DataStore {
 
 	boolean isChanged();
 
+	boolean isClosed();
+
 	boolean removeValue(CPNValue token);
 
 	void setValues(Collection<CPNValue> values);
