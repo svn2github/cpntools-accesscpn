@@ -1,21 +1,21 @@
 /************************************************************************/
-/* Access/CPN                                                           */
-/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology    */
+/* Access/CPN */
+/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology */
 /*                                                                      */
-/* This library is free software; you can redistribute it and/or        */
-/* modify it under the terms of the GNU Lesser General Public           */
-/* License as published by the Free Software Foundation; either         */
-/* version 2.1 of the License, or (at your option) any later version.   */
+/* This library is free software; you can redistribute it and/or */
+/* modify it under the terms of the GNU Lesser General Public */
+/* License as published by the Free Software Foundation; either */
+/* version 2.1 of the License, or (at your option) any later version. */
 /*                                                                      */
-/* This library is distributed in the hope that it will be useful,      */
-/* but WITHOUT ANY WARRANTY; without even the implied warranty of       */
-/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
-/* Lesser General Public License for more details.                      */
+/* This library is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU */
+/* Lesser General Public License for more details. */
 /*                                                                      */
-/* You should have received a copy of the GNU Lesser General Public     */
-/* License along with this library; if not, write to the Free Software  */
-/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,           */
-/* MA  02110-1301  USA                                                  */
+/* You should have received a copy of the GNU Lesser General Public */
+/* License along with this library; if not, write to the Free Software */
+/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, */
+/* MA 02110-1301 USA */
 /************************************************************************/
 package org.cpntools.accesscpn.engine.proxy;
 
@@ -75,7 +75,6 @@ import org.cpntools.accesscpn.model.declaration.UseDeclaration;
 import org.cpntools.accesscpn.model.declaration.VariableDeclaration;
 import org.eclipse.emf.ecore.EObject;
 
-
 public class ModelScraper extends PacketInspector {
 	private final PetriNet petriNet;
 	Map<String, Page> pages;
@@ -85,7 +84,7 @@ public class ModelScraper extends PacketInspector {
 	boolean fullyLoaded = false;
 	private Exception e;
 
-	public ModelScraper(HighLevelSimulator simulator) {
+	public ModelScraper(final HighLevelSimulator simulator) {
 		super(simulator);
 		petriNet = ModelFactory.INSTANCE.createPetriNet();
 		pages = new HashMap<String, Page>();
@@ -94,30 +93,33 @@ public class ModelScraper extends PacketInspector {
 		attach();
 	}
 
+	@Override
 	protected void handleSimulatePacket(final Packet packet) {
 		packet.reset();
 		packet.getInteger();
 		final int subcommand = packet.getInteger();
 		if (subcommand == 5) {
-				new Thread() {
-					public void run() {
-						((EObject)petriNet).eAdapters().add(simulator);
-						try {
-							Checker checker = new Checker(petriNet, null, simulator);
-							checker.generateSerializers();
-							checker.instantiateSMLInterface();
-						} catch (ErrorInitializingSMLInterface e) {
-							// e.getException().printStackTrace();
-							// ModelScraper.this.e = e;
-						} catch (Exception e) {
-							ModelScraper.this.e = e;
-						}
-						fullyLoaded = true;
+			new Thread() {
+				@Override
+				public void run() {
+					((EObject) petriNet).eAdapters().add(simulator);
+					try {
+						final Checker checker = new Checker(petriNet, null, simulator);
+						checker.generateSerializers();
+						checker.instantiateSMLInterface();
+					} catch (final ErrorInitializingSMLInterface e) {
+						// e.getException().printStackTrace();
+						// ModelScraper.this.e = e;
+					} catch (final Exception e) {
+						ModelScraper.this.e = e;
 					}
-				}.start();
+					fullyLoaded = true;
+				}
+			}.start();
 		}
 	}
 
+	@Override
 	@SuppressWarnings("unused")
 	protected void handleSyntaxPacket(final Packet packet) throws Exception {
 		packet.reset();
@@ -131,16 +133,18 @@ public class ModelScraper extends PacketInspector {
 			setName(page, packet.getString());
 			packet.getInteger(); // prime multiplicity
 
-			if (pages.containsKey(page.getId()))
-				throw new Exception("Right now the scraper cannot handle incremental updates. Please don't change the model.");
+			if (pages.containsKey(page.getId())) { throw new Exception(
+			        "Right now the scraper cannot handle incremental updates. Please don't change the model."); }
 
 			for (int i = packet.getInteger(); i > 0; i--) { // checked places
 				packet.getString();
-				throw new Exception("Right now the scraper cannot handle incremental updates. Please don't change the model.");
+				throw new Exception(
+				        "Right now the scraper cannot handle incremental updates. Please don't change the model.");
 			}
 			for (int i = packet.getInteger(); i > 0; i--) { // checked trans
 				packet.getString();
-				throw new Exception("Right now the scraper cannot handle incremental updates. Please don't change the model.");
+				throw new Exception(
+				        "Right now the scraper cannot handle incremental updates. Please don't change the model.");
 			}
 
 			final Map<String, PlaceNode> places = new HashMap<String, PlaceNode>();
@@ -194,8 +198,7 @@ public class ModelScraper extends PacketInspector {
 				setName(inst, packet.getString());
 				inst.setSubPageID(packet.getString());
 				for (int j = packet.getInteger(); j > 0; j--) { // # assignments
-					final ParameterAssignment param = ModelFactory.INSTANCE
-							.createParameterAssignment();
+					final ParameterAssignment param = ModelFactory.INSTANCE.createParameterAssignment();
 					param.setValue(packet.getString());
 					param.setParameter(packet.getString());
 					param.setInstance(inst);
@@ -220,15 +223,15 @@ public class ModelScraper extends PacketInspector {
 				final Code code = ModelFactory.INSTANCE.createCode();
 				code.setText(packet.getString());
 				t.setCode(code);
-				
+
 				t.setPage(page);
 
 				packet.getString(); // channel
-				
-				Priority priority = ModelFactory.INSTANCE.createPriority();
+
+				final Priority priority = ModelFactory.INSTANCE.createPriority();
 				priority.setText(packet.getString());
 				t.setPriority(priority);
-				
+
 				packet.getBoolean(); // controllable
 
 				for (int j = packet.getInteger(); j > 0; j--) { // # input arcs (PtoT)
@@ -283,11 +286,11 @@ public class ModelScraper extends PacketInspector {
 	}
 
 	private void makePortPlace(final String pageId, final String placeId) {
-		if (shouldBePort(pageId, placeId)) return;
+		if (shouldBePort(pageId, placeId)) { return; }
 		getPortPlaces(pageId).add(placeId);
 
 		final Page page = pages.get(pageId);
-		if (page == null) return;
+		if (page == null) { return; }
 
 		Place place = null;
 		for (final Place p : page.place()) {
@@ -296,7 +299,7 @@ public class ModelScraper extends PacketInspector {
 				break;
 			}
 		}
-		if (place == null) return;
+		if (place == null) { return; }
 
 		final RefPlace refPlace = ModelFactory.INSTANCE.createRefPlace();
 		refPlace.setId(place.getId());
@@ -318,6 +321,7 @@ public class ModelScraper extends PacketInspector {
 		}
 	}
 
+	@Override
 	protected void handleDeclPacket(final Packet packet) {
 		packet.reset();
 		packet.getInteger();
@@ -329,196 +333,192 @@ public class ModelScraper extends PacketInspector {
 			final int type = packet.getInteger();
 			int vars, msvars, aliases, declares, extra = 0;
 			switch (type) {
-				case 6:
-				case 9:
-				case 10:
-				case 11:
-				case 13:
-					extra = packet.getInteger();
-				case 1:
-				case 2:
-				case 3:
-				case 4:
-				case 5:
-				case 7:
-				case 8:
-				case 12:
-				case 14:
-				case 15:
-					vars = packet.getInteger();
-					msvars = packet.getInteger();
-					aliases = packet.getInteger();
-					declares = packet.getInteger();
-					assert vars == 0;
-					assert msvars == 0;
-					declaration.setStructure(createColor(type, vars, msvars, aliases, declares,
-							extra, packet));
-					break;
-				case 16: {
-					final GlobalReferenceDeclaration globalReferenceDeclaration = DeclarationFactory.INSTANCE
-							.createGlobalReferenceDeclaration();
-					globalReferenceDeclaration.setName(packet.getString());
-					globalReferenceDeclaration.setValue(packet.getString());
-					declaration.setStructure(globalReferenceDeclaration);
+			case 6:
+			case 9:
+			case 10:
+			case 11:
+			case 13:
+				extra = packet.getInteger();
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+			case 7:
+			case 8:
+			case 12:
+			case 14:
+			case 15:
+				vars = packet.getInteger();
+				msvars = packet.getInteger();
+				aliases = packet.getInteger();
+				declares = packet.getInteger();
+				assert vars == 0;
+				assert msvars == 0;
+				declaration.setStructure(createColor(type, vars, msvars, aliases, declares, extra, packet));
+				break;
+			case 16: {
+				final GlobalReferenceDeclaration globalReferenceDeclaration = DeclarationFactory.INSTANCE
+				        .createGlobalReferenceDeclaration();
+				globalReferenceDeclaration.setName(packet.getString());
+				globalReferenceDeclaration.setValue(packet.getString());
+				declaration.setStructure(globalReferenceDeclaration);
+			}
+				;
+				break;
+			case 17: {
+				final UseDeclaration useDeclaration = DeclarationFactory.INSTANCE.createUseDeclaration();
+				useDeclaration.setFileName(packet.getString());
+				declaration.setStructure(useDeclaration);
+			}
+				;
+				break;
+			case 18: {
+				final MLDeclaration mlDeclaration = DeclarationFactory.INSTANCE.createMLDeclaration();
+				mlDeclaration.setCode(packet.getString());
+				declaration.setStructure(mlDeclaration);
+			}
+				;
+				break;
+			case 20: {
+				final VariableDeclaration variableDeclaration = DeclarationFactory.INSTANCE.createVariableDeclaration();
+				variableDeclaration.setTypeName(packet.getString());
+				for (int i = packet.getInteger(); i > 0; i--) {
+					variableDeclaration.addVariable(packet.getString());
 				}
-					;
-					break;
-				case 17: {
-					final UseDeclaration useDeclaration = DeclarationFactory.INSTANCE
-							.createUseDeclaration();
-					useDeclaration.setFileName(packet.getString());
-					declaration.setStructure(useDeclaration);
-				}
-					;
-					break;
-				case 18: {
-					final MLDeclaration mlDeclaration = DeclarationFactory.INSTANCE
-							.createMLDeclaration();
-					mlDeclaration.setCode(packet.getString());
-					declaration.setStructure(mlDeclaration);
-				}
-					;
-					break;
-				case 20: {
-					final VariableDeclaration variableDeclaration = DeclarationFactory.INSTANCE
-							.createVariableDeclaration();
-					variableDeclaration.setTypeName(packet.getString());
-					for (int i = packet.getInteger(); i > 0; i--) {
-						variableDeclaration.addVariable(packet.getString());
-					}
-					declaration.setStructure(variableDeclaration);
-				}
-					;
-					break;
-				case 21:
-				case 23:
-				case 24:
-				case 25:
-				case 26:
-					assert false;
-					break;
-				case 22: {
-					assert packet.getInteger() == 1;
-					declaration.setStructure(createColor(22, 0, 0, 0, 0, 0, packet));
-				}
-					;
-					break;
+				declaration.setStructure(variableDeclaration);
+			}
+				;
+				break;
+			case 21:
+			case 23:
+			case 24:
+			case 25:
+			case 26:
+				assert false;
+				break;
+			case 22: {
+				assert packet.getInteger() == 1;
+				declaration.setStructure(createColor(22, 0, 0, 0, 0, 0, packet));
+			}
+				;
+				break;
 			}
 		}
 	}
 
-	private DeclarationStructure createColor(final int code, final int vars, final int msvars,
-			final int aliases, final int declares, final int extra, final Packet packet) {
-		final TypeDeclaration typeDeclaration = DeclarationFactory.INSTANCE
-				.createTypeDeclaration();
+	private DeclarationStructure createColor(final int code, final int vars, final int msvars, final int aliases,
+	        final int declares, final int extra, final Packet packet) {
+		final TypeDeclaration typeDeclaration = DeclarationFactory.INSTANCE.createTypeDeclaration();
 		CPNType type = null;
 		switch (code) {
-			case 1: {
-				final CPNUnit unit = CpntypesFactory.INSTANCE.createCPNUnit();
-				unit.setId(packet.getString());
-				type = unit;
+		case 1: {
+			final CPNUnit unit = CpntypesFactory.INSTANCE.createCPNUnit();
+			unit.setId(packet.getString());
+			type = unit;
+		}
+			;
+			break;
+		case 2: {
+			final CPNBool bool = CpntypesFactory.INSTANCE.createCPNBool();
+			bool.setFalseValue(packet.getString());
+			bool.setTrueValue(packet.getString());
+			type = bool;
+		}
+			;
+			break;
+		case 3: {
+			final CPNInt integer = CpntypesFactory.INSTANCE.createCPNInt();
+			integer.setLow(packet.getString());
+			integer.setHigh(packet.getString());
+			type = integer;
+		}
+
+			break;
+		case 5: {
+			final CPNString string = CpntypesFactory.INSTANCE.createCPNString();
+			string.setLengthLow(packet.getString());
+			string.setLengthHigh(packet.getString());
+			string.setRangeLow(packet.getString());
+			string.setRangeHigh(packet.getString());
+			type = string;
+		}
+			;
+			break;
+		case 6: {
+			final CPNEnum with = CpntypesFactory.INSTANCE.createCPNEnum();
+			for (int i = 0; i < extra; i++) {
+				with.getValues().add(packet.getString());
 			}
-				;
-				break;
-			case 2: {
-				final CPNBool bool = CpntypesFactory.INSTANCE.createCPNBool();
-				bool.setFalseValue(packet.getString());
-				bool.setTrueValue(packet.getString());
-				type = bool;
+			type = with;
+		}
+			;
+			break;
+		case 7: {
+			final CPNIndex index = CpntypesFactory.INSTANCE.createCPNIndex();
+			index.setName(packet.getString());
+			index.setLow(packet.getString());
+			index.setHigh(packet.getString());
+			type = index;
+		}
+			;
+			break;
+		case 8: {
+			final CPNList list = CpntypesFactory.INSTANCE.createCPNList();
+			list.setSort(packet.getString());
+			list.setLow(packet.getString());
+			list.setHigh(packet.getString());
+			type = list;
+		}
+			;
+			break;
+		case 9: {
+			final CPNProduct product = CpntypesFactory.INSTANCE.createCPNProduct();
+			for (int i = 0; i < extra; i++) {
+				product.addSort(packet.getString());
 			}
-				;
-				break;
-			case 3: {
-				final CPNInt integer = CpntypesFactory.INSTANCE.createCPNInt();
-				integer.setLow(packet.getString());
-				integer.setHigh(packet.getString());
-				type = integer;
+			type = product;
+		}
+			;
+			break;
+		case 10: {
+			final CPNRecord record = CpntypesFactory.INSTANCE.createCPNRecord();
+			for (int i = 0; i < extra; i++) {
+				record.addValue(packet.getString(), packet.getString());
 			}
-				;
-				break;
-			case 5: {
-				final CPNString string = CpntypesFactory.INSTANCE.createCPNString();
-				string.setLengthLow(packet.getString());
-				string.setLengthHigh(packet.getString());
-				string.setRangeLow(packet.getString());
-				string.setRangeHigh(packet.getString());
-				type = string;
+			type = record;
+		}
+			;
+			break;
+		case 11: {
+			final CPNUnion union = CpntypesFactory.INSTANCE.createCPNUnion();
+			for (int i = 0; i < extra; i++) {
+				union.addValue(packet.getString(), packet.getString());
 			}
-				;
-				break;
-			case 6: {
-				final CPNEnum with = CpntypesFactory.INSTANCE.createCPNEnum();
-				for (int i = 0; i < extra; i++) {
-					with.getValues().add(packet.getString());
-				}
-				type = with;
-			}
-				;
-				break;
-			case 7: {
-				final CPNIndex index = CpntypesFactory.INSTANCE.createCPNIndex();
-				index.setName(packet.getString());
-				index.setLow(packet.getString());
-				index.setHigh(packet.getString());
-				type = index;
-			}
-				;
-				break;
-			case 8: {
-				final CPNList list = CpntypesFactory.INSTANCE.createCPNList();
-				list.setSort(packet.getString());
-				list.setLow(packet.getString());
-				list.setHigh(packet.getString());
-				type = list;
-			}
-				;
-				break;
-			case 9: {
-				final CPNProduct product = CpntypesFactory.INSTANCE.createCPNProduct();
-				for (int i = 0; i < extra; i++) {
-					product.addSort(packet.getString());
-				}
-				type = product;
-			}
-				;
-				break;
-			case 10: {
-				final CPNRecord record = CpntypesFactory.INSTANCE.createCPNRecord();
-				for (int i = 0; i < extra; i++) {
-					record.addValue(packet.getString(), packet.getString());
-				}
-				type = record;
-			}
-				;
-				break;
-			case 11: {
-				final CPNUnion union = CpntypesFactory.INSTANCE.createCPNUnion();
-				for (int i = 0; i < extra; i++) {
-					union.addValue(packet.getString(), packet.getString());
-				}
-				type = union;
-			}
-				;
-				break;
-			case 12: {
-				final CPNSubset subset = CpntypesFactory.INSTANCE.createCPNSubset();
-				subset.setSort(packet.getString());
-				subset.setBy(packet.getString());
-				type = subset;
-			}
-				;
-				break;
-			case 15:
-			case 22: {
-				final CPNAlias alias = CpntypesFactory.INSTANCE.createCPNAlias();
-				alias.setSort(packet.getString());
-				type = alias;
-			}
-			case 4:
-			case 13:
-			case 14:
-				assert false;
-				break;
+			type = union;
+		}
+			;
+			break;
+		case 12: {
+			final CPNSubset subset = CpntypesFactory.INSTANCE.createCPNSubset();
+			subset.setSort(packet.getString());
+			subset.setBy(packet.getString());
+			type = subset;
+		}
+			;
+			break;
+		case 15:
+		case 22: {
+			final CPNAlias alias = CpntypesFactory.INSTANCE.createCPNAlias();
+			alias.setSort(packet.getString());
+			type = alias;
+		}
+			break;
+		case 4:
+		case 13:
+		case 14:
+			assert false;
+			break;
 		}
 		assert type != null;
 		if (code < 22) {
@@ -535,6 +535,7 @@ public class ModelScraper extends PacketInspector {
 		return typeDeclaration;
 	}
 
+	@Override
 	protected void handleMiscPacket(final Packet packet) {
 		packet.reset();
 		packet.getInteger();
@@ -554,8 +555,8 @@ public class ModelScraper extends PacketInspector {
 	}
 
 	public PetriNet getPetriNet() throws Exception {
-		if (e != null) throw e;
-		if (fullyLoaded) return petriNet;
+		if (e != null) { throw e; }
+		if (fullyLoaded) { return petriNet; }
 		return null;
 	}
 
