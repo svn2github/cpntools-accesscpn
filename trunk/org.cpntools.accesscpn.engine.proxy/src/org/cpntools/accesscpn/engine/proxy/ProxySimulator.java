@@ -1,21 +1,21 @@
 /************************************************************************/
-/* Access/CPN                                                           */
-/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology    */
+/* Access/CPN */
+/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology */
 /*                                                                      */
-/* This library is free software; you can redistribute it and/or        */
-/* modify it under the terms of the GNU Lesser General Public           */
-/* License as published by the Free Software Foundation; either         */
-/* version 2.1 of the License, or (at your option) any later version.   */
+/* This library is free software; you can redistribute it and/or */
+/* modify it under the terms of the GNU Lesser General Public */
+/* License as published by the Free Software Foundation; either */
+/* version 2.1 of the License, or (at your option) any later version. */
 /*                                                                      */
-/* This library is distributed in the hope that it will be useful,      */
-/* but WITHOUT ANY WARRANTY; without even the implied warranty of       */
-/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
-/* Lesser General Public License for more details.                      */
+/* This library is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU */
+/* Lesser General Public License for more details. */
 /*                                                                      */
-/* You should have received a copy of the GNU Lesser General Public     */
-/* License along with this library; if not, write to the Free Software  */
-/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,           */
-/* MA  02110-1301  USA                                                  */
+/* You should have received a copy of the GNU Lesser General Public */
+/* License along with this library; if not, write to the Free Software */
+/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, */
+/* MA 02110-1301 USA */
 /************************************************************************/
 package org.cpntools.accesscpn.engine.proxy;
 
@@ -35,7 +35,6 @@ import org.cpntools.accesscpn.engine.Simulator;
 import org.cpntools.accesscpn.engine.highlevel.HighLevelSimulator;
 import org.cpntools.accesscpn.model.PetriNet;
 
-
 public class ProxySimulator extends Thread {
 	@SuppressWarnings("unused")
 	private final Socket cpnmld;
@@ -52,8 +51,7 @@ public class ProxySimulator extends Thread {
 	List<Packet> log;
 
 	public ProxySimulator(final Socket cpnmld, final Socket dmo, final Socket dmoeval,
-			final DataOutputStream dmoevalout, final DataInputStream dmoin,
-			final DataOutputStream dmoout) {
+	        final DataOutputStream dmoevalout, final DataInputStream dmoin, final DataOutputStream dmoout) {
 		super("Proxy Simulator");
 		setDaemon(true);
 		this.cpnmld = cpnmld;
@@ -66,7 +64,7 @@ public class ProxySimulator extends Thread {
 	}
 
 	public PetriNet getPetriNet() throws Exception {
-		if (modelScraper == null) return null;
+		if (modelScraper == null) { return null; }
 		return modelScraper.getPetriNet();
 	}
 
@@ -76,10 +74,9 @@ public class ProxySimulator extends Thread {
 
 	public HighLevelSimulator getSimulatorClone() throws Exception {
 		final HighLevelSimulator simulator = HighLevelSimulator.getHighLevelSimulator();
-		ModelScraper modelScraper = new ModelScraper(simulator);
-		for (final Packet p : new ArrayList<Packet>(log))
-			if (p.getOpcode() == 9 || p.getOpcode() == 7 || p.getOpcode() == 5
-					|| p.getOpcode() == 6) {
+		final ModelScraper modelScraper = new ModelScraper(simulator);
+		for (final Packet p : new ArrayList<Packet>(log)) {
+			if (p.getOpcode() == 9 || p.getOpcode() == 7 || p.getOpcode() == 5 || p.getOpcode() == 6) {
 				if (p.getOpcode() != 5) {
 					simulator.send(p);
 				}
@@ -90,6 +87,7 @@ public class ProxySimulator extends Thread {
 
 				}
 			}
+		}
 		while (modelScraper.getPetriNet() == null) {
 			Thread.sleep(100);
 		}
@@ -100,16 +98,14 @@ public class ProxySimulator extends Thread {
 	public void run() {
 		try {
 			final HighLevelSimulator simulator = instantiateSimulator();
-			dmoevalout.write((simulator.getBanner() + "Via Access/CPN Proxy Simulator\n\1")
-					.getBytes());
+			dmoevalout.write((simulator.getBanner() + "Via Access/CPN Proxy Simulator\n\1").getBytes());
 			dmoevalout.flush();
 
 			while (true) {
 				Packet p = new Packet();
 				p.receive(dmoin);
 				log.add(p);
-				if (p.getOpcode() == 9 || p.getOpcode() == 7 || p.getOpcode() == 5
-						|| p.getOpcode() == 6) {
+				if (p.getOpcode() == 9 || p.getOpcode() == 7 || p.getOpcode() == 5 || p.getOpcode() == 6) {
 					if (p.getOpcode() != 5) {
 						p = simulator.send(p);
 						synchronized (dmoout) {
@@ -148,14 +144,13 @@ public class ProxySimulator extends Thread {
 					p.addString("" + update.getTime()); // time
 					p.addInteger(update.getEnablings().size()); // trans
 					p.addInteger(update.getMarkings().size()); // places
-					for (final Map.Entry<Simulator.SimpleInstance, Boolean> entry : update
-							.getEnablings().entrySet()) {
+					for (final Map.Entry<Simulator.SimpleInstance, Boolean> entry : update.getEnablings().entrySet()) {
 						p.addString(entry.getKey().getId());
 						p.addInteger(entry.getKey().getInstance());
 						p.addBoolean(entry.getValue());
 					}
 					for (final Map.Entry<Simulator.SimpleInstance, Simulator.SimpleMarking> entry : update
-							.getMarkings().entrySet()) {
+					        .getMarkings().entrySet()) {
 						p.addString(entry.getKey().getId());
 						p.addString(entry.getValue().getMarking());
 						p.addInteger(entry.getKey().getInstance());

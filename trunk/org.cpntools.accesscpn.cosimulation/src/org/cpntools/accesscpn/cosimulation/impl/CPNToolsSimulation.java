@@ -141,6 +141,14 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 		}
 	}
 
+	public synchronized boolean step(final boolean monitor) throws Exception {
+		final boolean result = step();
+		if (monitor) {
+			simulator.evaluate("CPN'Sim.call_stop_funs()");
+		}
+		return result;
+	}
+
 	@Override
 	public synchronized boolean step() throws Exception {
 		do {

@@ -40,12 +40,10 @@ import org.eclipse.emf.common.notify.Notification;
 
 /**
  * @author mwesterg
- * 
  */
 public class ModelInstance extends PetriNetDataAdapter {
 	/**
 	 * @author mwesterg
-	 * 
 	 */
 	public static final class ArcInfo {
 
@@ -58,8 +56,8 @@ public class ModelInstance extends PetriNetDataAdapter {
 		 * @param outputs
 		 * @param tests
 		 */
-		public ArcInfo(final Map<PlaceNode, List<Node>> inputs,
-				final Map<PlaceNode, List<Node>> outputs, final Map<PlaceNode, List<Node>> tests) {
+		public ArcInfo(final Map<PlaceNode, List<Node>> inputs, final Map<PlaceNode, List<Node>> outputs,
+		        final Map<PlaceNode, List<Node>> tests) {
 			this.inputs = Collections.unmodifiableMap(inputs);
 			this.outputs = Collections.unmodifiableMap(outputs);
 			this.tests = Collections.unmodifiableMap(tests);
@@ -115,8 +113,8 @@ public class ModelInstance extends PetriNetDataAdapter {
 	 * @return
 	 */
 	public synchronized Collection<Instance<Page>> getAllInstances(final Page page) {
-		if (getPetriNet() == null) return null;
-		if (page == null) return null;
+		if (getPetriNet() == null) { return null; }
+		if (page == null) { return null; }
 		return getInstances().get(page);
 	}
 
@@ -127,10 +125,10 @@ public class ModelInstance extends PetriNetDataAdapter {
 	 */
 	@SuppressWarnings("unchecked")
 	public synchronized <T extends Node> Collection<Instance<T>> getAllInstances(final T node) {
-		if (getPetriNet() == null) return null;
-		if (node == null) return null;
+		if (getPetriNet() == null) { return null; }
+		if (node == null) { return null; }
 		List<Instance<T>> list = (List<Instance<T>>) allInstances.get(node);
-		if (list != null) return list;
+		if (list != null) { return list; }
 		list = new ArrayList<Instance<T>>();
 		allInstances.put(node, (List<? extends Instance<Node>>) list);
 		for (final Instance<Page> pageInstance : getAllInstances(node.getPage())) {
@@ -144,8 +142,8 @@ public class ModelInstance extends PetriNetDataAdapter {
 	 * @return
 	 */
 	public synchronized ArcInfo getArcInfo(final Page page) {
-		if (getPetriNet() == null) return null;
-		if (arcInfos.containsKey(page)) return arcInfos.get(page);
+		if (getPetriNet() == null) { return null; }
+		if (arcInfos.containsKey(page)) { return arcInfos.get(page); }
 		final Map<PlaceNode, List<Node>> inputs = new HashMap<PlaceNode, List<Node>>();
 		final Map<PlaceNode, List<Node>> outputs = new HashMap<PlaceNode, List<Node>>();
 		final Map<PlaceNode, List<Node>> tests = new HashMap<PlaceNode, List<Node>>();
@@ -167,15 +165,14 @@ public class ModelInstance extends PetriNetDataAdapter {
 				final PlaceNode socket = getPlace(pa.getParameter());
 				final PlaceNode port = getPlace(pa.getValue());
 				assert port.getPage() == subPage;
+				// Place which is both port and socket fails here
 				inputs.put(port, subArcInfo.getInputs().get(port));
 				outputs.put(port, subArcInfo.getOutputs().get(port));
 				tests.put(port, subArcInfo.getTests().get(port));
 
-				if (empty(subArcInfo.getInputs().get(port))
-						&& empty(subArcInfo.getTests().get(port))) {
+				if (empty(subArcInfo.getInputs().get(port)) && empty(subArcInfo.getTests().get(port))) {
 					append(outputs, socket, instance);
-				} else if (empty(subArcInfo.getOutputs().get(port))
-						&& empty(subArcInfo.getTests().get(port))) {
+				} else if (empty(subArcInfo.getOutputs().get(port)) && empty(subArcInfo.getTests().get(port))) {
 					append(inputs, socket, instance);
 				} else {
 					append(tests, socket, instance);
@@ -192,8 +189,8 @@ public class ModelInstance extends PetriNetDataAdapter {
 	 * @return
 	 */
 	public synchronized Map<Instance<Page>, Integer> getInstanceNumbers() {
-		if (getPetriNet() == null) return null;
-		if (instanceNumbers != null) return instanceNumbers;
+		if (getPetriNet() == null) { return null; }
+		if (instanceNumbers != null) { return instanceNumbers; }
 		getTopPages();
 		instanceNumbers = new HashMap<Instance<Page>, Integer>();
 		final Map<Page, Integer> counters = new HashMap<Page, Integer>();
@@ -204,12 +201,11 @@ public class ModelInstance extends PetriNetDataAdapter {
 	}
 
 	/**
-	 * @return map mapping pages to (0-based) lists of instances; index in lists are instance
-	 *         numbers
+	 * @return map mapping pages to (0-based) lists of instances; index in lists are instance numbers
 	 */
 	public Map<Page, List<Instance<Page>>> getInstances() {
-		if (getPetriNet() == null) return null;
-		if (instances != null) return instances;
+		if (getPetriNet() == null) { return null; }
+		if (instances != null) { return instances; }
 		instanceNumbers = getInstanceNumbers();
 		instances = new HashMap<Page, List<Instance<Page>>>();
 		for (final Map.Entry<Instance<Page>, Integer> entry : instanceNumbers.entrySet()) {
@@ -233,20 +229,18 @@ public class ModelInstance extends PetriNetDataAdapter {
 	 * @return the instance that is parent of this instance of a page or node
 	 */
 	public synchronized <T> Instance<Page> getParentInstance(final Instance<T> instance) {
-		if (getPetriNet() == null) return null;
-		if (instance.getNode() == null) return null;
-		final Instance<org.cpntools.accesscpn.model.Instance> transitionPath = instance
-				.getTransitionPath();
+		if (getPetriNet() == null) { return null; }
+		if (instance.getNode() == null) { return null; }
+		final Instance<org.cpntools.accesscpn.model.Instance> transitionPath = instance.getTransitionPath();
 		if (instance.getNode() instanceof Page) {
-			if (transitionPath == null) return null;
+			if (transitionPath == null) { return null; }
 			return getPageInstances().get(
-					InstanceFactory.INSTANCE.createInstance(transitionPath.getNode().getPage(),
-							transitionPath.getTransitionPath()));
+			        InstanceFactory.INSTANCE.createInstance(transitionPath.getNode().getPage(),
+			                transitionPath.getTransitionPath()));
 		}
 		if (instance.getNode() instanceof Node) {
 			final Node n = (Node) instance.getNode();
-			return getPageInstances().get(
-					InstanceFactory.INSTANCE.createInstance(n.getPage(), transitionPath));
+			return getPageInstances().get(InstanceFactory.INSTANCE.createInstance(n.getPage(), transitionPath));
 		}
 		return null;
 	}
@@ -256,8 +250,8 @@ public class ModelInstance extends PetriNetDataAdapter {
 	 * @return
 	 */
 	public synchronized PlaceNode getPlace(final String id) {
-		if (getPetriNet() == null) return null;
-		if (places != null) return places.get(id);
+		if (getPetriNet() == null) { return null; }
+		if (places != null) { return places.get(id); }
 		places = new HashMap<String, PlaceNode>();
 		for (final Page p : getPetriNet().getPage()) {
 			for (final Place place : p.place()) {
@@ -277,8 +271,8 @@ public class ModelInstance extends PetriNetDataAdapter {
 	 * @return
 	 */
 	public synchronized List<Page> getTopPages() {
-		if (getPetriNet() == null) return null;
-		if (topPages != null) return topPages;
+		if (getPetriNet() == null) { return null; }
+		if (topPages != null) { return topPages; }
 		getInstanceHierarchy();
 		topPages = new ArrayList<Page>();
 		for (final Page page : getPetriNet().getPage()) {
@@ -317,15 +311,15 @@ public class ModelInstance extends PetriNetDataAdapter {
 	 * @return map mapping subpages to list of all corresponding instances (subst trans)
 	 */
 	protected synchronized Map<Page, List<org.cpntools.accesscpn.model.Instance>> getInstanceHierarchy() {
-		if (getPetriNet() == null) return null;
-		if (instanceHierarchy != null) return instanceHierarchy;
+		if (getPetriNet() == null) { return null; }
+		if (instanceHierarchy != null) { return instanceHierarchy; }
 		instanceHierarchy = new HashMap<Page, List<org.cpntools.accesscpn.model.Instance>>();
 		pages = getPages();
 		for (final Page page : getPetriNet().getPage()) {
 			for (final org.cpntools.accesscpn.model.Instance instance : page.instance()) {
 				@SuppressWarnings("hiding")
-				List<org.cpntools.accesscpn.model.Instance> instances = instanceHierarchy.get(pages
-						.get(instance.getSubPageID()));
+				List<org.cpntools.accesscpn.model.Instance> instances = instanceHierarchy.get(pages.get(instance
+				        .getSubPageID()));
 				if (instances == null) {
 					instances = new ArrayList<org.cpntools.accesscpn.model.Instance>();
 					instanceHierarchy.put(pages.get(instance.getSubPageID()), instances);
@@ -340,8 +334,8 @@ public class ModelInstance extends PetriNetDataAdapter {
 	}
 
 	protected Map<Instance<Page>, Instance<Page>> getPageInstances() {
-		if (getPetriNet() == null) return null;
-		if (pageInstances != null) return pageInstances;
+		if (getPetriNet() == null) { return null; }
+		if (pageInstances != null) { return pageInstances; }
 		instanceNumbers = getInstanceNumbers();
 		pageInstances = new HashMap<Instance<Page>, Instance<Page>>();
 		for (final Instance<Page> instance : instanceNumbers.keySet()) {
@@ -351,8 +345,8 @@ public class ModelInstance extends PetriNetDataAdapter {
 	}
 
 	protected synchronized Map<String, Page> getPages() {
-		if (getPetriNet() == null) return null;
-		if (pages != null) return pages;
+		if (getPetriNet() == null) { return null; }
+		if (pages != null) { return pages; }
 		pages = new HashMap<String, Page>();
 		for (final Page page : getPetriNet().getPage()) {
 			pages.put(page.getId(), page);
@@ -364,8 +358,8 @@ public class ModelInstance extends PetriNetDataAdapter {
 	}
 
 	protected synchronized Map<Page, List<org.cpntools.accesscpn.model.Instance>> getSubpageMap() {
-		if (getPetriNet() == null) return null;
-		if (subpageMap != null) return subpageMap;
+		if (getPetriNet() == null) { return null; }
+		if (subpageMap != null) { return subpageMap; }
 		getInstanceHierarchy();
 		subpageMap = new HashMap<Page, List<org.cpntools.accesscpn.model.Instance>>();
 		for (final Page page : getPetriNet().getPage()) {
@@ -373,8 +367,7 @@ public class ModelInstance extends PetriNetDataAdapter {
 		}
 		for (final Page page : getPetriNet().getPage()) {
 			@SuppressWarnings("hiding")
-			final List<org.cpntools.accesscpn.model.Instance> instances = instanceHierarchy
-					.get(page);
+			final List<org.cpntools.accesscpn.model.Instance> instances = instanceHierarchy.get(page);
 			if (instances != null) {
 				for (final org.cpntools.accesscpn.model.Instance instance : instances) {
 					subpageMap.get(instance.getPage()).add(instance);
@@ -396,9 +389,8 @@ public class ModelInstance extends PetriNetDataAdapter {
 		prev.add(value);
 	}
 
-	private void countArcs(final Map<PlaceNode, List<Node>> inputs,
-			final Map<PlaceNode, List<Node>> outputs, final Map<PlaceNode, List<Node>> tests,
-			final PlaceNode p) {
+	private void countArcs(final Map<PlaceNode, List<Node>> inputs, final Map<PlaceNode, List<Node>> outputs,
+	        final Map<PlaceNode, List<Node>> tests, final PlaceNode p) {
 		for (final Arc arc : p.getTargetArc()) {
 			try {
 				if (arc.getKind() == HLArcType.TEST) {
@@ -427,10 +419,9 @@ public class ModelInstance extends PetriNetDataAdapter {
 		return list == null || list.isEmpty();
 	}
 
-	private void processPage(
-			@SuppressWarnings("hiding") final Map<Instance<Page>, Integer> instanceNumbers,
-			final Map<Page, Integer> counters, final Page page,
-			final Instance<org.cpntools.accesscpn.model.Instance> instance) {
+	private void processPage(@SuppressWarnings("hiding") final Map<Instance<Page>, Integer> instanceNumbers,
+	        final Map<Page, Integer> counters, final Page page,
+	        final Instance<org.cpntools.accesscpn.model.Instance> instance) {
 		Integer number = counters.get(page);
 		if (number == null) {
 			number = Integer.valueOf(0);
@@ -444,7 +435,7 @@ public class ModelInstance extends PetriNetDataAdapter {
 		for (final org.cpntools.accesscpn.model.Instance subpage : subpageMap.get(page)) {
 			final Page s = pages.get(subpage.getSubPageID());
 			final Instance<org.cpntools.accesscpn.model.Instance> subpageInstance = InstanceFactory.INSTANCE
-					.createInstance(subpage, instance);
+			        .createInstance(subpage, instance);
 			processPage(instanceNumbers, counters, s, subpageInstance);
 		}
 	}

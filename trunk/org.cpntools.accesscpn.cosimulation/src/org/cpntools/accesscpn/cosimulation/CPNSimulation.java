@@ -22,6 +22,8 @@ public interface CPNSimulation {
 
 	public void start();
 
+	public boolean step(boolean monitor) throws Exception;
+
 	public boolean step() throws Exception;
 
 	public boolean step(Binding b) throws Exception;

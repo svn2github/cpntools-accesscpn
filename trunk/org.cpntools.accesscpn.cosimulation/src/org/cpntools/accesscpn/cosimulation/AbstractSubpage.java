@@ -2,9 +2,12 @@ package org.cpntools.accesscpn.cosimulation;
 
 import java.util.Collection;
 
+import org.cpntools.accesscpn.engine.highlevel.instance.adapter.ModelData;
+
 public abstract class AbstractSubpage implements SubpagePlugin {
 	protected boolean done = false;
 	protected ExecutionContext context;
+	protected ModelData modelData;
 
 	@Override
 	public void end() {
@@ -22,9 +25,10 @@ public abstract class AbstractSubpage implements SubpagePlugin {
 	}
 
 	@Override
-	public boolean setInterface(final Collection<ChannelDescription<InputChannel>> inputs,
-			final Collection<ChannelDescription<OutputChannel>> outputs,
-			final Collection<ChannelDescription<DataStore>> data) {
+	public boolean setInterface(final ModelData modelData, final Collection<ChannelDescription<InputChannel>> inputs,
+	        final Collection<ChannelDescription<OutputChannel>> outputs,
+	        final Collection<ChannelDescription<DataStore>> data) {
+		this.modelData = modelData;
 		return false;
 	}
 

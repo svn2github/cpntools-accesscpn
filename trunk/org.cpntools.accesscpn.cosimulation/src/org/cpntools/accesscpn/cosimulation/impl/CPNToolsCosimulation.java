@@ -222,7 +222,7 @@ public class CPNToolsCosimulation implements Cosimulation {
 				}
 				assert isUsed;
 			}
-			if (entry.getValue().setInterface(i, o, d)) {
+			if (entry.getValue().setInterface(modelData, i, o, d)) {
 				outputs.putAll(oo);
 				inputs.putAll(ii);
 				data.putAll(dd);
