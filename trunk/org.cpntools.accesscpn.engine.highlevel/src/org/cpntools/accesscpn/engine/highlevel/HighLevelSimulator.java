@@ -390,6 +390,10 @@ public class HighLevelSimulator extends AdapterImpl {
 
 	private ModelInstance modelInstance;
 
+	private boolean fairBE;
+
+	private boolean globalFairness;
+
 	private HighLevelSimulator(final Simulator simulator) {
 		this.simulator = simulator;
 		pausebefore = false;
@@ -399,6 +403,8 @@ public class HighLevelSimulator extends AdapterImpl {
 		reportbinds = false;
 		showmarking = true;
 		showenabling = true;
+		fairBE = false;
+		globalFairness = false;
 		untilstep = "";
 		addstep = "";
 		untiltime = "";
@@ -899,7 +905,7 @@ public class HighLevelSimulator extends AdapterImpl {
 		try {
 			setSimulationOptions(pausebefore, pauseafter, pauseshow, reporttrans, reportbinds, showmarking,
 			        showenabling, untilstep, Integer.valueOf(amount).toString(), untiltime, addtime, pausecont,
-			        reportfunc);
+			        reportfunc, fairBE, globalFairness);
 			final Packet p = send(PacketGenerator.instance.constructExecuteSteps());
 			p.getString();
 			p.getString();
@@ -1663,10 +1669,13 @@ public class HighLevelSimulator extends AdapterImpl {
 	public void setSimulationOptions(final boolean pausebefore, final boolean pauseafter, final boolean pauseshow,
 	        final boolean reporttrans, final boolean reportbinds, final boolean showmarking,
 	        final boolean showenabling, final String untilstep, final String addstep, final String untiltime,
-	        final String addtime, final String pausecont, final String reportfunc) throws IOException {
+	        final String addtime, final String pausecont, final String reportfunc, final boolean fairBE,
+	        final boolean globalFairness) throws IOException {
 		this.pausebefore = pausebefore;
 		this.pauseafter = pauseafter;
 		this.pauseshow = pauseshow;
+		this.fairBE = fairBE;
+		this.globalFairness = globalFairness;
 		this.reporttrans = reporttrans || reportbinds;
 		this.reportbinds = reportbinds;
 		this.showmarking = showmarking;
@@ -1679,7 +1688,7 @@ public class HighLevelSimulator extends AdapterImpl {
 		this.reportfunc = reportfunc;
 		send(PacketGenerator.instance.constructSetSimulationOptions(pausebefore, pauseafter, pauseshow,
 		        this.reporttrans, reportbinds, showmarking, showenabling, untilstep, addstep, untiltime, addtime,
-		        pausecont, reportfunc));
+		        pausecont, reportfunc, fairBE, globalFairness));
 	}
 
 	/**
@@ -1698,8 +1707,30 @@ public class HighLevelSimulator extends AdapterImpl {
 	        throws IOException {
 		lock();
 		try {
+			this.reporttrans = reporttrans;
+			this.reportbinds = reportbinds;
+			this.reportfunc = reportfunc;
 			setSimulationOptions(pausebefore, pauseafter, pauseshow, reporttrans, reportbinds, showmarking,
-			        showenabling, untilstep, addstep, untiltime, addtime, pausecont, reportfunc);
+			        showenabling, untilstep, addstep, untiltime, addtime, pausecont, reportfunc, fairBE, globalFairness);
+			send(PacketGenerator.instance.constructResetSimulationReport());
+		} finally {
+			release();
+		}
+	}
+
+	/**
+	 * Start reporting; clears data gathered until now and sets options for future reporting.
+	 * 
+	 * @throws IOException
+	 *             on error
+	 */
+	public void setFairnessOptions(final boolean fairBE, final boolean globalFairness) throws IOException {
+		lock();
+		try {
+			this.fairBE = fairBE;
+			this.globalFairness = globalFairness;
+			setSimulationOptions(pausebefore, pauseafter, pauseshow, reporttrans, reportbinds, showmarking,
+			        showenabling, untilstep, addstep, untiltime, addtime, pausecont, reportfunc, fairBE, globalFairness);
 			send(PacketGenerator.instance.constructResetSimulationReport());
 		} finally {
 			release();

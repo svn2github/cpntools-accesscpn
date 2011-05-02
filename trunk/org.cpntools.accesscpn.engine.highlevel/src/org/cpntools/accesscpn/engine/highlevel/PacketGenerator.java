@@ -1,21 +1,21 @@
 /************************************************************************/
-/* Access/CPN                                                           */
-/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology    */
+/* Access/CPN */
+/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology */
 /*                                                                      */
-/* This library is free software; you can redistribute it and/or        */
-/* modify it under the terms of the GNU Lesser General Public           */
-/* License as published by the Free Software Foundation; either         */
-/* version 2.1 of the License, or (at your option) any later version.   */
+/* This library is free software; you can redistribute it and/or */
+/* modify it under the terms of the GNU Lesser General Public */
+/* License as published by the Free Software Foundation; either */
+/* version 2.1 of the License, or (at your option) any later version. */
 /*                                                                      */
-/* This library is distributed in the hope that it will be useful,      */
-/* but WITHOUT ANY WARRANTY; without even the implied warranty of       */
-/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
-/* Lesser General Public License for more details.                      */
+/* This library is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU */
+/* Lesser General Public License for more details. */
 /*                                                                      */
-/* You should have received a copy of the GNU Lesser General Public     */
-/* License along with this library; if not, write to the Free Software  */
-/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,           */
-/* MA  02110-1301  USA                                                  */
+/* You should have received a copy of the GNU Lesser General Public */
+/* License along with this library; if not, write to the Free Software */
+/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, */
+/* MA 02110-1301 USA */
 /************************************************************************/
 package org.cpntools.accesscpn.engine.highlevel;
 
@@ -59,7 +59,6 @@ import org.cpntools.accesscpn.model.declaration.UseDeclaration;
 import org.cpntools.accesscpn.model.declaration.VariableDeclaration;
 import org.cpntools.accesscpn.model.declaration.util.DeclarationSwitch;
 import org.eclipse.emf.ecore.EObject;
-
 
 /**
  * @author mw
@@ -111,7 +110,7 @@ public class PacketGenerator {
 				return constructVariableDeclaration(p, var);
 			}
 
-		}.doSwitch((EObject)structure);
+		}.doSwitch((EObject) structure);
 	}
 
 	/**
@@ -234,8 +233,8 @@ public class PacketGenerator {
 	 *            parameter
 	 * @return packet to set simulation options with given parameters
 	 */
-	public Packet constructSetInitializationSimulationOptions(final boolean resetRan,
-			final boolean resetRef, final int randomSeed) {
+	public Packet constructSetInitializationSimulationOptions(final boolean resetRan, final boolean resetRef,
+	        final int randomSeed) {
 		final Packet p = new Packet(200);
 		p.addInteger(11);
 		p.addBoolean(resetRan);
@@ -271,13 +270,15 @@ public class PacketGenerator {
 	 *            parameter
 	 * @param reportfunc
 	 *            parameter
+	 * @param globalFairness
+	 * @param fairBE
 	 * @return packet to set simulation options to given parameters
 	 */
-	public Packet constructSetSimulationOptions(final boolean pausebefore,
-			final boolean pauseafter, final boolean pauseshow, final boolean reporttrans,
-			final boolean reportbinds, final boolean showmarking, final boolean showenabling,
-			final String untilstep, final String addstep, final String untiltime,
-			final String addtime, final String pausecont, final String reportfunc) {
+	public Packet constructSetSimulationOptions(final boolean pausebefore, final boolean pauseafter,
+	        final boolean pauseshow, final boolean reporttrans, final boolean reportbinds, final boolean showmarking,
+	        final boolean showenabling, final String untilstep, final String addstep, final String untiltime,
+	        final String addtime, final String pausecont, final String reportfunc, final boolean fairBE,
+	        final boolean globalFairness) {
 		final Packet p = new Packet(200);
 		p.addInteger(10);
 		p.addBoolean(pausebefore);
@@ -293,6 +294,8 @@ public class PacketGenerator {
 		p.addString(addtime);
 		p.addString(pausecont);
 		p.addString(reportfunc);
+		p.addBoolean(fairBE);
+		p.addBoolean(globalFairness);
 		return p;
 	}
 
@@ -316,8 +319,7 @@ public class PacketGenerator {
 		}
 	}
 
-	private void constructUncheckedGlobalFusionPlacesAndCount(final Packet p,
-			final Iterable<RefPlace> refplaceIterable) {
+	private void constructUncheckedGlobalFusionPlacesAndCount(final Packet p, final Iterable<RefPlace> refplaceIterable) {
 		int count = 0;
 		for (final RefPlace refplace : refplaceIterable) {
 			final RefPlace refPlace = refplace;
@@ -332,8 +334,8 @@ public class PacketGenerator {
 		p.addInteger(count);
 	}
 
-	private void constructUncheckedPlacesAndCount(final Packet p,
-			final Iterable<Place> placeIterable, final Iterable<RefPlace> portPlaceIterable) {
+	private void constructUncheckedPlacesAndCount(final Packet p, final Iterable<Place> placeIterable,
+	        final Iterable<RefPlace> portPlaceIterable) {
 		int count = 0;
 		for (final Place place : placeIterable) {
 			p.addString(place.getId());
@@ -341,7 +343,7 @@ public class PacketGenerator {
 				p.addString(Util.mlEscape(place.getName().getText()));
 			} catch (final NullPointerException e) {
 				throw new RuntimeException("Place with id " + place.getId()
-						+ " does not have a name.  Make sure all places have a unique name.");
+				        + " does not have a name.  Make sure all places have a unique name.");
 			}
 			p.addString(place.getSort().getText());
 			p.addString(Util.emptyOrNull(place.getInitialMarking().getText()));
@@ -355,7 +357,7 @@ public class PacketGenerator {
 				p.addString(Util.mlEscape(refPlace.getName().getText()));
 			} catch (final NullPointerException e) {
 				throw new RuntimeException("Place with id " + refPlace.getId()
-						+ " does not have a name.  Make sure all places have a unique name.");
+				        + " does not have a name.  Make sure all places have a unique name.");
 			}
 			p.addString(refPlace.getSort().getText());
 			p.addString(Util.emptyOrNull(refPlace.getInitialMarking().getText()));
@@ -367,7 +369,7 @@ public class PacketGenerator {
 	}
 
 	private void constructUncheckedSubstitutionTransitionsAndCount(final Packet p,
-			final Iterable<Instance> instanceIterable) {
+	        final Iterable<Instance> instanceIterable) {
 		int count = 0;
 
 		for (@SuppressWarnings("unused")
@@ -382,7 +384,7 @@ public class PacketGenerator {
 				p.addString(Util.mlEscape(inst.getName().getText()));
 			} catch (final NullPointerException e) {
 				throw new RuntimeException("Transition with id " + inst.getId()
-						+ " does not have a name.  Make sure all transitions have a unique name.");
+				        + " does not have a name.  Make sure all transitions have a unique name.");
 			}
 
 			p.addString(inst.getSubPageID());
@@ -396,8 +398,7 @@ public class PacketGenerator {
 		}
 	}
 
-	private void constructUncheckedTransitionsAndCount(final Packet p,
-			final Iterable<Transition> transitionIterable) {
+	private void constructUncheckedTransitionsAndCount(final Packet p, final Iterable<Transition> transitionIterable) {
 		int count = 0;
 		for (@SuppressWarnings("unused")
 		final Transition transition : transitionIterable) {
@@ -411,7 +412,7 @@ public class PacketGenerator {
 				p.addString(Util.mlEscape(transition.getName().getText()));
 			} catch (final NullPointerException e) {
 				throw new RuntimeException("Transition with id " + transition.getId()
-						+ " does not have a name.  Make sure all transitions have a unique name.");
+				        + " does not have a name.  Make sure all transitions have a unique name.");
 			}
 			p.addString(Util.emptyOrNull(transition.getCondition().getText()));
 			p.addString(Util.emptyOrNull(transition.getTime().getText()));
@@ -593,8 +594,7 @@ public class PacketGenerator {
 		return p;
 	}
 
-	protected Packet constructGlobalReferenceDeclaration(final Packet p,
-			final GlobalReferenceDeclaration globref) {
+	protected Packet constructGlobalReferenceDeclaration(final Packet p, final GlobalReferenceDeclaration globref) {
 		p.addInteger(16);
 		p.addString(globref.getName()); // name
 		p.addString(globref.getValue()); // exp
@@ -610,7 +610,7 @@ public class PacketGenerator {
 	}
 
 	protected Packet constructIsEnabled(
-			final Collection<? extends org.cpntools.accesscpn.engine.highlevel.instance.Instance<? extends Transition>> tis) {
+	        final Collection<? extends org.cpntools.accesscpn.engine.highlevel.instance.Instance<? extends Transition>> tis) {
 		final Packet p = new Packet(500);
 		p.addInteger(35);
 		addNodes(p, tis);
@@ -618,16 +618,15 @@ public class PacketGenerator {
 	}
 
 	protected Packet constructGetMarking(
-			final Collection<? extends org.cpntools.accesscpn.engine.highlevel.instance.Instance<? extends PlaceNode>> pis) {
+	        final Collection<? extends org.cpntools.accesscpn.engine.highlevel.instance.Instance<? extends PlaceNode>> pis) {
 		final Packet p = new Packet(500);
 		p.addInteger(31);
 		addNodes(p, pis);
 		return p;
 	}
 
-	private void addNodes(
-			final Packet p,
-			final Collection<? extends org.cpntools.accesscpn.engine.highlevel.instance.Instance<? extends Node>> nis) {
+	private void addNodes(final Packet p,
+	        final Collection<? extends org.cpntools.accesscpn.engine.highlevel.instance.Instance<? extends Node>> nis) {
 		p.addInteger(nis.size());
 		for (final org.cpntools.accesscpn.engine.highlevel.instance.Instance<? extends Node> ni : nis) {
 			p.addInteger(ni.getInstanceNumber());
@@ -712,9 +711,9 @@ public class PacketGenerator {
 
 		}.doSwitch((EObject) typeDeclaration.getSort());
 
-		if (q == null)
+		if (q == null) {
 			return p;
-		else {
+		} else {
 			q.addBoolean(typeDeclaration.getSort().getTimed()); // is-timed
 			q.addString(typeDeclaration.getTypeName()); // name
 			q.addInteger(0); // #vars
@@ -759,8 +758,7 @@ public class PacketGenerator {
 		return p;
 	}
 
-	protected Packet constructSetMarking(final String id, final int instanceNumber,
-			final boolean initial) {
+	protected Packet constructSetMarking(final String id, final int instanceNumber, final boolean initial) {
 		final Packet p = new Packet(500);
 		p.addInteger(22);
 		p.addBoolean(initial);
@@ -782,8 +780,8 @@ public class PacketGenerator {
 		return p;
 	}
 
-	protected Packet constructModelNameModelDirOutputDir(final String modelName,
-			final String modelDir, final String outputDir) {
+	protected Packet constructModelNameModelDirOutputDir(final String modelName, final String modelDir,
+	        final String outputDir) {
 		final Packet p = new Packet(200);
 		p.addInteger(9);
 		p.addString(modelName);
@@ -855,7 +853,7 @@ public class PacketGenerator {
 				}
 				j++;
 			}
-			if (j == vals.size()) return null;
+			if (j == vals.size()) { return null; }
 		}
 		p.addBoolean(true);
 		return p;

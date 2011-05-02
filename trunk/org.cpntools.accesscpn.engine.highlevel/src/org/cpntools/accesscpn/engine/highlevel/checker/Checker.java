@@ -1,21 +1,21 @@
 /************************************************************************/
-/* Access/CPN                                                           */
-/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology    */
+/* Access/CPN */
+/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology */
 /*                                                                      */
-/* This library is free software; you can redistribute it and/or        */
-/* modify it under the terms of the GNU Lesser General Public           */
-/* License as published by the Free Software Foundation; either         */
-/* version 2.1 of the License, or (at your option) any later version.   */
+/* This library is free software; you can redistribute it and/or */
+/* modify it under the terms of the GNU Lesser General Public */
+/* License as published by the Free Software Foundation; either */
+/* version 2.1 of the License, or (at your option) any later version. */
 /*                                                                      */
-/* This library is distributed in the hope that it will be useful,      */
-/* but WITHOUT ANY WARRANTY; without even the implied warranty of       */
-/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
-/* Lesser General Public License for more details.                      */
+/* This library is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU */
+/* Lesser General Public License for more details. */
 /*                                                                      */
-/* You should have received a copy of the GNU Lesser General Public     */
-/* License along with this library; if not, write to the Free Software  */
-/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,           */
-/* MA  02110-1301  USA                                                  */
+/* You should have received a copy of the GNU Lesser General Public */
+/* License along with this library; if not, write to the Free Software */
+/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, */
+/* MA 02110-1301 USA */
 /************************************************************************/
 package org.cpntools.accesscpn.engine.highlevel.checker;
 
@@ -40,7 +40,6 @@ import org.cpntools.accesscpn.model.impl.PetriNetImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 
-
 /**
  * @author mw
  */
@@ -59,13 +58,13 @@ public class Checker {
 	 * @param highLevelSimulator
 	 *            simulator to use for checking
 	 */
-	public Checker(final PetriNet petriNet, final File output,
-			final HighLevelSimulator highLevelSimulator) {
+	public Checker(final PetriNet petriNet, final File output, final HighLevelSimulator highLevelSimulator) {
 		this.petriNet = petriNet;
 		this.output = output;
 		s = highLevelSimulator;
-		if (petriNet instanceof PetriNetImpl)
-		((PetriNetImpl)petriNet).eAdapters().add(highLevelSimulator);
+		if (petriNet instanceof PetriNetImpl) {
+			((PetriNetImpl) petriNet).eAdapters().add(highLevelSimulator);
+		}
 	}
 
 	/**
@@ -76,8 +75,7 @@ public class Checker {
 	 * @throws IOException
 	 *             if an IO error occurred
 	 */
-	public void checkDeclaration(final HLDeclaration decl) throws DeclarationCheckerException,
-			IOException {
+	public void checkDeclaration(final HLDeclaration decl) throws DeclarationCheckerException, IOException {
 		s.checkDeclaration(decl);
 	}
 
@@ -117,12 +115,11 @@ public class Checker {
 		s.evaluate("CPN\'Settings.use_manbind := true"); //$NON-NLS-1$
 
 		s.initializeSyntaxCheck();
-		s.setSimulationOptions(false, false, false, false, false, true, true, "", "", "", "", "",
-				"");
+		s.setSimulationOptions(false, false, false, false, false, true, true, "", "", "", "", "", "", false, false);
 		s.setInitializationSimulationOptions(true, true, random.nextInt() / 2);
 
 		try {
-			final Resource resource = ((PetriNetImpl)petriNet).eResource();
+			final Resource resource = ((PetriNetImpl) petriNet).eResource();
 			if (resource != null) {
 
 				final URI uri = resource.getURI();
@@ -137,7 +134,7 @@ public class Checker {
 			}
 		} catch (final Exception e) {
 			throw new Exception(
-					"Setting of model directory and/or output directory failed.  This is usually not severe.");
+			        "Setting of model directory and/or output directory failed.  This is usually not severe.");
 		}
 
 	}
@@ -152,8 +149,7 @@ public class Checker {
 	 * @throws CheckerException
 	 *             if the page is inavlid
 	 */
-	public void checkPage(final Page page, final boolean prime) throws IOException,
-			CheckerException {
+	public void checkPage(final Page page, final boolean prime) throws IOException, CheckerException {
 		s.checkPage(page, prime);
 	}
 
@@ -169,9 +165,11 @@ public class Checker {
 			checkPage(page, ps.isPrime(page));
 		}
 	}
-	
+
 	/**
-	 * Check the entire model. This may take a LONG time for large models, and interactive tools should instead do checks incrementally showing feedback to the user.
+	 * Check the entire model. This may take a LONG time for large models, and interactive tools should instead do
+	 * checks incrementally showing feedback to the user.
+	 * 
 	 * @throws Exception
 	 */
 	public void checkEntireModel() throws Exception {
@@ -260,38 +258,26 @@ public class Checker {
 	public void instantiateSMLInterface() throws ErrorInitializingSMLInterface {
 		try {
 			s.lock();
-			s
-					.evaluate("structure CPN'NetCapture = CPN'NetCapture(structure CPN'InstTable = CPN'InstTable)");
+			s.evaluate("structure CPN'NetCapture = CPN'NetCapture(structure CPN'InstTable = CPN'InstTable)");
 			s.evaluate("CPN'NetCapture.initNet ()");
 			s.evaluate("CPN'NetCapture.checkNames()");
-			s
-					.evaluate("structure CPN'State = CPN'State(structure CPN'NetCapture = CPN'NetCapture)");
+			s.evaluate("structure CPN'State = CPN'State(structure CPN'NetCapture = CPN'NetCapture)");
 			s.evaluate("CPN'Env.use_string(CPN'State.genMark(CPN'NetCapture.getNet()))");
 			s.evaluate("CPN'Env.use_string(CPN'State.genState(CPN'NetCapture.getNet()))");
-			s
-					.evaluate("structure CPN'Event = CPN'Event(structure CPN'NetCapture = CPN'NetCapture)");
+			s.evaluate("structure CPN'Event = CPN'Event(structure CPN'NetCapture = CPN'NetCapture)");
 			s.evaluate("CPN'Env.use_string(CPN'Event.genBind(CPN'NetCapture.getNet()))");
 			s.evaluate("CPN'Env.use_string(CPN'Event.genEvent(CPN'NetCapture.getNet()))");
-			s
-					.evaluate("structure CPNToolsModel = CPNToolsModel(structure CPNToolsState = CPNToolsState structure CPNToolsEvent = CPNToolsEvent)");
-			s
-					.evaluate("structure CPN'HashFunction = CPN'HashFunction(structure CPN'NetCapture = CPN'NetCapture)");
-			s
-					.evaluate("CPN'Env.use_string(CPN'HashFunction.genHashFunction(CPN'NetCapture.getNet()))");
-			s
-					.evaluate("structure CPN'Order = CPN'Order(structure CPN'NetCapture = CPN'NetCapture)");
+			s.evaluate("structure CPNToolsModel = CPNToolsModel(structure CPNToolsState = CPNToolsState structure CPNToolsEvent = CPNToolsEvent)");
+			s.evaluate("structure CPN'HashFunction = CPN'HashFunction(structure CPN'NetCapture = CPN'NetCapture)");
+			s.evaluate("CPN'Env.use_string(CPN'HashFunction.genHashFunction(CPN'NetCapture.getNet()))");
+			s.evaluate("structure CPN'Order = CPN'Order(structure CPN'NetCapture = CPN'NetCapture)");
 			s.evaluate("CPN'Env.use_string(CPN'Order.genStateOrder(CPN'NetCapture.getNet()))");
-			s
-					.evaluate("structure CPN'PackCommon = CPN'PackCommon(structure JavaExecute = JavaExecute)");
-			s
-					.evaluate("structure CPN'PackFunction = CPN'PackFunction(structure CPN'NetCapture = CPN'NetCapture)");
-			s
-					.evaluate("CPN'Env.use_string(CPN'PackFunction.genPackerFunction(CPN'NetCapture.getNet()))");
+			s.evaluate("structure CPN'PackCommon = CPN'PackCommon(structure JavaExecute = JavaExecute)");
+			s.evaluate("structure CPN'PackFunction = CPN'PackFunction(structure CPN'NetCapture = CPN'NetCapture)");
+			s.evaluate("CPN'Env.use_string(CPN'PackFunction.genPackerFunction(CPN'NetCapture.getNet()))");
 			try {
-				s
-						.evaluate("structure CPN'Serializer = CPN'Serializer(structure CPN'NetCapture = CPN'NetCapture)");
-				s
-						.evaluate("CPN'Env.use_string(CPN'Serializer.genSerializer(CPN'NetCapture.getNet()))");
+				s.evaluate("structure CPN'Serializer = CPN'Serializer(structure CPN'NetCapture = CPN'NetCapture)");
+				s.evaluate("CPN'Env.use_string(CPN'Serializer.genSerializer(CPN'NetCapture.getNet()))");
 			} catch (final Exception e) {
 				// We don't really use the serializer anyways, and it fails in simple cases
 			}
