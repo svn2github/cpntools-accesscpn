@@ -69,6 +69,7 @@ public class CPNToolsCosimulation implements Cosimulation {
 			outputs.putAll(placePlugins);
 			addModules(subpagePlugins, modifiableTransitionInstances);
 		} catch (final Exception e) {
+			e.printStackTrace();
 			allTransitionInstances = Collections.emptyList();
 		}
 
