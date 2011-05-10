@@ -92,6 +92,10 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 		}
 	}
 
+	private boolean empty(final List<?> list) {
+		return list == null || list.isEmpty();
+	}
+
 	@Override
 	public synchronized void done() {
 		done = true;
@@ -100,20 +104,17 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 
 	@Override
 	public Collection<ChannelDescription<DataStore>> getData() {
-		// TODO Auto-generated method stub
-		return null;
+		return cosimulation.getData();
 	}
 
 	@Override
-	public Collection<ChannelDescription<InputChannel>> getInputs() {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<ChannelDescription<OutputChannel>> getInputs() {
+		return cosimulation.getInputs();
 	}
 
 	@Override
-	public Collection<ChannelDescription<OutputChannel>> getOutputs() {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<ChannelDescription<InputChannel>> getOutputs() {
+		return cosimulation.getOutputs();
 	}
 
 	public boolean isDirty() {

@@ -14,9 +14,9 @@ public interface CPNSimulation {
 
 	public Collection<ChannelDescription<DataStore>> getData();
 
-	public Collection<ChannelDescription<InputChannel>> getInputs();
+	public Collection<ChannelDescription<OutputChannel>> getInputs();
 
-	public Collection<ChannelDescription<OutputChannel>> getOutputs();
+	public Collection<ChannelDescription<InputChannel>> getOutputs();
 
 	public void setup() throws Exception;
 
