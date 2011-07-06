@@ -1,16 +1,20 @@
 /*
- * BRITNeY Suite Copyright (C) 2004-2006 Michael Westergaard and others This program is free
- * software; you can redistribute it and/or modify it under the terms of the GNU General Public
- * License as published by the Free Software Foundation; either version 2 of the License, or (at
- * your option) any later version. This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
- * PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received
- * a copy of the GNU General Public License along with this program; if not, write to the Free
- * Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * BRITNeY Suite Copyright (C) 2004-2006 Michael Westergaard and others This program is free software; you can
+ * redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later version. This program is distributed in
+ * the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a
+ * copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 package org.cpntools.accesscpn.engine;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Observable;
 
 /**
  * @author Michael Westergaard
@@ -52,21 +56,10 @@ public class SimulatorService extends Observable implements Iterable<Simulator>,
 		try {
 			implementation = new DaemonSimulator();
 		} catch (final Exception e) {
-			throw new Exception(
-					"Error starting simulator; try killing any processes containing cpnmld or run.x86");
+			throw new Exception("Error starting simulator; try killing any processes containing cpnmld or run.x86");
 		}
 		final Simulator simulator = new Simulator(implementation);
 		simulators.add(simulator);
-		try {
-			// This yields a warning
-			// simulator.evaluate(this,
-			// "CPN'CodeGen.set_dumping_filename(\"asapdump-initial.sml\";");
-			simulator.evaluate(this, "CPN'Animation.version := (!CPN'Animation.version + 1)"); //$NON-NLS-1$
-			simulator.evaluate(this, "CPN'Animation.id := \"" + simulator.getId() + "\""); //$NON-NLS-1$//$NON-NLS-2$
-		} catch (final Exception e) {
-			throw new Exception(
-					"Setting up animation for BRITNeY failed; you are probably using a wrong simulator.");
-		}
 		setChanged();
 		notifyObservers(simulator);
 		return simulator;
@@ -88,7 +81,7 @@ public class SimulatorService extends Observable implements Iterable<Simulator>,
 	 */
 	public synchronized String getUniqueId(final Simulator simulator) {
 		String id = reverseSimulatorMap.get(simulator);
-		if (id != null) return id;
+		if (id != null) { return id; }
 		id = "simulator" + maxId++; //$NON-NLS-1$
 		simulatorMap.put(id, simulator);
 		reverseSimulatorMap.put(simulator, id);
