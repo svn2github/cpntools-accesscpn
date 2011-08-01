@@ -19,15 +19,41 @@ import org.cpntools.accesscpn.model.Transition;
 public interface CosimulationManager<C extends Cosimulation> {
 	public static final CosimulationManager<CPNToolsCosimulation> INSTANCE = new CPNToolsCosimulationManager();
 
+	/**
+	 * @param cosimulation
+	 * @return
+	 * @throws Exception
+	 */
 	CPNSimulation launch(C cosimulation) throws Exception;
 
+	/**
+	 * @param cosimulation
+	 * @throws Exception
+	 */
 	void launchInCPNTools(C cosimulation) throws Exception;
 
-	C setup(PetriNet model, HighLevelSimulator simulator, Map<Instance<Page>, SubpagePlugin> subpagePlugins,
-	        Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
+	/**
+	 * @param model
+	 * @param simulator
+	 * @param subpagePlugins
+	 * @param context
+	 * @param placePlugins
+	 * @param transitionPlugins
+	 * @return
+	 */
+	C setup(PetriNet model, HighLevelSimulator simulator, ExecutionContext context,
+	        Map<Instance<Page>, SubpagePlugin> subpagePlugins, Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
 	        Map<Instance<Transition>, TransitionPlugin> transitionPlugins);
 
-	C setup(PetriNet model, Map<Instance<Page>, SubpagePlugin> subpagePlugins,
+	/**
+	 * @param model
+	 * @param context
+	 * @param subpagePlugins
+	 * @param placePlugins
+	 * @param transitionPlugins
+	 * @return
+	 */
+	C setup(PetriNet model, ExecutionContext context, Map<Instance<Page>, SubpagePlugin> subpagePlugins,
 	        Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
 	        Map<Instance<Transition>, TransitionPlugin> transitionPlugins);
 }

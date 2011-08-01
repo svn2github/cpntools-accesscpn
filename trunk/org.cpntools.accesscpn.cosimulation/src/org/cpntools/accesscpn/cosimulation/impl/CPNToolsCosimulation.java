@@ -15,6 +15,7 @@ import org.cpntools.accesscpn.cosimulation.CPNToolsPlugin;
 import org.cpntools.accesscpn.cosimulation.ChannelDescription;
 import org.cpntools.accesscpn.cosimulation.Cosimulation;
 import org.cpntools.accesscpn.cosimulation.DataStore;
+import org.cpntools.accesscpn.cosimulation.ExecutionContext;
 import org.cpntools.accesscpn.cosimulation.InputChannel;
 import org.cpntools.accesscpn.cosimulation.OutputChannel;
 import org.cpntools.accesscpn.cosimulation.PlacePlugin;
@@ -52,13 +53,15 @@ public class CPNToolsCosimulation implements Cosimulation {
 	private final List<ChannelDescription<InputChannel>> inputPlaces;
 	private final List<ChannelDescription<OutputChannel>> outputPlaces;
 	private final List<ChannelDescription<DataStore>> dataPlaces;
+	private final ExecutionContext context;
 
 	public CPNToolsCosimulation(final PetriNet model, final HighLevelSimulator simulator,
-	        final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
+	        final ExecutionContext context, final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
 	        final Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
 	        final Map<Instance<Transition>, TransitionPlugin> transitionPlugins) {
 		this.model = model;
 		this.simulator = simulator;
+		this.context = context;
 		this.subpagePlugins = subpagePlugins;
 		this.placePlugins = placePlugins;
 		this.transitionPlugins = transitionPlugins;
@@ -123,6 +126,22 @@ public class CPNToolsCosimulation implements Cosimulation {
 			allTransitionInstances = Collections.emptyList();
 		}
 
+	}
+
+	/**
+	 * @see org.cpntools.accesscpn.cosimulation.Cosimulation#lock()
+	 */
+	@Override
+	public void lock() {
+		context.lock();
+	}
+
+	/**
+	 * @see org.cpntools.accesscpn.cosimulation.Cosimulation#unlock()
+	 */
+	@Override
+	public void unlock() {
+		context.unlock();
 	}
 
 	private int size(final List<?> list) {

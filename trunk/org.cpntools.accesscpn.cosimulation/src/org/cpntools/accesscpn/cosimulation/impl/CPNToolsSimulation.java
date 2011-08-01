@@ -143,11 +143,16 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 	}
 
 	public synchronized boolean step(final boolean monitor) throws Exception {
-		final boolean result = step();
-		if (monitor) {
-			simulator.evaluate("CPN'Sim.call_stop_funs()");
+		try {
+			cosimulation.lock();
+			final boolean result = step();
+			if (monitor) {
+				simulator.evaluate("CPN'Sim.call_stop_funs()");
+			}
+			return result;
+		} finally {
+			cosimulation.unlock();
 		}
-		return result;
 	}
 
 	@Override
@@ -174,7 +179,12 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 
 	@Override
 	public boolean step(final Binding b) throws Exception {
-		return step(b, false);
+		try {
+			cosimulation.lock();
+			return step(b, false);
+		} finally {
+			cosimulation.unlock();
+		}
 	}
 
 	@Override
@@ -304,6 +314,7 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 		if (done) { return false; }
 		final List<Instance<Transition>> tis = new ArrayList<Instance<Transition>>(transitionInstances);
 		Collections.shuffle(tis);
+		cosimulation.lock();
 		for (final Instance<Transition> ti : tis) {
 			if (simulator.isEnabled(ti)) {
 				final List<Binding> bindings = simulator.getBindings(ti);
@@ -313,6 +324,7 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 				}
 			}
 		}
+		cosimulation.unlock();
 		return false;
 	}
 

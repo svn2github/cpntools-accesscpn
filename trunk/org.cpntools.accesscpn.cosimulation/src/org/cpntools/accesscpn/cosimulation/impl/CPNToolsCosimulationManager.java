@@ -2,7 +2,10 @@ package org.cpntools.accesscpn.cosimulation.impl;
 
 import java.util.Map;
 
+import javax.naming.OperationNotSupportedException;
+
 import org.cpntools.accesscpn.cosimulation.CosimulationManager;
+import org.cpntools.accesscpn.cosimulation.ExecutionContext;
 import org.cpntools.accesscpn.cosimulation.PlacePlugin;
 import org.cpntools.accesscpn.cosimulation.SubpagePlugin;
 import org.cpntools.accesscpn.cosimulation.TransitionPlugin;
@@ -19,6 +22,9 @@ import org.cpntools.accesscpn.model.Transition;
  */
 public class CPNToolsCosimulationManager implements CosimulationManager<CPNToolsCosimulation> {
 
+	/**
+	 * @see org.cpntools.accesscpn.cosimulation.CosimulationManager#launch(org.cpntools.accesscpn.cosimulation.Cosimulation)
+	 */
 	@Override
 	public CPNToolsSimulation launch(final CPNToolsCosimulation cosimulation) throws Exception {
 		final CPNToolsSimulation simulation = new CPNToolsSimulation(cosimulation);
@@ -26,32 +32,45 @@ public class CPNToolsCosimulationManager implements CosimulationManager<CPNTools
 		return simulation;
 	}
 
+	/**
+	 * @see org.cpntools.accesscpn.cosimulation.CosimulationManager#launchInCPNTools(org.cpntools.accesscpn.cosimulation.Cosimulation)
+	 */
 	@Override
 	public void launchInCPNTools(final CPNToolsCosimulation cosimulation) throws Exception {
-		final CPNToolsSimulation simulation = launch(cosimulation);
-		final HighLevelSimulator simulator = cosimulation.getSimulator();
+		launch(cosimulation);
+		cosimulation.getSimulator();
 		while (true) {
-
+			throw new OperationNotSupportedException("Not implemented yet");
 		}
 	}
 
+	/**
+	 * @see org.cpntools.accesscpn.cosimulation.CosimulationManager#setup(org.cpntools.accesscpn.model.PetriNet,
+	 *      org.cpntools.accesscpn.engine.highlevel.HighLevelSimulator,
+	 *      org.cpntools.accesscpn.cosimulation.ExecutionContext, java.util.Map, java.util.Map, java.util.Map)
+	 */
 	@Override
 	public CPNToolsCosimulation setup(final PetriNet model, final HighLevelSimulator simulator,
-	        final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
+	        final ExecutionContext context, final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
 	        final Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
 	        final Map<Instance<Transition>, TransitionPlugin> transitionPlugins) {
-		return new CPNToolsCosimulation(model, simulator, subpagePlugins, placePlugins, transitionPlugins);
+		return new CPNToolsCosimulation(model, simulator, context, subpagePlugins, placePlugins, transitionPlugins);
 	}
 
+	/**
+	 * @see org.cpntools.accesscpn.cosimulation.CosimulationManager#setup(org.cpntools.accesscpn.model.PetriNet,
+	 *      org.cpntools.accesscpn.cosimulation.ExecutionContext, java.util.Map, java.util.Map, java.util.Map)
+	 */
 	@Override
-	public CPNToolsCosimulation setup(final PetriNet model, final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
+	public CPNToolsCosimulation setup(final PetriNet model, final ExecutionContext context,
+	        final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
 	        final Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
 	        final Map<Instance<Transition>, TransitionPlugin> transitionPlugins) {
 		try {
 			final HighLevelSimulator highLevelSimulator = HighLevelSimulator.getHighLevelSimulator();
 			final Checker checker = new Checker(model, null, highLevelSimulator);
 			checker.checkEntireModel();
-			return setup(model, highLevelSimulator, subpagePlugins, placePlugins, transitionPlugins);
+			return setup(model, highLevelSimulator, context, subpagePlugins, placePlugins, transitionPlugins);
 		} catch (final Exception e) {
 			return new EmptyCosimulation();
 		}

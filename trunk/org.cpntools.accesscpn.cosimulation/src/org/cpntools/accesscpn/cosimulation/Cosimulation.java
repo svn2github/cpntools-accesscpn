@@ -20,4 +20,9 @@ public interface Cosimulation {
 	public Iterable<CPNToolsPlugin> plugins();
 
 	public Iterable<SubpagePlugin> subpagePlugins();
+
+	/** Lock the cosimulation (prevent further execution). */
+	public void lock();
+
+	public void unlock();
 }
