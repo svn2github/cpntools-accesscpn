@@ -1,31 +1,29 @@
 /************************************************************************/
-/* Access/CPN                                                           */
-/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology    */
+/* Access/CPN */
+/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology */
 /*                                                                      */
-/* This library is free software; you can redistribute it and/or        */
-/* modify it under the terms of the GNU Lesser General Public           */
-/* License as published by the Free Software Foundation; either         */
-/* version 2.1 of the License, or (at your option) any later version.   */
+/* This library is free software; you can redistribute it and/or */
+/* modify it under the terms of the GNU Lesser General Public */
+/* License as published by the Free Software Foundation; either */
+/* version 2.1 of the License, or (at your option) any later version. */
 /*                                                                      */
-/* This library is distributed in the hope that it will be useful,      */
-/* but WITHOUT ANY WARRANTY; without even the implied warranty of       */
-/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
-/* Lesser General Public License for more details.                      */
+/* This library is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU */
+/* Lesser General Public License for more details. */
 /*                                                                      */
-/* You should have received a copy of the GNU Lesser General Public     */
-/* License along with this library; if not, write to the Free Software  */
-/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,           */
-/* MA  02110-1301  USA                                                  */
+/* You should have received a copy of the GNU Lesser General Public */
+/* License along with this library; if not, write to the Free Software */
+/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, */
+/* MA 02110-1301 USA */
 /************************************************************************/
 package org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues;
 
 import org.cpntools.accesscpn.engine.highlevel.instance.adapter.ModelData;
 import org.cpntools.accesscpn.model.cpntypes.CPNType;
 
-
 /**
  * @author mwesterg
- * 
  */
 public class CPNIndex extends CPNValue {
 
@@ -36,7 +34,7 @@ public class CPNIndex extends CPNValue {
 	 * @param index
 	 */
 	public CPNIndex(final String name, final int index) {
-		this("", name, index);
+		this("0", name, index);
 	}
 
 	/**
@@ -56,7 +54,7 @@ public class CPNIndex extends CPNValue {
 	 */
 	@Override
 	protected boolean matchesInternal(final ModelData modelData, final CPNType type) {
-		if (!(type instanceof org.cpntools.accesscpn.model.cpntypes.CPNIndex)) return false;
+		if (!(type instanceof org.cpntools.accesscpn.model.cpntypes.CPNIndex)) { return false; }
 		final org.cpntools.accesscpn.model.cpntypes.CPNIndex indexType = (org.cpntools.accesscpn.model.cpntypes.CPNIndex) type;
 		return indexType.getName().equals(name);
 	}
@@ -74,7 +72,7 @@ public class CPNIndex extends CPNValue {
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * @see java.lang.Object#toString()
 	 */
@@ -82,7 +80,7 @@ public class CPNIndex extends CPNValue {
 	public String toString() {
 		return name + '(' + index + ')';
 	}
-	
+
 	/**
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -96,7 +94,7 @@ public class CPNIndex extends CPNValue {
 	 */
 	@Override
 	public boolean equals(final Object o) {
-		if (o == null || !(o instanceof CPNIndex)) return false;
+		if (o == null || !(o instanceof CPNIndex)) { return false; }
 		final CPNIndex other = (CPNIndex) o;
 		return index == other.index && name.equals(other.name);
 	}

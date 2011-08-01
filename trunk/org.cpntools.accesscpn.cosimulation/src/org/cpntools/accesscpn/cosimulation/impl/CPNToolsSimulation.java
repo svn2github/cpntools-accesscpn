@@ -338,6 +338,11 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 			sb.append("(");
 			sb.append(offer);
 			sb.append(")");
+			if (timed) {
+				sb.append(" @ (");
+				sb.append(offer.getTime());
+				sb.append(')');
+			}
 		}
 	}
 

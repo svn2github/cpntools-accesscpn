@@ -1,31 +1,29 @@
 /************************************************************************/
-/* Access/CPN                                                           */
-/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology    */
+/* Access/CPN */
+/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology */
 /*                                                                      */
-/* This library is free software; you can redistribute it and/or        */
-/* modify it under the terms of the GNU Lesser General Public           */
-/* License as published by the Free Software Foundation; either         */
-/* version 2.1 of the License, or (at your option) any later version.   */
+/* This library is free software; you can redistribute it and/or */
+/* modify it under the terms of the GNU Lesser General Public */
+/* License as published by the Free Software Foundation; either */
+/* version 2.1 of the License, or (at your option) any later version. */
 /*                                                                      */
-/* This library is distributed in the hope that it will be useful,      */
-/* but WITHOUT ANY WARRANTY; without even the implied warranty of       */
-/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
-/* Lesser General Public License for more details.                      */
+/* This library is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU */
+/* Lesser General Public License for more details. */
 /*                                                                      */
-/* You should have received a copy of the GNU Lesser General Public     */
-/* License along with this library; if not, write to the Free Software  */
-/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,           */
-/* MA  02110-1301  USA                                                  */
+/* You should have received a copy of the GNU Lesser General Public */
+/* License along with this library; if not, write to the Free Software */
+/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, */
+/* MA 02110-1301 USA */
 /************************************************************************/
 package org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues;
 
 import org.cpntools.accesscpn.engine.highlevel.instance.adapter.ModelData;
 import org.cpntools.accesscpn.model.cpntypes.CPNType;
 
-
 /**
  * @author mwesterg
- * 
  */
 public class CPNString extends CPNValue {
 	private final String value;
@@ -43,7 +41,7 @@ public class CPNString extends CPNValue {
 	 * @param value
 	 */
 	public CPNString(final String value) {
-		super("");
+		super("0");
 		this.value = value;
 
 	}
@@ -85,7 +83,7 @@ public class CPNString extends CPNValue {
 	 */
 	@Override
 	public boolean equals(final Object o) {
-		if (o == null || !(o instanceof CPNString)) return false;
+		if (o == null || !(o instanceof CPNString)) { return false; }
 		final CPNString other = (CPNString) o;
 		return value.equals(other.value);
 	}
