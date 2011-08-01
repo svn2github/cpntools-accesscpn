@@ -548,8 +548,8 @@ public class HighLevelSimulator extends AdapterImpl {
 		try {
 			try {
 				try {
-					// System.out.println(expression.toString());
-					// System.out.println(evaluate(expression.toString()));
+					System.out.println(expression.toString());
+					System.out.println(evaluate(expression.toString()));
 					evaluate(expression.toString());
 				} catch (final Exception e) {
 					expression = new StringBuilder();
@@ -558,8 +558,8 @@ public class HighLevelSimulator extends AdapterImpl {
 					expression.append(typeName);
 					expression.append(" ");
 					expression.append(expr);
-					// System.out.println(expression.toString());
-					// System.out.println(evaluate(expression.toString()));
+					System.out.println(expression.toString());
+					System.out.println(evaluate(expression.toString()));
 					evaluate(expression.toString());
 				}
 
@@ -568,8 +568,19 @@ public class HighLevelSimulator extends AdapterImpl {
 					@SuppressWarnings("unused")
 					public void sendMarking(final ArrayList<?> elms) {
 						for (final Object elm : elms) {
-							result.add(handle(type, elm));
+							result.add(handleTimed(type, elm));
 						}
+					}
+
+					private CPNValue handleTimed(final CPNType type, final Object elm) {
+						if (type.getTimed()) {
+							final List<?> lst = (List<?>) elm;
+							final String timeStamp = (String) lst.get(1);
+							final CPNValue value = handle(type, lst.get(0));
+							value.setTime(timeStamp);
+							return value;
+						}
+						return handle(type, elm);
 					}
 
 					private boolean getBoolean(final Object unpacked) {
