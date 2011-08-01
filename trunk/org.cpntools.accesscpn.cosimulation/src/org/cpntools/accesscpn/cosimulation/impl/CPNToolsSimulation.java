@@ -221,6 +221,7 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 							marking = simulator.getMarking(pi);
 							sb.append("(" + marking + ")");
 							addTokens(pi, sb, offers);
+// System.out.println("Setting " + pi + " to " + sb);
 							simulator.setMarking(pi, sb.toString());
 							dirty = true;
 							notifyAll();

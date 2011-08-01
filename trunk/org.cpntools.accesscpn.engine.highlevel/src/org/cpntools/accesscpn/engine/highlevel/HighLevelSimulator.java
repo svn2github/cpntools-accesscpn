@@ -548,8 +548,8 @@ public class HighLevelSimulator extends AdapterImpl {
 		try {
 			try {
 				try {
-					System.out.println(expression.toString());
-					System.out.println(evaluate(expression.toString()));
+// System.out.println(expression.toString());
+// System.out.println(evaluate(expression.toString()));
 					evaluate(expression.toString());
 				} catch (final Exception e) {
 					expression = new StringBuilder();
@@ -558,8 +558,8 @@ public class HighLevelSimulator extends AdapterImpl {
 					expression.append(typeName);
 					expression.append(" ");
 					expression.append(expr);
-					System.out.println(expression.toString());
-					System.out.println(evaluate(expression.toString()));
+// System.out.println(expression.toString());
+// System.out.println(evaluate(expression.toString()));
 					evaluate(expression.toString());
 				}
 
@@ -567,20 +567,11 @@ public class HighLevelSimulator extends AdapterImpl {
 
 					@SuppressWarnings("unused")
 					public void sendMarking(final ArrayList<?> elms) {
+// System.out.println(elms);
 						for (final Object elm : elms) {
-							result.add(handleTimed(type, elm));
+							result.add(handle(type, false, elm));
 						}
-					}
-
-					private CPNValue handleTimed(final CPNType type, final Object elm) {
-						if (type.getTimed()) {
-							final List<?> lst = (List<?>) elm;
-							final String timeStamp = (String) lst.get(1);
-							final CPNValue value = handle(type, lst.get(0));
-							value.setTime(timeStamp);
-							return value;
-						}
-						return handle(type, elm);
+// System.out.println(result);
 					}
 
 					private boolean getBoolean(final Object unpacked) {
@@ -611,94 +602,105 @@ public class HighLevelSimulator extends AdapterImpl {
 						getBoolean(unpacked);
 					}
 
-					private CPNValue handle(@SuppressWarnings("hiding") final CPNType type, final Object elm) {
+					private CPNValue handle(@SuppressWarnings("hiding") final CPNType type, final boolean ignoreTime,
+					        final Object elm) {
 						if (type instanceof CPNUnit) {
-							return handleUnit(type, elm);
+							return handleUnit(type, ignoreTime, elm);
 						} else if (type instanceof CPNBool) {
-							return handleBool(type, elm);
+							return handleBool(type, ignoreTime, elm);
 						} else if (type instanceof CPNInt) {
-							return handleInt(type, elm);
+							return handleInt(type, ignoreTime, elm);
 						} else if (type instanceof CPNString) {
-							return handleString(type, elm);
+							return handleString(type, ignoreTime, elm);
 						} else if (type instanceof CPNEnum) {
-							return handleEnum(type, elm);
+							return handleEnum(type, ignoreTime, elm);
 						} else if (type instanceof CPNIndex) {
-							return handleIndex(type, elm);
+							return handleIndex(type, ignoreTime, elm);
 						} else if (type instanceof CPNList) {
-							return handleList(type, elm);
+							return handleList(type, ignoreTime, elm);
 						} else if (type instanceof CPNProduct) {
-							return handleProduct(type, elm);
+							return handleProduct(type, ignoreTime, elm);
 						} else if (type instanceof CPNRecord) {
-							return handleRecord(type, elm);
+							return handleRecord(type, ignoreTime, elm);
 						} else if (type instanceof CPNUnion) {
-							return handleUnion(type, elm);
+							return handleUnion(type, ignoreTime, elm);
 						} else if (type instanceof CPNSubset) {
-							return handleSubset(type, elm);
-						} else if (type instanceof CPNAlias) { return handleAlias(type, elm); }
+							return handleSubset(type, ignoreTime, elm);
+						} else if (type instanceof CPNAlias) { return handleAlias(type, ignoreTime, elm); }
 						return null;
 					}
 
-					private CPNValue handleAlias(@SuppressWarnings("hiding") final CPNType type, final Object elm) {
+					private CPNValue handleAlias(@SuppressWarnings("hiding") final CPNType type,
+					        final boolean ignoreTime, final Object elm) {
 						final CPNAlias aliasType = (CPNAlias) type;
 						final CPNType baseType = modelData.getType(aliasType.getSort());
-						return packTime(type, elm, handle(baseType, typePack(baseType, unpackTime(type, elm))));
+						return packTime(type, ignoreTime, elm,
+						        handle(baseType, true, unpackTime(type, ignoreTime, elm)));
 					}
 
-					private CPNValue handleBool(@SuppressWarnings("hiding") final CPNType type, final Object elm) {
-						return packTime(type, elm,
+					private CPNValue handleBool(@SuppressWarnings("hiding") final CPNType type,
+					        final boolean ignoreTime, final Object elm) {
+						return packTime(type, ignoreTime, elm,
 						        new org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues.CPNBoolean(
-						                getBoolean(unpackTime(type, elm))));
+						                getBoolean(unpackTime(type, ignoreTime, elm))));
 					}
 
-					private CPNValue handleEnum(@SuppressWarnings("hiding") final CPNType type, final Object elm) {
-						final List<?> list = getList(unpackTime(type, elm), 2);
+					private CPNValue handleEnum(@SuppressWarnings("hiding") final CPNType type,
+					        final boolean ignoreTime, final Object elm) {
+						final List<?> list = getList(unpackTime(type, ignoreTime, elm), 2);
 						return packTime(
 						        type,
+						        ignoreTime,
 						        elm,
 						        new org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues.CPNEnum(getString(list
 						                .get(0)), getInteger(list.get(1))));
 					}
 
-					private CPNValue handleIndex(@SuppressWarnings("hiding") final CPNType type, final Object elm) {
-						final List<?> list = getList(unpackTime(type, elm), 2);
-						return packTime(type, elm,
+					private CPNValue handleIndex(@SuppressWarnings("hiding") final CPNType type,
+					        final boolean ignoreTime, final Object elm) {
+						final List<?> list = getList(unpackTime(type, ignoreTime, elm), 2);
+						return packTime(type, ignoreTime, elm,
 						        new org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues.CPNIndex(
 						                ((CPNIndex) type).getName(), getInteger(list.get(1))));
 					}
 
-					private CPNValue handleInt(@SuppressWarnings("hiding") final CPNType type, final Object elm) {
-						return packTime(type, elm,
+					private CPNValue handleInt(@SuppressWarnings("hiding") final CPNType type,
+					        final boolean ignoreTime, final Object elm) {
+						return packTime(type, ignoreTime, elm,
 						        new org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues.CPNInteger(
-						                getInteger(unpackTime(type, elm))));
+						                getInteger(unpackTime(type, ignoreTime, elm))));
 					}
 
-					private CPNValue handleList(@SuppressWarnings("hiding") final CPNType type, final Object elm) {
+					private CPNValue handleList(@SuppressWarnings("hiding") final CPNType type,
+					        final boolean ignoreTime, final Object elm) {
 						final CPNList listType = (CPNList) type;
 						final CPNType baseType = modelData.getType(listType.getSort());
-						final List<?> list = getList(unpackTime(type, elm), -1);
+						final List<?> list = getList(unpackTime(type, ignoreTime, elm), -1);
 						final List<CPNValue> listResult = new ArrayList<CPNValue>();
 						for (final Object o : list) {
-							listResult.add(handle(baseType, typePack(baseType, o)));
+							listResult.add(handle(baseType, true, o));
 						}
-						return packTime(type, elm,
+						return packTime(type, ignoreTime, elm,
 						        new org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues.CPNList<CPNValue>(
 						                listResult));
 					}
 
-					private CPNValue handleProduct(@SuppressWarnings("hiding") final CPNType type, final Object elm) {
+					private CPNValue handleProduct(@SuppressWarnings("hiding") final CPNType type,
+					        final boolean ignoreTime, final Object elm) {
 						final CPNProduct listType = (CPNProduct) type;
-						final List<?> list = getList(unpackTime(type, elm), listType.getTypes().size());
+						final List<?> list = getList(unpackTime(type, ignoreTime, elm), listType.getTypes().size());
 						final List<CPNValue> listResult = new ArrayList<CPNValue>();
 						int i = 0;
 						for (final Object o : list) {
 							final CPNType type2 = modelData.getType(listType.getTypes().get(i++));
-							listResult.add(handle(type2, typePack(type2, o)));
+							listResult.add(handle(type2, true, o));
 						}
-						return packTime(type, elm,
+						return packTime(type, ignoreTime, elm,
 						        new org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues.CPNProduct(listResult));
 					}
 
-					private CPNValue handleRecord(@SuppressWarnings("hiding") final CPNType type, final Object elm) {
+					private CPNValue handleRecord(@SuppressWarnings("hiding") final CPNType type,
+					        final boolean ignoreTime, final Object elm) {
 						final CPNRecord recordType = (CPNRecord) type;
 						final List<?> list = getList(elm, recordType.getValues().size());
 						final Map<String, CPNValue> mapResult = new HashMap<String, CPNValue>();
@@ -710,25 +712,29 @@ public class HighLevelSimulator extends AdapterImpl {
 							final List<?> list2 = getList(o, 2);
 							final String name = getString(list2.get(0));
 							final CPNType type2 = types.get(name);
-							mapResult.put(name, handle(type2, typePack(type2, list2.get(1))));
+							mapResult.put(name, handle(type2, true, list2.get(1)));
 						}
-						return packTime(type, elm,
+						return packTime(type, ignoreTime, elm,
 						        new org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues.CPNRecord(mapResult));
 					}
 
-					private CPNValue handleString(@SuppressWarnings("hiding") final CPNType type, final Object elm) {
-						return packTime(type, elm,
+					private CPNValue handleString(@SuppressWarnings("hiding") final CPNType type,
+					        final boolean ignoreTime, final Object elm) {
+						return packTime(type, ignoreTime, elm,
 						        new org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues.CPNString(
-						                getString(unpackTime(type, elm))));
+						                getString(unpackTime(type, ignoreTime, elm))));
 					}
 
-					private CPNValue handleSubset(@SuppressWarnings("hiding") final CPNType type, final Object elm) {
+					private CPNValue handleSubset(@SuppressWarnings("hiding") final CPNType type,
+					        final boolean ignoreTime, final Object elm) {
 						final CPNSubset subsetType = (CPNSubset) type;
 						final CPNType baseType = modelData.getType(subsetType.getSort());
-						return packTime(type, elm, handle(baseType, typePack(baseType, unpackTime(type, elm))));
+						return packTime(type, ignoreTime, elm,
+						        handle(baseType, true, unpackTime(type, ignoreTime, elm)));
 					}
 
-					private CPNValue handleUnion(@SuppressWarnings("hiding") final CPNType type, final Object elm) {
+					private CPNValue handleUnion(@SuppressWarnings("hiding") final CPNType type,
+					        final boolean ignoreTime, final Object elm) {
 						final CPNUnion unionType = (CPNUnion) type;
 						final List<?> list = getList(elm, 2);
 						final Map<String, CPNType> types = new HashMap<String, CPNType>();
@@ -740,42 +746,35 @@ public class HighLevelSimulator extends AdapterImpl {
 						@SuppressWarnings("hiding")
 						CPNValue result = null;
 						if (type2 != null) {
-							result = handle(type2, typePack(type2, list.get(1)));
+							result = handle(type2, true, list.get(1));
 						}
 
-						return packTime(type, elm,
+						return packTime(type, ignoreTime, elm,
 						        new org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues.CPNUnion(name, type,
 						                result));
 
 					}
 
-					private CPNValue handleUnit(@SuppressWarnings("hiding") final CPNType type, final Object elm) {
-						final Object unpacked = unpackTime(type, elm);
+					private CPNValue handleUnit(@SuppressWarnings("hiding") final CPNType type,
+					        final boolean ignoreTime, final Object elm) {
+						final Object unpacked = unpackTime(type, ignoreTime, elm);
 						getUnit(unpacked);
-						return packTime(type, elm,
+						return packTime(type, ignoreTime, elm,
 						        new org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues.CPNUnit());
 					}
 
-					private CPNValue packTime(@SuppressWarnings("hiding") final CPNType type, final Object elm,
-					        final CPNValue value) {
-						if (type.getTimed()) {
+					private CPNValue packTime(@SuppressWarnings("hiding") final CPNType type, final boolean ignoreTime,
+					        final Object elm, final CPNValue value) {
+						if (!ignoreTime && type.getTimed()) {
 							value.setTime(getString(getList(elm, 2).get(1)));
 							return value;
 						}
 						return value;
 					}
 
-					private Object typePack(@SuppressWarnings("hiding") final CPNType type, Object unpacked) {
-						if (!type.getTimed()) { return unpacked; }
-						final List<Object> tmp = new ArrayList<Object>();
-						tmp.add("");
-						tmp.add(unpacked);
-						unpacked = tmp;
-						return unpacked;
-					}
-
-					private Object unpackTime(@SuppressWarnings("hiding") final CPNType type, final Object elm) {
-						if (type.getTimed()) { return getList(elm, 2).get(1); }
+					private Object unpackTime(@SuppressWarnings("hiding") final CPNType type, final boolean ignoreTime,
+					        final Object elm) {
+						if (!ignoreTime && type.getTimed()) { return getList(elm, 2).get(0); }
 						return elm;
 					}
 				});
