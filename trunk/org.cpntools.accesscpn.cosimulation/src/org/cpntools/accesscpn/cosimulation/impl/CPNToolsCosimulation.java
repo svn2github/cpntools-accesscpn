@@ -53,15 +53,14 @@ public class CPNToolsCosimulation implements Cosimulation {
 	private final List<ChannelDescription<InputChannel>> inputPlaces;
 	private final List<ChannelDescription<OutputChannel>> outputPlaces;
 	private final List<ChannelDescription<DataStore>> dataPlaces;
-	private final ExecutionContext context;
+	private final ExecutionContext context = new ExecutionContext();
 
 	public CPNToolsCosimulation(final PetriNet model, final HighLevelSimulator simulator,
-	        final ExecutionContext context, final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
+	        final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
 	        final Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
 	        final Map<Instance<Transition>, TransitionPlugin> transitionPlugins) {
 		this.model = model;
 		this.simulator = simulator;
-		this.context = context;
 		this.subpagePlugins = subpagePlugins;
 		this.placePlugins = placePlugins;
 		this.transitionPlugins = transitionPlugins;
@@ -427,6 +426,13 @@ public class CPNToolsCosimulation implements Cosimulation {
 	 */
 	public Collection<ChannelDescription<InputChannel>> getOutputs() {
 		return inputPlaces;
+	}
+
+	/**
+	 * @return
+	 */
+	public ExecutionContext getExecutionContext() {
+		return context;
 	}
 
 }

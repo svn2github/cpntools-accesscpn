@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.cpntools.accesscpn.cosimulation
 Bundle-SymbolicName: org.cpntools.accesscpn.cosimulation
-Bundle-Version: 2.0.0
+Bundle-Version: 2.0.2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.cpntools.accesscpn.engine.highlevel;bundle-version="2.0.0",
  org.cpntools.accesscpn.model;bundle-version="2.0.0",

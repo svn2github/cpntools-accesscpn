@@ -41,8 +41,8 @@ public interface CosimulationManager<C extends Cosimulation> {
 	 * @param transitionPlugins
 	 * @return
 	 */
-	C setup(PetriNet model, HighLevelSimulator simulator, ExecutionContext context,
-	        Map<Instance<Page>, SubpagePlugin> subpagePlugins, Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
+	C setup(PetriNet model, HighLevelSimulator simulator, Map<Instance<Page>, SubpagePlugin> subpagePlugins,
+	        Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
 	        Map<Instance<Transition>, TransitionPlugin> transitionPlugins);
 
 	/**
@@ -53,7 +53,7 @@ public interface CosimulationManager<C extends Cosimulation> {
 	 * @param transitionPlugins
 	 * @return
 	 */
-	C setup(PetriNet model, ExecutionContext context, Map<Instance<Page>, SubpagePlugin> subpagePlugins,
+	C setup(PetriNet model, Map<Instance<Page>, SubpagePlugin> subpagePlugins,
 	        Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
 	        Map<Instance<Transition>, TransitionPlugin> transitionPlugins);
 }

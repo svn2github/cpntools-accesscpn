@@ -5,7 +5,6 @@ import java.util.Map;
 import javax.naming.OperationNotSupportedException;
 
 import org.cpntools.accesscpn.cosimulation.CosimulationManager;
-import org.cpntools.accesscpn.cosimulation.ExecutionContext;
 import org.cpntools.accesscpn.cosimulation.PlacePlugin;
 import org.cpntools.accesscpn.cosimulation.SubpagePlugin;
 import org.cpntools.accesscpn.cosimulation.TransitionPlugin;
@@ -51,10 +50,10 @@ public class CPNToolsCosimulationManager implements CosimulationManager<CPNTools
 	 */
 	@Override
 	public CPNToolsCosimulation setup(final PetriNet model, final HighLevelSimulator simulator,
-	        final ExecutionContext context, final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
+	        final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
 	        final Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
 	        final Map<Instance<Transition>, TransitionPlugin> transitionPlugins) {
-		return new CPNToolsCosimulation(model, simulator, context, subpagePlugins, placePlugins, transitionPlugins);
+		return new CPNToolsCosimulation(model, simulator, subpagePlugins, placePlugins, transitionPlugins);
 	}
 
 	/**
@@ -62,15 +61,14 @@ public class CPNToolsCosimulationManager implements CosimulationManager<CPNTools
 	 *      org.cpntools.accesscpn.cosimulation.ExecutionContext, java.util.Map, java.util.Map, java.util.Map)
 	 */
 	@Override
-	public CPNToolsCosimulation setup(final PetriNet model, final ExecutionContext context,
-	        final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
+	public CPNToolsCosimulation setup(final PetriNet model, final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
 	        final Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
 	        final Map<Instance<Transition>, TransitionPlugin> transitionPlugins) {
 		try {
 			final HighLevelSimulator highLevelSimulator = HighLevelSimulator.getHighLevelSimulator();
 			final Checker checker = new Checker(model, null, highLevelSimulator);
 			checker.checkEntireModel();
-			return setup(model, highLevelSimulator, context, subpagePlugins, placePlugins, transitionPlugins);
+			return setup(model, highLevelSimulator, subpagePlugins, placePlugins, transitionPlugins);
 		} catch (final Exception e) {
 			return new EmptyCosimulation();
 		}

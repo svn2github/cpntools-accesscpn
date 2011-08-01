@@ -15,7 +15,6 @@ import org.cpntools.accesscpn.cosimulation.CPNSimulation;
 import org.cpntools.accesscpn.cosimulation.CPNToolsPlugin;
 import org.cpntools.accesscpn.cosimulation.ChannelDescription;
 import org.cpntools.accesscpn.cosimulation.DataStore;
-import org.cpntools.accesscpn.cosimulation.ExecutionContext;
 import org.cpntools.accesscpn.cosimulation.InputChannel;
 import org.cpntools.accesscpn.cosimulation.ObservableInputChannel;
 import org.cpntools.accesscpn.cosimulation.OutputChannel;
@@ -133,9 +132,8 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 
 	@Override
 	public synchronized void setup() throws Exception {
-		final ExecutionContext context = new ExecutionContext();
 		for (final CPNToolsPlugin plugin : cosimulation.plugins()) {
-			plugin.start(context);
+			plugin.start(cosimulation.getExecutionContext());
 		}
 		for (final SubpagePlugin plugin : cosimulation.subpagePlugins()) {
 			plugin.run();
