@@ -15,4 +15,6 @@ public interface OutputChannel {
 	 * @param offers
 	 */
 	void offer(Collection<CPNValue> offers);
+
+	void offer(CPNValue offer);
 }

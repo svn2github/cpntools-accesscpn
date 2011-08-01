@@ -246,7 +246,6 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 						sb.append("empty");
 						addTokens(pi, sb, data.getValues());
 						simulator.setMarking(pi, sb.toString());
-						simulator.refreshViews();
 						dirty = true;
 						notifyAll();
 					} catch (final Exception e) {

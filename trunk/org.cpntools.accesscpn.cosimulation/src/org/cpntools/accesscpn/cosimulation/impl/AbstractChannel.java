@@ -21,7 +21,7 @@ public abstract class AbstractChannel extends AbstractPlugin implements PlacePlu
 
 	@Override
 	public synchronized Collection<CPNValue> getOffers() {
-		if (offers.isEmpty()) return Collections.emptyList();
+		if (offers.isEmpty()) { return Collections.emptyList(); }
 		final List<CPNValue> theOffers = offers;
 		offers = new ArrayList<CPNValue>();
 		return theOffers;
@@ -41,6 +41,10 @@ public abstract class AbstractChannel extends AbstractPlugin implements PlacePlu
 
 	public void offerSingle(final CPNValue offer) {
 		// Implement if desired
+	}
+
+	public void offer(final CPNValue offer) {
+		offerSingle(offer);
 	}
 
 	@Override
