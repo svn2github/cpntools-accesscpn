@@ -37,6 +37,9 @@ import org.cpntools.accesscpn.model.PlaceNode;
 import org.cpntools.accesscpn.model.RefPlace;
 import org.cpntools.accesscpn.model.Transition;
 
+/**
+ * @author michael
+ */
 public class CPNToolsCosimulation implements Cosimulation {
 
 	private final PetriNet model;
@@ -55,6 +58,13 @@ public class CPNToolsCosimulation implements Cosimulation {
 	private final List<ChannelDescription<DataStore>> dataPlaces;
 	private final ExecutionContext context = new ExecutionContext();
 
+	/**
+	 * @param model
+	 * @param simulator
+	 * @param subpagePlugins
+	 * @param placePlugins
+	 * @param transitionPlugins
+	 */
 	public CPNToolsCosimulation(final PetriNet model, final HighLevelSimulator simulator,
 	        final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
 	        final Map<Instance<PlaceNode>, PlacePlugin> placePlugins,

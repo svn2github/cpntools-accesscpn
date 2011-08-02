@@ -324,7 +324,7 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 						}
 					}
 				}
-			} while (simulator.increaseTime() != null);
+			} while (simulator.increaseTime() == null);
 		} finally {
 			cosimulation.unlock();
 		}
