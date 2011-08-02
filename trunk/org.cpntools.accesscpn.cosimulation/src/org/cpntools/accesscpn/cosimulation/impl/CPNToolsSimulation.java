@@ -313,16 +313,21 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 		final List<Instance<Transition>> tis = new ArrayList<Instance<Transition>>(transitionInstances);
 		Collections.shuffle(tis);
 		cosimulation.lock();
-		for (final Instance<Transition> ti : tis) {
-			if (simulator.isEnabled(ti)) {
-				final List<Binding> bindings = simulator.getBindings(ti);
-				Collections.shuffle(bindings);
-				for (final Binding b : bindings) {
-					if (step(b)) { return true; }
+		try {
+			do {
+				for (final Instance<Transition> ti : tis) {
+					if (simulator.isEnabled(ti)) {
+						final List<Binding> bindings = simulator.getBindings(ti);
+						Collections.shuffle(bindings);
+						for (final Binding b : bindings) {
+							if (step(b)) { return true; }
+						}
+					}
 				}
-			}
+			} while (simulator.increaseTime() != null);
+		} finally {
+			cosimulation.unlock();
 		}
-		cosimulation.unlock();
 		return false;
 	}
 
