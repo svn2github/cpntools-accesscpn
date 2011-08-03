@@ -1,5 +1,6 @@
 package org.cpntools.accesscpn.cosimulation;
 
+import java.util.Calendar;
 import java.util.Map;
 
 import org.cpntools.accesscpn.cosimulation.impl.CPNToolsCosimulation;
@@ -39,11 +40,13 @@ public interface CosimulationManager<C extends Cosimulation> {
 	 * @param context
 	 * @param placePlugins
 	 * @param transitionPlugins
+	 * @param offset
+	 * @param granularity
 	 * @return
 	 */
 	C setup(PetriNet model, HighLevelSimulator simulator, Map<Instance<Page>, SubpagePlugin> subpagePlugins,
 	        Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
-	        Map<Instance<Transition>, TransitionPlugin> transitionPlugins);
+	        Map<Instance<Transition>, TransitionPlugin> transitionPlugins, Calendar offset, long granularity);
 
 	/**
 	 * @param model
@@ -51,9 +54,11 @@ public interface CosimulationManager<C extends Cosimulation> {
 	 * @param subpagePlugins
 	 * @param placePlugins
 	 * @param transitionPlugins
+	 * @param offset
+	 * @param granularity
 	 * @return
 	 */
 	C setup(PetriNet model, Map<Instance<Page>, SubpagePlugin> subpagePlugins,
 	        Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
-	        Map<Instance<Transition>, TransitionPlugin> transitionPlugins);
+	        Map<Instance<Transition>, TransitionPlugin> transitionPlugins, Calendar offset, long granularity);
 }

@@ -1,5 +1,6 @@
 package org.cpntools.accesscpn.cosimulation.impl;
 
+import java.util.Calendar;
 import java.util.Map;
 
 import javax.naming.OperationNotSupportedException;
@@ -52,8 +53,10 @@ public class CPNToolsCosimulationManager implements CosimulationManager<CPNTools
 	public CPNToolsCosimulation setup(final PetriNet model, final HighLevelSimulator simulator,
 	        final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
 	        final Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
-	        final Map<Instance<Transition>, TransitionPlugin> transitionPlugins) {
-		return new CPNToolsCosimulation(model, simulator, subpagePlugins, placePlugins, transitionPlugins);
+	        final Map<Instance<Transition>, TransitionPlugin> transitionPlugins, final Calendar offset,
+	        final long granularity) {
+		return new CPNToolsCosimulation(model, simulator, subpagePlugins, placePlugins, transitionPlugins, offset,
+		        granularity);
 	}
 
 	/**
@@ -63,12 +66,14 @@ public class CPNToolsCosimulationManager implements CosimulationManager<CPNTools
 	@Override
 	public CPNToolsCosimulation setup(final PetriNet model, final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
 	        final Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
-	        final Map<Instance<Transition>, TransitionPlugin> transitionPlugins) {
+	        final Map<Instance<Transition>, TransitionPlugin> transitionPlugins, final Calendar offset,
+	        final long granularity) {
 		try {
 			final HighLevelSimulator highLevelSimulator = HighLevelSimulator.getHighLevelSimulator();
 			final Checker checker = new Checker(model, null, highLevelSimulator);
 			checker.checkEntireModel();
-			return setup(model, highLevelSimulator, subpagePlugins, placePlugins, transitionPlugins);
+			return setup(model, highLevelSimulator, subpagePlugins, placePlugins, transitionPlugins, offset,
+			        granularity);
 		} catch (final Exception e) {
 			return new EmptyCosimulation();
 		}

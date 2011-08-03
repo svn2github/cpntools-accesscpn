@@ -17,7 +17,7 @@ public class ObservableInputChannel extends Observable implements InputChannel, 
 	public ObservableInputChannel(final InputChannel channel) {
 		this.channel = channel;
 		pipe = new PipeChannel();
-		new Thread(this).start();
+		new Thread(this, "Observable Channel [" + channel + "]").start();
 	}
 
 	@Override

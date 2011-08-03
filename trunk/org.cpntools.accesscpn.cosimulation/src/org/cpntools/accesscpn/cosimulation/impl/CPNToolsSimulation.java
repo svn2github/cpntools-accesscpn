@@ -116,7 +116,7 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 		return cosimulation.getOutputs();
 	}
 
-	public boolean isDirty() {
+	public synchronized boolean isDirty() {
 		if (!dirty) {
 			for (final SubpagePlugin plugin : cosimulation.subpagePlugins()) {
 				if (!plugin.isDone()) { return true; }
@@ -140,35 +140,40 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 		}
 	}
 
-	public synchronized boolean step(final boolean monitor) throws Exception {
-		try {
-			cosimulation.lock();
-			final boolean result = step();
-			if (monitor) {
-				simulator.evaluate("CPN'Sim.call_stop_funs()");
-			}
-			return result;
-		} finally {
-			cosimulation.unlock();
+	public boolean step(final boolean monitor) throws Exception {
+		final boolean result = step();
+		if (monitor) {
+			simulator.evaluate("CPN'Sim.call_stop_funs()");
 		}
+		return result;
 	}
 
 	@Override
-	public synchronized boolean step() throws Exception {
+	public boolean step() throws Exception {
 		do {
-			if (dirty) {
-				dirty = false;
-				final boolean result = step(cosimulation.getAllTransitionInstances());
-				if (result) {
-					dirty = true;
-					return true;
+			boolean wasDirty;
+			synchronized (this) {
+				wasDirty = dirty;
+				if (dirty) {
+					dirty = false;
 				}
 			}
-			if (!incomingplaces.isEmpty() || !datastores.isEmpty()) {
-				try {
-					wait();
-				} catch (final InterruptedException _) {
-					// Don't terminate on interrupt
+			if (wasDirty) {
+				final boolean result = step(cosimulation.getAllTransitionInstances());
+				synchronized (this) {
+					if (result) {
+						dirty = true;
+						return true;
+					}
+				}
+			}
+			synchronized (this) {
+				if (!incomingplaces.isEmpty() || !datastores.isEmpty()) {
+					try {
+						wait();
+					} catch (final InterruptedException _) {
+						// Don't terminate on interrupt
+					}
 				}
 			}
 		} while (isDirty());
@@ -308,26 +313,31 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 		return false;
 	}
 
-	protected synchronized boolean step(final Collection<Instance<Transition>> transitionInstances) throws Exception {
-		if (done) { return false; }
+	protected boolean step(final Collection<Instance<Transition>> transitionInstances) throws Exception {
+		synchronized (this) {
+			if (done) { return false; }
+		}
 		final List<Instance<Transition>> tis = new ArrayList<Instance<Transition>>(transitionInstances);
 		Collections.shuffle(tis);
 		cosimulation.lock();
 		try {
-			do {
-				for (final Instance<Transition> ti : tis) {
-					if (simulator.isEnabled(ti)) {
-						final List<Binding> bindings = simulator.getBindings(ti);
-						Collections.shuffle(bindings);
-						for (final Binding b : bindings) {
-							if (step(b)) { return true; }
+			synchronized (this) {
+				do {
+					for (final Instance<Transition> ti : tis) {
+						if (simulator.isEnabled(ti)) {
+							final List<Binding> bindings = simulator.getBindings(ti);
+							Collections.shuffle(bindings);
+							for (final Binding b : bindings) {
+								if (step(b, false)) { return true; }
+							}
 						}
 					}
-				}
-			} while (simulator.increaseTime() == null);
+				} while (simulator.increaseTime() == null);
+			}
 		} finally {
 			cosimulation.unlock();
 		}
+
 		return false;
 	}
 

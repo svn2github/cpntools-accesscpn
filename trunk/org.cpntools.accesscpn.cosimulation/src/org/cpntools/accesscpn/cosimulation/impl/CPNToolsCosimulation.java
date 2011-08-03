@@ -1,6 +1,7 @@
 package org.cpntools.accesscpn.cosimulation.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -56,7 +57,7 @@ public class CPNToolsCosimulation implements Cosimulation {
 	private final List<ChannelDescription<InputChannel>> inputPlaces;
 	private final List<ChannelDescription<OutputChannel>> outputPlaces;
 	private final List<ChannelDescription<DataStore>> dataPlaces;
-	private final ExecutionContext context = new ExecutionContext();
+	private final ExecutionContext context;
 
 	/**
 	 * @param model
@@ -64,16 +65,20 @@ public class CPNToolsCosimulation implements Cosimulation {
 	 * @param subpagePlugins
 	 * @param placePlugins
 	 * @param transitionPlugins
+	 * @param granularity
+	 * @param offset
 	 */
 	public CPNToolsCosimulation(final PetriNet model, final HighLevelSimulator simulator,
 	        final Map<Instance<Page>, SubpagePlugin> subpagePlugins,
 	        final Map<Instance<PlaceNode>, PlacePlugin> placePlugins,
-	        final Map<Instance<Transition>, TransitionPlugin> transitionPlugins) {
+	        final Map<Instance<Transition>, TransitionPlugin> transitionPlugins, final Calendar offset,
+	        final long granularity) {
 		this.model = model;
 		this.simulator = simulator;
 		this.subpagePlugins = subpagePlugins;
 		this.placePlugins = placePlugins;
 		this.transitionPlugins = transitionPlugins;
+		context = new ExecutionContext(offset, granularity);
 		modelData = (ModelData) ModelDataAdapterFactory.getInstance().adapt(model, ModelData.class);
 		modelInstance = (ModelInstance) ModelInstanceAdapterFactory.getInstance().adapt(model, ModelInstance.class);
 		inputs = new HashMap<Instance<PlaceNode>, InputChannel>();
