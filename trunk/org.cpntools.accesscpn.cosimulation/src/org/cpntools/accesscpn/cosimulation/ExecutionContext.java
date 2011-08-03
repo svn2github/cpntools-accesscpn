@@ -62,11 +62,11 @@ public class ExecutionContext extends HashMap<String, Object> {
 	 * simulation which an atomic non-simulation action is taken.
 	 */
 	public void lock() {
-		System.out.println("--- Attempting to lock for " + Thread.currentThread());
+// System.out.println("--- Attempting to lock for " + Thread.currentThread());
 		while (true) {
 			try {
 				lock.acquire();
-				System.out.println("--- Locked for " + Thread.currentThread());
+// System.out.println("--- Locked for " + Thread.currentThread());
 				return;
 			} catch (final InterruptedException e) { // I would like to extend my death wishes to anybody who thought
 // returning with an InterruptedException when acquiring a lock withou notifying that you didn't obtain the lock!
@@ -78,7 +78,7 @@ public class ExecutionContext extends HashMap<String, Object> {
 	 * Unlock execution context.
 	 */
 	public void unlock() {
-		System.out.println("--- Releasing lock for " + Thread.currentThread());
+// System.out.println("--- Releasing lock for " + Thread.currentThread());
 		lock.release();
 	}
 }
