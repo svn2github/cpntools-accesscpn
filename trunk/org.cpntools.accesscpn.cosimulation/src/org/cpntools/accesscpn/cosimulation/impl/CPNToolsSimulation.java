@@ -243,8 +243,11 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 				pi = datastores.get(observable);
 			}
 			if (data.isClosed()) {
-				datastores.remove(observable);
-				observable.deleteObserver(this);
+				synchronized (this) {
+					datastores.remove(observable);
+					observable.deleteObserver(this);
+					notifyAll();
+				}
 			} else if (pi != null) {
 				final StringBuilder sb = new StringBuilder();
 				synchronized (this) {

@@ -14,7 +14,7 @@ import org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues.CPNValue;
 public class DefaultDataStore extends Observable implements DataStore {
 
 	private boolean changed;
-	private Collection<CPNValue> modifiableValues = new ArrayList<CPNValue>(), values = Collections
+	private final Collection<CPNValue> modifiableValues = new ArrayList<CPNValue>(), values = Collections
 	        .unmodifiableCollection(modifiableValues);
 	private boolean closed;
 
@@ -52,10 +52,10 @@ public class DefaultDataStore extends Observable implements DataStore {
 
 	@Override
 	public synchronized void setValues(final Collection<CPNValue> values) {
-		modifiableValues = new ArrayList<CPNValue>(values);
-		this.values = Collections.unmodifiableCollection(modifiableValues);
+		modifiableValues.clear();
+		modifiableValues.addAll(values);
 		setChanged();
-		notifyObservers(modifiableValues);
+		notifyObservers(this.values);
 	}
 
 	@Override
