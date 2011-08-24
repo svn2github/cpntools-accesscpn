@@ -221,18 +221,24 @@ public class CPNToolsSimulation extends Thread implements CPNSimulation, Observe
 				if (!offers.isEmpty()) {
 					final StringBuilder sb = new StringBuilder();
 					String marking;
-					synchronized (this) {
-						try {
-							marking = simulator.getMarking(pi);
-							sb.append("(" + marking + ")");
-							addTokens(pi, sb, offers);
+					cosimulation.lock();
+					try {
+						synchronized (this) {
+							try {
+								marking = simulator.getMarking(pi);
+								sb.append("(" + marking + ")");
+								addTokens(pi, sb, offers);
 // System.out.println("Setting " + pi + " to " + sb);
-							simulator.setMarking(pi, sb.toString());
-							dirty = true;
-							notifyAll();
-						} catch (final Exception e) {
-							// Mask
+								simulator.setMarking(pi, sb.toString());
+								dirty = true;
+								notifyAll();
+							} catch (final Exception e) {
+								e.printStackTrace();
+								// Mask
+							}
 						}
+					} finally {
+						cosimulation.unlock();
 					}
 				}
 			}
