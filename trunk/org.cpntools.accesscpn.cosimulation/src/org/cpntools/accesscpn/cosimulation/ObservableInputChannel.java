@@ -17,13 +17,13 @@ public class ObservableInputChannel extends Observable implements InputChannel, 
 	public ObservableInputChannel(final InputChannel channel) {
 		this.channel = channel;
 		pipe = new PipeChannel();
-		System.out.println("ObservableChannel " + this + " for " + channel + " via " + pipe);
+// System.out.println("ObservableChannel " + this + " for " + channel + " via " + pipe);
 		new Thread(this, "Observable Channel [" + channel + "]").start();
 	}
 
 	@Override
 	public void addObserver(final Observer o) {
-		System.out.println("addObserver to " + this + " observer: " + o);
+// System.out.println("addObserver to " + this + " observer: " + o);
 		synchronized (pipe) {
 			o.update(this, null);
 			super.addObserver(o);
