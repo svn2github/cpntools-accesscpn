@@ -341,7 +341,7 @@ public class CPNToolsCosimulation implements Cosimulation {
 		if (isInput(socket, port, instance, arcInfo)) {
 			isUsed = true;
 			final PipeChannel channel = new PipeChannel();
-			System.out.println("addPlace input: " + socket + "; " + channel);
+// System.out.println("addPlace input: " + socket + "; " + channel);
 			i.add(new ChannelDescription<InputChannel>(socket.getName().getText(), modelData.getType(socket), channel));
 			if (reverse) {
 				ii.put(InstanceFactory.INSTANCE.createInstance(socket, transitionPath), channel);
@@ -353,7 +353,7 @@ public class CPNToolsCosimulation implements Cosimulation {
 			assert !isUsed;
 			isUsed = true;
 			final PipeChannel channel = new PipeChannel();
-			System.out.println("addPlace output: " + socket + "; " + channel);
+// System.out.println("addPlace output: " + socket + "; " + channel);
 			o.add(new ChannelDescription<OutputChannel>(socket.getName().getText(), modelData.getType(socket), channel));
 			if (reverse) {
 				oo.put(InstanceFactory.INSTANCE.createInstance(socket, transitionPath), channel);
@@ -365,7 +365,7 @@ public class CPNToolsCosimulation implements Cosimulation {
 			assert !isUsed;
 			isUsed = true;
 			final DataStore channel = new DefaultDataStore();
-			System.out.println("addPlace data: " + socket + "; " + channel);
+// System.out.println("addPlace data: " + socket + "; " + channel);
 			d.add(new ChannelDescription<DataStore>(socket.getName().getText(), modelData.getType(socket), channel));
 			dd.put(InstanceFactory.INSTANCE.createInstance(socket, transitionPath), channel);
 		}
