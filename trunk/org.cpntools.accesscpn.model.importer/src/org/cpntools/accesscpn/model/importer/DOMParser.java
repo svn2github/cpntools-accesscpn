@@ -1,24 +1,25 @@
 /************************************************************************/
-/* Access/CPN                                                           */
-/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology    */
+/* Access/CPN */
+/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology */
 /*                                                                      */
-/* This library is free software; you can redistribute it and/or        */
-/* modify it under the terms of the GNU Lesser General Public           */
-/* License as published by the Free Software Foundation; either         */
-/* version 2.1 of the License, or (at your option) any later version.   */
+/* This library is free software; you can redistribute it and/or */
+/* modify it under the terms of the GNU Lesser General Public */
+/* License as published by the Free Software Foundation; either */
+/* version 2.1 of the License, or (at your option) any later version. */
 /*                                                                      */
-/* This library is distributed in the hope that it will be useful,      */
-/* but WITHOUT ANY WARRANTY; without even the implied warranty of       */
-/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
-/* Lesser General Public License for more details.                      */
+/* This library is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU */
+/* Lesser General Public License for more details. */
 /*                                                                      */
-/* You should have received a copy of the GNU Lesser General Public     */
-/* License along with this library; if not, write to the Free Software  */
-/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,           */
-/* MA  02110-1301  USA                                                  */
+/* You should have received a copy of the GNU Lesser General Public */
+/* License along with this library; if not, write to the Free Software */
+/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, */
+/* MA 02110-1301 USA */
 /************************************************************************/
 package org.cpntools.accesscpn.model.importer;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -55,8 +56,9 @@ import org.cpntools.accesscpn.model.declaration.DeclarationStructure;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.EntityResolver;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-
 
 /**
  * @author mw
@@ -164,27 +166,43 @@ public class DOMParser {
 
 	/**
 	 * @return a document builder
-	 * @throws ParserConfigurationException if the parserconfiguration is invalid
+	 * @throws ParserConfigurationException
+	 *             if the parserconfiguration is invalid
 	 */
 	public static DocumentBuilder getDocumentBuilder() throws ParserConfigurationException {
 		final DocumentBuilderFactory docfactory = DocumentBuilderFactory.newInstance();
 		docfactory.setValidating(false);
 
 		final DocumentBuilder documentBuilder = docfactory.newDocumentBuilder();
-		// FIXME Why is this commented out? It should not be!
-		/*
-		 * documentBuilder.setEntityResolver(new EntityResolver() { public InputSource resolveEntity(final String
-		 * publicId, final String systemId) { if (systemId .startsWith("http://www.daimi.au.dk/~cpntools/bin/DTD")) {
-		 * //$NON-NLS-1$ final String system = systemId.substring(40); return new
-		 * InputSource(getClass().getResourceAsStream( "/resources" + system)); //$NON-NLS-1$ } return null; } });
-		 */
+		documentBuilder.setEntityResolver(new EntityResolver() {
+			public InputSource resolveEntity(final String publicId, final String systemId) {
+				final String[] entityPathList = new String[] { "http://cpntools.org/DTD",
+				        "http://www.daimi.au.dk/~cpntools/bin/DTD" };
+				for (final String entityPath : entityPathList) {
+					if (systemId.startsWith(entityPath)) {
+						InputStream resourceAsStream;
+						try {
+							final URL resURL = DOMParser.class.getResource("/resources"
+							        + systemId.substring(entityPath.length()));
+							resourceAsStream = new BufferedInputStream(resURL.openStream());
+						} catch (final Exception e) {
+							return null;
+						}
+						return new InputSource(resourceAsStream);
+					}
+				}
+				return null;
+			}
+		});
 
 		return documentBuilder;
 	}
 
 	/**
-	 * @param ds structure
-	 * @param n node
+	 * @param ds
+	 *            structure
+	 * @param n
+	 *            node
 	 * @return declaration
 	 */
 	public static HLDeclaration getHLDeclaration(final DeclarationStructure ds, final Node n) {
@@ -196,13 +214,18 @@ public class DOMParser {
 	}
 
 	/**
-	 * @param inputStream input
+	 * @param inputStream
+	 *            input
 	 * @param modelName
 	 * @return parsed net
-	 * @throws NetCheckException net is invalid
-	 * @throws SAXException XML is not correct
-	 * @throws IOException IO error occurred
-	 * @throws ParserConfigurationException parser is invalid
+	 * @throws NetCheckException
+	 *             net is invalid
+	 * @throws SAXException
+	 *             XML is not correct
+	 * @throws IOException
+	 *             IO error occurred
+	 * @throws ParserConfigurationException
+	 *             parser is invalid
 	 */
 	public static PetriNet parse(final InputStream inputStream, final String modelName) throws NetCheckException,
 	        SAXException, IOException, ParserConfigurationException {
@@ -218,12 +241,17 @@ public class DOMParser {
 	}
 
 	/**
-	 * @param uri location of model
+	 * @param uri
+	 *            location of model
 	 * @return parsed net
-	 * @throws NetCheckException net is invalid
-	 * @throws SAXException XML is not correct
-	 * @throws IOException IO error occurred
-	 * @throws ParserConfigurationException parser is invalid
+	 * @throws NetCheckException
+	 *             net is invalid
+	 * @throws SAXException
+	 *             XML is not correct
+	 * @throws IOException
+	 *             IO error occurred
+	 * @throws ParserConfigurationException
+	 *             parser is invalid
 	 */
 	public static PetriNet parse(final URL uri) throws NetCheckException, SAXException, IOException,
 	        ParserConfigurationException {
@@ -247,17 +275,19 @@ public class DOMParser {
 	}
 
 	/**
-	 * @param name name as string
-	 * @param nameObject 
+	 * @param name
+	 *            name as string
+	 * @param nameObject
 	 * @return structured name
 	 */
-	public Name setName(final String name, Name nameObject) {
+	public Name setName(final String name, final Name nameObject) {
 		nameObject.setText(name);
 		return nameObject;
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return annotation
 	 */
 	public HLAnnotation processAnnot(final Node n) {
@@ -268,9 +298,11 @@ public class DOMParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return arc
-	 * @throws NetCheckException error occurred
+	 * @throws NetCheckException
+	 *             error occurred
 	 */
 	public Arc processArc(final Node n) throws NetCheckException {
 		final Arc arc = DOMParser.factory.createArc();
@@ -312,41 +344,47 @@ public class DOMParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @param code
 	 * @return code
 	 */
-	public Code processCode(final Node n, Code code) {
+	public Code processCode(final Node n, final Code code) {
 		code.setText(ParserUtil.getTextFromChild(n, DOMParser.textNode));
 
 		return code;
 	}
+
 	/**
-	 * @param n node
-	 * @param prio 
+	 * @param n
+	 *            node
+	 * @param prio
 	 * @return code
 	 */
-	public Priority processPriority(final Node n, Priority prio) {
+	public Priority processPriority(final Node n, final Priority prio) {
 		prio.setText(ParserUtil.getTextFromChild(n, DOMParser.textNode));
 
 		return prio;
 	}
 
 	/**
-	 * @param n node
-	 * @param cond 
+	 * @param n
+	 *            node
+	 * @param cond
 	 * @return guard
 	 */
-	public Condition processCond(final Node n, Condition cond) {
+	public Condition processCond(final Node n, final Condition cond) {
 		cond.setText(ParserUtil.getTextFromChild(n, DOMParser.textNode));
 
 		return cond;
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return net
-	 * @throws NetCheckException error occurred
+	 * @throws NetCheckException
+	 *             error occurred
 	 */
 	public PetriNet processCpnet(final Node n) throws NetCheckException {
 		final PetriNet petriNet = DOMParser.factory.createPetriNet();
@@ -390,7 +428,7 @@ public class DOMParser {
 		final FusionGroup fusionGroup = DOMParser.factory.createFusionGroup();
 		fusionGroup.setId(ParserUtil.getAttr(n, "id"));
 		final String name = ParserUtil.getAttr(n, "name");
-		Name nme = factory.createName();
+		final Name nme = factory.createName();
 		fusionGroup.setName(nme);
 		nme.setText("");
 		setName(name, fusionGroup.getName());
@@ -400,18 +438,22 @@ public class DOMParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return list of decls
-	 * @throws NetDeclarationException error occurred
+	 * @throws NetDeclarationException
+	 *             error occurred
 	 */
 	public ArrayList<Label> processGlobbox(final Node n) throws NetDeclarationException {
 		return DeclarationParser.processDecls(n);
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return net
-	 * @throws NetCheckException error occurred
+	 * @throws NetCheckException
+	 *             error occurred
 	 */
 	public PetriNet processingPertiNet(final Node n) throws NetCheckException {
 		PetriNet petriNet = null;
@@ -428,29 +470,32 @@ public class DOMParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @param initmark
 	 * @return initmark
 	 */
-	public HLMarking processInitmark(final Node n, HLMarking initmark) {
+	public HLMarking processInitmark(final Node n, final HLMarking initmark) {
 		initmark.setText(ParserUtil.getTextFromChild(n, DOMParser.textNode));
 
 		return initmark;
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return page
-	 * @throws NetCheckException error occurred
+	 * @throws NetCheckException
+	 *             error occurred
 	 */
 	public Page processPage(final Node n) throws NetCheckException {
 		final Page page = DOMParser.factory.createPage();
 		page.setId(ParserUtil.getAttr(n, "id"));
-		
-		Name name = factory.createName();
+
+		final Name name = factory.createName();
 		page.setName(name);
 		name.setText("");
-		
+
 		final NodeList nl = n.getChildNodes();
 
 		// 1st we parse the page name, places and transitions
@@ -489,13 +534,14 @@ public class DOMParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return place
 	 */
 	public PlaceNode processPlace(final Node n) {
-		Name name = factory.createName();
-		Sort type = factory.createSort();
-		HLMarking initmark = factory.createHLMarking();
+		final Name name = factory.createName();
+		final Sort type = factory.createSort();
+		final HLMarking initmark = factory.createHLMarking();
 		boolean isFusionPlace = false;
 		String fusionGroupName = null;
 		boolean isPort = false;
@@ -547,15 +593,16 @@ public class DOMParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return instance
 	 */
 	public Instance processSubst(final Node n) {
 		final Instance instance = DOMParser.factory.createInstance();
 		final String id = ParserUtil.getAttr(n, "id");
 		instance.setId(id);
-		
-		Name name = factory.createName();
+
+		final Name name = factory.createName();
 		instance.setName(name);
 		name.setText("");
 
@@ -590,40 +637,42 @@ public class DOMParser {
 	}
 
 	/**
-	 * @param n node
-	 * @param time 
+	 * @param n
+	 *            node
+	 * @param time
 	 * @return time region
 	 */
-	public Time processTime(final Node n, Time time) {
+	public Time processTime(final Node n, final Time time) {
 		time.setText(ParserUtil.getTextFromChild(n, DOMParser.textNode));
 		return time;
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return transition
 	 */
 	public Transition processTrans(final Node n) {
 		final Transition transition = DOMParser.factory.createTransition();
 		final String id = ParserUtil.getAttr(n, "id");
 		transition.setId(id);
-		
-		Name name = factory.createName();
+
+		final Name name = factory.createName();
 		transition.setName(name);
 		name.setText("");
 		final Condition cond = DOMParser.factory.createCondition();
 		transition.setCondition(cond);
 		cond.setText("");
-		Time time = factory.createTime();
+		final Time time = factory.createTime();
 		transition.setTime(time);
 		time.setText("");
-		Code code = factory.createCode();
+		final Code code = factory.createCode();
 		transition.setCode(code);
 		code.setText("");
-		Priority priority = factory.createPriority();
+		final Priority priority = factory.createPriority();
 		transition.setPriority(priority);
 		priority.setText("");
-		
+
 		final NodeList nl = n.getChildNodes();
 		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
 			final Node currentNode = nl.item(i);
@@ -634,9 +683,9 @@ public class DOMParser {
 			} else if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.timeNode)) {
 				processTime(currentNode, transition.getTime());
 			} else if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.codeNode)) {
-				 processCode(currentNode, transition.getCode());
+				processCode(currentNode, transition.getCode());
 			} else if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.priorityNode)) {
-				 processPriority(currentNode, transition.getPriority());
+				processPriority(currentNode, transition.getPriority());
 			}
 		}
 
@@ -646,20 +695,23 @@ public class DOMParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @param type
 	 * @return type
 	 */
-	public Sort processType(final Node n, Sort type) {
+	public Sort processType(final Node n, final Sort type) {
 		type.setText(ParserUtil.getTextFromChild(n, DOMParser.textNode));
 
 		return type;
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return net
-	 * @throws NetCheckException error occurred
+	 * @throws NetCheckException
+	 *             error occurred
 	 */
 	public PetriNet processWorkspaceElements(final Node n) throws NetCheckException {
 		PetriNet petriNet = null;
