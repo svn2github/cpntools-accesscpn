@@ -1507,7 +1507,15 @@ public class HighLevelSimulator extends AdapterImpl {
 	 *             on error
 	 */
 	public void saveSimulationReport(final File file) throws IOException {
-		send(PacketGenerator.instance.constructSaveSimulationReport(file.getAbsolutePath()));
+		saveSimulationReport(file.getAbsolutePath());
+	}
+
+	/**
+	 * @param file
+	 * @throws IOException
+	 */
+	public void saveSimulationReport(final String file) throws IOException {
+		send(PacketGenerator.instance.constructSaveSimulationReport(file));
 	}
 
 	/**
