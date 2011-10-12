@@ -1,21 +1,21 @@
 /************************************************************************/
-/* Access/CPN                                                           */
-/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology    */
+/* Access/CPN */
+/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology */
 /*                                                                      */
-/* This library is free software; you can redistribute it and/or        */
-/* modify it under the terms of the GNU Lesser General Public           */
-/* License as published by the Free Software Foundation; either         */
-/* version 2.1 of the License, or (at your option) any later version.   */
+/* This library is free software; you can redistribute it and/or */
+/* modify it under the terms of the GNU Lesser General Public */
+/* License as published by the Free Software Foundation; either */
+/* version 2.1 of the License, or (at your option) any later version. */
 /*                                                                      */
-/* This library is distributed in the hope that it will be useful,      */
-/* but WITHOUT ANY WARRANTY; without even the implied warranty of       */
-/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
-/* Lesser General Public License for more details.                      */
+/* This library is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU */
+/* Lesser General Public License for more details. */
 /*                                                                      */
-/* You should have received a copy of the GNU Lesser General Public     */
-/* License along with this library; if not, write to the Free Software  */
-/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,           */
-/* MA  02110-1301  USA                                                  */
+/* You should have received a copy of the GNU Lesser General Public */
+/* License along with this library; if not, write to the Free Software */
+/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, */
+/* MA 02110-1301 USA */
 /************************************************************************/
 package org.cpntools.accesscpn.model.importer;
 
@@ -30,7 +30,6 @@ import org.cpntools.accesscpn.model.declaration.UseDeclaration;
 import org.cpntools.accesscpn.model.declaration.VariableDeclaration;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
 
 /**
  * @author mw
@@ -148,9 +147,11 @@ public class DeclarationParser {
 	public static final String withNode = "with";
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return color decl
-	 * @throws NetDeclarationException if error occurred
+	 * @throws NetDeclarationException
+	 *             if error occurred
 	 */
 	public static Label processColor(final Node n) throws NetDeclarationException {
 		final TypeDeclaration color = DeclarationParser.declFactory.createTypeDeclaration();
@@ -198,14 +199,15 @@ public class DeclarationParser {
 			color.getSort().addDeclare(declare);
 		}
 		if (color.getSort() != null) {
-		color.getSort().setTimed(timed);
+			color.getSort().setTimed(timed);
 		}
 
 		return DOMParser.getHLDeclaration(color, n);
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return declare part
 	 */
 	public static ArrayList<String> processDeclare(final Node n) {
@@ -223,9 +225,11 @@ public class DeclarationParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return list of decls
-	 * @throws NetDeclarationException error occurred
+	 * @throws NetDeclarationException
+	 *             error occurred
 	 */
 	public static ArrayList<Label> processDecls(final Node n) throws NetDeclarationException {
 		final ArrayList<Label> labels = new ArrayList<Label>();
@@ -252,7 +256,8 @@ public class DeclarationParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return globref decl
 	 */
 	public static Label processGlobref(final Node n) {
@@ -272,7 +277,8 @@ public class DeclarationParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return ml decl
 	 */
 	public static Label processML(final Node n) {
@@ -282,7 +288,8 @@ public class DeclarationParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return use decl
 	 */
 	public static Label processUse(final Node n) {
@@ -300,7 +307,8 @@ public class DeclarationParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return var decl
 	 */
 	public static Label processVar(final Node n) {

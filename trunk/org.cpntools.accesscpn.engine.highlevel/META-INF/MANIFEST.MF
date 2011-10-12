@@ -4,7 +4,7 @@ Bundle-Name: Engine Highlevel Plug-in
 Bundle-SymbolicName: org.cpntools.accesscpn.engine.highlevel;singleton:=true
 Bundle-Version: 2.0.2
 Require-Bundle: org.cpntools.accesscpn.model;bundle-version="2.0.0",
- org.eclipse.emf.ecore;bundle-version="2.6.0",
+ org.eclipse.emf.ecore,
  org.cpntools.accesscpn.engine;bundle-version="2.0.0"
 Export-Package: org.cpntools.accesscpn.engine.highlevel,
  org.cpntools.accesscpn.engine.highlevel.checker,

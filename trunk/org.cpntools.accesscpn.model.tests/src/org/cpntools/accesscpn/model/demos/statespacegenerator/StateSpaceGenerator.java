@@ -461,6 +461,7 @@ public class StateSpaceGenerator {
 						StateSpaceGenerator.checkpointing.set(false);
 					}
 			} catch (final Exception e) {
+				e.printStackTrace();
 				simulator.destroy();
 				if (s != null) waiting.add(new CompressedState(allRealPlaceInstances, s));
 				previous = null;

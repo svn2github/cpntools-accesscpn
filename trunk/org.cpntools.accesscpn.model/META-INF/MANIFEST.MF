@@ -19,6 +19,6 @@ Export-Package: org.cpntools.accesscpn.model,
  org.cpntools.accesscpn.model.graphics.util,
  org.cpntools.accesscpn.model.impl,
  org.cpntools.accesscpn.model.util
-Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.6.1",
- org.eclipse.emf;bundle-version="2.6.0"
+Require-Bundle: org.eclipse.emf.ecore,
+ org.eclipse.emf.common
 Bundle-ActivationPolicy: lazy

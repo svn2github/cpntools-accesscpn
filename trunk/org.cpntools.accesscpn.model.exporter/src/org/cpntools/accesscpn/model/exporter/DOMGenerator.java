@@ -1,24 +1,25 @@
 /************************************************************************/
-/* Access/CPN                                                           */
-/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology    */
+/* Access/CPN */
+/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology */
 /*                                                                      */
-/* This library is free software; you can redistribute it and/or        */
-/* modify it under the terms of the GNU Lesser General Public           */
-/* License as published by the Free Software Foundation; either         */
-/* version 2.1 of the License, or (at your option) any later version.   */
+/* This library is free software; you can redistribute it and/or */
+/* modify it under the terms of the GNU Lesser General Public */
+/* License as published by the Free Software Foundation; either */
+/* version 2.1 of the License, or (at your option) any later version. */
 /*                                                                      */
-/* This library is distributed in the hope that it will be useful,      */
-/* but WITHOUT ANY WARRANTY; without even the implied warranty of       */
-/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
-/* Lesser General Public License for more details.                      */
+/* This library is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU */
+/* Lesser General Public License for more details. */
 /*                                                                      */
-/* You should have received a copy of the GNU Lesser General Public     */
-/* License along with this library; if not, write to the Free Software  */
-/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,           */
-/* MA  02110-1301  USA                                                  */
+/* You should have received a copy of the GNU Lesser General Public */
+/* License along with this library; if not, write to the Free Software */
+/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, */
+/* MA 02110-1301 USA */
 /************************************************************************/
 package org.cpntools.accesscpn.model.exporter;
 
+import java.awt.Point;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -37,6 +38,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.cpntools.accesscpn.engine.highlevel.instance.adapter.ModelData;
+import org.cpntools.accesscpn.engine.highlevel.instance.adapter.ModelDataAdapterFactory;
 import org.cpntools.accesscpn.model.Annotation;
 import org.cpntools.accesscpn.model.Arc;
 import org.cpntools.accesscpn.model.FusionGroup;
@@ -44,10 +47,13 @@ import org.cpntools.accesscpn.model.HLArcType;
 import org.cpntools.accesscpn.model.HLDeclaration;
 import org.cpntools.accesscpn.model.HasName;
 import org.cpntools.accesscpn.model.Instance;
-import org.cpntools.accesscpn.model.Object;
+import org.cpntools.accesscpn.model.ModelFactory;
+import org.cpntools.accesscpn.model.Name;
 import org.cpntools.accesscpn.model.Page;
+import org.cpntools.accesscpn.model.ParameterAssignment;
 import org.cpntools.accesscpn.model.PetriNet;
 import org.cpntools.accesscpn.model.Place;
+import org.cpntools.accesscpn.model.PlaceNode;
 import org.cpntools.accesscpn.model.RefPlace;
 import org.cpntools.accesscpn.model.RefTrans;
 import org.cpntools.accesscpn.model.Transition;
@@ -76,11 +82,13 @@ import org.cpntools.accesscpn.model.importer.DeclarationParser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-
 /**
  * @author michael
  */
 public class DOMGenerator {
+	private static final String subPageInfo = "subpageinfo";
+	private static final String subst = "subst";
+
 	/**
 	 * @param petriNet
 	 * @return
@@ -89,6 +97,7 @@ public class DOMGenerator {
 	 */
 	public static Document export(final PetriNet petriNet) throws ParserConfigurationException,
 	        OperationNotSupportedException {
+		final ModelData modelData = (ModelData) ModelDataAdapterFactory.getInstance().adapt(petriNet, ModelData.class);
 		final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 		documentBuilderFactory.setNamespaceAware(false);
 		final DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -103,7 +112,7 @@ public class DOMGenerator {
 		final Element cpnet = document.createElement(DOMParser.cpnetNode);
 		rootTreeNode.appendChild(cpnet);
 		exportDeclarations(document, cpnet, petriNet);
-		exportPages(document, cpnet, petriNet);
+		exportPages(document, cpnet, petriNet, modelData);
 		return document;
 	}
 
@@ -144,14 +153,19 @@ public class DOMGenerator {
 	        TransformerException, ParserConfigurationException, OperationNotSupportedException {
 		return export(petriNet, new FileOutputStream(fileName, false));
 	}
-	
-	private static class Position {
+
+	static class Position {
 		private final int a;
 		private final int b;
 
-		Position(int a, int b) {
+		Position(final int a, final int b) {
 			this.a = a;
 			this.b = b;
+		}
+
+		public Position(final double x, final double y) {
+			a = (int) x;
+			b = (int) y;
 		}
 
 		public int getB() {
@@ -164,11 +178,11 @@ public class DOMGenerator {
 	}
 
 	private static void exportArc(final Document document, final Element pageNode, final Arc a,
-	        final Map<Object, Position> positions) {
+	        final Map<org.cpntools.accesscpn.model.Object, Position> positions) {
 		final Element arc = document.createElement(DOMParser.arcNode);
 		arc.setAttribute("id", a.getId());
 		if (a.getKind() == HLArcType.TEST) {
-			arc.setAttribute("orientation", "Both");
+			arc.setAttribute("orientation", "BOTHDIR");
 		} else if (a.getSource() == a.getTransition()) {
 			arc.setAttribute("orientation", "TtoP");
 		} else {
@@ -184,9 +198,8 @@ public class DOMGenerator {
 		arc.appendChild(placeend);
 		final Position source = positions.get(a.getSource());
 		final Position destination = positions.get(a.getTarget());
-		exportLabel(document, arc, a.getHlinscription(), DOMParser.annotNode, a.getId() + "a", (int) ((source
-		        .getA() + destination.getA()) / 2.0),
-		        (int) ((source.getB() + destination.getB()) / 2.0));
+		exportLabel(document, arc, a.getHlinscription(), DOMParser.annotNode, a.getId() + "a",
+		        (int) ((source.getA() + destination.getA()) / 2.0), (int) ((source.getB() + destination.getB()) / 2.0));
 	}
 
 	private static void exportCPNType(final Document document, final Element color, final CPNAlias type)
@@ -208,7 +221,17 @@ public class DOMGenerator {
 
 	private static void exportCPNType(final Document document, final Element color, final CPNIndex type)
 	        throws OperationNotSupportedException {
-		throw new OperationNotSupportedException();
+		final Element index = document.createElement(DeclarationParser.indexNode);
+		final Element id = document.createElement(DeclarationParser.idNode);
+		id.setTextContent(type.getName());
+		index.appendChild(id);
+		final Element low = document.createElement(DeclarationParser.mlNode);
+		low.setTextContent(type.getLow());
+		index.appendChild(low);
+		final Element high = document.createElement(DeclarationParser.mlNode);
+		high.setTextContent(type.getHigh());
+		index.appendChild(high);
+		color.appendChild(index);
 	}
 
 	private static void exportCPNType(final Document document, final Element color, final CPNInt type)
@@ -302,29 +325,25 @@ public class DOMGenerator {
 		if (type.getId() != null) { throw new OperationNotSupportedException(); }
 	}
 
-	private static void exportDeclaration(final Document document, final Element globbox,
-	        final DeclarationStructure structure, final HLDeclaration decl) throws OperationNotSupportedException {
+	private static void exportDeclaration(final Document document, final Element globbox, final Element types,
+	        final Element variables, final Element functions, final DeclarationStructure structure,
+	        final HLDeclaration decl) throws OperationNotSupportedException {
 		if (structure instanceof GlobalReferenceDeclaration) {
-			exportDeclaration(document, globbox, (GlobalReferenceDeclaration) structure, decl);
+			exportDeclaration(document, functions, (GlobalReferenceDeclaration) structure, decl);
 		} else if (structure instanceof MLDeclaration) {
-			exportDeclaration(document, globbox, (MLDeclaration) structure, decl);
+			exportDeclaration(document, functions, (MLDeclaration) structure, decl);
 		} else if (structure instanceof TypeDeclaration) {
-			exportDeclaration(document, globbox, (TypeDeclaration) structure, decl);
+			exportDeclaration(document, types, (TypeDeclaration) structure, decl);
 		} else if (structure instanceof UseDeclaration) {
-			exportDeclaration(document, globbox, (UseDeclaration) structure, decl);
+			exportDeclaration(document, functions, (UseDeclaration) structure, decl);
 		} else if (structure instanceof VariableDeclaration) {
-			exportDeclaration(document, globbox, (VariableDeclaration) structure, decl);
+			exportDeclaration(document, variables, (VariableDeclaration) structure, decl);
 		}
 	}
 
 	private static void exportDeclaration(final Document document, final Element globbox,
 	        final GlobalReferenceDeclaration structure, final HLDeclaration decl) throws OperationNotSupportedException {
 		throw new OperationNotSupportedException();
-	}
-
-	private static void exportDeclaration(final Document document, final Element globbox, final HLDeclaration decl)
-	        throws OperationNotSupportedException {
-		exportDeclaration(document, globbox, decl.getStructure(), decl);
 	}
 
 	private static void exportDeclaration(final Document document, final Element globbox,
@@ -368,16 +387,31 @@ public class DOMGenerator {
 		}
 	}
 
+	static int id = 0;
+
 	private static void exportDeclarations(final Document document, final Element rootTreeNode, final PetriNet petriNet)
 	        throws OperationNotSupportedException {
 		final Element globbox = document.createElement(DOMParser.globboxNode);
 		rootTreeNode.appendChild(globbox);
+		final Element types = createBlock(document, globbox, "Types");
+		final Element variables = createBlock(document, globbox, "Variables");
+		final Element functions = createBlock(document, globbox, "Functions");
 		for (final HLDeclaration decl : petriNet.declaration()) {
-			exportDeclaration(document, globbox, decl);
+			exportDeclaration(document, globbox, types, variables, functions, decl.getStructure(), decl);
 		}
 	}
 
-	private static void exportLabel(final Document document, final Element place, final Annotation label,
+	private static Element createBlock(final Document document, final Element globbox, final String name) {
+		final Element block = document.createElement("block");
+		block.setAttribute("id", "idblock" + DOMGenerator.id++);
+		final Element id = document.createElement("id");
+		id.setTextContent(name);
+		block.appendChild(id);
+		globbox.appendChild(block);
+		return block;
+	}
+
+	private static Element exportLabel(final Document document, final Element place, final Annotation label,
 	        final String typenode, final String id, final float x, final float y) {
 		final Element node = document.createElement(typenode);
 		node.setAttribute("id", id);
@@ -401,15 +435,17 @@ public class DOMGenerator {
 		textattr.setAttribute("bold", "false");
 		node.appendChild(textattr);
 		final Element text = document.createElement(DOMParser.textNode);
-		text.setTextContent(label.getText());
+		text.setTextContent(label == null || label.getText() == null ? "" : label.getText());
 		node.appendChild(text);
+		return node;
 	}
 
 	private static void exportObject(final Document document, final Element pageNode,
-	        final org.cpntools.accesscpn.model.Object o, final Map<Object, Position> positions)
+	        final org.cpntools.accesscpn.model.Object o,
+	        final Map<org.cpntools.accesscpn.model.Object, Position> positions, final ModelData modelData)
 	        throws OperationNotSupportedException {
 		if (o instanceof Instance) {
-			exportObject(document, pageNode, (Instance) o, positions);
+			exportObject(document, pageNode, (Instance) o, positions, modelData);
 		} else if (o instanceof FusionGroup) {
 			exportObject(document, pageNode, (FusionGroup) o, positions);
 		} else if (o instanceof Place) {
@@ -426,18 +462,76 @@ public class DOMGenerator {
 	}
 
 	private static void exportObject(final Document document, final Element pageNode, final FusionGroup o,
-	        final Map<Object, Position> positions) throws OperationNotSupportedException {
+	        final Map<org.cpntools.accesscpn.model.Object, Position> positions) throws OperationNotSupportedException {
 		throw new OperationNotSupportedException();
 	}
 
 	private static void exportObject(final Document document, final Element pageNode, final Instance o,
-	        final Map<Object, Position> positions) throws OperationNotSupportedException {
-		throw new OperationNotSupportedException();
+	        final Map<org.cpntools.accesscpn.model.Object, Position> positions, final ModelData modelData)
+	        throws OperationNotSupportedException {
+		final Element trans = document.createElement(DOMParser.transNode);
+		trans.setAttribute("id", o.getId());
+		pageNode.appendChild(trans);
+
+		final Element box = document.createElement("box");
+		box.setAttribute("w", "60.0");
+		box.setAttribute("h", "40.0");
+		trans.appendChild(box);
+
+		final Position position = positions.get(o);
+		final int x = position.getA();
+		final int y = position.getB();
+		final Element posattr = document.createElement("posattr");
+		posattr.setAttribute("x", "" + x);
+		posattr.setAttribute("y", "" + y);
+		trans.appendChild(posattr);
+
+		exportText(document, trans, o);
+		final Name empty = ModelFactory.INSTANCE.createName();
+		empty.setText("");
+		exportLabel(document, trans, empty, DOMParser.condNode, o.getId() + "a", x - 36, y - 24);
+		exportLabel(document, trans, empty, DOMParser.timeNode, o.getId() + "b", x + 36, y + 24);
+		exportLabel(document, trans, empty, DOMParser.codeNode, o.getId() + "c", x + 36, y);
+
+		final Element subst = document.createElement(DOMParser.substNode);
+		subst.setAttribute("subpage", o.getSubPageID());
+		final StringBuilder sb = new StringBuilder();
+		int i = 0;
+		for (final ParameterAssignment pa : o.getParameterAssignment()) {
+			final Element arc = document.createElement(DOMParser.arcNode);
+			arc.setAttribute("id", o.getId() + "arc" + i++);
+			arc.setAttribute("orientation", "BOTHDIR");
+			arc.setAttribute("order", "1");
+			pageNode.appendChild(arc);
+			final Element transend = document.createElement(DOMParser.transendNode);
+			transend.setAttribute("idref", o.getId());
+			arc.appendChild(transend);
+			final Element placeend = document.createElement(DOMParser.placeendNode);
+			placeend.setAttribute("idref", pa.getParameter());
+			arc.appendChild(placeend);
+			exportLabel(document, arc, empty, DOMParser.annotNode, o.getId() + "arc" + i++, 0, 0);
+
+			sb.append('(');
+			sb.append(pa.getValue());
+			sb.append(',');
+			sb.append(pa.getParameter());
+			sb.append(')');
+		}
+		subst.setAttribute("portsock", sb.toString());
+		trans.appendChild(subst);
+		empty.setText(modelData.getPage(o.getSubPageID()).getName().getText());
+		final Element subpageinfo = exportLabel(document, subst, empty, DOMParser.subpageinfoNode, o.getId() + "e",
+		        x - 36, y - 24);
+		subpageinfo.setAttribute("name", empty.getText());
 	}
 
 	private static void exportObject(final Document document, final Element pageNode, final Place o,
-	        final Map<Object, Position> positions) {
-		final Element place = document.createElement(DOMParser.placeNode);
+	        final Map<org.cpntools.accesscpn.model.Object, Position> positions) {
+		exportPlaceNode(document, pageNode, o, positions, document.createElement(DOMParser.placeNode));
+	}
+
+	private static <T extends PlaceNode> Point exportPlaceNode(final Document document, final Element pageNode,
+	        final T o, final Map<org.cpntools.accesscpn.model.Object, Position> positions, final Element place) {
 		place.setAttribute("id", o.getId());
 		pageNode.appendChild(place);
 
@@ -447,10 +541,9 @@ public class DOMGenerator {
 		ellipse.setAttribute("h", "40.0");
 		place.appendChild(ellipse);
 
-		// Assign a random position
-		final int x = (int) (Math.random() * 1000);
-		final int y = (int) (Math.random() * 800);
-		positions.put(o, new Position(x, y));
+		final Position position = positions.get(o);
+		final int x = position.getA();
+		final int y = position.getB();
 		final Element posattr = document.createElement("posattr");
 		posattr.setAttribute("x", "" + x);
 		posattr.setAttribute("y", "" + y);
@@ -459,20 +552,31 @@ public class DOMGenerator {
 		exportText(document, place, o);
 		exportLabel(document, place, o.getSort(), DOMParser.typeNode, o.getId() + "a", x + 36, y - 24);
 		exportLabel(document, place, o.getInitialMarking(), DOMParser.initmarkNode, o.getId() + "b", x + 36, y + 24);
+		return new Point(x, y);
 	}
 
 	private static void exportObject(final Document document, final Element pageNode, final RefPlace o,
-	        final Map<Object, Position> positions) throws OperationNotSupportedException {
-		throw new OperationNotSupportedException();
+	        final Map<org.cpntools.accesscpn.model.Object, Position> positions) throws OperationNotSupportedException {
+		if (o.getRef() == null) {
+			final Element place = document.createElement(DOMParser.placeNode);
+			final Point pos = exportPlaceNode(document, pageNode, o, positions, place);
+			final Name empty = ModelFactory.INSTANCE.createName();
+			empty.setText("");
+			final Element label = exportLabel(document, place, empty, DOMParser.portNode, id + o.getId() + "c",
+			        (int) pos.getX() - 36, (int) pos.getY() - 24);
+			label.setAttribute(DOMParser.typeNode, "I/O");
+		} else {
+			throw new OperationNotSupportedException();
+		}
 	}
 
 	private static void exportObject(final Document document, final Element pageNode, final RefTrans o,
-	        final Map<Object, Position> positions) throws OperationNotSupportedException {
+	        final Map<org.cpntools.accesscpn.model.Object, Position> positions) throws OperationNotSupportedException {
 		throw new OperationNotSupportedException();
 	}
 
 	private static void exportObject(final Document document, final Element pageNode, final Transition o,
-	        final Map<Object, Position> positions) {
+	        final Map<org.cpntools.accesscpn.model.Object, Position> positions) {
 		final Element trans = document.createElement(DOMParser.transNode);
 		trans.setAttribute("id", o.getId());
 		pageNode.appendChild(trans);
@@ -483,10 +587,9 @@ public class DOMGenerator {
 		box.setAttribute("h", "40.0");
 		trans.appendChild(box);
 
-		// Assign a random position
-		final int x = (int) (Math.random() * 1000);
-		final int y = (int) (Math.random() * 800);
-		positions.put(o, new Position(x, y));
+		final Position position = positions.get(o);
+		final int x = position.getA();
+		final int y = position.getB();
 		final Element posattr = document.createElement("posattr");
 		posattr.setAttribute("x", "" + x);
 		posattr.setAttribute("y", "" + y);
@@ -498,27 +601,42 @@ public class DOMGenerator {
 		exportLabel(document, trans, o.getCode(), DOMParser.codeNode, o.getId() + "c", x + 36, y);
 	}
 
-	private static void exportPage(final Document document, final Element rootTreeNode, final Page p)
-	        throws OperationNotSupportedException {
+	private static void exportPage(final Document document, final Element rootTreeNode, final Page p,
+	        final ModelData modelData) throws OperationNotSupportedException {
 		final Element pageNode = document.createElement(DOMParser.pageNode);
 		pageNode.setAttribute("id", p.getId());
 		rootTreeNode.appendChild(pageNode);
 		final Element pageAttr = document.createElement(DOMParser.pageattrNode);
 		pageAttr.setAttribute("name", p.getName().getText());
 		pageNode.appendChild(pageAttr);
-		final Map<org.cpntools.accesscpn.model.Object, Position> positions = new HashMap<org.cpntools.accesscpn.model.Object, Position>();
+		final Map<org.cpntools.accesscpn.model.Object, Position> positions = createGraph(p);
 		for (final org.cpntools.accesscpn.model.Object o : p.getObject()) {
-			exportObject(document, pageNode, o, positions);
+			exportObject(document, pageNode, o, positions, modelData);
 		}
 		for (final Arc a : p.getArc()) {
 			exportArc(document, pageNode, a, positions);
 		}
 	}
 
-	private static void exportPages(final Document document, final Element rootTreeNode, final PetriNet petriNet)
-	        throws OperationNotSupportedException {
+	private static Map<org.cpntools.accesscpn.model.Object, Position> createGraph(final Page p) {
+		try {
+			return JUNGHelper.createGraph(p);
+		} catch (final Throwable t) {
+			t.printStackTrace();
+			final Map<org.cpntools.accesscpn.model.Object, Position> positions = new HashMap<org.cpntools.accesscpn.model.Object, DOMGenerator.Position>();
+			for (final org.cpntools.accesscpn.model.Object o : p.getObject()) {
+				final int x = (int) (Math.random() * 1000);
+				final int y = (int) (Math.random() * 800);
+				positions.put(o, new Position(x, y));
+			}
+			return positions;
+		}
+	}
+
+	private static void exportPages(final Document document, final Element rootTreeNode, final PetriNet petriNet,
+	        final ModelData modelData) throws OperationNotSupportedException {
 		for (final Page p : petriNet.getPage()) {
-			exportPage(document, rootTreeNode, p);
+			exportPage(document, rootTreeNode, p, modelData);
 		}
 	}
 
