@@ -39,7 +39,7 @@ public class EfficientStateSet implements CompressedStateSet {
 			        final long l) throws StorageException, IOException {
 				final InputStream stream = store.getStreamForObject(l);
 				for (final byte b : object.getBytes()) {
-					if (stream.read() != b) { return false; }
+					if ((byte) stream.read() != b) { return false; }
 				}
 				return true;
 			}
