@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.cpntools.accesscpn.model.exporter
 Bundle-SymbolicName: org.cpntools.accesscpn.model.exporter
-Bundle-Version: 2.0.0
+Bundle-Version: 2.0.2
 Require-Bundle: org.cpntools.accesscpn.model;bundle-version="2.0.0",
  org.cpntools.accesscpn.model.importer;bundle-version="2.0.0",
  org.eclipse.emf.common;bundle-version="2.5.0",
@@ -11,3 +11,9 @@ Require-Bundle: org.cpntools.accesscpn.model;bundle-version="2.0.0",
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.cpntools.accesscpn.model.exporter
+Bundle-ClassPath: lib/collections-generic-4.01.jar,
+ lib/colt-1.2.0.jar,
+ lib/jung-algorithms-2.0.1.jar,
+ lib/jung-api-2.0.1.jar,
+ lib/jung-graph-impl-2.0.1.jar,
+ .
