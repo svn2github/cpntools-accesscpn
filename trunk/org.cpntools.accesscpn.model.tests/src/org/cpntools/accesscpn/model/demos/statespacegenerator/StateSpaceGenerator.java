@@ -1,24 +1,23 @@
 /************************************************************************/
-/* Access/CPN                                                           */
-/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology    */
+/* Access/CPN */
+/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology */
 /*                                                                      */
-/* This library is free software; you can redistribute it and/or        */
-/* modify it under the terms of the GNU Lesser General Public           */
-/* License as published by the Free Software Foundation; either         */
-/* version 2.1 of the License, or (at your option) any later version.   */
+/* This library is free software; you can redistribute it and/or */
+/* modify it under the terms of the GNU Lesser General Public */
+/* License as published by the Free Software Foundation; either */
+/* version 2.1 of the License, or (at your option) any later version. */
 /*                                                                      */
-/* This library is distributed in the hope that it will be useful,      */
-/* but WITHOUT ANY WARRANTY; without even the implied warranty of       */
-/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
-/* Lesser General Public License for more details.                      */
+/* This library is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU */
+/* Lesser General Public License for more details. */
 /*                                                                      */
-/* You should have received a copy of the GNU Lesser General Public     */
-/* License along with this library; if not, write to the Free Software  */
-/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,           */
-/* MA  02110-1301  USA                                                  */
+/* You should have received a copy of the GNU Lesser General Public */
+/* License along with this library; if not, write to the Free Software */
+/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, */
+/* MA 02110-1301 USA */
 /************************************************************************/
 package org.cpntools.accesscpn.model.demos.statespacegenerator;
-
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -60,7 +59,6 @@ import org.cpntools.accesscpn.model.Place;
 import org.cpntools.accesscpn.model.PlaceNode;
 import org.cpntools.accesscpn.model.Transition;
 
-
 public class StateSpaceGenerator {
 	private static final class ComputeThread extends Thread {
 		private final BlockingDeque<CompressedState> waiting;
@@ -70,12 +68,9 @@ public class StateSpaceGenerator {
 		private final List<Instance<Place>> allRealPlaceInstances;
 		private final List<org.cpntools.accesscpn.engine.highlevel.instance.State> dead;
 
-		public ComputeThread(final BlockingDeque<CompressedState> waiting,
-				final CompressedStateSet storage,
-				final List<Instance<Place>> allRealPlaceInstances,
-				final HighLevelSimulator simulator,
-				final List<org.cpntools.accesscpn.engine.highlevel.instance.State> dead,
-				final Date start) {
+		public ComputeThread(final BlockingDeque<CompressedState> waiting, final CompressedStateSet storage,
+		        final List<Instance<Place>> allRealPlaceInstances, final HighLevelSimulator simulator,
+		        final List<org.cpntools.accesscpn.engine.highlevel.instance.State> dead, final Date start) {
 			this.waiting = waiting;
 			this.storage = storage;
 			this.allRealPlaceInstances = allRealPlaceInstances;
@@ -87,8 +82,7 @@ public class StateSpaceGenerator {
 		@Override
 		public void run() {
 			try {
-				StateSpaceGenerator.generateStateSpace(simulator, storage, allRealPlaceInstances,
-						waiting, dead, start);
+				StateSpaceGenerator.generateStateSpace(simulator, storage, allRealPlaceInstances, waiting, dead, start);
 			} catch (final Exception e) {
 				e.printStackTrace();
 			}
@@ -148,33 +142,49 @@ public class StateSpaceGenerator {
 
 	@SuppressWarnings({ "unchecked", "unused" })
 	public static void main(final String[] args) {
-		if (args.length > 0) StateSpaceGenerator.THREADS = Integer.parseInt(args[0]);
+		if (args.length > 0) {
+			StateSpaceGenerator.THREADS = Integer.parseInt(args[0]);
+		}
+		boolean efficient = false;
+		if (args.length > 2) {
+			if ("-b".equals(args[1])) {
+				CompressedState.USE_BITMAP = false;
+			}
+			if ("-e".equals(args[1])) {
+				efficient = true;
+			}
+		}
 		StateSpaceGenerator.threadCount = new AtomicInteger(StateSpaceGenerator.THREADS);
 		System.out.println("Using " + StateSpaceGenerator.THREADS + " thread"
-				+ (StateSpaceGenerator.THREADS == 1 ? "" : "s"));
+		        + (StateSpaceGenerator.THREADS == 1 ? "" : "s"));
 		try {
 			final HighLevelSimulator simulator = StateSpaceGenerator.getSimulator();
-			final List<Instance<Place>> allRealPlaceInstances = simulator
-					.getAllRealPlaceInstances();
-			final CompressedStateSet storage = new TroveSetCompressedStateSet();
-//			 final CompressedStateSet storage = new BDDCompressedStateSet(allRealPlaceInstances);
-//			 final CompressedStateSet storage = new CollectionsCompressedStateSet();
+			final List<Instance<Place>> allRealPlaceInstances = simulator.getAllRealPlaceInstances();
+			final CompressedStateSet storage;
+			if (efficient) {
+				storage = new EfficientStateSet();
+			} else {
+				storage = new TroveSetCompressedStateSet();
+			}
+// final CompressedStateSet storage = new BDDCompressedStateSet(allRealPlaceInstances);
+// final CompressedStateSet storage = new CollectionsCompressedStateSet();
 			final BlockingDeque<CompressedState> waiting = new LinkedBlockingDeque<CompressedState>();
 			final State init = simulator.getMarking(false);
 			try {
-				if (!StateSpaceGenerator.CHECKPOINTING) throw new Exception("Skip check point");
+				if (!StateSpaceGenerator.CHECKPOINTING) { throw new Exception("Skip check point"); }
 				System.out.println("Trying to reestablish from checkpoint");
 				new File("checkpoint.dmp").renameTo(new File("checkpoint.old"));
-				final ObjectInputStream checkpoint = new ObjectInputStream(new BufferedInputStream(
-						new FileInputStream(new File("checkpoint.old"))));
+				final ObjectInputStream checkpoint = new ObjectInputStream(new BufferedInputStream(new FileInputStream(
+				        new File("checkpoint.old"))));
 				final ArrayList<String> values = (ArrayList<String>) checkpoint.readObject();
 				if (values != null) {
 					CompressedState.setValues(values);
-					for (int i = checkpoint.readInt(); i > 0; i--)
+					for (int i = checkpoint.readInt(); i > 0; i--) {
 						waiting.add((CompressedState) checkpoint.readObject());
+					}
 					new File("states.dmp").renameTo(new File("states.old"));
-					final DataInputStream states = new DataInputStream(new BufferedInputStream(
-							new FileInputStream(new File("states.old"))));
+					final DataInputStream states = new DataInputStream(new BufferedInputStream(new FileInputStream(
+					        new File("states.old"))));
 					final List<CompressedState> unchecked = new LinkedList<CompressedState>();
 					try {
 						while (true) {
@@ -185,8 +195,7 @@ public class StateSpaceGenerator {
 								unchecked.clear();
 							} else {
 								final String binding = states.readUTF();
-								StateSpaceGenerator.serialize(null, binding, allRealPlaceInstances,
-										c);
+								StateSpaceGenerator.serialize(null, binding, allRealPlaceInstances, c);
 								unchecked.add(c);
 							}
 						}
@@ -211,19 +220,17 @@ public class StateSpaceGenerator {
 			final List<Thread> threadPool = new ArrayList<Thread>();
 			final List<State> dead = Collections.synchronizedList(new LinkedList<State>());
 			final Date start = new Date();
-			threadPool.add(new ComputeThread(waiting, storage, allRealPlaceInstances, simulator,
-					dead, start));
+			threadPool.add(new ComputeThread(waiting, storage, allRealPlaceInstances, simulator, dead, start));
 			while (threads < StateSpaceGenerator.THREADS) {
-				System.out.println("Started thread " + threads + " of "
-						+ StateSpaceGenerator.THREADS);
-				threadPool.add(new ComputeThread(waiting, storage, allRealPlaceInstances,
-						StateSpaceGenerator.ps.getSimulatorClone(), dead, start));
+				System.out.println("Started thread " + threads + " of " + StateSpaceGenerator.THREADS);
+				threadPool.add(new ComputeThread(waiting, storage, allRealPlaceInstances, StateSpaceGenerator.ps
+				        .getSimulatorClone(), dead, start));
 				threads++;
 			}
 			System.out.println("Started thread " + threads + " of " + StateSpaceGenerator.THREADS);
 
-			final DataOutputStream outputStream = new DataOutputStream(
-					new BufferedOutputStream(new FileOutputStream(new File("states.dmp"))));
+			final DataOutputStream outputStream = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(
+			        new File("states.dmp"))));
 			// final EDataGraph dataGraph = SDOFactory.eINSTANCE.createEDataGraph();
 			// dataGraph.setERootObject((EObject) simulator.getTarget());
 			// outputStream.writeObject(simulator.getTarget());
@@ -237,14 +244,16 @@ public class StateSpaceGenerator {
 							try {
 								s = StateSpaceGenerator.toSerialize.poll(1, TimeUnit.SECONDS);
 								if (s == null) {
-									if (StateSpaceGenerator.done.get()) break;
+									if (StateSpaceGenerator.done.get()) {
+										break;
+									}
 								} else {
 									s.writeObject(outputStream);
-									if (s.isCheckpoint())
+									if (s.isCheckpoint()) {
 										outputStream.flush();
-									else
-										saveBindings(outputStream,
-												StateSpaceGenerator.toSerializeBindings.take());
+									} else {
+										saveBindings(outputStream, StateSpaceGenerator.toSerializeBindings.take());
+									}
 								}
 							} catch (final InterruptedException e) {
 								// Ignore
@@ -257,8 +266,7 @@ public class StateSpaceGenerator {
 					}
 				}
 
-				private void saveBindings(final DataOutputStream o,
-						final String bindings) throws IOException {
+				private void saveBindings(final DataOutputStream o, final String bindings) throws IOException {
 					{
 						o.writeUTF(bindings);
 					}
@@ -266,36 +274,35 @@ public class StateSpaceGenerator {
 			}.start();
 			System.out.print("Generating\n0:  0  0  0  .");
 			start.setTime(new Date().getTime());
-			for (final Thread t : threadPool)
+			for (final Thread t : threadPool) {
 				t.start();
-			for (final Thread t : threadPool)
+			}
+			for (final Thread t : threadPool) {
 				t.join();
+			}
 			StateSpaceGenerator.handleEOL(start, 0);
 			StateSpaceGenerator.serialize(null, null, null, new CompressedState());
-			final ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(
-					new FileOutputStream(new File("checkpoint.dmp"))));
+			final ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(
+			        new File("checkpoint.dmp"))));
 			oos.writeObject(CompressedState.getValues());
 			oos.writeInt(0);
 			oos.close();
-			System.out.println("Generated " + storage.size() + " states, "
-					+ StateSpaceGenerator.arcs + " arcs");
+			System.out.println("Generated " + storage.size() + " states, " + StateSpaceGenerator.arcs + " arcs");
 			StateSpaceGenerator.done.set(true);
 			storage.printStats();
 
 			// final List<State> dead = StateSpaceGenerator.calculateDeadStates(simulator, storage,
 			// allRealPlaceInstances);
-			System.out.println("Found " + dead.size() + " dead state"
-					+ (dead.size() == 1 ? "" : "s"));
-			for (final State s : dead)
+			System.out.println("Found " + dead.size() + " dead state" + (dead.size() == 1 ? "" : "s"));
+			for (final State s : dead) {
 				System.out.println(s);
+			}
 
 			final Map<Instance<? extends PlaceNode>, Integer> max = new HashMap<Instance<? extends PlaceNode>, Integer>(), min = new HashMap<Instance<? extends PlaceNode>, Integer>();
 			final Map<Instance<? extends PlaceNode>, List<CPNValue>> msmax = new HashMap<Instance<? extends PlaceNode>, List<CPNValue>>(), msmin = new HashMap<Instance<? extends PlaceNode>, List<CPNValue>>();
-			StateSpaceGenerator.computeBounds(simulator, storage, allRealPlaceInstances, max, min,
-					msmax, msmin);
+			StateSpaceGenerator.computeBounds(simulator, storage, allRealPlaceInstances, max, min, msmax, msmin);
 			for (final Entry<Instance<? extends PlaceNode>, Integer> entry : max.entrySet()) {
-				System.out.println(entry.getKey() + ":\t" + min.get(entry.getKey()) + " - "
-						+ entry.getValue());
+				System.out.println(entry.getKey() + ":\t" + min.get(entry.getKey()) + " - " + entry.getValue());
 				System.out.println("\t" + MultiSetUtils.toString(msmin.get(entry.getKey()), false));
 				System.out.println("\t" + MultiSetUtils.toString(msmax.get(entry.getKey()), false));
 			}
@@ -308,9 +315,8 @@ public class StateSpaceGenerator {
 
 	}
 
-	private static synchronized boolean add(final CompressedStateSet storage,
-			final CompressedState c, final CompressedState compressed, final Binding b,
-			final List<Instance<Place>> allRealPlaceInstances) {
+	private static synchronized boolean add(final CompressedStateSet storage, final CompressedState c,
+	        final CompressedState compressed, final Binding b, final List<Instance<Place>> allRealPlaceInstances) {
 		if (storage.add(compressed)) {
 			compressed.setStateNumber(StateSpaceGenerator.stateCount++);
 			compressed.setPredecessor(c.getStateNumber());
@@ -320,12 +326,11 @@ public class StateSpaceGenerator {
 		return false;
 	}
 
-	private static void computeBounds(HighLevelSimulator simulator,
-			final CompressedStateSet storage, final List<Instance<Place>> allRealPlaceInstances,
-			final Map<Instance<? extends PlaceNode>, Integer> max,
-			final Map<Instance<? extends PlaceNode>, Integer> min,
-			final Map<Instance<? extends PlaceNode>, List<CPNValue>> msmax,
-			final Map<Instance<? extends PlaceNode>, List<CPNValue>> msmin) throws Exception {
+	private static void computeBounds(final HighLevelSimulator simulator, final CompressedStateSet storage,
+	        final List<Instance<Place>> allRealPlaceInstances, final Map<Instance<? extends PlaceNode>, Integer> max,
+	        final Map<Instance<? extends PlaceNode>, Integer> min,
+	        final Map<Instance<? extends PlaceNode>, List<CPNValue>> msmax,
+	        final Map<Instance<? extends PlaceNode>, List<CPNValue>> msmin) throws Exception {
 		int i;
 		HighLevelSimulator ss = simulator;
 		System.out.print("Calculating bounds\n0:  ");
@@ -335,23 +340,21 @@ public class StateSpaceGenerator {
 		for (final CompressedState compressed : storage) {
 			final State s = compressed.decompress(allRealPlaceInstances);
 			Map<Instance<? extends PlaceNode>, List<CPNValue>> structuredMarking = null;
-			while (structuredMarking == null)
+			while (structuredMarking == null) {
 				try {
 					structuredMarking = ss.getStructuredMarking(s, mscache);
 				} catch (final Exception e) {
 					ss = StateSpaceGenerator.ps.getSimulatorClone();
 				}
-			for (final Entry<Instance<? extends PlaceNode>, List<CPNValue>> entry : structuredMarking
-					.entrySet()) {
+			}
+			for (final Entry<Instance<? extends PlaceNode>, List<CPNValue>> entry : structuredMarking.entrySet()) {
 				max.put(entry.getKey(), Math.max(entry.getValue().size(),
-						max.get(entry.getKey()) == null ? 0 : max.get(entry.getKey())));
-				min.put(entry.getKey(), Math.min(entry.getValue().size(),
-						min.get(entry.getKey()) == null ? Integer.MAX_VALUE : min.get(entry
-								.getKey())));
-				msmin.put(entry.getKey(), MultiSetUtils.min(entry.getValue(), msmin.get(entry
-						.getKey())));
-				msmax.put(entry.getKey(), MultiSetUtils.max(entry.getValue(), msmax.get(entry
-						.getKey())));
+				        max.get(entry.getKey()) == null ? 0 : max.get(entry.getKey())));
+				min.put(entry.getKey(),
+				        Math.min(entry.getValue().size(),
+				                min.get(entry.getKey()) == null ? Integer.MAX_VALUE : min.get(entry.getKey())));
+				msmin.put(entry.getKey(), MultiSetUtils.min(entry.getValue(), msmin.get(entry.getKey())));
+				msmax.put(entry.getKey(), MultiSetUtils.max(entry.getValue(), msmax.get(entry.getKey())));
 			}
 			StateSpaceGenerator.handleEOL(start, ++i, storage.size());
 		}
@@ -359,15 +362,13 @@ public class StateSpaceGenerator {
 	}
 
 	@SuppressWarnings("unused")
-	static void generateStateSpace(HighLevelSimulator simulator,
-			final CompressedStateSet storage, final List<Instance<Place>> allRealPlaceInstances,
-			final BlockingDeque<CompressedState> waiting, final List<State> dead, final Date start)
-			throws Exception, IOException {
+	static void generateStateSpace(HighLevelSimulator simulator, final CompressedStateSet storage,
+	        final List<Instance<Place>> allRealPlaceInstances, final BlockingDeque<CompressedState> waiting,
+	        final List<State> dead, final Date start) throws Exception, IOException {
 
-		final List<Instance<Transition>> allTransitionInstances = simulator
-				.getAllTransitionInstances();
+		final List<Instance<Transition>> allTransitionInstances = simulator.getAllTransitionInstances();
 		State previous = null, s = null;
-		outer: while (true)
+		outer: while (true) {
 			try {
 				CompressedState c = null;
 				StateSpaceGenerator.threadCount.decrementAndGet();
@@ -376,9 +377,12 @@ public class StateSpaceGenerator {
 						c = waiting.pollLast(1, TimeUnit.SECONDS);
 						if (c == null) {
 							System.out.print("P" + StateSpaceGenerator.threadCount.get());
-							if (StateSpaceGenerator.threadCount.get() == 0) break outer;
-						} else
+							if (StateSpaceGenerator.threadCount.get() == 0) {
+								break outer;
+							}
+						} else {
 							StateSpaceGenerator.threadCount.incrementAndGet();
+						}
 					}
 					Thread.yield();
 				}
@@ -387,8 +391,7 @@ public class StateSpaceGenerator {
 				simulator.setMarkingFast(s, previous, true);
 				StateSpaceGenerator.profileEnd("setMarking");
 				previous = s;
-				final List<Instance<? extends Transition>> enabled = simulator
-						.isEnabled(allTransitionInstances);
+				final List<Instance<? extends Transition>> enabled = simulator.isEnabled(allTransitionInstances);
 				final List<Binding> bindings = new ArrayList<Binding>();
 				for (final Instance<? extends Transition> ti : enabled) {
 					StateSpaceGenerator.profileStart();
@@ -403,22 +406,22 @@ public class StateSpaceGenerator {
 
 				for (final Binding b : bindings) {
 					StateSpaceGenerator.profileStart();
-					if (!simulator.execute(b)) throw new Exception("Binding not found: " + b);
+					if (!simulator.execute(b)) { throw new Exception("Binding not found: " + b); }
 					StateSpaceGenerator.profileEnd("execute");
 					StateSpaceGenerator.profileStart();
 					final State ss = simulator.getMarking(false);
 					StateSpaceGenerator.profileEnd("getMarking");
-					final CompressedState compressed = new CompressedState(allRealPlaceInstances,
-							ss);
+					final CompressedState compressed = new CompressedState(allRealPlaceInstances, ss);
 					if (StateSpaceGenerator.add(storage, c, compressed, b, allRealPlaceInstances)) {
 						waiting.add(compressed);
 						final int size = storage.size();
 						StateSpaceGenerator.handleEOL(start, size);
-						if (size % 50 == 0)
-							System.out.print(StateSpaceGenerator.arcs + "  " + waiting.size()
-									+ "  " + CompressedState.getValues().size() + "  ");
-						// if (size % 200 == 0)
-						// storage.printStats();
+						if (size % 50 == 0) {
+							System.out.print(StateSpaceGenerator.arcs + "  " + waiting.size() + "  "
+							        + CompressedState.getValues().size() + "  ");
+							// if (size % 200 == 0)
+							// storage.printStats();
+						}
 					} else {
 						// System.out.print("!");
 					}
@@ -427,46 +430,51 @@ public class StateSpaceGenerator {
 					StateSpaceGenerator.profileEnd("setMarking");
 				}
 
-				if (storage.size() - StateSpaceGenerator.last > 10000
-						&& StateSpaceGenerator.CHECKPOINTING)
+				if (storage.size() - StateSpaceGenerator.last > 10000 && StateSpaceGenerator.CHECKPOINTING) {
 					if (!StateSpaceGenerator.checkpointing.getAndSet(true)) {
 						System.out.print('W');
 						final LinkedList<CompressedState> states = new LinkedList<CompressedState>();
-						inner: while (true)
+						inner: while (true) {
 							synchronized (StateSpaceGenerator.threadCount) {
 								c = waiting.poll(50, TimeUnit.MILLISECONDS);
 								if (c == null) {
 									System.out.print(StateSpaceGenerator.threadCount.get());
 									if (StateSpaceGenerator.threadCount.get() == 1) {
-										StateSpaceGenerator.serialize(null, null, null,
-												new CompressedState());
+										StateSpaceGenerator.serialize(null, null, null, new CompressedState());
 										break inner;
 									}
-								} else
+								} else {
 									states.add(c);
+								}
 							}
+						}
 						System.out.print('C');
-						final ObjectOutputStream outputStream = new ObjectOutputStream(
-								new BufferedOutputStream(new FileOutputStream(new File(
-										"checkpoint.dmp"))));
+						final ObjectOutputStream outputStream = new ObjectOutputStream(new BufferedOutputStream(
+						        new FileOutputStream(new File("checkpoint.dmp"))));
 						outputStream.writeObject(CompressedState.getValues());
 						outputStream.writeInt(states.size());
-						for (final CompressedState cs : states)
+						for (final CompressedState cs : states) {
 							outputStream.writeObject(cs);
+						}
 						outputStream.close();
 						StateSpaceGenerator.last = storage.size();
-						for (final CompressedState cs : states)
+						for (final CompressedState cs : states) {
 							waiting.add(cs);
+						}
 						System.out.print('D');
 						StateSpaceGenerator.checkpointing.set(false);
 					}
+				}
 			} catch (final Exception e) {
 				e.printStackTrace();
 				simulator.destroy();
-				if (s != null) waiting.add(new CompressedState(allRealPlaceInstances, s));
+				if (s != null) {
+					waiting.add(new CompressedState(allRealPlaceInstances, s));
+				}
 				previous = null;
 				simulator = StateSpaceGenerator.ps.getSimulatorClone();
 			}
+		}
 	}
 
 	private static HighLevelSimulator getSimulator() throws Exception, InterruptedException {
@@ -475,8 +483,9 @@ public class StateSpaceGenerator {
 		StateSpaceGenerator.ps = pd.getNext();
 
 		System.out.println("Waiting for syntax check");
-		while (StateSpaceGenerator.ps.getPetriNet() == null)
+		while (StateSpaceGenerator.ps.getPetriNet() == null) {
 			Thread.sleep(500);
+		}
 
 		final HighLevelSimulator simulator = StateSpaceGenerator.ps.getSimulator();
 		return simulator;
@@ -491,24 +500,29 @@ public class StateSpaceGenerator {
 	}
 
 	private static void handleEOL(final Date start, final int i, final int j, final int k) {
-		if (i % 10 == 0)
+		if (i % 10 == 0) {
 			System.out.print('o');
-		else
+		} else {
 			System.out.print('.');
+		}
 		if (i % 50 == 0) {
 			final SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
 			final Date now = new Date();
 			final long spent = now.getTime() - start.getTime();
 			System.out.print(" - " + formatter.format(now) + " (" + spent / 86400000L + "d, "
-					+ formatter.format(new Date(spent + 82800000L)) + ")\n");
-			if (i > 0) System.out.print(j + (k > 0 ? " (" + 100 * i / k + "%)" : "") + ":  ");
+			        + formatter.format(new Date(spent + 82800000L)) + ")\n");
+			if (i > 0) {
+				System.out.print(j + (k > 0 ? " (" + 100 * i / k + "%)" : "") + ":  ");
+			}
 		}
 	}
 
 	private synchronized static void serialize(final State s, final String binding,
-			final List<Instance<Place>> allRealPlaceInstances, final CompressedState c) {
+	        final List<Instance<Place>> allRealPlaceInstances, final CompressedState c) {
 		StateSpaceGenerator.toSerialize.add(c);
-		if (!c.isCheckpoint()) StateSpaceGenerator.toSerializeBindings.add(binding);
+		if (!c.isCheckpoint()) {
+			StateSpaceGenerator.toSerializeBindings.add(binding);
+		}
 	}
 
 	static void profileEnd(final String name) {

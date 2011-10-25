@@ -3,7 +3,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="lib" path="lib/javabdd-1.0b2.jar"/>
-	<classpathentry kind="lib" path="lib/trove-3.0.0a5.jar"/>
+	<classpathentry kind="lib" path="lib/trove-3.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/EfficientStorage.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
