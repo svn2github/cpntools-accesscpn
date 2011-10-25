@@ -17,9 +17,10 @@ import nl.tue.storage.impl.CompressedStoreHashSetImpl.Result;
 
 public class EfficientStateSet implements CompressedStateSet {
 	private CompressedHashSet<CompressedState> storage;
+	private final int count;
 
-	public EfficientStateSet() {
-		CompressedState.USE_BITMAP = false; // Ugly!
+	public EfficientStateSet(final int count) {
+		this.count = count;
 		init();
 	}
 
@@ -31,7 +32,7 @@ public class EfficientStateSet implements CompressedStateSet {
 				stream.write(object.getBytes());
 
 			}
-		}, new EqualOperation<CompressedState>() {
+		}, 128 * 1024 * 1024, 1024, new EqualOperation<CompressedState>() {
 
 			@Override
 			public boolean equals(final CompressedState object, final CompressedStore<CompressedState> store,
@@ -42,7 +43,18 @@ public class EfficientStateSet implements CompressedStateSet {
 				}
 				return true;
 			}
-		}, new HashOperation.Default<CompressedState>());
+		}, new HashOperation<CompressedState>() {
+			@Override
+			public int getHashCode(final CompressedState object) {
+				return object.hashCode();
+			}
+
+			@Override
+			public int getHashCode(final CompressedStore<CompressedState> store, final long l) throws StorageException {
+				return CompressedState.hashCode(store.getStreamForObject(l), count);
+			}
+
+		});
 	}
 
 	@Override

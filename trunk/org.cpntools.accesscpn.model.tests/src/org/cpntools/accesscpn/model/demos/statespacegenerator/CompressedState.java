@@ -28,6 +28,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,7 +48,7 @@ final class CompressedState implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public static boolean USE_BITMAP = true;
+	public static final boolean USE_BITMAP = true;
 
 	private static final byte[] pow2 = new byte[] { 1, 2, 4, 8, 16, 32, 64, (byte) 128 };
 
@@ -137,6 +138,10 @@ final class CompressedState implements Serializable {
 		init(indices);
 	}
 
+	public CompressedState(final List<Instance<Place>> allRealPlaceInstances, final InputStream stream) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public State decompress(final List<Instance<Place>> allRealPlaceInstances) {
 		return CompressedState.decompress(allRealPlaceInstances, getIndices(allRealPlaceInstances.size()));
 	}
@@ -165,10 +170,19 @@ final class CompressedState implements Serializable {
 	public int[] getIndices(final int count) {
 		StateSpaceGenerator.profileStart();
 		final int[] indices = new int[count];
+		final ByteArrayInputStream stream = new ByteArrayInputStream(getBytes());
+		load(count, indices, stream);
+		StateSpaceGenerator.profileEnd("decompress");
+		return indices;
+	}
+
+	private static byte[] load(final int count, final int[] indices, final InputStream stream) {
 		try {
-			final DataInputStream ois = new DataInputStream(new ByteArrayInputStream(getBytes()));
+			final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			final DataInputStream ois = new DataInputStream(stream);
 			final byte[] enabled = new byte[USE_BITMAP ? (count + 9) / 8 : 1];
 			ois.readFully(enabled);
+			baos.write(enabled);
 			int pos = 2;
 			final int size = enabled[0] & 3;
 			final byte[] buffer = new byte[size + 1];
@@ -177,6 +191,7 @@ final class CompressedState implements Serializable {
 				if (!USE_BITMAP || (enabled[pos / 8] & CompressedState.pow2[pos % 8]) != 0) {
 					marking = 0;
 					ois.readFully(buffer);
+					baos.write(buffer);
 					for (final byte b : buffer) {
 						marking = (marking << 8) + (b < 0 ? b + 256 : b);
 					}
@@ -186,12 +201,12 @@ final class CompressedState implements Serializable {
 				indices[pos - 2] = marking;
 				pos++;
 			}
+			return baos.toByteArray();
 		} catch (final IOException e) {
 			assert false;
 			e.printStackTrace();
+			return new byte[0];
 		}
-		StateSpaceGenerator.profileEnd("decompress");
-		return indices;
 	}
 
 	public int getPredecessor() {
@@ -292,6 +307,10 @@ final class CompressedState implements Serializable {
 		out.writeInt(predecessor);
 		out.writeInt(getBytes().length);
 		out.write(getBytes());
+	}
+
+	public static int hashCode(final InputStream in, final int count) {
+		return Arrays.hashCode(load(count, new int[count], in));
 	}
 
 	boolean isCheckpoint() {

@@ -146,11 +146,9 @@ public class StateSpaceGenerator {
 			StateSpaceGenerator.THREADS = Integer.parseInt(args[0]);
 		}
 		boolean efficient = false;
-		if (args.length > 2) {
-			if ("-b".equals(args[1])) {
-				CompressedState.USE_BITMAP = false;
-			}
+		if (args.length > 1) {
 			if ("-e".equals(args[1])) {
+				System.out.println("Using efficient storage");
 				efficient = true;
 			}
 		}
@@ -162,7 +160,7 @@ public class StateSpaceGenerator {
 			final List<Instance<Place>> allRealPlaceInstances = simulator.getAllRealPlaceInstances();
 			final CompressedStateSet storage;
 			if (efficient) {
-				storage = new EfficientStateSet();
+				storage = new EfficientStateSet(allRealPlaceInstances.size());
 			} else {
 				storage = new TroveSetCompressedStateSet();
 			}
