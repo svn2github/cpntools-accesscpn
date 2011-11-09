@@ -30,14 +30,13 @@ public class EfficientStateSet implements CompressedStateSet {
 			@Override
 			public void deflate(final CompressedState object, final OutputStream stream) throws IOException {
 				stream.write(object.getBytes());
-
 			}
 		}, 128 * 1024 * 1024, 1024, new EqualOperation<CompressedState>() {
-
 			@Override
 			public boolean equals(final CompressedState object, final CompressedStore<CompressedState> store,
 			        final long l) throws StorageException, IOException {
 				final InputStream stream = store.getStreamForObject(l);
+				if (object == null) { return false; }
 				for (final byte b : object.getBytes()) {
 					if ((byte) stream.read() != b) { return false; }
 				}
