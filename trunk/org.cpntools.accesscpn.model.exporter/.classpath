@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="lib/jung-graph-impl-2.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/colt-1.2.0.jar"/>
 	<classpathentry kind="lib" path="lib/jung-algorithms-2.0.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.cpntools.accesscpn.model"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
