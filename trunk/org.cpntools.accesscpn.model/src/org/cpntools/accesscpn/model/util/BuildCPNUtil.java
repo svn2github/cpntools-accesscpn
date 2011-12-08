@@ -58,9 +58,9 @@ public class BuildCPNUtil {
 
 	private int id_generator;
 	
-	private ModelFactory 		mf;
-	private CpntypesFactory 	cf;
-	private DeclarationFactory 	df;
+	public ModelFactory 		mf;
+	public CpntypesFactory 	cf;
+	public DeclarationFactory 	df;
 	
 	/**
 	 * Create standard util using standard {@link ModelFactory}, {@link CpntypesFactory} and
@@ -266,6 +266,9 @@ public class BuildCPNUtil {
 		t.setId(getNextID());
 		t.setPage(page);
 		t.setName(mf.createName()); t.getName().setText(name);
+		t.setTime(mf.createTime());
+		t.setCode(mf.createCode());
+		t.setPriority(mf.createPriority());
 		
 		t.setCondition(mf.createCondition());
 		t.getCondition().setText(guard);
@@ -337,6 +340,7 @@ public class BuildCPNUtil {
 		type.setSort(decl);
 
 		hldecl.setStructure(type);
+    hldecl.setId(getNextID());
 		net.getLabel().add(hldecl);
 	}
 
@@ -409,6 +413,7 @@ public class BuildCPNUtil {
 		VariableDeclaration var = df.createVariableDeclaration();
 		var.setTypeName(type);
 		var.addVariable(name);
+		hldecl.setId(getNextID());
 		hldecl.setStructure(var);
 		net.getLabel().add(hldecl);
 	}
@@ -425,6 +430,7 @@ public class BuildCPNUtil {
 		MLDeclaration ml_decl = df.createMLDeclaration();
 		ml_decl.setCode(fun_declaration);
 		hldecl.setStructure(ml_decl);
+		hldecl.setId(getNextID());
 		net.getLabel().add(hldecl);		
 	}
 }
