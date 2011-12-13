@@ -35,6 +35,7 @@ import org.cpntools.accesscpn.engine.highlevel.instance.ValueAssignment;
 import org.cpntools.accesscpn.model.PlaceNode;
 import org.cpntools.accesscpn.model.Transition;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
@@ -100,6 +101,44 @@ public class InstanceFactoryImpl extends EFactoryImpl implements InstanceFactory
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case InstancePackageImpl.TRANSITION:
+				return createTransitionFromString(eDataType, initialValue);
+			case InstancePackageImpl.INSTANCE_1:
+				return createInstance_1FromString(eDataType, initialValue);
+			case InstancePackageImpl.PLACE_NODE:
+				return createPlaceNodeFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case InstancePackageImpl.TRANSITION:
+				return convertTransitionToString(eDataType, instanceValue);
+			case InstancePackageImpl.INSTANCE_1:
+				return convertInstance_1ToString(eDataType, instanceValue);
+			case InstancePackageImpl.PLACE_NODE:
+				return convertPlaceNodeToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -151,6 +190,60 @@ public class InstanceFactoryImpl extends EFactoryImpl implements InstanceFactory
 	public ValueAssignment createValueAssignment() {
 		ValueAssignmentImpl valueAssignment = new ValueAssignmentImpl();
 		return valueAssignment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Transition createTransitionFromString(EDataType eDataType, String initialValue) {
+		return (Transition)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertTransitionToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public org.cpntools.accesscpn.model.Instance createInstance_1FromString(EDataType eDataType, String initialValue) {
+		return (org.cpntools.accesscpn.model.Instance)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertInstance_1ToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PlaceNode createPlaceNodeFromString(EDataType eDataType, String initialValue) {
+		return (PlaceNode)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertPlaceNodeToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

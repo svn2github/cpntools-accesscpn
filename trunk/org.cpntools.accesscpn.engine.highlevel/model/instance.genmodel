@@ -5,11 +5,13 @@
     modelPluginID="org.cpntools.accesscpn.engine.highlevel" modelName="Instance" rootExtendsInterface=""
     rootImplementsInterface="" suppressEMFTypes="true" suppressEMFMetaData="true"
     featureMapWrapperInterface="" featureMapWrapperInternalInterface="" featureMapWrapperClass=""
-    importerID="org.eclipse.emf.importer.java" complianceLevel="6.0" copyrightFields="false"
-    usedGenPackages="../../org.cpntools.accesscpn.model/model/model.genmodel#//model ../../org.cpntools.accesscpn.model/model/model.genmodel#//graphics ../../org.cpntools.accesscpn.model/model/model.genmodel#//declaration ../../org.cpntools.accesscpn.model/model/model.genmodel#//cpntypes">
+    importerID="org.eclipse.emf.importer.java" complianceLevel="6.0" copyrightFields="false">
   <foreignModel>@model</foreignModel>
   <genPackages prefix="Instance" basePackage="org.cpntools.accesscpn.engine.highlevel"
       disposableProviderFactory="true" generateExampleClass="false" ecorePackage="instance.ecore#/">
+    <genDataTypes ecoreDataType="instance.ecore#//Transition"/>
+    <genDataTypes ecoreDataType="instance.ecore#//Instance_1"/>
+    <genDataTypes ecoreDataType="instance.ecore#//PlaceNode"/>
     <genClasses ecoreClass="instance.ecore#//Binding">
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference instance.ecore#//Binding/transitionInstance"/>
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference instance.ecore#//Binding/allAssignments"/>

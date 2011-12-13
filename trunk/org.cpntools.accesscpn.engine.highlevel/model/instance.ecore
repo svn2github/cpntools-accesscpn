@@ -6,7 +6,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Binding">
     <eStructuralFeatures xsi:type="ecore:EReference" name="transitionInstance">
       <eGenericType eClassifier="#//Instance">
-        <eTypeArguments eClassifier="ecore:EClass ../../org.cpntools.accesscpn.model/model/model.ecore#//Transition"/>
+        <eTypeArguments eClassifier="#//Transition"/>
       </eGenericType>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="allAssignments" upperBound="-1"
@@ -19,7 +19,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transitionPath">
       <eGenericType eClassifier="#//Instance">
-        <eTypeArguments eClassifier="ecore:EClass ../../org.cpntools.accesscpn.model/model/model.ecore#//Instance"/>
+        <eTypeArguments eClassifier="#//Instance_1"/>
       </eGenericType>
     </eStructuralFeatures>
   </eClassifiers>
@@ -27,7 +27,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="placeInstance">
       <eGenericType eClassifier="#//Instance">
         <eTypeArguments>
-          <eUpperBound eClassifier="ecore:EClass ../../org.cpntools.accesscpn.model/model/model.ecore#//PlaceNode"/>
+          <eUpperBound eClassifier="#//PlaceNode"/>
         </eTypeArguments>
       </eGenericType>
     </eStructuralFeatures>
@@ -49,4 +49,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Transition" instanceClassName="org.cpntools.accesscpn.model.Transition"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Instance_1" instanceClassName="org.cpntools.accesscpn.model.Instance"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="PlaceNode" instanceClassName="org.cpntools.accesscpn.model.PlaceNode"/>
 </ecore:EPackage>
