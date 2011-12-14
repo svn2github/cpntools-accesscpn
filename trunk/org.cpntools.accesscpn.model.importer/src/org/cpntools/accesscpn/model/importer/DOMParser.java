@@ -592,6 +592,8 @@ public class DOMParser {
 					result.setLogging(Boolean.parseBoolean(value));
 				} else if ("If is empty".equals(nme)) {
 					result.setEmpty(Boolean.parseBoolean(value));
+				} else if ("If is enabled".equals(nme)) {
+					result.setEnabled(Boolean.parseBoolean(value));
 				} else if ("File extension".equals(nme)) {
 					result.setExtension(value);
 				}
