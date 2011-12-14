@@ -80,6 +80,7 @@ import org.cpntools.accesscpn.model.cpntypes.CPNType;
 import org.cpntools.accesscpn.model.cpntypes.CPNUnion;
 import org.cpntools.accesscpn.model.cpntypes.CPNUnit;
 import org.cpntools.accesscpn.model.cpntypes.NameTypePair;
+import org.cpntools.accesscpn.model.monitors.Monitor;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 
@@ -489,6 +490,53 @@ public class HighLevelSimulator extends AdapterImpl {
 
 			throw new SyntaxCheckerException(page.getId(), errorMessage);
 		} else if (numberOfErrors == -1) { throw new SyntaxFatalErrorException("Fatal error occurred in syntax check"); }
+	}
+
+	public void checkMonitor(final Monitor monitor) throws SyntaxCheckerException, IOException {
+		if (monitor.isDisabled()) { return; }
+		switch (monitor.getKind()) {
+		case BREAKPOINT:
+		case USER_DEFINED:
+		case DATA_COLLECTION:
+		case WRITE_IN_FILE: {
+			Packet p = PacketGenerator.instance.constructCheckMonitor(monitor);
+			p = send(p);
+			p.getInteger(); // TERMTAG = 1;
+			p.getInteger();
+			if (p.getInteger() != 0) {
+				p.getString(); // monitor-id1
+				p.getString(); // errid1
+				throw new SyntaxCheckerException(monitor.getId(), "Could not generate monitor (" + p.getString() + ")");
+			}
+			return;
+		}
+		case MARKING_SIZE: {
+			Packet p = PacketGenerator.instance.constructMarkingSize(monitor);
+			p = send(p);
+			return;
+		}
+		case LIST_LENGTH: {
+			Packet p = PacketGenerator.instance.constructListLength(monitor);
+			p = send(p);
+			return;
+		}
+		case COUNT_TRANSITION: {
+			Packet p = PacketGenerator.instance.constructCountTransition(monitor);
+			p = send(p);
+			return;
+		}
+		case PLACE_CONTENT: {
+			Packet p = PacketGenerator.instance.constructPlaceEmpty(monitor);
+			p = send(p);
+			return;
+		}
+		case TRANSTION_ENABLED: {
+			Packet p = PacketGenerator.instance.constructTransitionEnabled(monitor);
+			p = send(p);
+			return;
+		}
+
+		}
 	}
 
 	/**

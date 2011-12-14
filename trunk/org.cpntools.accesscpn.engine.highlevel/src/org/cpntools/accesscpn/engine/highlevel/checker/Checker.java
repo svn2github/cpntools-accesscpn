@@ -29,6 +29,7 @@ import org.cpntools.accesscpn.engine.highlevel.DeclarationCheckerException;
 import org.cpntools.accesscpn.engine.highlevel.HighLevelSimulator;
 import org.cpntools.accesscpn.engine.highlevel.LocalCheckFailed;
 import org.cpntools.accesscpn.engine.highlevel.PageSorter;
+import org.cpntools.accesscpn.engine.highlevel.SyntaxCheckerException;
 import org.cpntools.accesscpn.model.FusionGroup;
 import org.cpntools.accesscpn.model.HLDeclaration;
 import org.cpntools.accesscpn.model.Page;
@@ -37,6 +38,7 @@ import org.cpntools.accesscpn.model.Place;
 import org.cpntools.accesscpn.model.RefPlace;
 import org.cpntools.accesscpn.model.Transition;
 import org.cpntools.accesscpn.model.impl.PetriNetImpl;
+import org.cpntools.accesscpn.model.monitors.Monitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -180,7 +182,19 @@ public class Checker {
 		checkPages();
 		generateInstances();
 		initialiseSimulationScheduler();
+		checkMonitors();
 		instantiateSMLInterface();
+	}
+
+	/**
+	 * @throws SyntaxCheckerException
+	 * @throws IOException
+	 */
+	public void checkMonitors() throws SyntaxCheckerException, IOException {
+		for (final Monitor m : petriNet.getMonitors()) {
+			s.checkMonitor(m);
+		}
+
 	}
 
 	/**

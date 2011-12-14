@@ -37,6 +37,7 @@ import org.cpntools.accesscpn.model.Place;
 import org.cpntools.accesscpn.model.PlaceNode;
 import org.cpntools.accesscpn.model.RefPlace;
 import org.cpntools.accesscpn.model.Transition;
+import org.cpntools.accesscpn.model.TransitionNode;
 import org.cpntools.accesscpn.model.cpntypes.CPNAlias;
 import org.cpntools.accesscpn.model.cpntypes.CPNBool;
 import org.cpntools.accesscpn.model.cpntypes.CPNEnum;
@@ -58,6 +59,7 @@ import org.cpntools.accesscpn.model.declaration.TypeDeclaration;
 import org.cpntools.accesscpn.model.declaration.UseDeclaration;
 import org.cpntools.accesscpn.model.declaration.VariableDeclaration;
 import org.cpntools.accesscpn.model.declaration.util.DeclarationSwitch;
+import org.cpntools.accesscpn.model.monitors.Monitor;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -856,6 +858,177 @@ public class PacketGenerator {
 			if (j == vals.size()) { return null; }
 		}
 		p.addBoolean(true);
+		return p;
+	}
+
+	/**
+	 * @param monitor
+	 * @return
+	 */
+	public Packet constructMarkingSize(final Monitor monitor) {
+		final Packet p = createMonitoringPacket(monitor, 20);
+		p.addBoolean(monitor.isLogging());
+		assert countPlaces(monitor) == 1 && countTransitions(monitor) == 0;
+		addPlaces(p, monitor);
+		return p;
+	}
+
+	private void addPlaces(final Packet p, final Monitor monitor) {
+		for (final Object o : monitor.getNodes()) {
+			final org.cpntools.accesscpn.engine.highlevel.instance.Instance<Node> i = (org.cpntools.accesscpn.engine.highlevel.instance.Instance<Node>) o;
+			if (i.getNode() instanceof PlaceNode) {
+				p.addInteger(i.getInstanceNumber());
+				p.addString(i.getNode().getId());
+			}
+		}
+
+	}
+
+	private void addTransitions(final Packet p, final Monitor monitor) {
+		for (final Object o : monitor.getNodes()) {
+			final org.cpntools.accesscpn.engine.highlevel.instance.Instance<Node> i = (org.cpntools.accesscpn.engine.highlevel.instance.Instance<Node>) o;
+			if (i.getNode() instanceof TransitionNode) {
+				p.addInteger(i.getInstanceNumber());
+				p.addString(i.getNode().getId());
+			}
+		}
+	}
+
+	private int countTransitions(final Monitor monitor) {
+		int result = 0;
+		for (final Object o : monitor.getNodes()) {
+			final org.cpntools.accesscpn.engine.highlevel.instance.Instance<Node> i = (org.cpntools.accesscpn.engine.highlevel.instance.Instance<Node>) o;
+			if (i.getNode() instanceof TransitionNode) {
+				result++;
+			}
+		}
+		return result;
+	}
+
+	private int countPlaces(final Monitor monitor) {
+		int result = 0;
+		for (final Object o : monitor.getNodes()) {
+			final org.cpntools.accesscpn.engine.highlevel.instance.Instance<Node> i = (org.cpntools.accesscpn.engine.highlevel.instance.Instance<Node>) o;
+			if (i.getNode() instanceof PlaceNode) {
+				result++;
+			}
+		}
+		return result;
+	}
+
+	private Packet createMonitoringPacket(final Monitor monitor, final int cmd) {
+		final Packet p = new Packet(450);
+		p.addInteger(cmd);
+		p.addString(monitor.getId());
+		p.addString(monitor.getName().getText());
+		return p;
+	}
+
+	/**
+	 * @param monitor
+	 * @return
+	 */
+	public Packet constructListLength(final Monitor monitor) {
+		final Packet p = createMonitoringPacket(monitor, 21);
+		p.addBoolean(monitor.isLogging());
+		assert countPlaces(monitor) == 1 && countTransitions(monitor) == 0;
+		addPlaces(p, monitor);
+		return p;
+	}
+
+	/**
+	 * @param monitor
+	 * @return
+	 */
+	public Packet constructCountTransition(final Monitor monitor) {
+		final Packet p = createMonitoringPacket(monitor, 22);
+		p.addBoolean(monitor.isLogging());
+		assert countPlaces(monitor) == 0 && countTransitions(monitor) == 1;
+		addTransitions(p, monitor);
+		return p;
+	}
+
+	/**
+	 * @param monitor
+	 * @return
+	 */
+	public Packet constructPlaceEmpty(final Monitor monitor) {
+		final Packet p = createMonitoringPacket(monitor, 40);
+		p.addBoolean(monitor.isEmpty());
+		assert countPlaces(monitor) == 1 && countTransitions(monitor) == 0;
+		addPlaces(p, monitor);
+		return p;
+	}
+
+	/**
+	 * @param monitor
+	 * @return
+	 */
+	public Packet constructTransitionEnabled(final Monitor monitor) {
+		final Packet p = createMonitoringPacket(monitor, 41);
+		p.addBoolean(monitor.isEnabled());
+		assert countPlaces(monitor) == 0 && countTransitions(monitor) == 1;
+		addTransitions(p, monitor);
+		return p;
+	}
+
+	public Packet constructCheckMonitor(final Monitor monitor) {
+		final Packet p = createMonitoringPacket(monitor, 3);
+		switch (monitor.getKind()) {
+		case COUNT_TRANSITION:
+		case LIST_LENGTH:
+		case MARKING_SIZE:
+		case PLACE_CONTENT:
+		case TRANSTION_ENABLED:
+			return null;
+		case BREAKPOINT:
+			p.addInteger(1);
+			p.addString(monitor.getId() + "pred");
+			p.addString(monitor.getPredicate().getCode());
+			break;
+		case DATA_COLLECTION:
+			p.addInteger(3);
+			p.addBoolean(monitor.isTimed());
+			p.addBoolean(monitor.isLogging());
+			p.addString(monitor.getId() + "pred");
+			p.addString(monitor.getPredicate().getCode());
+			p.addString(monitor.getId() + "obs");
+			p.addString(monitor.getObserver().getCode());
+			p.addString(monitor.getId() + "init");
+			p.addString(monitor.getInit().getCode());
+			p.addString(monitor.getId() + "stop");
+			p.addString(monitor.getStop().getCode());
+			break;
+		case USER_DEFINED:
+			p.addInteger(2);
+			p.addString(monitor.getId() + "init");
+			p.addString(monitor.getInit().getCode());
+			p.addString(monitor.getId() + "pred");
+			p.addString(monitor.getPredicate().getCode());
+			p.addString(monitor.getId() + "obs");
+			p.addString(monitor.getObserver().getCode());
+			p.addString(monitor.getId() + "action");
+			p.addString(monitor.getAction().getCode());
+			p.addString(monitor.getId() + "stop");
+			p.addString(monitor.getStop().getCode());
+			break;
+		case WRITE_IN_FILE:
+			p.addInteger(4);
+			p.addString(monitor.getExtension());
+			p.addString(monitor.getId() + "init");
+			p.addString(monitor.getInit().getCode());
+			p.addString(monitor.getId() + "pred");
+			p.addString(monitor.getPredicate().getCode());
+			p.addString(monitor.getId() + "obs");
+			p.addString(monitor.getObserver().getCode());
+			p.addString(monitor.getId() + "stop");
+			p.addString(monitor.getStop().getCode());
+			break;
+		}
+		p.addInteger(countPlaces(monitor));
+		p.addInteger(countTransitions(monitor));
+		addPlaces(p, monitor);
+		addTransitions(p, monitor);
 		return p;
 	}
 }

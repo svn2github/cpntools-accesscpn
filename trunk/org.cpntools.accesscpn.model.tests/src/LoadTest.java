@@ -2,7 +2,9 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
+import org.cpntools.accesscpn.engine.highlevel.HighLevelSimulator;
 import org.cpntools.accesscpn.engine.highlevel.InstancePrinter;
+import org.cpntools.accesscpn.engine.highlevel.checker.Checker;
 import org.cpntools.accesscpn.model.ModelPrinter;
 import org.cpntools.accesscpn.model.PetriNet;
 import org.cpntools.accesscpn.model.importer.DOMParser;
@@ -28,10 +30,10 @@ public class LoadTest {
 		System.out.println(InstancePrinter.printModel(petriNet));
 		System.out.println("=======================================================");
 		System.out.println(InstancePrinter.printMonitors(petriNet));
-// final HighLevelSimulator s = HighLevelSimulator.getHighLevelSimulator();
-// final Checker checker = new Checker(petriNet, null, s);
-// checker.checkEntireModel();
-
+		final HighLevelSimulator s = HighLevelSimulator.getHighLevelSimulator();
+		final Checker checker = new Checker(petriNet, null, s);
+		checker.checkEntireModel();
+		System.out.println("Done");
 	}
 
 }

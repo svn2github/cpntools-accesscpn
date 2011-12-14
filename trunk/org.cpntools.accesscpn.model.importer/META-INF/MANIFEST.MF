@@ -2,9 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: CPN Model Importer Plug-in
 Bundle-SymbolicName: org.cpntools.accesscpn.model.importer;singleton:=true
-Bundle-Version: 2.2.0
-Require-Bundle: org.cpntools.accesscpn.engine.highlevel;bundle-version="2.2.0",
- org.cpntools.accesscpn.model;bundle-version="2.2.0"
+Bundle-Version: 2.1.0
+Require-Bundle: org.cpntools.accesscpn.engine.highlevel;bundle-version="2.1.0",
+ org.cpntools.accesscpn.model;bundle-version="2.1.0"
 Export-Package: org.cpntools.accesscpn.model.importer;
   uses:="org.cpntools.accesscpn.model,
    org.cpntools.accesscpn.model.declaration,

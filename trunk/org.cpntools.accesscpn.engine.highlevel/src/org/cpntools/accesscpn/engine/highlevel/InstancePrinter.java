@@ -84,6 +84,17 @@ public class InstancePrinter extends ModelPrinter {
 		if (monitor.isTimed()) {
 			sb.append(", timed");
 		}
+		if (monitor.isEmpty()) {
+			sb.append(", empty");
+		}
+		if (monitor.isEnabled()) {
+			sb.append(", enabled");
+		}
+		if (monitor.getExtension() != null) {
+			sb.append(", extension=`");
+			sb.append(monitor.getExtension());
+			sb.append("'");
+		}
 		sb.append(']');
 		printLine();
 
@@ -106,6 +117,7 @@ public class InstancePrinter extends ModelPrinter {
 		printMonitor("Init", monitor.getInit());
 		printMonitor("Predicate", monitor.getPredicate());
 		printMonitor("Observation", monitor.getObserver());
+		printMonitor("Action", monitor.getAction());
 		printMonitor("Stop", monitor.getStop());
 	}
 
