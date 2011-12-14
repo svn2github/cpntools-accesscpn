@@ -18,7 +18,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="observer" eType="ecore:EClass declaration.ecore#//MLDeclaration"
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
-        eType="ecore:EClass model.ecore#//Node"/>
+        eType="#//Object"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="timed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="logging" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
@@ -33,4 +33,6 @@
     <eLiterals name="PLACE_CONTENT" value="7"/>
     <eLiterals name="TRANSTION_ENABLED" value="8"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Object" instanceClassName="java.lang.Object"
+      abstract="true" interface="true"/>
 </ecore:EPackage>

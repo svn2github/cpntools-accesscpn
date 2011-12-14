@@ -9,6 +9,7 @@ package org.cpntools.accesscpn.model.monitors.util;
 import org.cpntools.accesscpn.model.HasId;
 import org.cpntools.accesscpn.model.HasName;
 
+import org.cpntools.accesscpn.model.monitors.Monitor;
 import org.cpntools.accesscpn.model.monitors.*;
 
 import org.cpntools.accesscpn.model.monitors.impl.MonitorsPackageImpl;
@@ -81,6 +82,10 @@ public class MonitorsAdapterFactory extends AdapterFactoryImpl {
 				return createMonitorAdapter();
 			}
 			@Override
+			public Adapter caseObject(Object object) {
+				return createObjectAdapter();
+			}
+			@Override
 			public Adapter caseHasId(HasId object) {
 				return createHasIdAdapter();
 			}
@@ -119,6 +124,20 @@ public class MonitorsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMonitorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link java.lang.Object <em>Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see java.lang.Object
+	 * @generated
+	 */
+	public Adapter createObjectAdapter() {
 		return null;
 	}
 

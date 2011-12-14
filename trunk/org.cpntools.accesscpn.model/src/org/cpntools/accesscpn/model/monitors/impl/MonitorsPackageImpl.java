@@ -6,6 +6,7 @@
  */
 package org.cpntools.accesscpn.model.monitors.impl;
 
+import java.lang.Object;
 import org.cpntools.accesscpn.model.cpntypes.impl.CpntypesPackageImpl;
 
 import org.cpntools.accesscpn.model.declaration.impl.DeclarationPackageImpl;
@@ -203,6 +204,25 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	public static final int MONITOR_FEATURE_COUNT = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 11;
 
 	/**
+	 * The meta object id for the '{@link java.lang.Object <em>Object</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.Object
+	 * @see org.cpntools.accesscpn.model.monitors.impl.MonitorsPackageImpl#getObject()
+	 * @generated
+	 */
+	public static final int OBJECT = 1;
+
+	/**
+	 * The number of structural features of the '<em>Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int OBJECT_FEATURE_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.cpntools.accesscpn.model.monitors.MonitorType <em>Monitor Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -210,7 +230,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @see org.cpntools.accesscpn.model.monitors.impl.MonitorsPackageImpl#getMonitorType()
 	 * @generated
 	 */
-	public static final int MONITOR_TYPE = 1;
+	public static final int MONITOR_TYPE = 2;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -218,6 +238,13 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 */
 	private EClass monitorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass objectEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -446,6 +473,20 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	}
 
 	/**
+	 * Returns the meta object for class '{@link java.lang.Object <em>Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Object</em>'.
+	 * @see java.lang.Object
+	 * @model instanceClass="java.lang.Object"
+	 * @generated
+	 */
+	public EClass getObject() {
+		return objectEClass;
+	}
+
+
+	/**
 	 * Returns the meta object for enum '{@link org.cpntools.accesscpn.model.monitors.MonitorType <em>Monitor Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -499,6 +540,8 @@ public class MonitorsPackageImpl extends EPackageImpl {
 		createEAttribute(monitorEClass, MONITOR__TIMED);
 		createEAttribute(monitorEClass, MONITOR__LOGGING);
 
+		objectEClass = createEClass(OBJECT);
+
 		// Create enums
 		monitorTypeEEnum = createEEnum(MONITOR_TYPE);
 	}
@@ -547,9 +590,11 @@ public class MonitorsPackageImpl extends EPackageImpl {
 		initEReference(getMonitor_Stop(), theDeclarationPackage.getMLDeclaration(), null, "stop", null, 0, 1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMonitor_Predicate(), theDeclarationPackage.getMLDeclaration(), null, "predicate", null, 0, 1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMonitor_Observer(), theDeclarationPackage.getMLDeclaration(), null, "observer", null, 0, 1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMonitor_Nodes(), theModelPackage.getNode(), null, "nodes", null, 0, -1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMonitor_Nodes(), this.getObject(), null, "nodes", null, 0, -1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMonitor_Timed(), ecorePackage.getEBoolean(), "timed", null, 0, 1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMonitor_Logging(), ecorePackage.getEBoolean(), "logging", null, 0, 1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(objectEClass, Object.class, "Object", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(monitorTypeEEnum, MonitorType.class, "MonitorType");
@@ -669,6 +714,16 @@ public class MonitorsPackageImpl extends EPackageImpl {
 		 * @generated
 		 */
 		public static final EAttribute MONITOR__LOGGING = eINSTANCE.getMonitor_Logging();
+
+		/**
+		 * The meta object literal for the '{@link java.lang.Object <em>Object</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.lang.Object
+		 * @see org.cpntools.accesscpn.model.monitors.impl.MonitorsPackageImpl#getObject()
+		 * @generated
+		 */
+		public static final EClass OBJECT = eINSTANCE.getObject();
 
 		/**
 		 * The meta object literal for the '{@link org.cpntools.accesscpn.model.monitors.MonitorType <em>Monitor Type</em>}' enum.

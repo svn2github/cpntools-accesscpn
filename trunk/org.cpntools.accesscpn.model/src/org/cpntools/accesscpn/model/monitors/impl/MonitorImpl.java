@@ -3,6 +3,7 @@
  */
 package org.cpntools.accesscpn.model.monitors.impl;
 
+import java.lang.Object;
 import java.util.Collection;
 import java.util.List;
 
@@ -145,7 +146,7 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Node> nodes;
+	protected EList<Object> nodes;
 
 	/**
 	 * The default value of the '{@link #isTimed() <em>Timed</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
@@ -480,9 +481,9 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<Node> getNodes() {
+	public List<Object> getNodes() {
 		if (nodes == null) {
-			nodes = new EObjectResolvingEList<Node>(Node.class, this, MonitorsPackageImpl.MONITOR__NODES);
+			nodes = new EObjectResolvingEList<Object>(Object.class, this, MonitorsPackageImpl.MONITOR__NODES);
 		}
 		return nodes;
 	}
@@ -642,7 +643,7 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 				return;
 			case MonitorsPackageImpl.MONITOR__NODES:
 				getNodes().clear();
-				getNodes().addAll((Collection<? extends Node>)newValue);
+				getNodes().addAll((Collection<? extends Object>)newValue);
 				return;
 			case MonitorsPackageImpl.MONITOR__TIMED:
 				setTimed((Boolean)newValue);

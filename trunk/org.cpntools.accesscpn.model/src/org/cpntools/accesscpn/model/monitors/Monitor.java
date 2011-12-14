@@ -1,10 +1,10 @@
 package org.cpntools.accesscpn.model.monitors;
 
+import java.lang.Object;
 import java.util.List;
 
 import org.cpntools.accesscpn.model.HasId;
 import org.cpntools.accesscpn.model.HasName;
-import org.cpntools.accesscpn.model.Node;
 import org.cpntools.accesscpn.model.PetriNet;
 import org.cpntools.accesscpn.model.declaration.MLDeclaration;
 
@@ -121,7 +121,7 @@ public interface Monitor extends HasId, HasName {
 	 * @model containment="false"
 	 * @return
 	 */
-	List<Node> getNodes();
+	List<Object> getNodes();
 
 	/**
 	 * @model

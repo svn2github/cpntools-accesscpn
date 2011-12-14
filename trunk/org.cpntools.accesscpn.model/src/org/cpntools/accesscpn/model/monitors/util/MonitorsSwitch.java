@@ -11,6 +11,7 @@ import java.util.List;
 import org.cpntools.accesscpn.model.HasId;
 import org.cpntools.accesscpn.model.HasName;
 
+import org.cpntools.accesscpn.model.monitors.Monitor;
 import org.cpntools.accesscpn.model.monitors.*;
 
 import org.cpntools.accesscpn.model.monitors.impl.MonitorsPackageImpl;
@@ -116,6 +117,21 @@ public class MonitorsSwitch<T> {
 	 * @generated
 	 */
 	public T caseMonitor(Monitor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseObject(Object object) {
 		return null;
 	}
 

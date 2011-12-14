@@ -6,6 +6,9 @@
  */
 package org.cpntools.accesscpn.model.monitors.impl;
 
+import org.cpntools.accesscpn.model.monitors.Monitor;
+import org.cpntools.accesscpn.model.monitors.MonitorType;
+import org.cpntools.accesscpn.model.monitors.MonitorsFactory;
 import org.cpntools.accesscpn.model.monitors.*;
 
 import org.eclipse.emf.ecore.EClass;

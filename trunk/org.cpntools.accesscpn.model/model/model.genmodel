@@ -297,5 +297,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute monitors.ecore#//Monitor/timed"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute monitors.ecore#//Monitor/logging"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="monitors.ecore#//Object"/>
   </genPackages>
 </genmodel:GenModel>
