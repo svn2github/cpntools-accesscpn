@@ -46,6 +46,7 @@ import org.cpntools.accesscpn.model.TransitionNode;
 import org.cpntools.accesscpn.model.cpntypes.impl.CpntypesPackageImpl;
 import org.cpntools.accesscpn.model.declaration.impl.DeclarationPackageImpl;
 import org.cpntools.accesscpn.model.graphics.impl.GraphicsPackageImpl;
+import org.cpntools.accesscpn.model.monitors.impl.MonitorsPackageImpl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -1805,13 +1806,22 @@ public class ModelPackageImpl extends EPackageImpl {
 	public static final int PETRI_NET__PAGE = HAS_ID_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Monitors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PETRI_NET__MONITORS = HAS_ID_FEATURE_COUNT + 5;
+
+	/**
 	 * The feature id for the '<em><b>Fusion Groups</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PETRI_NET__FUSION_GROUPS = HAS_ID_FEATURE_COUNT + 5;
+	public static final int PETRI_NET__FUSION_GROUPS = HAS_ID_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Petri Net</em>' class.
@@ -1820,7 +1830,7 @@ public class ModelPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PETRI_NET_FEATURE_COUNT = HAS_ID_FEATURE_COUNT + 6;
+	public static final int PETRI_NET_FEATURE_COUNT = HAS_ID_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.cpntools.accesscpn.model.impl.PriorityImpl <em>Priority</em>}' class.
@@ -2800,18 +2810,21 @@ public class ModelPackageImpl extends EPackageImpl {
 		CpntypesPackageImpl theCpntypesPackage = (CpntypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CpntypesPackageImpl.eNS_URI) instanceof CpntypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CpntypesPackageImpl.eNS_URI) : CpntypesPackageImpl.eINSTANCE);
 		DeclarationPackageImpl theDeclarationPackage = (DeclarationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DeclarationPackageImpl.eNS_URI) instanceof DeclarationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DeclarationPackageImpl.eNS_URI) : DeclarationPackageImpl.eINSTANCE);
 		GraphicsPackageImpl theGraphicsPackage = (GraphicsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GraphicsPackageImpl.eNS_URI) instanceof GraphicsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GraphicsPackageImpl.eNS_URI) : GraphicsPackageImpl.eINSTANCE);
+		MonitorsPackageImpl theMonitorsPackage = (MonitorsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MonitorsPackageImpl.eNS_URI) instanceof MonitorsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MonitorsPackageImpl.eNS_URI) : MonitorsPackageImpl.eINSTANCE);
 
 		// Create package meta-data objects
 		theModelPackage.createPackageContents();
 		theCpntypesPackage.createPackageContents();
 		theDeclarationPackage.createPackageContents();
 		theGraphicsPackage.createPackageContents();
+		theMonitorsPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theModelPackage.initializePackageContents();
 		theCpntypesPackage.initializePackageContents();
 		theDeclarationPackage.initializePackageContents();
 		theGraphicsPackage.initializePackageContents();
+		theMonitorsPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theModelPackage.freeze();
@@ -3174,6 +3187,19 @@ public class ModelPackageImpl extends EPackageImpl {
 	}
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.cpntools.accesscpn.model.PetriNet#getMonitors <em>Monitors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Monitors</em>'.
+	 * @see org.cpntools.accesscpn.model.PetriNet#getMonitors()
+	 * @see #getPetriNet()
+	 * @generated
+	 */
+	public EReference getPetriNet_Monitors() {
+		return (EReference)petriNetEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
 	 * Returns the meta object for the reference list '{@link org.cpntools.accesscpn.model.PetriNet#getFusionGroups <em>Fusion Groups</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3183,7 +3209,7 @@ public class ModelPackageImpl extends EPackageImpl {
 	 * @generated
 	 */
 	public EReference getPetriNet_FusionGroups() {
-		return (EReference)petriNetEClass.getEStructuralFeatures().get(2);
+		return (EReference)petriNetEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -3886,6 +3912,7 @@ public class ModelPackageImpl extends EPackageImpl {
 		petriNetEClass = createEClass(PETRI_NET);
 		createEAttribute(petriNetEClass, PETRI_NET__KIND);
 		createEReference(petriNetEClass, PETRI_NET__PAGE);
+		createEReference(petriNetEClass, PETRI_NET__MONITORS);
 		createEReference(petriNetEClass, PETRI_NET__FUSION_GROUPS);
 
 		placeEClass = createEClass(PLACE);
@@ -3944,6 +3971,7 @@ public class ModelPackageImpl extends EPackageImpl {
 		// Obtain other dependent packages
 		GraphicsPackageImpl theGraphicsPackage = (GraphicsPackageImpl)EPackage.Registry.INSTANCE.getEPackage(GraphicsPackageImpl.eNS_URI);
 		DeclarationPackageImpl theDeclarationPackage = (DeclarationPackageImpl)EPackage.Registry.INSTANCE.getEPackage(DeclarationPackageImpl.eNS_URI);
+		MonitorsPackageImpl theMonitorsPackage = (MonitorsPackageImpl)EPackage.Registry.INSTANCE.getEPackage(MonitorsPackageImpl.eNS_URI);
 
 		// Create type parameters
 
@@ -4078,6 +4106,7 @@ public class ModelPackageImpl extends EPackageImpl {
 		initEClass(petriNetEClass, PetriNet.class, "PetriNet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPetriNet_Kind(), ecorePackage.getEString(), "kind", null, 1, 1, PetriNet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPetriNet_Page(), this.getPage(), this.getPage_PetriNet(), "page", null, 1, -1, PetriNet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPetriNet_Monitors(), theMonitorsPackage.getMonitor(), theMonitorsPackage.getMonitor_PetriNet(), "monitors", null, 0, -1, PetriNet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPetriNet_FusionGroups(), this.getFusionGroup(), this.getFusionGroup_PetriNet(), "fusionGroups", null, 0, -1, PetriNet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(placeEClass, Place.class, "Place", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4377,6 +4406,14 @@ public class ModelPackageImpl extends EPackageImpl {
 		 * @generated
 		 */
 		public static final EReference PETRI_NET__PAGE = eINSTANCE.getPetriNet_Page();
+
+		/**
+		 * The meta object literal for the '<em><b>Monitors</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference PETRI_NET__MONITORS = eINSTANCE.getPetriNet_Monitors();
 
 		/**
 		 * The meta object literal for the '<em><b>Fusion Groups</b></em>' reference list feature.

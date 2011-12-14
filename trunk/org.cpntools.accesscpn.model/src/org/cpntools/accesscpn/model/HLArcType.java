@@ -1,21 +1,21 @@
 /************************************************************************/
-/* Access/CPN                                                           */
-/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology    */
+/* Access/CPN */
+/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology */
 /*                                                                      */
-/* This library is free software; you can redistribute it and/or        */
-/* modify it under the terms of the GNU Lesser General Public           */
-/* License as published by the Free Software Foundation; either         */
-/* version 2.1 of the License, or (at your option) any later version.   */
+/* This library is free software; you can redistribute it and/or */
+/* modify it under the terms of the GNU Lesser General Public */
+/* License as published by the Free Software Foundation; either */
+/* version 2.1 of the License, or (at your option) any later version. */
 /*                                                                      */
-/* This library is distributed in the hope that it will be useful,      */
-/* but WITHOUT ANY WARRANTY; without even the implied warranty of       */
-/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
-/* Lesser General Public License for more details.                      */
+/* This library is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU */
+/* Lesser General Public License for more details. */
 /*                                                                      */
-/* You should have received a copy of the GNU Lesser General Public     */
-/* License along with this library; if not, write to the Free Software  */
-/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,           */
-/* MA  02110-1301  USA                                                  */
+/* You should have received a copy of the GNU Lesser General Public */
+/* License along with this library; if not, write to the Free Software */
+/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, */
+/* MA 02110-1301 USA */
 /************************************************************************/
 package org.cpntools.accesscpn.model;
 
@@ -27,7 +27,7 @@ import java.util.List;
  * @model
  * @author michael
  */
-public enum HLArcType implements InternalHLArcType   {
+public enum HLArcType implements InternalHLArcType {
 	/**
 	 * The '<em><b>Normal</b></em>' literal object.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -43,7 +43,7 @@ public enum HLArcType implements InternalHLArcType   {
 	 * @generated
 	 * @ordered
 	 */
-	TEST(0, "Test", "Test");
+	TEST(1, "Test", "Test");
 	/**
 	 * @model name="Normal"
 	 */
@@ -52,7 +52,7 @@ public enum HLArcType implements InternalHLArcType   {
 	/**
 	 * @model name="Test"
 	 */
-	public static final int TEST_VALUE = 0;
+	public static final int TEST_VALUE = 1;
 
 	/**
 	 * An array of all the '<em><b>HL Arc Type</b></em>' enumerators.
@@ -76,7 +76,8 @@ public enum HLArcType implements InternalHLArcType   {
 	 * Returns the '<em><b>HL Arc Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * 
-	 * @param literal the string literal
+	 * @param literal
+	 *            the string literal
 	 * @return the corresponding arctype <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -94,7 +95,8 @@ public enum HLArcType implements InternalHLArcType   {
 	 * Returns the '<em><b>HL Arc Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * 
-	 * @param name the name
+	 * @param name
+	 *            the name
 	 * @return the corresponding type <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -112,13 +114,15 @@ public enum HLArcType implements InternalHLArcType   {
 	 * Returns the '<em><b>HL Arc Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * 
-	 * @param value the value
+	 * @param value
+	 *            the value
 	 * @return the corresponding arc type <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static HLArcType get(int value) {
 		switch (value) {
 			case NORMAL_VALUE: return NORMAL;
+			case TEST_VALUE: return TEST;
 		}
 		return null;
 	}
@@ -196,10 +200,10 @@ public enum HLArcType implements InternalHLArcType   {
 
 /**
  * A private implementation interface used to hide the inheritance from Enumerator.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> <!--
+ * end-user-doc -->
  * @generated
  */
 interface InternalHLArcType extends org.eclipse.emf.common.util.Enumerator {
-	// Empty 
+	// Empty
 }

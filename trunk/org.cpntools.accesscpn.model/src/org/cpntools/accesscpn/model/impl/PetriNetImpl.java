@@ -36,6 +36,8 @@ import org.cpntools.accesscpn.model.Name;
 import org.cpntools.accesscpn.model.Page;
 import org.cpntools.accesscpn.model.PetriNet;
 import org.cpntools.accesscpn.model.ToolInfo;
+import org.cpntools.accesscpn.model.monitors.Monitor;
+import org.cpntools.accesscpn.model.monitors.impl.MonitorsPackageImpl;
 import org.cpntools.accesscpn.model.declaration.TypeDeclaration;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -59,6 +61,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.cpntools.accesscpn.model.impl.PetriNetImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.impl.PetriNetImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.impl.PetriNetImpl#getPage <em>Page</em>}</li>
+ *   <li>{@link org.cpntools.accesscpn.model.impl.PetriNetImpl#getMonitors <em>Monitors</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.impl.PetriNetImpl#getFusionGroups <em>Fusion Groups</em>}</li>
  * </ul>
  * </p>
@@ -125,6 +128,16 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 * @ordered
 	 */
 	protected EList<Page> page;
+
+	/**
+	 * The cached value of the '{@link #getMonitors() <em>Monitors</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMonitors()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Monitor> monitors;
 
 	/**
 	 * The cached value of the '{@link #getFusionGroups() <em>Fusion Groups</em>}' containment reference list. <!--
@@ -235,6 +248,18 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public List<Monitor> getMonitors() {
+		if (monitors == null) {
+			monitors = new EObjectContainmentWithInverseEList<Monitor>(Monitor.class, this, ModelPackageImpl.PETRI_NET__MONITORS, MonitorsPackageImpl.MONITOR__PETRI_NET);
+		}
+		return monitors;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -280,6 +305,8 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getLabel()).basicAdd(otherEnd, msgs);
 			case ModelPackageImpl.PETRI_NET__PAGE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPage()).basicAdd(otherEnd, msgs);
+			case ModelPackageImpl.PETRI_NET__MONITORS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMonitors()).basicAdd(otherEnd, msgs);
 			case ModelPackageImpl.PETRI_NET__FUSION_GROUPS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getFusionGroups()).basicAdd(otherEnd, msgs);
 		}
@@ -300,6 +327,8 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 				return ((InternalEList<?>)getLabel()).basicRemove(otherEnd, msgs);
 			case ModelPackageImpl.PETRI_NET__PAGE:
 				return ((InternalEList<?>)getPage()).basicRemove(otherEnd, msgs);
+			case ModelPackageImpl.PETRI_NET__MONITORS:
+				return ((InternalEList<?>)getMonitors()).basicRemove(otherEnd, msgs);
 			case ModelPackageImpl.PETRI_NET__FUSION_GROUPS:
 				return ((InternalEList<?>)getFusionGroups()).basicRemove(otherEnd, msgs);
 		}
@@ -324,6 +353,8 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 				return getKind();
 			case ModelPackageImpl.PETRI_NET__PAGE:
 				return getPage();
+			case ModelPackageImpl.PETRI_NET__MONITORS:
+				return getMonitors();
 			case ModelPackageImpl.PETRI_NET__FUSION_GROUPS:
 				return getFusionGroups();
 		}
@@ -356,6 +387,10 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 				getPage().clear();
 				getPage().addAll((Collection<? extends Page>)newValue);
 				return;
+			case ModelPackageImpl.PETRI_NET__MONITORS:
+				getMonitors().clear();
+				getMonitors().addAll((Collection<? extends Monitor>)newValue);
+				return;
 			case ModelPackageImpl.PETRI_NET__FUSION_GROUPS:
 				getFusionGroups().clear();
 				getFusionGroups().addAll((Collection<? extends FusionGroup>)newValue);
@@ -386,6 +421,9 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 			case ModelPackageImpl.PETRI_NET__PAGE:
 				getPage().clear();
 				return;
+			case ModelPackageImpl.PETRI_NET__MONITORS:
+				getMonitors().clear();
+				return;
 			case ModelPackageImpl.PETRI_NET__FUSION_GROUPS:
 				getFusionGroups().clear();
 				return;
@@ -410,6 +448,8 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 				return KIND_EDEFAULT == null ? kind != null : !KIND_EDEFAULT.equals(kind);
 			case ModelPackageImpl.PETRI_NET__PAGE:
 				return page != null && !page.isEmpty();
+			case ModelPackageImpl.PETRI_NET__MONITORS:
+				return monitors != null && !monitors.isEmpty();
 			case ModelPackageImpl.PETRI_NET__FUSION_GROUPS:
 				return fusionGroups != null && !fusionGroups.isEmpty();
 		}

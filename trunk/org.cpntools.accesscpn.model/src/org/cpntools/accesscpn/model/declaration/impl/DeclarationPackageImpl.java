@@ -35,6 +35,7 @@ import org.cpntools.accesscpn.model.declaration.UseDeclaration;
 import org.cpntools.accesscpn.model.declaration.VariableDeclaration;
 import org.cpntools.accesscpn.model.graphics.impl.GraphicsPackageImpl;
 import org.cpntools.accesscpn.model.impl.ModelPackageImpl;
+import org.cpntools.accesscpn.model.monitors.impl.MonitorsPackageImpl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
@@ -362,18 +363,21 @@ public class DeclarationPackageImpl extends EPackageImpl {
 		ModelPackageImpl theModelPackage = (ModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModelPackageImpl.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModelPackageImpl.eNS_URI) : ModelPackageImpl.eINSTANCE);
 		CpntypesPackageImpl theCpntypesPackage = (CpntypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CpntypesPackageImpl.eNS_URI) instanceof CpntypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CpntypesPackageImpl.eNS_URI) : CpntypesPackageImpl.eINSTANCE);
 		GraphicsPackageImpl theGraphicsPackage = (GraphicsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GraphicsPackageImpl.eNS_URI) instanceof GraphicsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GraphicsPackageImpl.eNS_URI) : GraphicsPackageImpl.eINSTANCE);
+		MonitorsPackageImpl theMonitorsPackage = (MonitorsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MonitorsPackageImpl.eNS_URI) instanceof MonitorsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MonitorsPackageImpl.eNS_URI) : MonitorsPackageImpl.eINSTANCE);
 
 		// Create package meta-data objects
 		theDeclarationPackage.createPackageContents();
 		theModelPackage.createPackageContents();
 		theCpntypesPackage.createPackageContents();
 		theGraphicsPackage.createPackageContents();
+		theMonitorsPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theDeclarationPackage.initializePackageContents();
 		theModelPackage.initializePackageContents();
 		theCpntypesPackage.initializePackageContents();
 		theGraphicsPackage.initializePackageContents();
+		theMonitorsPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theDeclarationPackage.freeze();

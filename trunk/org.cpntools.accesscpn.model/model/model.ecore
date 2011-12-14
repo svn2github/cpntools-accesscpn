@@ -35,7 +35,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="HLArcType">
     <eLiterals name="Normal"/>
-    <eLiterals name="Test"/>
+    <eLiterals name="Test" value="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="HLDeclaration" eSuperTypes="#//Annotation #//HasId">
     <eStructuralFeatures xsi:type="ecore:EReference" name="structure" eType="ecore:EClass declaration.ecore#//DeclarationStructure"
@@ -103,6 +103,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="page" lowerBound="1" upperBound="-1"
         eType="#//Page" containment="true" resolveProxies="false" eOpposite="#//Page/petriNet"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="monitors" upperBound="-1"
+        eType="ecore:EClass monitors.ecore#//Monitor" containment="true" resolveProxies="false"
+        eOpposite="monitors.ecore#//Monitor/petriNet"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fusionGroups" upperBound="-1"
         eType="#//FusionGroup" eOpposite="#//FusionGroup/petriNet"/>
   </eClassifiers>
