@@ -590,6 +590,10 @@ public class DOMParser {
 					result.setTimed(Boolean.parseBoolean(value));
 				} else if ("Logging".equals(nme)) {
 					result.setLogging(Boolean.parseBoolean(value));
+				} else if ("If is empty".equals(nme)) {
+					result.setEmpty(Boolean.parseBoolean(value));
+				} else if ("File extension".equals(nme)) {
+					result.setExtension(value);
 				}
 			}
 		}
