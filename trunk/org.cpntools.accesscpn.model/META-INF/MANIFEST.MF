@@ -18,6 +18,9 @@ Export-Package: org.cpntools.accesscpn.model,
  org.cpntools.accesscpn.model.graphics.impl,
  org.cpntools.accesscpn.model.graphics.util,
  org.cpntools.accesscpn.model.impl,
+ org.cpntools.accesscpn.model.monitors,
+ org.cpntools.accesscpn.model.monitors.impl,
+ org.cpntools.accesscpn.model.monitors.util,
  org.cpntools.accesscpn.model.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport
