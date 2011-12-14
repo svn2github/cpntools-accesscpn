@@ -24,7 +24,6 @@ import java.util.List;
 import org.cpntools.accesscpn.engine.highlevel.instance.Instance;
 import org.cpntools.accesscpn.engine.highlevel.instance.adapter.ModelInstance;
 import org.cpntools.accesscpn.engine.highlevel.instance.adapter.ModelInstanceAdapterFactory;
-import org.cpntools.accesscpn.model.Label;
 import org.cpntools.accesscpn.model.ModelPrinter;
 import org.cpntools.accesscpn.model.Node;
 import org.cpntools.accesscpn.model.Page;
@@ -36,15 +35,6 @@ import org.cpntools.accesscpn.model.monitors.Monitor;
  * @author mwesterg
  */
 public class InstancePrinter extends ModelPrinter {
-	private final StringBuilder sb;
-
-	/**
-	 * 
-	 */
-	public InstancePrinter() {
-		sb = new StringBuilder();
-	}
-
 	/**
 	 * @param petriNet
 	 * @return
@@ -74,7 +64,8 @@ public class InstancePrinter extends ModelPrinter {
 		if (declaration != null) {
 			sb.append("    - ");
 			sb.append(string);
-			print((Label) declaration);
+			sb.append(" - ");
+			sb.append(declaration.getCode().replaceAll("[\\n\\r]+", " "));
 			printLine();
 		}
 	}

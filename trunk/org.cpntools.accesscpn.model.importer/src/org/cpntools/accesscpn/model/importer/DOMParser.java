@@ -493,7 +493,7 @@ public class DOMParser {
 	        final Map<String, Integer> current, final Node n) {
 		final String id = ParserUtil.getAttr(n, ID);
 		String pageId = ParserUtil.getAttr(n, "page");
-		if (pageId == null == "".equals(pageId)) {
+		if (pageId == null || "".equals(pageId)) {
 			final String transition = ParserUtil.getAttr(n, "trans");
 			final Instance instance = modelData.getInstance(transition);
 			assert instance != null;
@@ -507,6 +507,13 @@ public class DOMParser {
 		}
 		result.put(id, number);
 		current.put(pageId, number);
+		final NodeList nl = n.getChildNodes();
+		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
+			final Node currentNode = nl.item(i);
+			if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.instanceNode)) {
+				processInstance(modelData, result, current, currentNode);
+			}
+		}
 	}
 
 	public void processMonitorBlock(final ModelData modelData, final Map<String, Integer> instances, final Node n) {

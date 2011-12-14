@@ -23,7 +23,7 @@ package org.cpntools.accesscpn.model;
  * @author mwesterg
  */
 public class ModelPrinter {
-	private final StringBuilder sb;
+	protected final StringBuilder sb;
 
 	/**
 	 * 
@@ -41,7 +41,7 @@ public class ModelPrinter {
 	}
 
 	protected void print(final Label l) {
-		if (l != null) {
+		if (l != null && l.asString() != null) {
 			sb.append(l.asString().replaceAll("\n", " "));
 		} else {
 			sb.append("<null>");
