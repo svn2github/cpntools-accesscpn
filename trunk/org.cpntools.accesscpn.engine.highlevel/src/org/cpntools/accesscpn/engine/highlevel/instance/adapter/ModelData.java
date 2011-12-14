@@ -26,6 +26,7 @@ import java.util.Map;
 
 import org.cpntools.accesscpn.engine.highlevel.instance.Instance;
 import org.cpntools.accesscpn.model.HLDeclaration;
+import org.cpntools.accesscpn.model.Node;
 import org.cpntools.accesscpn.model.Page;
 import org.cpntools.accesscpn.model.Place;
 import org.cpntools.accesscpn.model.PlaceNode;
@@ -66,6 +67,63 @@ public class ModelData extends PetriNetDataAdapter {
 	}
 
 	private List<PlaceNode> allPlaceNodes = null;
+	private Map<String, PlaceNode> places = null;
+	private Map<String, Transition> transitions = null;
+	private Map<String, org.cpntools.accesscpn.model.Instance> instances = null;
+
+	/**
+	 * @param id
+	 * @return
+	 */
+	public synchronized PlaceNode getPlace(final String id) {
+		if (getPetriNet() == null) { return null; }
+		if (places != null) { return places.get(id); }
+		places = new HashMap<String, PlaceNode>();
+		for (final Page p : getPetriNet().getPage()) {
+			for (final Place place : p.place()) {
+				places.put(place.getId(), place);
+			}
+			for (final PlaceNode placeNode : p.fusionGroup()) {
+				places.put(placeNode.getId(), placeNode);
+			}
+			for (final PlaceNode placeNode : p.portPlace()) {
+				places.put(placeNode.getId(), placeNode);
+			}
+		}
+		return places.get(id);
+	}
+
+	/**
+	 * @param id
+	 * @return
+	 */
+	public synchronized Transition getTransition(final String id) {
+		if (getPetriNet() == null) { return null; }
+		if (transitions != null) { return transitions.get(id); }
+		transitions = new HashMap<String, Transition>();
+		for (final Page p : getPetriNet().getPage()) {
+			for (final Transition transition : p.transition()) {
+				transitions.put(transition.getId(), transition);
+			}
+		}
+		return transitions.get(id);
+	}
+
+	/**
+	 * @param id
+	 * @return
+	 */
+	public synchronized org.cpntools.accesscpn.model.Instance getInstance(final String id) {
+		if (getPetriNet() == null) { return null; }
+		if (instances != null) { return instances.get(id); }
+		instances = new HashMap<String, org.cpntools.accesscpn.model.Instance>();
+		for (final Page p : getPetriNet().getPage()) {
+			for (final org.cpntools.accesscpn.model.Instance instance : p.instance()) {
+				instances.put(instance.getId(), instance);
+			}
+		}
+		return instances.get(id);
+	}
 
 	/**
 	 * @return all places, including port and fusion places
@@ -362,5 +420,19 @@ public class ModelData extends PetriNetDataAdapter {
 			pages.put(p.getId(), p);
 		}
 		return pages.get(id);
+	}
+
+	/**
+	 * @param id
+	 * @return
+	 */
+	public Node getNode(final String id) {
+		final PlaceNode place = getPlace(id);
+		if (place != null) { return place; }
+		final org.cpntools.accesscpn.model.Instance instance = getInstance(id);
+		if (instance != null) { return instance; }
+		final Transition transition = getTransition(id);
+		if (transition != null) { return transition; }
+		return null;
 	}
 }

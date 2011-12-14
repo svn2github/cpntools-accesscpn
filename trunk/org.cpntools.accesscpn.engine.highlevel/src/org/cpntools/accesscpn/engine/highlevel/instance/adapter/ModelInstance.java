@@ -102,8 +102,6 @@ public class ModelInstance extends PetriNetDataAdapter {
 
 	private Map<Instance<Page>, Instance<Page>> pageInstances = null;
 
-	private Map<String, PlaceNode> places = null;
-
 	private final Map<Node, List<? extends Instance<Node>>> allInstances = new HashMap<Node, List<? extends Instance<Node>>>();
 
 	private final Map<Page, ArcInfo> arcInfos = new HashMap<Page, ArcInfo>();
@@ -162,8 +160,8 @@ public class ModelInstance extends PetriNetDataAdapter {
 			final ArcInfo subArcInfo = getArcInfo(subPage);
 
 			for (final ParameterAssignment pa : instance.getParameterAssignment()) {
-				final PlaceNode socket = getPlace(pa.getParameter());
-				final PlaceNode port = getPlace(pa.getValue());
+				final PlaceNode socket = getModelData().getPlace(pa.getParameter());
+				final PlaceNode port = getModelData().getPlace(pa.getValue());
 				assert port.getPage() == subPage;
 				// Place which is both port and socket fails here
 				inputs.put(port, subArcInfo.getInputs().get(port));
@@ -183,6 +181,15 @@ public class ModelInstance extends PetriNetDataAdapter {
 		final ArcInfo arcInfo = new ArcInfo(inputs, outputs, tests);
 		arcInfos.put(page, arcInfo);
 		return arcInfo;
+	}
+
+	ModelData modelData = null;
+
+	public synchronized ModelData getModelData() {
+		if (modelData == null) {
+			modelData = (ModelData) ModelDataAdapterFactory.getInstance().adapt(getPetriNet(), ModelData.class);
+		}
+		return modelData;
 	}
 
 	/**
@@ -246,28 +253,6 @@ public class ModelInstance extends PetriNetDataAdapter {
 	}
 
 	/**
-	 * @param id
-	 * @return
-	 */
-	public synchronized PlaceNode getPlace(final String id) {
-		if (getPetriNet() == null) { return null; }
-		if (places != null) { return places.get(id); }
-		places = new HashMap<String, PlaceNode>();
-		for (final Page p : getPetriNet().getPage()) {
-			for (final Place place : p.place()) {
-				places.put(place.getId(), place);
-			}
-			for (final PlaceNode placeNode : p.fusionGroup()) {
-				places.put(placeNode.getId(), placeNode);
-			}
-			for (final PlaceNode placeNode : p.portPlace()) {
-				places.put(placeNode.getId(), placeNode);
-			}
-		}
-		return places.get(id);
-	}
-
-	/**
 	 * @return
 	 */
 	public synchronized List<Page> getTopPages() {
@@ -301,10 +286,19 @@ public class ModelInstance extends PetriNetDataAdapter {
 		instanceNumbers = null;
 		instances = null;
 		pageInstances = null;
-		places = null;
 		allInstances.clear();
 		arcInfos.clear();
 		System.out.println("notifyChanged(" + msg + ")");
+	}
+
+	/**
+	 * @deprecated moved to ModelData
+	 * @param id
+	 * @return
+	 */
+	@Deprecated
+	public PlaceNode getPlace(final String id) {
+		return getModelData().getPlace(id);
 	}
 
 	/**
