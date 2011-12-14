@@ -21,7 +21,7 @@ package org.cpntools.accesscpn.model.importer;
 
 import java.util.ArrayList;
 
-import org.cpntools.accesscpn.model.Label;
+import org.cpntools.accesscpn.model.HLDeclaration;
 import org.cpntools.accesscpn.model.declaration.DeclarationFactory;
 import org.cpntools.accesscpn.model.declaration.GlobalReferenceDeclaration;
 import org.cpntools.accesscpn.model.declaration.MLDeclaration;
@@ -153,7 +153,7 @@ public class DeclarationParser {
 	 * @throws NetDeclarationException
 	 *             if error occurred
 	 */
-	public static Label processColor(final Node n) throws NetDeclarationException {
+	public static HLDeclaration processColor(final Node n) throws NetDeclarationException {
 		final TypeDeclaration color = DeclarationParser.declFactory.createTypeDeclaration();
 		boolean timed = false;
 		ArrayList<String> declares = new ArrayList<String>();
@@ -231,8 +231,8 @@ public class DeclarationParser {
 	 * @throws NetDeclarationException
 	 *             error occurred
 	 */
-	public static ArrayList<Label> processDecls(final Node n) throws NetDeclarationException {
-		final ArrayList<Label> labels = new ArrayList<Label>();
+	public static ArrayList<HLDeclaration> processDecls(final Node n) throws NetDeclarationException {
+		final ArrayList<HLDeclaration> labels = new ArrayList<HLDeclaration>();
 
 		final NodeList nl = n.getChildNodes();
 		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
@@ -260,7 +260,7 @@ public class DeclarationParser {
 	 *            node
 	 * @return globref decl
 	 */
-	public static Label processGlobref(final Node n) {
+	public static HLDeclaration processGlobref(final Node n) {
 		final GlobalReferenceDeclaration globref = DeclarationParser.declFactory.createGlobalReferenceDeclaration();
 
 		final NodeList nl = n.getChildNodes();
@@ -281,7 +281,7 @@ public class DeclarationParser {
 	 *            node
 	 * @return ml decl
 	 */
-	public static Label processML(final Node n) {
+	public static HLDeclaration processML(final Node n) {
 		final MLDeclaration mld = DeclarationParser.declFactory.createMLDeclaration();
 		mld.setCode(ParserUtil.getTextFromElement(n));
 		return DOMParser.getHLDeclaration(mld, n);
@@ -292,7 +292,7 @@ public class DeclarationParser {
 	 *            node
 	 * @return use decl
 	 */
-	public static Label processUse(final Node n) {
+	public static HLDeclaration processUse(final Node n) {
 		final UseDeclaration use = DeclarationParser.declFactory.createUseDeclaration();
 
 		final NodeList nl = n.getChildNodes();
@@ -311,7 +311,7 @@ public class DeclarationParser {
 	 *            node
 	 * @return var decl
 	 */
-	public static Label processVar(final Node n) {
+	public static HLDeclaration processVar(final Node n) {
 		final VariableDeclaration varDecl = DeclarationParser.declFactory.createVariableDeclaration();
 
 		final NodeList nl = n.getChildNodes();

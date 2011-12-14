@@ -25,11 +25,15 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.cpntools.accesscpn.engine.highlevel.instance.InstanceFactory;
+import org.cpntools.accesscpn.engine.highlevel.instance.adapter.ModelData;
+import org.cpntools.accesscpn.engine.highlevel.instance.adapter.ModelDataAdapterFactory;
 import org.cpntools.accesscpn.model.Arc;
 import org.cpntools.accesscpn.model.Code;
 import org.cpntools.accesscpn.model.Condition;
@@ -39,7 +43,6 @@ import org.cpntools.accesscpn.model.HLArcType;
 import org.cpntools.accesscpn.model.HLDeclaration;
 import org.cpntools.accesscpn.model.HLMarking;
 import org.cpntools.accesscpn.model.Instance;
-import org.cpntools.accesscpn.model.Label;
 import org.cpntools.accesscpn.model.ModelFactory;
 import org.cpntools.accesscpn.model.Name;
 import org.cpntools.accesscpn.model.Page;
@@ -53,6 +56,10 @@ import org.cpntools.accesscpn.model.Sort;
 import org.cpntools.accesscpn.model.Time;
 import org.cpntools.accesscpn.model.Transition;
 import org.cpntools.accesscpn.model.declaration.DeclarationStructure;
+import org.cpntools.accesscpn.model.declaration.MLDeclaration;
+import org.cpntools.accesscpn.model.monitors.Monitor;
+import org.cpntools.accesscpn.model.monitors.MonitorType;
+import org.cpntools.accesscpn.model.monitors.MonitorsFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -65,6 +72,10 @@ import org.xml.sax.SAXException;
  */
 public class DOMParser {
 
+	private static final String TYPE = "type";
+	private static final String NAME = "name";
+	private static final String IDREF = "idref";
+	private static final String ID = "id";
 	/**
 	 * 
 	 */
@@ -158,11 +169,28 @@ public class DOMParser {
 	/**
 	 * 
 	 */
-	public static final String typeNode = "type";
+	public static final String typeNode = TYPE;
 	/**
 	 * 
 	 */
 	public static final String workspaceElementsNode = "workspaceElements";
+	/**
+	 * 
+	 */
+	public static final String monitorNode = "monitor";
+	/**
+	 * 
+	 */
+	public static final String monitorBlockNode = "monitorblock";
+	/**
+	 * 
+	 */
+	public static final String instancesNode = "instances";
+	/**
+	 * 
+	 */
+	public static final String instanceNode = "instance";
+	private static final String declarationNode = "declaration";
 
 	/**
 	 * @return a document builder
@@ -208,7 +236,7 @@ public class DOMParser {
 	public static HLDeclaration getHLDeclaration(final DeclarationStructure ds, final Node n) {
 		final HLDeclaration decl = DOMParser.factory.createHLDeclaration();
 		decl.setStructure(ds);
-		decl.setId(ParserUtil.getAttr(n, "id"));
+		decl.setId(ParserUtil.getAttr(n, ID));
 
 		return decl;
 	}
@@ -306,7 +334,7 @@ public class DOMParser {
 	 */
 	public Arc processArc(final Node n) throws NetCheckException {
 		final Arc arc = DOMParser.factory.createArc();
-		arc.setId(ParserUtil.getAttr(n, "id"));
+		arc.setId(ParserUtil.getAttr(n, ID));
 		final String orientation = ParserUtil.getAttr(n, "orientation");
 		String transIdref = "";
 		String placeIdref = "";
@@ -315,9 +343,9 @@ public class DOMParser {
 		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
 			final Node currentNode = nl.item(i);
 			if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.transendNode)) {
-				transIdref = ParserUtil.getAttr(currentNode, "idref");
+				transIdref = ParserUtil.getAttr(currentNode, IDREF);
 			} else if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.placeendNode)) {
-				placeIdref = ParserUtil.getAttr(currentNode, "idref");
+				placeIdref = ParserUtil.getAttr(currentNode, IDREF);
 			} else if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.annotNode)) {
 				final HLAnnotation annot = processAnnot(currentNode);
 				arc.setHlinscription(annot);
@@ -392,14 +420,14 @@ public class DOMParser {
 		final NodeList nl = n.getChildNodes();
 
 		// 1st we parse the declarations
-		ArrayList<Label> labels = new ArrayList<Label>();
+		ArrayList<HLDeclaration> labels = new ArrayList<HLDeclaration>();
 		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
 			final Node currentNode = nl.item(i);
 			if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.globboxNode)) {
 				labels = processGlobbox(currentNode);
 			}
 		}
-		for (final Label label : labels) {
+		for (final HLDeclaration label : labels) {
 			label.setParent(petriNet);
 		}
 
@@ -421,13 +449,151 @@ public class DOMParser {
 			}
 		}
 
+		// Fortified we parse the instances. Because the stupid monitors use them. Much hate!
+		final ModelData modelData = (ModelData) ModelDataAdapterFactory.getInstance().adapt(petriNet, ModelData.class);
+		Map<String, Integer> instances = null;
+		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
+			final Node currentNode = nl.item(i);
+			if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.instancesNode)) {
+				assert instances == null;
+				instances = processInstances(modelData, currentNode);
+			}
+		}
+
+		// 5th we parse the monitors
+		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
+			final Node currentNode = nl.item(i);
+			if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.monitorBlockNode)) {
+				processMonitorBlock(modelData, instances, currentNode);
+			}
+		}
+
 		return petriNet;
 	}
 
-	private FusionGroup processFusion(final Node n) {
+	/**
+	 * @param modelData
+	 * @param n
+	 * @return
+	 */
+	public Map<String, Integer> processInstances(final ModelData modelData, final Node n) {
+		final Map<String, Integer> result = new HashMap<String, Integer>();
+		final Map<String, Integer> current = new HashMap<String, Integer>();
+		final NodeList nl = n.getChildNodes();
+		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
+			final Node currentNode = nl.item(i);
+			if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.instanceNode)) {
+				processInstance(modelData, result, current, currentNode);
+			}
+		}
+		return result;
+	}
+
+	private void processInstance(final ModelData modelData, final Map<String, Integer> result,
+	        final Map<String, Integer> current, final Node n) {
+		final String id = ParserUtil.getAttr(n, ID);
+		String pageId = ParserUtil.getAttr(n, "page");
+		if (pageId == null == "".equals(pageId)) {
+			final String transition = ParserUtil.getAttr(n, "trans");
+			final Instance instance = modelData.getInstance(transition);
+			assert instance != null;
+			pageId = instance.getSubPageID();
+		}
+		Integer number = current.get(pageId);
+		if (number == null) {
+			number = 1;
+		} else {
+			number = number + 1;
+		}
+		result.put(id, number);
+		current.put(pageId, number);
+	}
+
+	public void processMonitorBlock(final ModelData modelData, final Map<String, Integer> instances, final Node n) {
+		final NodeList nl = n.getChildNodes();
+		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
+			final Node currentNode = nl.item(i);
+			if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.monitorBlockNode)) {
+				processMonitorBlock(modelData, instances, currentNode);
+			} else if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.monitorNode)) {
+				final Monitor monitor = processMonitor(modelData, instances, currentNode);
+				monitor.setPetriNet(modelData.getPetriNet());
+			}
+		}
+	}
+
+	/**
+	 * @param modelData
+	 * @param instances
+	 * @param n
+	 * @return
+	 */
+	public Monitor processMonitor(final ModelData modelData, final Map<String, Integer> instances, final Node n) {
+		final Monitor result = MonitorsFactory.INSTANCE.createMonitor();
+		result.setId(ParserUtil.getAttr(n, ID));
+		final String name = ParserUtil.getAttr(n, NAME);
+		result.setName(setName(name == null ? "" : name, factory.createName()));
+		try {
+			final int type = Integer.parseInt(ParserUtil.getAttr(n, TYPE));
+			result.setKind(MonitorType.get(type));
+		} catch (final Exception _) {
+			// Ignore -- though this is not good, we cannot really recover and hiding the error makes debugging more fun
+		}
+		result.setDisabled(Boolean.parseBoolean(ParserUtil.getAttr(n, "disabled")));
+
+		final NodeList nl = n.getChildNodes();
+		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
+			final Node currentNode = nl.item(i);
+			if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.declarationNode)) {
+				final String nme = ParserUtil.getAttr(currentNode, NAME).trim();
+				MLDeclaration decl = null;
+				try {
+					final ArrayList<HLDeclaration> decls = DeclarationParser.processDecls(currentNode);
+					if (decls.size() == 1) {
+						final HLDeclaration declaration = decls.get(0);
+						final DeclarationStructure structure = declaration.getStructure();
+						if (structure instanceof MLDeclaration) {
+							decl = (MLDeclaration) structure;
+						}
+
+					}
+				} catch (final NetDeclarationException e) {
+					// Ignore; caught by assertion below
+				}
+				assert decl != null;
+				if ("Init function".equals(nme)) {
+					result.setInit(decl);
+				} else if ("Stop".equals(nme)) {
+					result.setStop(decl);
+				} else if ("Predicate".equals(nme)) {
+					result.setPredicate(decl);
+				} else if ("Observer".equals(nme)) {
+					result.setObserver(decl);
+				} else {
+					assert false;
+				}
+			} else if (ParserUtil.isElementNodeOfType(currentNode, "node")) {
+				final String id = ParserUtil.getAttr(currentNode, IDREF);
+				final Integer instance = instances.get(ParserUtil.getAttr(currentNode, "pageinstanceidref"));
+				result.getNodes().add(InstanceFactory.INSTANCE.createInstance(modelData.getNode(id), instance));
+			} else if (ParserUtil.isElementNodeOfType(currentNode, "option")) {
+				final String nme = ParserUtil.getAttr(currentNode, NAME);
+				final String value = ParserUtil.getAttr(currentNode, "value");
+				if ("Timed".equals(nme)) {
+					result.setTimed(Boolean.parseBoolean(value));
+				} else if ("Logging".equals(nme)) {
+					result.setLogging(Boolean.parseBoolean(value));
+				}
+			}
+		}
+
+		return result;
+	}
+
+	public FusionGroup processFusion(final Node n) {
 		final FusionGroup fusionGroup = DOMParser.factory.createFusionGroup();
-		fusionGroup.setId(ParserUtil.getAttr(n, "id"));
-		final String name = ParserUtil.getAttr(n, "name");
+		fusionGroup.setId(ParserUtil.getAttr(n, ID));
+		final String name = ParserUtil.getAttr(n, NAME);
 		final Name nme = factory.createName();
 		fusionGroup.setName(nme);
 		nme.setText("");
@@ -444,7 +610,7 @@ public class DOMParser {
 	 * @throws NetDeclarationException
 	 *             error occurred
 	 */
-	public ArrayList<Label> processGlobbox(final Node n) throws NetDeclarationException {
+	public ArrayList<HLDeclaration> processGlobbox(final Node n) throws NetDeclarationException {
 		return DeclarationParser.processDecls(n);
 	}
 
@@ -490,7 +656,7 @@ public class DOMParser {
 	 */
 	public Page processPage(final Node n) throws NetCheckException {
 		final Page page = DOMParser.factory.createPage();
-		page.setId(ParserUtil.getAttr(n, "id"));
+		page.setId(ParserUtil.getAttr(n, ID));
 
 		final Name name = factory.createName();
 		page.setName(name);
@@ -502,7 +668,7 @@ public class DOMParser {
 		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
 			final Node currentNode = nl.item(i);
 			if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.pageattrNode)) {
-				setName(ParserUtil.getAttr(currentNode, "name"), page.getName());
+				setName(ParserUtil.getAttr(currentNode, NAME), page.getName());
 			} else if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.placeNode)) {
 				final PlaceNode place = processPlace(currentNode);
 				place.setPage(page);
@@ -557,7 +723,7 @@ public class DOMParser {
 				processInitmark(currentNode, initmark);
 			} else if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.fusioninfoNode)) {
 				isFusionPlace = true;
-				fusionGroupName = ParserUtil.getAttr(currentNode, "name");
+				fusionGroupName = ParserUtil.getAttr(currentNode, NAME);
 			} else if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.portNode)) {
 				isPort = true;
 			}
@@ -565,7 +731,7 @@ public class DOMParser {
 
 		if (isFusionPlace || isPort) {
 			final RefPlace refPlace = DOMParser.factory.createRefPlace();
-			final String id = ParserUtil.getAttr(n, "id");
+			final String id = ParserUtil.getAttr(n, ID);
 			refPlace.setId(id);
 			refPlace.setName(name);
 			refPlace.setSort(type);
@@ -581,7 +747,7 @@ public class DOMParser {
 			return refPlace;
 		} else {
 			final Place place = DOMParser.factory.createPlace();
-			final String id = ParserUtil.getAttr(n, "id");
+			final String id = ParserUtil.getAttr(n, ID);
 			place.setId(id);
 			place.setName(name);
 			place.setSort(type);
@@ -599,7 +765,7 @@ public class DOMParser {
 	 */
 	public Instance processSubst(final Node n) {
 		final Instance instance = DOMParser.factory.createInstance();
-		final String id = ParserUtil.getAttr(n, "id");
+		final String id = ParserUtil.getAttr(n, ID);
 		instance.setId(id);
 
 		final Name name = factory.createName();
@@ -654,7 +820,7 @@ public class DOMParser {
 	 */
 	public Transition processTrans(final Node n) {
 		final Transition transition = DOMParser.factory.createTransition();
-		final String id = ParserUtil.getAttr(n, "id");
+		final String id = ParserUtil.getAttr(n, ID);
 		transition.setId(id);
 
 		final Name name = factory.createName();
