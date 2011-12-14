@@ -289,6 +289,7 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference monitors.ecore#//Monitor/petriNet"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute monitors.ecore#//Monitor/disabled"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute monitors.ecore#//Monitor/empty"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute monitors.ecore#//Monitor/enabled"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute monitors.ecore#//Monitor/extension"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute monitors.ecore#//Monitor/kind"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference monitors.ecore#//Monitor/init"/>

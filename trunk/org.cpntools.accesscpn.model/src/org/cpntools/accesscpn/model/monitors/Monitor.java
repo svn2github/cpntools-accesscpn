@@ -49,8 +49,7 @@ public interface Monitor extends HasId, HasName {
 
 	/**
 	 * Sets the value of the '{@link org.cpntools.accesscpn.model.monitors.Monitor#isEmpty <em>Empty</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Empty</em>' attribute.
 	 * @see #isEmpty()
 	 * @generated
@@ -60,12 +59,26 @@ public interface Monitor extends HasId, HasName {
 	/**
 	 * @model
 	 */
+	boolean isEnabled();
+
+	/**
+	 * Sets the value of the '{@link org.cpntools.accesscpn.model.monitors.Monitor#isEnabled <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Enabled</em>' attribute.
+	 * @see #isEnabled()
+	 * @generated
+	 */
+	void setEnabled(boolean value);
+
+	/**
+	 * @model
+	 */
 	String getExtension();
 
 	/**
 	 * Sets the value of the '{@link org.cpntools.accesscpn.model.monitors.Monitor#getExtension <em>Extension</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Extension</em>' attribute.
 	 * @see #getExtension()
 	 * @generated

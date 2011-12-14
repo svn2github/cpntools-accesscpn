@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#getPetriNet <em>Petri Net</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#isDisabled <em>Disabled</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#isEmpty <em>Empty</em>}</li>
+ *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#getExtension <em>Extension</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#getInit <em>Init</em>}</li>
@@ -99,6 +100,26 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * @ordered
 	 */
 	protected boolean empty = EMPTY_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ENABLED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean enabled = ENABLED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getExtension() <em>Extension</em>}' attribute.
@@ -358,6 +379,27 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 		empty = newEmpty;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MonitorsPackageImpl.MONITOR__EMPTY, oldEmpty, empty));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEnabled(boolean newEnabled) {
+		boolean oldEnabled = enabled;
+		enabled = newEnabled;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MonitorsPackageImpl.MONITOR__ENABLED, oldEnabled, enabled));
 	}
 
 	/**
@@ -675,6 +717,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 				return isDisabled();
 			case MonitorsPackageImpl.MONITOR__EMPTY:
 				return isEmpty();
+			case MonitorsPackageImpl.MONITOR__ENABLED:
+				return isEnabled();
 			case MonitorsPackageImpl.MONITOR__EXTENSION:
 				return getExtension();
 			case MonitorsPackageImpl.MONITOR__KIND:
@@ -716,6 +760,9 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 				return;
 			case MonitorsPackageImpl.MONITOR__EMPTY:
 				setEmpty((Boolean)newValue);
+				return;
+			case MonitorsPackageImpl.MONITOR__ENABLED:
+				setEnabled((Boolean)newValue);
 				return;
 			case MonitorsPackageImpl.MONITOR__EXTENSION:
 				setExtension((String)newValue);
@@ -768,6 +815,9 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 			case MonitorsPackageImpl.MONITOR__EMPTY:
 				setEmpty(EMPTY_EDEFAULT);
 				return;
+			case MonitorsPackageImpl.MONITOR__ENABLED:
+				setEnabled(ENABLED_EDEFAULT);
+				return;
 			case MonitorsPackageImpl.MONITOR__EXTENSION:
 				setExtension(EXTENSION_EDEFAULT);
 				return;
@@ -814,6 +864,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 				return disabled != DISABLED_EDEFAULT;
 			case MonitorsPackageImpl.MONITOR__EMPTY:
 				return empty != EMPTY_EDEFAULT;
+			case MonitorsPackageImpl.MONITOR__ENABLED:
+				return enabled != ENABLED_EDEFAULT;
 			case MonitorsPackageImpl.MONITOR__EXTENSION:
 				return EXTENSION_EDEFAULT == null ? extension != null : !EXTENSION_EDEFAULT.equals(extension);
 			case MonitorsPackageImpl.MONITOR__KIND:
@@ -879,6 +931,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 		result.append(disabled);
 		result.append(", empty: ");
 		result.append(empty);
+		result.append(", enabled: ");
+		result.append(enabled);
 		result.append(", extension: ");
 		result.append(extension);
 		result.append(", kind: ");
