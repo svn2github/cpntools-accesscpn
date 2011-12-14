@@ -195,13 +195,22 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	public static final int MONITOR__OBSERVER = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 10;
 
 	/**
+	 * The feature id for the '<em><b>Action</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MONITOR__ACTION = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 11;
+
+	/**
 	 * The feature id for the '<em><b>Nodes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MONITOR__NODES = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 11;
+	public static final int MONITOR__NODES = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Timed</b></em>' attribute.
@@ -210,7 +219,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MONITOR__TIMED = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 12;
+	public static final int MONITOR__TIMED = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Logging</b></em>' attribute.
@@ -219,7 +228,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MONITOR__LOGGING = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 13;
+	public static final int MONITOR__LOGGING = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 14;
 
 	/**
 	 * The number of structural features of the '<em>Monitor</em>' class.
@@ -228,7 +237,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MONITOR_FEATURE_COUNT = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 14;
+	public static final int MONITOR_FEATURE_COUNT = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 15;
 
 	/**
 	 * The meta object id for the '{@link java.lang.Object <em>Object</em>}' class.
@@ -503,6 +512,20 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	}
 
 	/**
+	 * Returns the meta object for the reference '{@link org.cpntools.accesscpn.model.monitors.Monitor#getAction <em>Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Action</em>'.
+	 * @see org.cpntools.accesscpn.model.monitors.Monitor#getAction()
+	 * @see #getMonitor()
+	 * @generated
+	 */
+	public EReference getMonitor_Action() {
+		return (EReference)monitorEClass.getEStructuralFeatures().get(10);
+	}
+
+
+	/**
 	 * Returns the meta object for the reference list '{@link org.cpntools.accesscpn.model.monitors.Monitor#getNodes <em>Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -512,7 +535,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 */
 	public EReference getMonitor_Nodes() {
-		return (EReference)monitorEClass.getEStructuralFeatures().get(10);
+		return (EReference)monitorEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -525,7 +548,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 */
 	public EAttribute getMonitor_Timed() {
-		return (EAttribute)monitorEClass.getEStructuralFeatures().get(11);
+		return (EAttribute)monitorEClass.getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -538,7 +561,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 */
 	public EAttribute getMonitor_Logging() {
-		return (EAttribute)monitorEClass.getEStructuralFeatures().get(12);
+		return (EAttribute)monitorEClass.getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -608,6 +631,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 		createEReference(monitorEClass, MONITOR__STOP);
 		createEReference(monitorEClass, MONITOR__PREDICATE);
 		createEReference(monitorEClass, MONITOR__OBSERVER);
+		createEReference(monitorEClass, MONITOR__ACTION);
 		createEReference(monitorEClass, MONITOR__NODES);
 		createEAttribute(monitorEClass, MONITOR__TIMED);
 		createEAttribute(monitorEClass, MONITOR__LOGGING);
@@ -665,6 +689,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 		initEReference(getMonitor_Stop(), theDeclarationPackage.getMLDeclaration(), null, "stop", null, 0, 1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMonitor_Predicate(), theDeclarationPackage.getMLDeclaration(), null, "predicate", null, 0, 1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMonitor_Observer(), theDeclarationPackage.getMLDeclaration(), null, "observer", null, 0, 1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMonitor_Action(), theDeclarationPackage.getMLDeclaration(), null, "action", null, 0, 1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMonitor_Nodes(), this.getObject(), null, "nodes", null, 0, -1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMonitor_Timed(), ecorePackage.getEBoolean(), "timed", null, 0, 1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMonitor_Logging(), ecorePackage.getEBoolean(), "logging", null, 0, 1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -789,6 +814,14 @@ public class MonitorsPackageImpl extends EPackageImpl {
 		 * @generated
 		 */
 		public static final EReference MONITOR__OBSERVER = eINSTANCE.getMonitor_Observer();
+
+		/**
+		 * The meta object literal for the '<em><b>Action</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference MONITOR__ACTION = eINSTANCE.getMonitor_Action();
 
 		/**
 		 * The meta object literal for the '<em><b>Nodes</b></em>' reference list feature.

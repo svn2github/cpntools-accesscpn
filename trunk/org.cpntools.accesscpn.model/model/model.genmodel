@@ -296,6 +296,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference monitors.ecore#//Monitor/stop"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference monitors.ecore#//Monitor/predicate"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference monitors.ecore#//Monitor/observer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference monitors.ecore#//Monitor/action"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference monitors.ecore#//Monitor/nodes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute monitors.ecore#//Monitor/timed"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute monitors.ecore#//Monitor/logging"/>

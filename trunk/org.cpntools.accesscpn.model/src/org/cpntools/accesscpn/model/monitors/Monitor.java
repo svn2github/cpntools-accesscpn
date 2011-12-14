@@ -63,8 +63,7 @@ public interface Monitor extends HasId, HasName {
 
 	/**
 	 * Sets the value of the '{@link org.cpntools.accesscpn.model.monitors.Monitor#isEnabled <em>Enabled</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Enabled</em>' attribute.
 	 * @see #isEnabled()
 	 * @generated
@@ -159,6 +158,22 @@ public interface Monitor extends HasId, HasName {
 	 * @generated
 	 */
 	void setObserver(MLDeclaration value);
+
+	/**
+	 * @model
+	 * @return
+	 */
+	MLDeclaration getAction();
+
+	/**
+	 * Sets the value of the '{@link org.cpntools.accesscpn.model.monitors.Monitor#getAction <em>Action</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Action</em>' reference.
+	 * @see #getAction()
+	 * @generated
+	 */
+	void setAction(MLDeclaration value);
 
 	/**
 	 * @model containment="false"

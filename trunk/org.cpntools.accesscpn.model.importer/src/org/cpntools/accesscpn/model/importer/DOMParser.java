@@ -576,6 +576,8 @@ public class DOMParser {
 					result.setPredicate(decl);
 				} else if ("Observer".equals(nme)) {
 					result.setObserver(decl);
+				} else if ("Action".equals(nme)) {
+					result.setAction(decl);
 				} else {
 					assert false;
 				}

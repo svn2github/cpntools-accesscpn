@@ -42,6 +42,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#getStop <em>Stop</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#getPredicate <em>Predicate</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#getObserver <em>Observer</em>}</li>
+ *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#getAction <em>Action</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#getNodes <em>Nodes</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#isTimed <em>Timed</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#isLogging <em>Logging</em>}</li>
@@ -200,6 +201,16 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * @ordered
 	 */
 	protected MLDeclaration observer;
+
+	/**
+	 * The cached value of the '{@link #getAction() <em>Action</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAction()
+	 * @generated
+	 * @ordered
+	 */
+	protected MLDeclaration action;
 
 	/**
 	 * The cached value of the '{@link #getNodes() <em>Nodes</em>}' reference list.
@@ -604,6 +615,44 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MLDeclaration getAction() {
+		if (action != null && ((EObject)action).eIsProxy()) {
+			InternalEObject oldAction = (InternalEObject)action;
+			action = (MLDeclaration)eResolveProxy(oldAction);
+			if (action != oldAction) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MonitorsPackageImpl.MONITOR__ACTION, oldAction, action));
+			}
+		}
+		return action;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MLDeclaration basicGetAction() {
+		return action;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAction(MLDeclaration newAction) {
+		MLDeclaration oldAction = action;
+		action = newAction;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MonitorsPackageImpl.MONITOR__ACTION, oldAction, action));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -731,6 +780,9 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 				return getPredicate();
 			case MonitorsPackageImpl.MONITOR__OBSERVER:
 				return getObserver();
+			case MonitorsPackageImpl.MONITOR__ACTION:
+				if (resolve) return getAction();
+				return basicGetAction();
 			case MonitorsPackageImpl.MONITOR__NODES:
 				return getNodes();
 			case MonitorsPackageImpl.MONITOR__TIMED:
@@ -781,6 +833,9 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 				return;
 			case MonitorsPackageImpl.MONITOR__OBSERVER:
 				setObserver((MLDeclaration)newValue);
+				return;
+			case MonitorsPackageImpl.MONITOR__ACTION:
+				setAction((MLDeclaration)newValue);
 				return;
 			case MonitorsPackageImpl.MONITOR__NODES:
 				getNodes().clear();
@@ -836,6 +891,9 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 			case MonitorsPackageImpl.MONITOR__OBSERVER:
 				setObserver((MLDeclaration)null);
 				return;
+			case MonitorsPackageImpl.MONITOR__ACTION:
+				setAction((MLDeclaration)null);
+				return;
 			case MonitorsPackageImpl.MONITOR__NODES:
 				getNodes().clear();
 				return;
@@ -878,6 +936,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 				return predicate != null;
 			case MonitorsPackageImpl.MONITOR__OBSERVER:
 				return observer != null;
+			case MonitorsPackageImpl.MONITOR__ACTION:
+				return action != null;
 			case MonitorsPackageImpl.MONITOR__NODES:
 				return nodes != null && !nodes.isEmpty();
 			case MonitorsPackageImpl.MONITOR__TIMED:
