@@ -123,13 +123,31 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	public static final int MONITOR__DISABLED = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Empty</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MONITOR__EMPTY = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Extension</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MONITOR__EXTENSION = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MONITOR__KIND = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 3;
+	public static final int MONITOR__KIND = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Init</b></em>' containment reference.
@@ -138,7 +156,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MONITOR__INIT = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 4;
+	public static final int MONITOR__INIT = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Stop</b></em>' containment reference.
@@ -147,7 +165,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MONITOR__STOP = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 5;
+	public static final int MONITOR__STOP = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Predicate</b></em>' containment reference.
@@ -156,7 +174,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MONITOR__PREDICATE = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 6;
+	public static final int MONITOR__PREDICATE = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Observer</b></em>' containment reference.
@@ -165,7 +183,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MONITOR__OBSERVER = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 7;
+	public static final int MONITOR__OBSERVER = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Nodes</b></em>' reference list.
@@ -174,7 +192,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MONITOR__NODES = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 8;
+	public static final int MONITOR__NODES = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Timed</b></em>' attribute.
@@ -183,7 +201,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MONITOR__TIMED = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 9;
+	public static final int MONITOR__TIMED = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Logging</b></em>' attribute.
@@ -192,7 +210,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MONITOR__LOGGING = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 10;
+	public static final int MONITOR__LOGGING = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 12;
 
 	/**
 	 * The number of structural features of the '<em>Monitor</em>' class.
@@ -201,7 +219,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int MONITOR_FEATURE_COUNT = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 11;
+	public static final int MONITOR_FEATURE_COUNT = ModelPackageImpl.HAS_ID_FEATURE_COUNT + 13;
 
 	/**
 	 * The meta object id for the '{@link java.lang.Object <em>Object</em>}' class.
@@ -368,6 +386,34 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	}
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.cpntools.accesscpn.model.monitors.Monitor#isEmpty <em>Empty</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Empty</em>'.
+	 * @see org.cpntools.accesscpn.model.monitors.Monitor#isEmpty()
+	 * @see #getMonitor()
+	 * @generated
+	 */
+	public EAttribute getMonitor_Empty() {
+		return (EAttribute)monitorEClass.getEStructuralFeatures().get(2);
+	}
+
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.cpntools.accesscpn.model.monitors.Monitor#getExtension <em>Extension</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Extension</em>'.
+	 * @see org.cpntools.accesscpn.model.monitors.Monitor#getExtension()
+	 * @see #getMonitor()
+	 * @generated
+	 */
+	public EAttribute getMonitor_Extension() {
+		return (EAttribute)monitorEClass.getEStructuralFeatures().get(3);
+	}
+
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.cpntools.accesscpn.model.monitors.Monitor#getKind <em>Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -377,7 +423,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 */
 	public EAttribute getMonitor_Kind() {
-		return (EAttribute)monitorEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)monitorEClass.getEStructuralFeatures().get(4);
 	}
 
 
@@ -391,7 +437,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 */
 	public EReference getMonitor_Init() {
-		return (EReference)monitorEClass.getEStructuralFeatures().get(3);
+		return (EReference)monitorEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -404,7 +450,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 */
 	public EReference getMonitor_Stop() {
-		return (EReference)monitorEClass.getEStructuralFeatures().get(4);
+		return (EReference)monitorEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -417,7 +463,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 */
 	public EReference getMonitor_Predicate() {
-		return (EReference)monitorEClass.getEStructuralFeatures().get(5);
+		return (EReference)monitorEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -430,7 +476,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 */
 	public EReference getMonitor_Observer() {
-		return (EReference)monitorEClass.getEStructuralFeatures().get(6);
+		return (EReference)monitorEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -443,7 +489,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 */
 	public EReference getMonitor_Nodes() {
-		return (EReference)monitorEClass.getEStructuralFeatures().get(7);
+		return (EReference)monitorEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -456,7 +502,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 */
 	public EAttribute getMonitor_Timed() {
-		return (EAttribute)monitorEClass.getEStructuralFeatures().get(8);
+		return (EAttribute)monitorEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -469,7 +515,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 	 * @generated
 	 */
 	public EAttribute getMonitor_Logging() {
-		return (EAttribute)monitorEClass.getEStructuralFeatures().get(9);
+		return (EAttribute)monitorEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -531,6 +577,8 @@ public class MonitorsPackageImpl extends EPackageImpl {
 		monitorEClass = createEClass(MONITOR);
 		createEReference(monitorEClass, MONITOR__PETRI_NET);
 		createEAttribute(monitorEClass, MONITOR__DISABLED);
+		createEAttribute(monitorEClass, MONITOR__EMPTY);
+		createEAttribute(monitorEClass, MONITOR__EXTENSION);
 		createEAttribute(monitorEClass, MONITOR__KIND);
 		createEReference(monitorEClass, MONITOR__INIT);
 		createEReference(monitorEClass, MONITOR__STOP);
@@ -585,6 +633,8 @@ public class MonitorsPackageImpl extends EPackageImpl {
 		initEClass(monitorEClass, Monitor.class, "Monitor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMonitor_PetriNet(), theModelPackage.getPetriNet(), theModelPackage.getPetriNet_Monitors(), "petriNet", null, 0, 1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMonitor_Disabled(), ecorePackage.getEBoolean(), "disabled", null, 1, 1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMonitor_Empty(), ecorePackage.getEBoolean(), "empty", null, 0, 1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMonitor_Extension(), ecorePackage.getEString(), "extension", null, 0, 1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMonitor_Kind(), this.getMonitorType(), "kind", null, 1, 1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMonitor_Init(), theDeclarationPackage.getMLDeclaration(), null, "init", null, 0, 1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMonitor_Stop(), theDeclarationPackage.getMLDeclaration(), null, "stop", null, 0, 1, Monitor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -650,6 +700,22 @@ public class MonitorsPackageImpl extends EPackageImpl {
 		 * @generated
 		 */
 		public static final EAttribute MONITOR__DISABLED = eINSTANCE.getMonitor_Disabled();
+
+		/**
+		 * The meta object literal for the '<em><b>Empty</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute MONITOR__EMPTY = eINSTANCE.getMonitor_Empty();
+
+		/**
+		 * The meta object literal for the '<em><b>Extension</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute MONITOR__EXTENSION = eINSTANCE.getMonitor_Extension();
 
 		/**
 		 * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.

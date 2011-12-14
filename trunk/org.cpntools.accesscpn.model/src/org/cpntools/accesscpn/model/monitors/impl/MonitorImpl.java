@@ -34,6 +34,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#getPetriNet <em>Petri Net</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#isDisabled <em>Disabled</em>}</li>
+ *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#isEmpty <em>Empty</em>}</li>
+ *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#getExtension <em>Extension</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#getInit <em>Init</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.monitors.impl.MonitorImpl#getStop <em>Stop</em>}</li>
@@ -77,6 +79,46 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * @ordered
 	 */
 	protected boolean disabled = DISABLED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isEmpty() <em>Empty</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEmpty()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean EMPTY_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isEmpty() <em>Empty</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEmpty()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean empty = EMPTY_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getExtension() <em>Extension</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtension()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String EXTENSION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getExtension() <em>Extension</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtension()
+	 * @generated
+	 * @ordered
+	 */
+	protected String extension = EXTENSION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
@@ -295,6 +337,48 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 		disabled = newDisabled;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MonitorsPackageImpl.MONITOR__DISABLED, oldDisabled, disabled));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isEmpty() {
+		return empty;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEmpty(boolean newEmpty) {
+		boolean oldEmpty = empty;
+		empty = newEmpty;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MonitorsPackageImpl.MONITOR__EMPTY, oldEmpty, empty));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getExtension() {
+		return extension;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExtension(String newExtension) {
+		String oldExtension = extension;
+		extension = newExtension;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MonitorsPackageImpl.MONITOR__EXTENSION, oldExtension, extension));
 	}
 
 	/**
@@ -589,6 +673,10 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 				return getPetriNet();
 			case MonitorsPackageImpl.MONITOR__DISABLED:
 				return isDisabled();
+			case MonitorsPackageImpl.MONITOR__EMPTY:
+				return isEmpty();
+			case MonitorsPackageImpl.MONITOR__EXTENSION:
+				return getExtension();
 			case MonitorsPackageImpl.MONITOR__KIND:
 				return getKind();
 			case MonitorsPackageImpl.MONITOR__INIT:
@@ -625,6 +713,12 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 				return;
 			case MonitorsPackageImpl.MONITOR__DISABLED:
 				setDisabled((Boolean)newValue);
+				return;
+			case MonitorsPackageImpl.MONITOR__EMPTY:
+				setEmpty((Boolean)newValue);
+				return;
+			case MonitorsPackageImpl.MONITOR__EXTENSION:
+				setExtension((String)newValue);
 				return;
 			case MonitorsPackageImpl.MONITOR__KIND:
 				setKind((MonitorType)newValue);
@@ -671,6 +765,12 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 			case MonitorsPackageImpl.MONITOR__DISABLED:
 				setDisabled(DISABLED_EDEFAULT);
 				return;
+			case MonitorsPackageImpl.MONITOR__EMPTY:
+				setEmpty(EMPTY_EDEFAULT);
+				return;
+			case MonitorsPackageImpl.MONITOR__EXTENSION:
+				setExtension(EXTENSION_EDEFAULT);
+				return;
 			case MonitorsPackageImpl.MONITOR__KIND:
 				setKind(KIND_EDEFAULT);
 				return;
@@ -712,6 +812,10 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 				return getPetriNet() != null;
 			case MonitorsPackageImpl.MONITOR__DISABLED:
 				return disabled != DISABLED_EDEFAULT;
+			case MonitorsPackageImpl.MONITOR__EMPTY:
+				return empty != EMPTY_EDEFAULT;
+			case MonitorsPackageImpl.MONITOR__EXTENSION:
+				return EXTENSION_EDEFAULT == null ? extension != null : !EXTENSION_EDEFAULT.equals(extension);
 			case MonitorsPackageImpl.MONITOR__KIND:
 				return kind != KIND_EDEFAULT;
 			case MonitorsPackageImpl.MONITOR__INIT:
@@ -773,6 +877,10 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (disabled: ");
 		result.append(disabled);
+		result.append(", empty: ");
+		result.append(empty);
+		result.append(", extension: ");
+		result.append(extension);
 		result.append(", kind: ");
 		result.append(kind);
 		result.append(", timed: ");
