@@ -114,7 +114,7 @@ public class Checker {
 	public void checkInitializing() throws IOException, Exception {
 		// s.evaluate("val _ = CpnMLSys.GramError.debugState:= true;");
 		s.initialize();
-		s.evaluate("CPN\'Settings.use_manbind := true"); //$NON-NLS-1$
+		evaluate("CPN\'Settings.use_manbind := true"); //$NON-NLS-1$
 
 		s.initializeSyntaxCheck();
 		s.setSimulationOptions(false, false, false, false, false, true, true, "", "", "", "", "", "", false, false);
@@ -265,6 +265,25 @@ public class Checker {
 		s.initialiseSimulationScheduler();
 	}
 
+	public String evaluate(final String code) throws EvaluationException {
+		try {
+			return s.evaluate(code);
+		} catch (final Exception e) {
+			throw new EvaluationException(code, e.getMessage());
+		}
+	}
+
+	public String use(final String generator) throws EvaluationException {
+		try {
+			final String code = evaluate("print(String.concat(" + generator + "))");
+			System.out.println(code);
+			return evaluate("CPN'Env.use_string(" + generator + ")");
+		} catch (final EvaluationException e) {
+			final String code = evaluate("print(String.concat(" + generator + "))");
+			throw new UseException(code, e.getMessage());
+		}
+	}
+
 	/**
 	 * @throws ErrorInitializingSMLInterface
 	 *             if the SML interface could not be initialized
@@ -272,30 +291,30 @@ public class Checker {
 	public void instantiateSMLInterface() throws ErrorInitializingSMLInterface {
 		try {
 			s.lock();
-			s.evaluate("structure CPN'NetCapture = CPN'NetCapture(structure CPN'InstTable = CPN'InstTable)");
-			s.evaluate("CPN'NetCapture.initNet ()");
-			s.evaluate("CPN'NetCapture.checkNames()");
-			s.evaluate("structure CPN'State = CPN'State(structure CPN'NetCapture = CPN'NetCapture)");
-			s.evaluate("CPN'Env.use_string(CPN'State.genMark(CPN'NetCapture.getNet()))");
-			s.evaluate("CPN'Env.use_string(CPN'State.genState(CPN'NetCapture.getNet()))");
-			s.evaluate("structure CPN'Event = CPN'Event(structure CPN'NetCapture = CPN'NetCapture)");
-			s.evaluate("CPN'Env.use_string(CPN'Event.genBind(CPN'NetCapture.getNet()))");
-			s.evaluate("CPN'Env.use_string(CPN'Event.genEvent(CPN'NetCapture.getNet()))");
-			s.evaluate("structure CPNToolsModel = CPNToolsModel(structure CPNToolsState = CPNToolsState structure CPNToolsEvent = CPNToolsEvent)");
-			s.evaluate("structure CPN'HashFunction = CPN'HashFunction(structure CPN'NetCapture = CPN'NetCapture)");
-			s.evaluate("CPN'Env.use_string(CPN'HashFunction.genHashFunction(CPN'NetCapture.getNet()))");
-			s.evaluate("structure CPN'Order = CPN'Order(structure CPN'NetCapture = CPN'NetCapture)");
-			s.evaluate("CPN'Env.use_string(CPN'Order.genStateOrder(CPN'NetCapture.getNet()))");
-			s.evaluate("structure CPN'PackCommon = CPN'PackCommon(structure JavaExecute = JavaExecute)");
-			s.evaluate("structure CPN'PackFunction = CPN'PackFunction(structure CPN'NetCapture = CPN'NetCapture)");
-			s.evaluate("CPN'Env.use_string(CPN'PackFunction.genPackerFunction(CPN'NetCapture.getNet()))");
+			evaluate("structure CPN'NetCapture = CPN'NetCapture(structure CPN'InstTable = CPN'InstTable)");
+			evaluate("CPN'NetCapture.initNet ()");
+			evaluate("CPN'NetCapture.checkNames()");
+			evaluate("structure CPN'State = CPN'State(structure CPN'NetCapture = CPN'NetCapture)");
+			use("CPN'State.genMark(CPN'NetCapture.getNet())");
+			use("CPN'State.genState(CPN'NetCapture.getNet())");
+			evaluate("structure CPN'Event = CPN'Event(structure CPN'NetCapture = CPN'NetCapture)");
+			use("CPN'Event.genBind(CPN'NetCapture.getNet())");
+			use("CPN'Event.genEvent(CPN'NetCapture.getNet())");
+			evaluate("structure CPNToolsModel = CPNToolsModel(structure CPNToolsState = CPNToolsState structure CPNToolsEvent = CPNToolsEvent)");
+			evaluate("structure CPN'HashFunction = CPN'HashFunction(structure CPN'NetCapture = CPN'NetCapture)");
+			use("CPN'HashFunction.genHashFunction(CPN'NetCapture.getNet())");
+			evaluate("structure CPN'Order = CPN'Order(structure CPN'NetCapture = CPN'NetCapture)");
+			use("CPN'Order.genStateOrder(CPN'NetCapture.getNet())");
+			evaluate("structure CPN'PackCommon = CPN'PackCommon(structure JavaExecute = JavaExecute)");
+			evaluate("structure CPN'PackFunction = CPN'PackFunction(structure CPN'NetCapture = CPN'NetCapture)");
+			use("CPN'PackFunction.genPackerFunction(CPN'NetCapture.getNet())");
 			try {
-				s.evaluate("structure CPN'Serializer = CPN'Serializer(structure CPN'NetCapture = CPN'NetCapture)");
-				s.evaluate("CPN'Env.use_string(CPN'Serializer.genSerializer(CPN'NetCapture.getNet()))");
-			} catch (final Exception e) {
+				evaluate("structure CPN'Serializer = CPN'Serializer(structure CPN'NetCapture = CPN'NetCapture)");
+				use("CPN'Serializer.genSerializer(CPN'NetCapture.getNet())");
+			} catch (final EvaluationException e) {
 				// We don't really use the serializer anyways, and it fails in simple cases
 			}
-		} catch (final Exception e) {
+		} catch (final EvaluationException e) {
 			throw new ErrorInitializingSMLInterface(e);
 		} finally {
 			s.release();
