@@ -181,7 +181,8 @@ public class GraphicsFactoryImpl extends EFactoryImpl implements GraphicsFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AnnotationGraphics createAnnotationGraphics() {
+	@Override
+    public AnnotationGraphics createAnnotationGraphics() {
 		AnnotationGraphicsImpl annotationGraphics = new AnnotationGraphicsImpl();
 		return annotationGraphics;
 	}
@@ -190,7 +191,8 @@ public class GraphicsFactoryImpl extends EFactoryImpl implements GraphicsFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ArcGraphics createArcGraphics() {
+	@Override
+    public ArcGraphics createArcGraphics() {
 		ArcGraphicsImpl arcGraphics = new ArcGraphicsImpl();
 		return arcGraphics;
 	}
@@ -199,7 +201,8 @@ public class GraphicsFactoryImpl extends EFactoryImpl implements GraphicsFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Coordinate createCoordinate() {
+	@Override
+    public Coordinate createCoordinate() {
 		CoordinateImpl coordinate = new CoordinateImpl();
 		return coordinate;
 	}
@@ -208,7 +211,8 @@ public class GraphicsFactoryImpl extends EFactoryImpl implements GraphicsFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Fill createFill() {
+	@Override
+    public Fill createFill() {
 		FillImpl fill = new FillImpl();
 		return fill;
 	}
@@ -217,7 +221,8 @@ public class GraphicsFactoryImpl extends EFactoryImpl implements GraphicsFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Font createFont() {
+	@Override
+    public Font createFont() {
 		FontImpl font = new FontImpl();
 		return font;
 	}
@@ -226,7 +231,8 @@ public class GraphicsFactoryImpl extends EFactoryImpl implements GraphicsFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Line createLine() {
+	@Override
+    public Line createLine() {
 		LineImpl line = new LineImpl();
 		return line;
 	}
@@ -235,7 +241,8 @@ public class GraphicsFactoryImpl extends EFactoryImpl implements GraphicsFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NodeGraphics createNodeGraphics() {
+	@Override
+    public NodeGraphics createNodeGraphics() {
 		NodeGraphicsImpl nodeGraphics = new NodeGraphicsImpl();
 		return nodeGraphics;
 	}

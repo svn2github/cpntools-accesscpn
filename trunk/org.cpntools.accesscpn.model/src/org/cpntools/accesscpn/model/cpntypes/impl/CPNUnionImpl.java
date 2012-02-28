@@ -79,7 +79,8 @@ public class CPNUnionImpl extends CPNTypeImpl implements CPNUnion {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<NameTypePair> getValues() {
+	@Override
+    public List<NameTypePair> getValues() {
 		if (values == null) {
 			values = new EObjectContainmentEList<NameTypePair>(NameTypePair.class, this, CpntypesPackageImpl.CPN_UNION__VALUES);
 		}
@@ -158,7 +159,8 @@ public class CPNUnionImpl extends CPNTypeImpl implements CPNUnion {
 	/**
 	 * @see org.cpntools.accesscpn.model.cpntypes.CPNType#asString()
 	 */
-	public String asString() {
+	@Override
+    public String asString() {
 		final StringBuilder sb = new StringBuilder();
 		boolean kludge = false;
 		sb.append("union ");
@@ -178,7 +180,8 @@ public class CPNUnionImpl extends CPNTypeImpl implements CPNUnion {
 	/**
 	 * @see org.cpntools.accesscpn.model.cpntypes.CPNUnion#addValue(java.lang.String, java.lang.String)
 	 */
-	public void addValue(final String id, final String name) {
+	@Override
+    public void addValue(final String id, final String name) {
 		final NameTypePair ntPair = CpntypesFactory.INSTANCE.createNameTypePair();
 		ntPair.setName(id);
 		ntPair.setSort(name);

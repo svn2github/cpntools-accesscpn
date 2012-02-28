@@ -113,7 +113,8 @@ public class MonitorsFactoryImpl extends EFactoryImpl implements MonitorsFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Monitor createMonitor() {
+	@Override
+    public Monitor createMonitor() {
 		MonitorImpl monitor = new MonitorImpl();
 		return monitor;
 	}

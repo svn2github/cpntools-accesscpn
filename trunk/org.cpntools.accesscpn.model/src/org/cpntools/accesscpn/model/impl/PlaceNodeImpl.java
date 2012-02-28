@@ -87,7 +87,8 @@ public abstract class PlaceNodeImpl extends NodeImpl implements PlaceNode {
 	/**
 	 * @see org.cpntools.accesscpn.model.HLPlaceAddin#setSort(org.cpntools.accesscpn.model.Sort)
 	 */
-	public void setSort(final Sort newType) {
+	@Override
+    public void setSort(final Sort newType) {
 		if (sort != null) {
 			sort.setParent(null);
 		}
@@ -112,7 +113,8 @@ public abstract class PlaceNodeImpl extends NodeImpl implements PlaceNode {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public HLMarking getInitialMarking() {
+	@Override
+    public HLMarking getInitialMarking() {
 		if (initialMarking != null && ((EObject)initialMarking).eIsProxy()) {
 			InternalEObject oldInitialMarking = (InternalEObject)initialMarking;
 			initialMarking = (HLMarking)eResolveProxy(oldInitialMarking);
@@ -135,7 +137,8 @@ public abstract class PlaceNodeImpl extends NodeImpl implements PlaceNode {
 	/**
 	 * @see org.cpntools.accesscpn.model.HLPlaceAddin#setInitialMarking(org.cpntools.accesscpn.model.HLMarking)
 	 */
-	public void setInitialMarking(final HLMarking newInitialMarking) {
+	@Override
+    public void setInitialMarking(final HLMarking newInitialMarking) {
 		if (initialMarking != null) {
 			initialMarking.setParent(null);
 		}
@@ -161,7 +164,8 @@ public abstract class PlaceNodeImpl extends NodeImpl implements PlaceNode {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Sort getSort() {
+	@Override
+    public Sort getSort() {
 		if (sort != null && ((EObject)sort).eIsProxy()) {
 			InternalEObject oldSort = (InternalEObject)sort;
 			sort = (Sort)eResolveProxy(oldSort);

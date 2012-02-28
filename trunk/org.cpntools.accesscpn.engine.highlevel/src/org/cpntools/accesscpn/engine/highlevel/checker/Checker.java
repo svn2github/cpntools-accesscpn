@@ -265,6 +265,11 @@ public class Checker {
 		s.initialiseSimulationScheduler();
 	}
 
+	/**
+	 * @param code
+	 * @return
+	 * @throws EvaluationException
+	 */
 	public String evaluate(final String code) throws EvaluationException {
 		try {
 			return s.evaluate(code);
@@ -273,6 +278,11 @@ public class Checker {
 		}
 	}
 
+	/**
+	 * @param generator
+	 * @return
+	 * @throws EvaluationException
+	 */
 	public String use(final String generator) throws EvaluationException {
 		try {
 			final String code = evaluate("print(String.concat(" + generator + "))");

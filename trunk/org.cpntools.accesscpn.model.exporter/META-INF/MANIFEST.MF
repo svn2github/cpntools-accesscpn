@@ -10,7 +10,20 @@ Require-Bundle: org.cpntools.accesscpn.model;bundle-version="2.0.0",
  org.cpntools.accesscpn.engine.highlevel;bundle-version="2.0.2"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.cpntools.accesscpn.model.exporter
+Export-Package: org.apache.commons.collections15,
+ org.apache.commons.collections15.bag,
+ org.apache.commons.collections15.bidimap,
+ org.apache.commons.collections15.buffer,
+ org.apache.commons.collections15.collection,
+ org.apache.commons.collections15.comparators,
+ org.apache.commons.collections15.functors,
+ org.apache.commons.collections15.iterators,
+ org.apache.commons.collections15.keyvalue,
+ org.apache.commons.collections15.list,
+ org.apache.commons.collections15.map,
+ org.apache.commons.collections15.multimap,
+ org.apache.commons.collections15.set,
+ org.cpntools.accesscpn.model.exporter
 Bundle-ClassPath: lib/collections-generic-4.01.jar,
  lib/colt-1.2.0.jar,
  lib/jung-algorithms-2.0.1.jar,

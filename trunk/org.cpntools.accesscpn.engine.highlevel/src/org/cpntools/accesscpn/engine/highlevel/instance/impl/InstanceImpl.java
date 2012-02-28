@@ -118,7 +118,8 @@ public class InstanceImpl<T> extends EObjectImpl implements Instance<T> {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public T getNode() {
 		if (node != null && ((EObject)node).eIsProxy()) {
 			InternalEObject oldNode = (InternalEObject)node;
@@ -143,7 +144,8 @@ public class InstanceImpl<T> extends EObjectImpl implements Instance<T> {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNode(T newNode) {
+	@Override
+    public void setNode(T newNode) {
 		T oldNode = node;
 		node = newNode;
 		if (eNotificationRequired())
@@ -154,7 +156,8 @@ public class InstanceImpl<T> extends EObjectImpl implements Instance<T> {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public Instance<org.cpntools.accesscpn.model.Instance> getTransitionPath() {
 		if (transitionPath != null && ((EObject)transitionPath).eIsProxy()) {
 			InternalEObject oldTransitionPath = (InternalEObject)transitionPath;
@@ -179,7 +182,8 @@ public class InstanceImpl<T> extends EObjectImpl implements Instance<T> {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTransitionPath(
+	@Override
+    public void setTransitionPath(
 			Instance<org.cpntools.accesscpn.model.Instance> newTransitionPath) {
 		Instance<org.cpntools.accesscpn.model.Instance> oldTransitionPath = transitionPath;
 		transitionPath = newTransitionPath;
@@ -286,7 +290,8 @@ public class InstanceImpl<T> extends EObjectImpl implements Instance<T> {
 	/**
 	 * @see org.cpntools.accesscpn.engine.highlevel.instance.Instance#getInstanceNumber()
 	 */
-	public int getInstanceNumber() {
+	@Override
+    public int getInstanceNumber() {
 		if (instanceNumber <= 0 && getNode() != null) {
 			if (getNode() instanceof Page) {
 				final Page p = (Page) getNode();

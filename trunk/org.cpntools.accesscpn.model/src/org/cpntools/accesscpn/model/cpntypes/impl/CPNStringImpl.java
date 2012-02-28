@@ -137,7 +137,8 @@ public class CPNStringImpl extends CPNTypeImpl implements CPNString {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getRangeLow() {
+	@Override
+    public String getRangeLow() {
 		return rangeLow;
 	}
 
@@ -145,7 +146,8 @@ public class CPNStringImpl extends CPNTypeImpl implements CPNString {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRangeLow(String newRangeLow) {
+	@Override
+    public void setRangeLow(String newRangeLow) {
 		String oldRangeLow = rangeLow;
 		rangeLow = newRangeLow;
 		if (eNotificationRequired())
@@ -156,7 +158,8 @@ public class CPNStringImpl extends CPNTypeImpl implements CPNString {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getRangeHigh() {
+	@Override
+    public String getRangeHigh() {
 		return rangeHigh;
 	}
 
@@ -164,7 +167,8 @@ public class CPNStringImpl extends CPNTypeImpl implements CPNString {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRangeHigh(String newRangeHigh) {
+	@Override
+    public void setRangeHigh(String newRangeHigh) {
 		String oldRangeHigh = rangeHigh;
 		rangeHigh = newRangeHigh;
 		if (eNotificationRequired())
@@ -175,7 +179,8 @@ public class CPNStringImpl extends CPNTypeImpl implements CPNString {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getLengthLow() {
+	@Override
+    public String getLengthLow() {
 		return lengthLow;
 	}
 
@@ -183,7 +188,8 @@ public class CPNStringImpl extends CPNTypeImpl implements CPNString {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLengthLow(String newLengthLow) {
+	@Override
+    public void setLengthLow(String newLengthLow) {
 		String oldLengthLow = lengthLow;
 		lengthLow = newLengthLow;
 		if (eNotificationRequired())
@@ -194,7 +200,8 @@ public class CPNStringImpl extends CPNTypeImpl implements CPNString {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getLengthHigh() {
+	@Override
+    public String getLengthHigh() {
 		return lengthHigh;
 	}
 
@@ -202,7 +209,8 @@ public class CPNStringImpl extends CPNTypeImpl implements CPNString {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLengthHigh(String newLengthHigh) {
+	@Override
+    public void setLengthHigh(String newLengthHigh) {
 		String oldLengthHigh = lengthHigh;
 		lengthHigh = newLengthHigh;
 		if (eNotificationRequired())
@@ -317,7 +325,8 @@ public class CPNStringImpl extends CPNTypeImpl implements CPNString {
 	/**
 	 * @see org.cpntools.accesscpn.model.cpntypes.CPNType#asString()
 	 */
-	public String asString() {
+	@Override
+    public String asString() {
 		return "string" + postFixAsString();
 	}
 

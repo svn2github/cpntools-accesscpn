@@ -107,7 +107,8 @@ public class PageImpl extends HasIdImpl implements Page {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Name getName() {
+	@Override
+    public Name getName() {
 		if (name != null && ((EObject)name).eIsProxy()) {
 			InternalEObject oldName = (InternalEObject)name;
 			name = (Name)eResolveProxy(oldName);
@@ -130,7 +131,8 @@ public class PageImpl extends HasIdImpl implements Page {
 	/**
 	 * @see org.cpntools.accesscpn.model.HasName#setName(org.cpntools.accesscpn.model.Name)
 	 */
-	public void setName(final Name newName) {
+	@Override
+    public void setName(final Name newName) {
 		if (name != null) {
 			name.setParent(null);
 		}
@@ -155,7 +157,8 @@ public class PageImpl extends HasIdImpl implements Page {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<Label> getLabel() {
+	@Override
+    public List<Label> getLabel() {
 		if (label == null) {
 			label = new EObjectContainmentWithInverseEList<Label>(Label.class, this, ModelPackageImpl.PAGE__LABEL, ModelPackageImpl.LABEL__PARENT);
 		}
@@ -166,7 +169,8 @@ public class PageImpl extends HasIdImpl implements Page {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PetriNet getPetriNet() {
+	@Override
+    public PetriNet getPetriNet() {
 		if (eContainerFeatureID() != ModelPackageImpl.PAGE__PETRI_NET) return null;
 		return (PetriNet)eContainer();
 	}
@@ -184,7 +188,8 @@ public class PageImpl extends HasIdImpl implements Page {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPetriNet(PetriNet newPetriNet) {
+	@Override
+    public void setPetriNet(PetriNet newPetriNet) {
 		if (newPetriNet != eInternalContainer() || (eContainerFeatureID() != ModelPackageImpl.PAGE__PETRI_NET && newPetriNet != null)) {
 			if (EcoreUtil.isAncestor(this, (EObject)newPetriNet))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -204,7 +209,8 @@ public class PageImpl extends HasIdImpl implements Page {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<org.cpntools.accesscpn.model.Object> getObject() {
+	@Override
+    public List<org.cpntools.accesscpn.model.Object> getObject() {
 		if (object == null) {
 			object = new EObjectContainmentWithInverseEList<org.cpntools.accesscpn.model.Object>(org.cpntools.accesscpn.model.Object.class, this, ModelPackageImpl.PAGE__OBJECT, ModelPackageImpl.OBJECT__PAGE);
 		}
@@ -215,7 +221,8 @@ public class PageImpl extends HasIdImpl implements Page {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<Arc> getArc() {
+	@Override
+    public List<Arc> getArc() {
 		if (arc == null) {
 			arc = new EObjectContainmentWithInverseEList<Arc>(Arc.class, this, ModelPackageImpl.PAGE__ARC, ModelPackageImpl.ARC__PAGE);
 		}
@@ -420,10 +427,12 @@ public class PageImpl extends HasIdImpl implements Page {
 	/**
 	 * @see org.cpntools.accesscpn.model.Page#place()
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public Iterable<Place> place() {
 		return new Iterable<Place>() {
-			public Iterator<Place> iterator() {
+			@Override
+            public Iterator<Place> iterator() {
 				return (FilterIterator<Place>) (FilterIterator<?>) new FilterIterator<org.cpntools.accesscpn.model.Object>(
 				        getObject().iterator()) {
 					@Override
@@ -438,10 +447,12 @@ public class PageImpl extends HasIdImpl implements Page {
 	/**
 	 * @see org.cpntools.accesscpn.model.Page#transition()
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public Iterable<Transition> transition() {
 		return new Iterable<Transition>() {
-			public Iterator<Transition> iterator() {
+			@Override
+            public Iterator<Transition> iterator() {
 				return (FilterIterator<Transition>) (FilterIterator<?>) new FilterIterator<org.cpntools.accesscpn.model.Object>(
 				        getObject().iterator()) {
 					@Override
@@ -456,10 +467,12 @@ public class PageImpl extends HasIdImpl implements Page {
 	/**
 	 * @see org.cpntools.accesscpn.model.Page#instance()
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public Iterable<Instance> instance() {
 		return new Iterable<Instance>() {
-			public Iterator<Instance> iterator() {
+			@Override
+            public Iterator<Instance> iterator() {
 				return (FilterIterator<Instance>) (FilterIterator<?>) new FilterIterator<org.cpntools.accesscpn.model.Object>(
 				        getObject().iterator()) {
 					@Override
@@ -474,10 +487,12 @@ public class PageImpl extends HasIdImpl implements Page {
 	/**
 	 * @see org.cpntools.accesscpn.model.Page#fusionGroup()
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public Iterable<RefPlace> fusionGroup() {
 		return new Iterable<RefPlace>() {
-			public Iterator<RefPlace> iterator() {
+			@Override
+            public Iterator<RefPlace> iterator() {
 				return (FilterIterator<RefPlace>) (FilterIterator<?>) new FilterIterator<org.cpntools.accesscpn.model.Object>(
 				        getObject().iterator()) {
 					@Override
@@ -492,10 +507,12 @@ public class PageImpl extends HasIdImpl implements Page {
 	/**
 	 * @see org.cpntools.accesscpn.model.Page#portPlace()
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public Iterable<RefPlace> portPlace() {
 		return new Iterable<RefPlace>() {
-			public Iterator<RefPlace> iterator() {
+			@Override
+            public Iterator<RefPlace> iterator() {
 				return (FilterIterator<RefPlace>) (FilterIterator<?>) new FilterIterator<org.cpntools.accesscpn.model.Object>(
 				        getObject().iterator()) {
 					@Override
@@ -510,10 +527,12 @@ public class PageImpl extends HasIdImpl implements Page {
 	/**
 	 * @see org.cpntools.accesscpn.model.Page#place()
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public Iterable<Place> readyPlaces() {
 		return new Iterable<Place>() {
-			public Iterator<Place> iterator() {
+			@Override
+            public Iterator<Place> iterator() {
 				return (FilterIterator<Place>) (FilterIterator<?>) new FilterIterator<org.cpntools.accesscpn.model.Object>(
 				        getObject().iterator()) {
 					@Override
@@ -528,10 +547,12 @@ public class PageImpl extends HasIdImpl implements Page {
 	/**
 	 * @see org.cpntools.accesscpn.model.Page#transition()
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public Iterable<Transition> readyTransitions() {
 		return new Iterable<Transition>() {
-			public Iterator<Transition> iterator() {
+			@Override
+            public Iterator<Transition> iterator() {
 				return (FilterIterator<Transition>) (FilterIterator<?>) new FilterIterator<org.cpntools.accesscpn.model.Object>(
 				        getObject().iterator()) {
 					@Override
@@ -546,10 +567,12 @@ public class PageImpl extends HasIdImpl implements Page {
 	/**
 	 * @see org.cpntools.accesscpn.model.Page#instance()
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public Iterable<Instance> readyInstances() {
 		return new Iterable<Instance>() {
-			public Iterator<Instance> iterator() {
+			@Override
+            public Iterator<Instance> iterator() {
 				return (FilterIterator<Instance>) (FilterIterator<?>) new FilterIterator<org.cpntools.accesscpn.model.Object>(
 				        getObject().iterator()) {
 					@Override
@@ -564,10 +587,12 @@ public class PageImpl extends HasIdImpl implements Page {
 	/**
 	 * @see org.cpntools.accesscpn.model.Page#fusionGroup()
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public Iterable<RefPlace> readyFusionGroups() {
 		return new Iterable<RefPlace>() {
-			public Iterator<RefPlace> iterator() {
+			@Override
+            public Iterator<RefPlace> iterator() {
 				return (FilterIterator<RefPlace>) (FilterIterator<?>) new FilterIterator<org.cpntools.accesscpn.model.Object>(
 				        getObject().iterator()) {
 					@Override
@@ -583,10 +608,12 @@ public class PageImpl extends HasIdImpl implements Page {
 	/**
 	 * @see org.cpntools.accesscpn.model.Page#portPlace()
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public Iterable<RefPlace> readyPortPlaces() {
 		return new Iterable<RefPlace>() {
-			public Iterator<RefPlace> iterator() {
+			@Override
+            public Iterator<RefPlace> iterator() {
 				return (FilterIterator<RefPlace>) (FilterIterator<?>) new FilterIterator<org.cpntools.accesscpn.model.Object>(
 				        getObject().iterator()) {
 					@Override

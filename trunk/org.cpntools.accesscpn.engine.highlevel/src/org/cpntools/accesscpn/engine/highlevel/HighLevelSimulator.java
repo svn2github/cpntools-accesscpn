@@ -146,6 +146,7 @@ public class HighLevelSimulator extends AdapterImpl {
 		/**
 		 * @see org.cpntools.accesscpn.engine.Handler#handle(java.util.List)
 		 */
+		@Override
 		public Object handle(final List<Object> parameters) {
 			final LinkedList<Object> structured = new LinkedList<Object>();
 			parse(structured, parameters, 0, parameters.size());
@@ -492,6 +493,11 @@ public class HighLevelSimulator extends AdapterImpl {
 		} else if (numberOfErrors == -1) { throw new SyntaxFatalErrorException("Fatal error occurred in syntax check"); }
 	}
 
+	/**
+	 * @param monitor
+	 * @throws SyntaxCheckerException
+	 * @throws IOException
+	 */
 	public void checkMonitor(final Monitor monitor) throws SyntaxCheckerException, IOException {
 		if (monitor.isDisabled()) { return; }
 		switch (monitor.getKind()) {

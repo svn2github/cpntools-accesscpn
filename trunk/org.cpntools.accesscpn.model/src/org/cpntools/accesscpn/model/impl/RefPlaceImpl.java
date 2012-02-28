@@ -74,7 +74,8 @@ public class RefPlaceImpl extends PlaceNodeImpl implements RefPlace {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Place getRef() {
+	@Override
+    public Place getRef() {
 		if (ref != null && ((EObject)ref).eIsProxy()) {
 			InternalEObject oldRef = (InternalEObject)ref;
 			ref = (Place)eResolveProxy(oldRef);
@@ -112,7 +113,8 @@ public class RefPlaceImpl extends PlaceNodeImpl implements RefPlace {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRef(Place newRef) {
+	@Override
+    public void setRef(Place newRef) {
 		if (newRef != ref) {
 			NotificationChain msgs = null;
 			if (ref != null)
@@ -212,14 +214,16 @@ public class RefPlaceImpl extends PlaceNodeImpl implements RefPlace {
 	/**
 	 * @see org.cpntools.accesscpn.model.RefPlace#isFusionGroup()
 	 */
-	public boolean isFusionGroup() {
+	@Override
+    public boolean isFusionGroup() {
 		return getRef() != null;
 	}
 
 	/**
 	 * @see org.cpntools.accesscpn.model.RefPlace#isPort()
 	 */
-	public boolean isPort() {
+	@Override
+    public boolean isPort() {
 		return getRef() == null;
 	}
 

@@ -156,7 +156,8 @@ public class FillImpl extends EObjectImpl implements Fill {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getColor() {
+	@Override
+    public String getColor() {
 		return color;
 	}
 
@@ -165,7 +166,8 @@ public class FillImpl extends EObjectImpl implements Fill {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setColor(String newColor) {
+	@Override
+    public void setColor(String newColor) {
 		String oldColor = color;
 		color = newColor;
 		if (eNotificationRequired())
@@ -177,7 +179,8 @@ public class FillImpl extends EObjectImpl implements Fill {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public URL getImage() {
+	@Override
+    public URL getImage() {
 		return image;
 	}
 
@@ -186,7 +189,8 @@ public class FillImpl extends EObjectImpl implements Fill {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImage(URL newImage) {
+	@Override
+    public void setImage(URL newImage) {
 		URL oldImage = image;
 		image = newImage;
 		if (eNotificationRequired())
@@ -198,7 +202,8 @@ public class FillImpl extends EObjectImpl implements Fill {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getGradientColor() {
+	@Override
+    public String getGradientColor() {
 		return gradientColor;
 	}
 
@@ -207,7 +212,8 @@ public class FillImpl extends EObjectImpl implements Fill {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGradientColor(String newGradientColor) {
+	@Override
+    public void setGradientColor(String newGradientColor) {
 		String oldGradientColor = gradientColor;
 		gradientColor = newGradientColor;
 		if (eNotificationRequired())
@@ -219,7 +225,8 @@ public class FillImpl extends EObjectImpl implements Fill {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Rotation getGradientRotation() {
+	@Override
+    public Rotation getGradientRotation() {
 		return gradientRotation;
 	}
 
@@ -228,7 +235,8 @@ public class FillImpl extends EObjectImpl implements Fill {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGradientRotation(Rotation newGradientRotation) {
+	@Override
+    public void setGradientRotation(Rotation newGradientRotation) {
 		Rotation oldGradientRotation = gradientRotation;
 		gradientRotation = newGradientRotation;
 		if (eNotificationRequired())

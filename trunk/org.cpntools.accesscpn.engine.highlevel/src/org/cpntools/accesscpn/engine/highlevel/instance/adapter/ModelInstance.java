@@ -185,6 +185,9 @@ public class ModelInstance extends PetriNetDataAdapter {
 
 	ModelData modelData = null;
 
+	/**
+	 * @return
+	 */
 	public synchronized ModelData getModelData() {
 		if (modelData == null) {
 			modelData = (ModelData) ModelDataAdapterFactory.getInstance().adapt(getPetriNet(), ModelData.class);

@@ -128,7 +128,8 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public HLAnnotation getHlinscription() {
+	@Override
+    public HLAnnotation getHlinscription() {
 		if (hlinscription != null && ((EObject)hlinscription).eIsProxy()) {
 			InternalEObject oldHlinscription = (InternalEObject)hlinscription;
 			hlinscription = (HLAnnotation)eResolveProxy(oldHlinscription);
@@ -153,7 +154,8 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHlinscription(HLAnnotation newHlinscription) {
+	@Override
+    public void setHlinscription(HLAnnotation newHlinscription) {
 		HLAnnotation oldHlinscription = hlinscription;
 		hlinscription = newHlinscription;
 		if (eNotificationRequired())
@@ -165,7 +167,8 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public HLArcType getKind() {
+	@Override
+    public HLArcType getKind() {
 		return kind;
 	}
 
@@ -174,7 +177,8 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setKind(HLArcType newKind) {
+	@Override
+    public void setKind(HLArcType newKind) {
 		HLArcType oldKind = kind;
 		kind = newKind == null ? KIND_EDEFAULT : newKind;
 		if (eNotificationRequired())
@@ -185,7 +189,8 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Node getSource() {
+	@Override
+    public Node getSource() {
 		if (source != null && ((EObject)source).eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject)source;
 			source = (Node)eResolveProxy(oldSource);
@@ -223,7 +228,8 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSource(Node newSource) {
+	@Override
+    public void setSource(Node newSource) {
 		if (newSource != source) {
 			NotificationChain msgs = null;
 			if (source != null)
@@ -241,7 +247,8 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Node getTarget() {
+	@Override
+    public Node getTarget() {
 		if (target != null && ((EObject)target).eIsProxy()) {
 			InternalEObject oldTarget = (InternalEObject)target;
 			target = (Node)eResolveProxy(oldTarget);
@@ -279,7 +286,8 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(Node newTarget) {
+	@Override
+    public void setTarget(Node newTarget) {
 		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
@@ -297,7 +305,8 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Page getPage() {
+	@Override
+    public Page getPage() {
 		if (eContainerFeatureID() != ModelPackageImpl.ARC__PAGE) return null;
 		return (Page)eContainer();
 	}
@@ -315,7 +324,8 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPage(Page newPage) {
+	@Override
+    public void setPage(Page newPage) {
 		if (newPage != eInternalContainer() || (eContainerFeatureID() != ModelPackageImpl.ARC__PAGE && newPage != null)) {
 			if (EcoreUtil.isAncestor(this, (EObject)newPage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -531,7 +541,8 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	/**
 	 * @see org.cpntools.accesscpn.model.Arc#getOtherEnd(org.cpntools.accesscpn.model.Node)
 	 */
-	public Node getOtherEnd(final Node n) {
+	@Override
+    public Node getOtherEnd(final Node n) {
 		if (getSource() == n) { return getTarget(); }
 		if (getTarget() == n) { return getSource(); }
 		return null;
@@ -540,7 +551,8 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	/**
 	 * @see org.cpntools.accesscpn.model.Arc#getPlaceNode()
 	 */
-	public PlaceNode getPlaceNode() {
+	@Override
+    public PlaceNode getPlaceNode() {
 		if (getSource() != null && getSource() instanceof PlaceNode) { return (PlaceNode) getSource(); }
 		if (getTarget() != null && getTarget() instanceof PlaceNode) { return (PlaceNode) getTarget(); }
 		throw new IllegalStateException("Arc (" + getId() + ") is not connected to a place");
@@ -549,7 +561,8 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	/**
 	 * @see org.cpntools.accesscpn.model.Arc#getTransition()
 	 */
-	public Transition getTransition() {
+	@Override
+    public Transition getTransition() {
 		if (getSource() != null && getSource() instanceof Transition) { return (Transition) getSource(); }
 		if (getTarget() != null && getTarget() instanceof Transition) { return (Transition) getTarget(); }
 		throw new IllegalStateException("Arc is not connected to a transition");
@@ -558,7 +571,8 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	/**
 	 * @see org.cpntools.accesscpn.model.HLAnnotationAddin#isReady(boolean)
 	 */
-	public boolean isReady() {
+	@Override
+    public boolean isReady() {
 		try {
 			return getHlinscription().isReady(false) && getPlaceNode().isReady();
 		} catch (final NullPointerException e) {

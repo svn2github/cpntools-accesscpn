@@ -102,7 +102,8 @@ public class CPNBoolImpl extends CPNTypeImpl implements CPNBool {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getTrueValue() {
+	@Override
+    public String getTrueValue() {
 		return trueValue;
 	}
 
@@ -110,7 +111,8 @@ public class CPNBoolImpl extends CPNTypeImpl implements CPNBool {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTrueValue(String newTrueValue) {
+	@Override
+    public void setTrueValue(String newTrueValue) {
 		String oldTrueValue = trueValue;
 		trueValue = newTrueValue;
 		if (eNotificationRequired())
@@ -121,7 +123,8 @@ public class CPNBoolImpl extends CPNTypeImpl implements CPNBool {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getFalseValue() {
+	@Override
+    public String getFalseValue() {
 		return falseValue;
 	}
 
@@ -129,7 +132,8 @@ public class CPNBoolImpl extends CPNTypeImpl implements CPNBool {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFalseValue(String newFalseValue) {
+	@Override
+    public void setFalseValue(String newFalseValue) {
 		String oldFalseValue = falseValue;
 		falseValue = newFalseValue;
 		if (eNotificationRequired())
@@ -220,7 +224,8 @@ public class CPNBoolImpl extends CPNTypeImpl implements CPNBool {
 	/**
 	 * @see org.cpntools.accesscpn.model.cpntypes.CPNType#asString()
 	 */
-	public String asString() {
+	@Override
+    public String asString() {
 		String appendString = "";
 		if (getFalseValue() != null) {
 			appendString = " with (" + getFalseValue() + ", " + getTrueValue() + ')';

@@ -91,7 +91,8 @@ public class ParameterAssignmentImpl extends EObjectImpl implements ParameterAss
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getParameter() {
+	@Override
+    public String getParameter() {
 		return parameter;
 	}
 
@@ -99,7 +100,8 @@ public class ParameterAssignmentImpl extends EObjectImpl implements ParameterAss
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParameter(String newParameter) {
+	@Override
+    public void setParameter(String newParameter) {
 		String oldParameter = parameter;
 		parameter = newParameter;
 		if (eNotificationRequired())
@@ -110,7 +112,8 @@ public class ParameterAssignmentImpl extends EObjectImpl implements ParameterAss
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getValue() {
+	@Override
+    public String getValue() {
 		return value;
 	}
 
@@ -118,7 +121,8 @@ public class ParameterAssignmentImpl extends EObjectImpl implements ParameterAss
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(String newValue) {
+	@Override
+    public void setValue(String newValue) {
 		String oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
@@ -129,7 +133,8 @@ public class ParameterAssignmentImpl extends EObjectImpl implements ParameterAss
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Instance getInstance() {
+	@Override
+    public Instance getInstance() {
 		if (eContainerFeatureID() != ModelPackageImpl.PARAMETER_ASSIGNMENT__INSTANCE) return null;
 		return (Instance)eContainer();
 	}
@@ -147,7 +152,8 @@ public class ParameterAssignmentImpl extends EObjectImpl implements ParameterAss
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInstance(Instance newInstance) {
+	@Override
+    public void setInstance(Instance newInstance) {
 		if (newInstance != eInternalContainer() || (eContainerFeatureID() != ModelPackageImpl.PARAMETER_ASSIGNMENT__INSTANCE && newInstance != null)) {
 			if (EcoreUtil.isAncestor(this, (EObject)newInstance))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());

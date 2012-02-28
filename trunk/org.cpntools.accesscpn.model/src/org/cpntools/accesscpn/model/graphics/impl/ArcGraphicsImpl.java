@@ -100,7 +100,8 @@ public class ArcGraphicsImpl extends GraphicsImpl implements ArcGraphics {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Line getLine() {
+	@Override
+    public Line getLine() {
 		return line;
 	}
 
@@ -124,7 +125,8 @@ public class ArcGraphicsImpl extends GraphicsImpl implements ArcGraphics {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLine(Line newLine) {
+	@Override
+    public void setLine(Line newLine) {
 		if (newLine != line) {
 			NotificationChain msgs = null;
 			if (line != null)
@@ -143,7 +145,8 @@ public class ArcGraphicsImpl extends GraphicsImpl implements ArcGraphics {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<Coordinate> getPosition() {
+	@Override
+    public List<Coordinate> getPosition() {
 		if (position == null) {
 			position = new EObjectContainmentEList<Coordinate>(Coordinate.class, this, GraphicsPackageImpl.ARC_GRAPHICS__POSITION);
 		}

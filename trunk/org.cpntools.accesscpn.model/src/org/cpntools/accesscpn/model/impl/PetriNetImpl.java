@@ -170,7 +170,8 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<ToolInfo> getToolinfo() {
+	@Override
+    public List<ToolInfo> getToolinfo() {
 		if (toolinfo == null) {
 			toolinfo = new EObjectContainmentWithInverseEList<ToolInfo>(ToolInfo.class, this, ModelPackageImpl.PETRI_NET__TOOLINFO, ModelPackageImpl.TOOL_INFO__PARENT);
 		}
@@ -181,7 +182,8 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<Label> getLabel() {
+	@Override
+    public List<Label> getLabel() {
 		if (label == null) {
 			label = new EObjectContainmentWithInverseEList<Label>(Label.class, this, ModelPackageImpl.PETRI_NET__LABEL, ModelPackageImpl.LABEL__PARENT);
 		}
@@ -192,7 +194,8 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Name getName() {
+	@Override
+    public Name getName() {
 		if (name != null && ((EObject)name).eIsProxy()) {
 			InternalEObject oldName = (InternalEObject)name;
 			name = (Name)eResolveProxy(oldName);
@@ -215,7 +218,8 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	/**
 	 * @see org.cpntools.accesscpn.model.HasName#setName(org.cpntools.accesscpn.model.Name)
 	 */
-	public void setName(final Name newName) {
+	@Override
+    public void setName(final Name newName) {
 		if (name != null) {
 			name.setParent(null);
 		}
@@ -240,7 +244,8 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<Page> getPage() {
+	@Override
+    public List<Page> getPage() {
 		if (page == null) {
 			page = new EObjectContainmentWithInverseEList<Page>(Page.class, this, ModelPackageImpl.PETRI_NET__PAGE, ModelPackageImpl.PAGE__PETRI_NET);
 		}
@@ -252,7 +257,8 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<Monitor> getMonitors() {
+	@Override
+    public List<Monitor> getMonitors() {
 		if (monitors == null) {
 			monitors = new EObjectContainmentWithInverseEList<Monitor>(Monitor.class, this, ModelPackageImpl.PETRI_NET__MONITORS, MonitorsPackageImpl.MONITOR__PETRI_NET);
 		}
@@ -263,7 +269,8 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<FusionGroup> getFusionGroups() {
+	@Override
+    public List<FusionGroup> getFusionGroups() {
 		if (fusionGroups == null) {
 			fusionGroups = new EObjectWithInverseResolvingEList<FusionGroup>(FusionGroup.class, this, ModelPackageImpl.PETRI_NET__FUSION_GROUPS, ModelPackageImpl.FUSION_GROUP__PETRI_NET);
 		}
@@ -275,7 +282,8 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getKind() {
+	@Override
+    public String getKind() {
 		return kind;
 	}
 
@@ -284,7 +292,8 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setKind(String newKind) {
+	@Override
+    public void setKind(String newKind) {
 		String oldKind = kind;
 		kind = newKind;
 		if (eNotificationRequired())
@@ -529,10 +538,12 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	/**
 	 * @see org.cpntools.accesscpn.model.PetriNet#declaration()
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public Iterable<HLDeclaration> declaration() {
 		return new Iterable<HLDeclaration>() {
-			public Iterator<HLDeclaration> iterator() {
+			@Override
+            public Iterator<HLDeclaration> iterator() {
 				return (FilterIterator<HLDeclaration>) (FilterIterator<?>) new FilterIterator<Label>(getLabel()
 				        .iterator()) {
 					@Override
@@ -547,7 +558,8 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	/**
 	 * @see org.cpntools.accesscpn.model.PetriNet#isTimed()
 	 */
-	public boolean isTimed(){
+	@Override
+    public boolean isTimed(){
 	for (HLDeclaration decl : declaration()) {
 		if ((decl.getStructure() != null) && (decl.getStructure() instanceof TypeDeclaration)) {
 			TypeDeclaration structure = (TypeDeclaration) decl.getStructure();

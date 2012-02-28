@@ -106,7 +106,8 @@ public class DeclarationFactoryImpl extends EFactoryImpl implements DeclarationF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VariableDeclaration createVariableDeclaration() {
+	@Override
+    public VariableDeclaration createVariableDeclaration() {
 		VariableDeclarationImpl variableDeclaration = new VariableDeclarationImpl();
 		return variableDeclaration;
 	}
@@ -116,7 +117,8 @@ public class DeclarationFactoryImpl extends EFactoryImpl implements DeclarationF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MLDeclaration createMLDeclaration() {
+	@Override
+    public MLDeclaration createMLDeclaration() {
 		MLDeclarationImpl mlDeclaration = new MLDeclarationImpl();
 		return mlDeclaration;
 	}
@@ -126,7 +128,8 @@ public class DeclarationFactoryImpl extends EFactoryImpl implements DeclarationF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UseDeclaration createUseDeclaration() {
+	@Override
+    public UseDeclaration createUseDeclaration() {
 		UseDeclarationImpl useDeclaration = new UseDeclarationImpl();
 		return useDeclaration;
 	}
@@ -136,7 +139,8 @@ public class DeclarationFactoryImpl extends EFactoryImpl implements DeclarationF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GlobalReferenceDeclaration createGlobalReferenceDeclaration() {
+	@Override
+    public GlobalReferenceDeclaration createGlobalReferenceDeclaration() {
 		GlobalReferenceDeclarationImpl globalReferenceDeclaration = new GlobalReferenceDeclarationImpl();
 		return globalReferenceDeclaration;
 	}
@@ -146,7 +150,8 @@ public class DeclarationFactoryImpl extends EFactoryImpl implements DeclarationF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeDeclaration createTypeDeclaration() {
+	@Override
+    public TypeDeclaration createTypeDeclaration() {
 		TypeDeclarationImpl typeDeclaration = new TypeDeclarationImpl();
 		return typeDeclaration;
 	}

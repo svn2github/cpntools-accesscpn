@@ -74,7 +74,8 @@ public class CPNEnumImpl extends CPNTypeImpl implements CPNEnum {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<String> getValues() {
+	@Override
+    public List<String> getValues() {
 		if (values == null) {
 			values = new EDataTypeUniqueEList<String>(String.class, this, CpntypesPackageImpl.CPN_ENUM__VALUES);
 		}
@@ -155,7 +156,8 @@ public class CPNEnumImpl extends CPNTypeImpl implements CPNEnum {
 	/**
 	 * @see org.cpntools.accesscpn.model.cpntypes.CPNType#asString()
 	 */
-	public String asString() {
+	@Override
+    public String asString() {
 		final StringBuilder sb = new StringBuilder();
 		boolean kludge = false;
 		sb.append("with ");
@@ -172,7 +174,8 @@ public class CPNEnumImpl extends CPNTypeImpl implements CPNEnum {
 	/**
 	 * @see org.cpntools.accesscpn.model.cpntypes.CPNEnum#addValue(java.lang.String)
 	 */
-	public void addValue(final String value) {
+	@Override
+    public void addValue(final String value) {
 		getValues().add(value);
 	}
 

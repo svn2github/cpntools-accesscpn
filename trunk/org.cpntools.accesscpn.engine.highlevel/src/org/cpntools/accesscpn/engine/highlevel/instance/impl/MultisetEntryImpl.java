@@ -111,7 +111,8 @@ public class MultisetEntryImpl extends EObjectImpl implements MultisetEntry {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getCoefficient() {
+	@Override
+    public int getCoefficient() {
 		return coefficient;
 	}
 
@@ -119,7 +120,8 @@ public class MultisetEntryImpl extends EObjectImpl implements MultisetEntry {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCoefficient(int newCoefficient) {
+	@Override
+    public void setCoefficient(int newCoefficient) {
 		int oldCoefficient = coefficient;
 		coefficient = newCoefficient;
 		if (eNotificationRequired())
@@ -130,7 +132,8 @@ public class MultisetEntryImpl extends EObjectImpl implements MultisetEntry {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getValueAsString() {
+	@Override
+    public String getValueAsString() {
 		return valueAsString;
 	}
 
@@ -138,7 +141,8 @@ public class MultisetEntryImpl extends EObjectImpl implements MultisetEntry {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValueAsString(String newValueAsString) {
+	@Override
+    public void setValueAsString(String newValueAsString) {
 		String oldValueAsString = valueAsString;
 		valueAsString = newValueAsString;
 		if (eNotificationRequired())

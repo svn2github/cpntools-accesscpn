@@ -86,7 +86,8 @@ public class PlaceImpl extends PlaceNodeImpl implements Place {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<RefPlace> getReferences() {
+	@Override
+    public List<RefPlace> getReferences() {
 		if (references == null) {
 			references = new EObjectWithInverseResolvingEList<RefPlace>(RefPlace.class, this, ModelPackageImpl.PLACE__REFERENCES, ModelPackageImpl.REF_PLACE__REF);
 		}

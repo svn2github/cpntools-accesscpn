@@ -102,7 +102,8 @@ public class PageSorter implements Iterable<Page> {
 	/**
 	 * @see java.lang.Iterable#iterator()
 	 */
-	public Iterator<Page> iterator() {
+	@Override
+    public Iterator<Page> iterator() {
 		return sortedPages.iterator();
 	}
 }

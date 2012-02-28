@@ -118,7 +118,8 @@ public class AnnotationGraphicsImpl extends GraphicsImpl implements AnnotationGr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Fill getFill() {
+	@Override
+    public Fill getFill() {
 		return fill;
 	}
 
@@ -142,7 +143,8 @@ public class AnnotationGraphicsImpl extends GraphicsImpl implements AnnotationGr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFill(Fill newFill) {
+	@Override
+    public void setFill(Fill newFill) {
 		if (newFill != fill) {
 			NotificationChain msgs = null;
 			if (fill != null)
@@ -161,7 +163,8 @@ public class AnnotationGraphicsImpl extends GraphicsImpl implements AnnotationGr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Coordinate getOffset() {
+	@Override
+    public Coordinate getOffset() {
 		return offset;
 	}
 
@@ -185,7 +188,8 @@ public class AnnotationGraphicsImpl extends GraphicsImpl implements AnnotationGr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOffset(Coordinate newOffset) {
+	@Override
+    public void setOffset(Coordinate newOffset) {
 		if (newOffset != offset) {
 			NotificationChain msgs = null;
 			if (offset != null)
@@ -204,7 +208,8 @@ public class AnnotationGraphicsImpl extends GraphicsImpl implements AnnotationGr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Line getLine() {
+	@Override
+    public Line getLine() {
 		return line;
 	}
 
@@ -228,7 +233,8 @@ public class AnnotationGraphicsImpl extends GraphicsImpl implements AnnotationGr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLine(Line newLine) {
+	@Override
+    public void setLine(Line newLine) {
 		if (newLine != line) {
 			NotificationChain msgs = null;
 			if (line != null)
@@ -247,7 +253,8 @@ public class AnnotationGraphicsImpl extends GraphicsImpl implements AnnotationGr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Font getFont() {
+	@Override
+    public Font getFont() {
 		return font;
 	}
 
@@ -271,7 +278,8 @@ public class AnnotationGraphicsImpl extends GraphicsImpl implements AnnotationGr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFont(Font newFont) {
+	@Override
+    public void setFont(Font newFont) {
 		if (newFont != font) {
 			NotificationChain msgs = null;
 			if (font != null)

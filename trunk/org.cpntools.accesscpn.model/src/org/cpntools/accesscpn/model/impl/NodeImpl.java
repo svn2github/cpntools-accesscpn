@@ -89,7 +89,8 @@ public abstract class NodeImpl extends ObjectImpl implements Node {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<Arc> getSourceArc() {
+	@Override
+    public List<Arc> getSourceArc() {
 		if (sourceArc == null) {
 			sourceArc = new EObjectWithInverseResolvingEList<Arc>(Arc.class, this, ModelPackageImpl.NODE__SOURCE_ARC, ModelPackageImpl.ARC__SOURCE);
 		}
@@ -100,7 +101,8 @@ public abstract class NodeImpl extends ObjectImpl implements Node {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<Arc> getTargetArc() {
+	@Override
+    public List<Arc> getTargetArc() {
 		if (targetArc == null) {
 			targetArc = new EObjectWithInverseResolvingEList<Arc>(Arc.class, this, ModelPackageImpl.NODE__TARGET_ARC, ModelPackageImpl.ARC__TARGET);
 		}
@@ -208,7 +210,8 @@ public abstract class NodeImpl extends ObjectImpl implements Node {
 	/**
 	 * @see org.cpntools.accesscpn.model.HLAnnotationAddin#isReady(boolean)
 	 */
-	public boolean isReady() {
+	@Override
+    public boolean isReady() {
 		return getName().isReady(false);
 	}
 } // NodeImpl

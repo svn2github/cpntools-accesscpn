@@ -117,7 +117,8 @@ public class NodeGraphicsImpl extends GraphicsImpl implements NodeGraphics {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Coordinate getPosition() {
+	@Override
+    public Coordinate getPosition() {
 		return position;
 	}
 
@@ -141,7 +142,8 @@ public class NodeGraphicsImpl extends GraphicsImpl implements NodeGraphics {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPosition(Coordinate newPosition) {
+	@Override
+    public void setPosition(Coordinate newPosition) {
 		if (newPosition != position) {
 			NotificationChain msgs = null;
 			if (position != null)
@@ -160,7 +162,8 @@ public class NodeGraphicsImpl extends GraphicsImpl implements NodeGraphics {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Coordinate getDimension() {
+	@Override
+    public Coordinate getDimension() {
 		return dimension;
 	}
 
@@ -184,7 +187,8 @@ public class NodeGraphicsImpl extends GraphicsImpl implements NodeGraphics {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDimension(Coordinate newDimension) {
+	@Override
+    public void setDimension(Coordinate newDimension) {
 		if (newDimension != dimension) {
 			NotificationChain msgs = null;
 			if (dimension != null)
@@ -203,7 +207,8 @@ public class NodeGraphicsImpl extends GraphicsImpl implements NodeGraphics {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Line getLine() {
+	@Override
+    public Line getLine() {
 		return line;
 	}
 
@@ -227,7 +232,8 @@ public class NodeGraphicsImpl extends GraphicsImpl implements NodeGraphics {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLine(Line newLine) {
+	@Override
+    public void setLine(Line newLine) {
 		if (newLine != line) {
 			NotificationChain msgs = null;
 			if (line != null)
@@ -246,7 +252,8 @@ public class NodeGraphicsImpl extends GraphicsImpl implements NodeGraphics {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Fill getFill() {
+	@Override
+    public Fill getFill() {
 		return fill;
 	}
 
@@ -270,7 +277,8 @@ public class NodeGraphicsImpl extends GraphicsImpl implements NodeGraphics {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFill(Fill newFill) {
+	@Override
+    public void setFill(Fill newFill) {
 		if (newFill != fill) {
 			NotificationChain msgs = null;
 			if (fill != null)

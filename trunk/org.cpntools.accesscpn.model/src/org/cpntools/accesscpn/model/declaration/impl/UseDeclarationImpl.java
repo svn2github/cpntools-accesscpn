@@ -82,7 +82,8 @@ public class UseDeclarationImpl extends DeclarationStructureImpl implements UseD
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getFileName() {
+	@Override
+    public String getFileName() {
 		return fileName;
 	}
 
@@ -90,7 +91,8 @@ public class UseDeclarationImpl extends DeclarationStructureImpl implements UseD
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFileName(String newFileName) {
+	@Override
+    public void setFileName(String newFileName) {
 		String oldFileName = fileName;
 		fileName = newFileName;
 		if (eNotificationRequired())
@@ -169,14 +171,16 @@ public class UseDeclarationImpl extends DeclarationStructureImpl implements UseD
 	/**
 	 * @see org.cpntools.accesscpn.model.declaration.DeclarationStructure#asShortString()
 	 */
-	public String asShortString() {
+	@Override
+    public String asShortString() {
 		return asString();
 	}
 
 	/**
 	 * @see org.cpntools.accesscpn.model.declaration.DeclarationStructure#asString()
 	 */
-	public String asString() {
+	@Override
+    public String asString() {
 		return "use \"" + getFileName() + "\";";
 	}
 

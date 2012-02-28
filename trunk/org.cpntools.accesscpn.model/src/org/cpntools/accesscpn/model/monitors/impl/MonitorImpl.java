@@ -283,7 +283,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Name getName() {
+	@Override
+    public Name getName() {
 		if (name != null && ((EObject)name).eIsProxy()) {
 			InternalEObject oldName = (InternalEObject)name;
 			name = (Name)eResolveProxy(oldName);
@@ -307,7 +308,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(Name newName) {
+	@Override
+    public void setName(Name newName) {
 		Name oldName = name;
 		name = newName;
 		if (eNotificationRequired())
@@ -318,7 +320,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PetriNet getPetriNet() {
+	@Override
+    public PetriNet getPetriNet() {
 		if (eContainerFeatureID() != MonitorsPackageImpl.MONITOR__PETRI_NET) return null;
 		return (PetriNet)eContainer();
 	}
@@ -336,7 +339,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPetriNet(PetriNet newPetriNet) {
+	@Override
+    public void setPetriNet(PetriNet newPetriNet) {
 		if (newPetriNet != eInternalContainer() || (eContainerFeatureID() != MonitorsPackageImpl.MONITOR__PETRI_NET && newPetriNet != null)) {
 			if (EcoreUtil.isAncestor(this, (EObject)newPetriNet))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -356,7 +360,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDisabled() {
+	@Override
+    public boolean isDisabled() {
 		return disabled;
 	}
 
@@ -364,7 +369,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDisabled(boolean newDisabled) {
+	@Override
+    public void setDisabled(boolean newDisabled) {
 		boolean oldDisabled = disabled;
 		disabled = newDisabled;
 		if (eNotificationRequired())
@@ -376,7 +382,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isEmpty() {
+	@Override
+    public boolean isEmpty() {
 		return empty;
 	}
 
@@ -385,7 +392,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEmpty(boolean newEmpty) {
+	@Override
+    public void setEmpty(boolean newEmpty) {
 		boolean oldEmpty = empty;
 		empty = newEmpty;
 		if (eNotificationRequired())
@@ -397,7 +405,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isEnabled() {
+	@Override
+    public boolean isEnabled() {
 		return enabled;
 	}
 
@@ -406,7 +415,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEnabled(boolean newEnabled) {
+	@Override
+    public void setEnabled(boolean newEnabled) {
 		boolean oldEnabled = enabled;
 		enabled = newEnabled;
 		if (eNotificationRequired())
@@ -418,7 +428,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getExtension() {
+	@Override
+    public String getExtension() {
 		return extension;
 	}
 
@@ -427,7 +438,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExtension(String newExtension) {
+	@Override
+    public void setExtension(String newExtension) {
 		String oldExtension = extension;
 		extension = newExtension;
 		if (eNotificationRequired())
@@ -438,7 +450,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MonitorType getKind() {
+	@Override
+    public MonitorType getKind() {
 		return kind;
 	}
 
@@ -447,7 +460,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setKind(MonitorType newKind) {
+	@Override
+    public void setKind(MonitorType newKind) {
 		MonitorType oldKind = kind;
 		kind = newKind == null ? KIND_EDEFAULT : newKind;
 		if (eNotificationRequired())
@@ -458,7 +472,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MLDeclaration getInit() {
+	@Override
+    public MLDeclaration getInit() {
 		return init;
 	}
 
@@ -480,7 +495,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInit(MLDeclaration newInit) {
+	@Override
+    public void setInit(MLDeclaration newInit) {
 		if (newInit != init) {
 			NotificationChain msgs = null;
 			if (init != null)
@@ -498,7 +514,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MLDeclaration getStop() {
+	@Override
+    public MLDeclaration getStop() {
 		return stop;
 	}
 
@@ -520,7 +537,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStop(MLDeclaration newStop) {
+	@Override
+    public void setStop(MLDeclaration newStop) {
 		if (newStop != stop) {
 			NotificationChain msgs = null;
 			if (stop != null)
@@ -538,7 +556,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MLDeclaration getPredicate() {
+	@Override
+    public MLDeclaration getPredicate() {
 		return predicate;
 	}
 
@@ -560,7 +579,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPredicate(MLDeclaration newPredicate) {
+	@Override
+    public void setPredicate(MLDeclaration newPredicate) {
 		if (newPredicate != predicate) {
 			NotificationChain msgs = null;
 			if (predicate != null)
@@ -578,7 +598,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MLDeclaration getObserver() {
+	@Override
+    public MLDeclaration getObserver() {
 		return observer;
 	}
 
@@ -600,7 +621,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setObserver(MLDeclaration newObserver) {
+	@Override
+    public void setObserver(MLDeclaration newObserver) {
 		if (newObserver != observer) {
 			NotificationChain msgs = null;
 			if (observer != null)
@@ -619,7 +641,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MLDeclaration getAction() {
+	@Override
+    public MLDeclaration getAction() {
 		if (action != null && ((EObject)action).eIsProxy()) {
 			InternalEObject oldAction = (InternalEObject)action;
 			action = (MLDeclaration)eResolveProxy(oldAction);
@@ -645,7 +668,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAction(MLDeclaration newAction) {
+	@Override
+    public void setAction(MLDeclaration newAction) {
 		MLDeclaration oldAction = action;
 		action = newAction;
 		if (eNotificationRequired())
@@ -656,7 +680,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<Object> getNodes() {
+	@Override
+    public List<Object> getNodes() {
 		if (nodes == null) {
 			nodes = new EObjectResolvingEList<Object>(Object.class, this, MonitorsPackageImpl.MONITOR__NODES);
 		}
@@ -667,7 +692,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isTimed() {
+	@Override
+    public boolean isTimed() {
 		return timed;
 	}
 
@@ -675,7 +701,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTimed(boolean newTimed) {
+	@Override
+    public void setTimed(boolean newTimed) {
 		boolean oldTimed = timed;
 		timed = newTimed;
 		if (eNotificationRequired())
@@ -686,7 +713,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isLogging() {
+	@Override
+    public boolean isLogging() {
 		return logging;
 	}
 
@@ -694,7 +722,8 @@ public class MonitorImpl extends HasIdImpl implements Monitor {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLogging(boolean newLogging) {
+	@Override
+    public void setLogging(boolean newLogging) {
 		boolean oldLogging = logging;
 		logging = newLogging;
 		if (eNotificationRequired())

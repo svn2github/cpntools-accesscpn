@@ -79,7 +79,8 @@ public class CPNUnitImpl extends CPNTypeImpl implements CPNUnit {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getId() {
+	@Override
+    public String getId() {
 		return id;
 	}
 
@@ -87,7 +88,8 @@ public class CPNUnitImpl extends CPNTypeImpl implements CPNUnit {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setId(String newId) {
+	@Override
+    public void setId(String newId) {
 		String oldId = id;
 		id = newId;
 		if (eNotificationRequired())
@@ -166,7 +168,8 @@ public class CPNUnitImpl extends CPNTypeImpl implements CPNUnit {
 	/**
 	 * @see org.cpntools.accesscpn.model.cpntypes.CPNType#asString()
 	 */
-	public String asString() {
+	@Override
+    public String asString() {
 		if (getId() != null) { return "unit with " + getId() + postFixAsString(); }
 		return "unit" + postFixAsString();
 	}

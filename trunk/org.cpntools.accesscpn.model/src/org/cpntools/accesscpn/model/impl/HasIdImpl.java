@@ -90,7 +90,8 @@ public abstract class HasIdImpl extends EObjectImpl implements HasId {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getId() {
+	@Override
+    public String getId() {
 		return id;
 	}
 
@@ -99,7 +100,8 @@ public abstract class HasIdImpl extends EObjectImpl implements HasId {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setId(String newId) {
+	@Override
+    public void setId(String newId) {
 		String oldId = id;
 		id = newId;
 		if (eNotificationRequired())

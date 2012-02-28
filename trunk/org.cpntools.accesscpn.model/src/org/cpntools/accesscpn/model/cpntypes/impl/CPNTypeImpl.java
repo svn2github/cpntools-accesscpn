@@ -97,7 +97,8 @@ public abstract class CPNTypeImpl extends EObjectImpl implements CPNType {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<String> getDeclares() {
+	@Override
+    public List<String> getDeclares() {
 		if (declares == null) {
 			declares = new EDataTypeUniqueEList<String>(String.class, this, CpntypesPackageImpl.CPN_TYPE__DECLARES);
 		}
@@ -108,7 +109,8 @@ public abstract class CPNTypeImpl extends EObjectImpl implements CPNType {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Boolean getTimed() {
+	@Override
+    public Boolean getTimed() {
 		return timed;
 	}
 
@@ -116,7 +118,8 @@ public abstract class CPNTypeImpl extends EObjectImpl implements CPNType {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTimed(Boolean newTimed) {
+	@Override
+    public void setTimed(Boolean newTimed) {
 		Boolean oldTimed = timed;
 		timed = newTimed;
 		if (eNotificationRequired())
@@ -126,7 +129,8 @@ public abstract class CPNTypeImpl extends EObjectImpl implements CPNType {
 	/**
 	 * @see org.cpntools.accesscpn.model.cpntypes.CPNType#addDeclare(java.lang.String)
 	 */
-	public void addDeclare(final String declare) {
+	@Override
+    public void addDeclare(final String declare) {
 		getDeclares().add(declare);
 	}
 

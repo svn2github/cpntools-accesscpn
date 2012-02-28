@@ -74,7 +74,8 @@ public class CPNProductImpl extends CPNTypeImpl implements CPNProduct {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<String> getTypes() {
+	@Override
+    public List<String> getTypes() {
 		if (types == null) {
 			types = new EDataTypeEList<String>(String.class, this, CpntypesPackageImpl.CPN_PRODUCT__TYPES);
 		}
@@ -155,7 +156,8 @@ public class CPNProductImpl extends CPNTypeImpl implements CPNProduct {
 	/**
 	 * @see org.cpntools.accesscpn.model.cpntypes.CPNType#asString()
 	 */
-	public String asString() {
+	@Override
+    public String asString() {
 		final StringBuilder sb = new StringBuilder();
 		boolean kludge = false;
 		for (final String type : getTypes()) {
@@ -171,7 +173,8 @@ public class CPNProductImpl extends CPNTypeImpl implements CPNProduct {
 	/**
 	 * @see org.cpntools.accesscpn.model.cpntypes.CPNProduct#addSort(java.lang.String)
 	 */
-	public void addSort(final String type) {
+	@Override
+    public void addSort(final String type) {
 		getTypes().add(type);
 	}
 

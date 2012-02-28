@@ -113,7 +113,8 @@ public abstract class TransitionNodeImpl extends NodeImpl implements TransitionN
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Condition getCondition() {
+	@Override
+    public Condition getCondition() {
 		if (condition != null && ((EObject)condition).eIsProxy()) {
 			InternalEObject oldCondition = (InternalEObject)condition;
 			condition = (Condition)eResolveProxy(oldCondition);
@@ -136,7 +137,8 @@ public abstract class TransitionNodeImpl extends NodeImpl implements TransitionN
 	/**
 	 * @see org.cpntools.accesscpn.model.HLTransitionAddin#setCondition(org.cpntools.accesscpn.model.Condition)
 	 */
-	public void setCondition(final Condition newCondition) {
+	@Override
+    public void setCondition(final Condition newCondition) {
 		if (condition != null) {
 			condition.setParent(null);
 		}
@@ -161,7 +163,8 @@ public abstract class TransitionNodeImpl extends NodeImpl implements TransitionN
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Code getCode() {
+	@Override
+    public Code getCode() {
 		if (code != null && ((EObject)code).eIsProxy()) {
 			InternalEObject oldCode = (InternalEObject)code;
 			code = (Code)eResolveProxy(oldCode);
@@ -184,7 +187,8 @@ public abstract class TransitionNodeImpl extends NodeImpl implements TransitionN
 	/**
 	 * @see org.cpntools.accesscpn.model.CPNToolsTransitionAddin#setCode(org.cpntools.accesscpn.model.Code)
 	 */
-	public void setCode(final Code newCode) {
+	@Override
+    public void setCode(final Code newCode) {
 		if (code != null) {
 			code.setParent(null);
 		}
@@ -209,7 +213,8 @@ public abstract class TransitionNodeImpl extends NodeImpl implements TransitionN
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Time getTime() {
+	@Override
+    public Time getTime() {
 		if (time != null && ((EObject)time).eIsProxy()) {
 			InternalEObject oldTime = (InternalEObject)time;
 			time = (Time)eResolveProxy(oldTime);
@@ -232,7 +237,8 @@ public abstract class TransitionNodeImpl extends NodeImpl implements TransitionN
 	/**
 	 * @see org.cpntools.accesscpn.model.CPNToolsTransitionAddin#setTime(org.cpntools.accesscpn.model.Time)
 	 */
-	public void setTime(final Time newTime) {
+	@Override
+    public void setTime(final Time newTime) {
 		if (time != null) {
 			time.setParent(null);
 		}
@@ -258,7 +264,8 @@ public abstract class TransitionNodeImpl extends NodeImpl implements TransitionN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Priority getPriority() {
+	@Override
+    public Priority getPriority() {
 		if (priority != null && ((EObject)priority).eIsProxy()) {
 			InternalEObject oldPriority = (InternalEObject)priority;
 			priority = (Priority)eResolveProxy(oldPriority);
@@ -282,7 +289,8 @@ public abstract class TransitionNodeImpl extends NodeImpl implements TransitionN
 	/**
 	 * @see org.cpntools.accesscpn.model.CPNToolsTransitionAddin#setPriority(org.cpntools.accesscpn.model.Priority)
 	 */
-	public void setPriority(final Priority newPriority) {
+	@Override
+    public void setPriority(final Priority newPriority) {
 		if (priority != null) {
 			priority.setParent(null);
 		}

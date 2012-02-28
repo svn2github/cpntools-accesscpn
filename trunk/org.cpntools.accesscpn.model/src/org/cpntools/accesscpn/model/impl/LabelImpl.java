@@ -85,7 +85,8 @@ public abstract class LabelImpl extends EObjectImpl implements Label {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<ToolInfo> getToolinfo() {
+	@Override
+    public List<ToolInfo> getToolinfo() {
 		if (toolinfo == null) {
 			toolinfo = new EObjectContainmentWithInverseEList<ToolInfo>(ToolInfo.class, this, ModelPackageImpl.LABEL__TOOLINFO, ModelPackageImpl.TOOL_INFO__PARENT);
 		}
@@ -96,7 +97,8 @@ public abstract class LabelImpl extends EObjectImpl implements Label {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public HasLabel getParent() {
+	@Override
+    public HasLabel getParent() {
 		if (eContainerFeatureID() != ModelPackageImpl.LABEL__PARENT) return null;
 		return (HasLabel)eContainer();
 	}
@@ -114,7 +116,8 @@ public abstract class LabelImpl extends EObjectImpl implements Label {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParent(HasLabel newParent) {
+	@Override
+    public void setParent(HasLabel newParent) {
 		if (newParent != eInternalContainer() || (eContainerFeatureID() != ModelPackageImpl.LABEL__PARENT && newParent != null)) {
 			if (EcoreUtil.isAncestor(this, (EObject)newParent))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -135,7 +138,8 @@ public abstract class LabelImpl extends EObjectImpl implements Label {
 	 * 
 	 * @generated NOT
 	 */
-	public abstract String asString();
+	@Override
+    public abstract String asString();
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

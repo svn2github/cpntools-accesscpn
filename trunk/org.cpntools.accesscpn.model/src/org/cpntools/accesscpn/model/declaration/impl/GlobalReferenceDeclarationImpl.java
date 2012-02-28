@@ -103,7 +103,8 @@ public class GlobalReferenceDeclarationImpl extends DeclarationStructureImpl imp
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
+	@Override
+    public String getName() {
 		return name;
 	}
 
@@ -111,7 +112,8 @@ public class GlobalReferenceDeclarationImpl extends DeclarationStructureImpl imp
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
+	@Override
+    public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
@@ -122,7 +124,8 @@ public class GlobalReferenceDeclarationImpl extends DeclarationStructureImpl imp
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getValue() {
+	@Override
+    public String getValue() {
 		return value;
 	}
 
@@ -130,7 +133,8 @@ public class GlobalReferenceDeclarationImpl extends DeclarationStructureImpl imp
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(String newValue) {
+	@Override
+    public void setValue(String newValue) {
 		String oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
@@ -221,14 +225,16 @@ public class GlobalReferenceDeclarationImpl extends DeclarationStructureImpl imp
 	/**
 	 * @see org.cpntools.accesscpn.model.declaration.DeclarationStructure#asShortString()
 	 */
-	public String asShortString() {
+	@Override
+    public String asShortString() {
 		return asString();
 	}
 
 	/**
 	 * @see org.cpntools.accesscpn.model.declaration.DeclarationStructure#asString()
 	 */
-	public String asString() {
+	@Override
+    public String asString() {
 		return "globref " + getName() + " = " + getValue() + ';';
 	}
 

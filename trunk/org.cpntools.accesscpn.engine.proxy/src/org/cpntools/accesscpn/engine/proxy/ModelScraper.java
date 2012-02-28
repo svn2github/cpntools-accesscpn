@@ -75,6 +75,9 @@ import org.cpntools.accesscpn.model.declaration.UseDeclaration;
 import org.cpntools.accesscpn.model.declaration.VariableDeclaration;
 import org.eclipse.emf.ecore.EObject;
 
+/**
+ * @author michael
+ */
 public class ModelScraper extends PacketInspector {
 	private final PetriNet petriNet;
 	Map<String, Page> pages;
@@ -84,6 +87,9 @@ public class ModelScraper extends PacketInspector {
 	boolean fullyLoaded = false;
 	private Exception e;
 
+	/**
+	 * @param simulator
+	 */
 	public ModelScraper(final HighLevelSimulator simulator) {
 		super(simulator);
 		petriNet = ModelFactory.INSTANCE.createPetriNet();
@@ -364,21 +370,21 @@ public class ModelScraper extends PacketInspector {
 				globalReferenceDeclaration.setValue(packet.getString());
 				declaration.setStructure(globalReferenceDeclaration);
 			}
-				;
+
 				break;
 			case 17: {
 				final UseDeclaration useDeclaration = DeclarationFactory.INSTANCE.createUseDeclaration();
 				useDeclaration.setFileName(packet.getString());
 				declaration.setStructure(useDeclaration);
 			}
-				;
+
 				break;
 			case 18: {
 				final MLDeclaration mlDeclaration = DeclarationFactory.INSTANCE.createMLDeclaration();
 				mlDeclaration.setCode(packet.getString());
 				declaration.setStructure(mlDeclaration);
 			}
-				;
+
 				break;
 			case 20: {
 				final VariableDeclaration variableDeclaration = DeclarationFactory.INSTANCE.createVariableDeclaration();
@@ -388,7 +394,7 @@ public class ModelScraper extends PacketInspector {
 				}
 				declaration.setStructure(variableDeclaration);
 			}
-				;
+
 				break;
 			case 21:
 			case 23:
@@ -401,7 +407,7 @@ public class ModelScraper extends PacketInspector {
 				assert packet.getInteger() == 1;
 				declaration.setStructure(createColor(22, 0, 0, 0, 0, 0, packet));
 			}
-				;
+
 				break;
 			}
 		}
@@ -417,7 +423,7 @@ public class ModelScraper extends PacketInspector {
 			unit.setId(packet.getString());
 			type = unit;
 		}
-			;
+
 			break;
 		case 2: {
 			final CPNBool bool = CpntypesFactory.INSTANCE.createCPNBool();
@@ -425,7 +431,7 @@ public class ModelScraper extends PacketInspector {
 			bool.setTrueValue(packet.getString());
 			type = bool;
 		}
-			;
+
 			break;
 		case 3: {
 			final CPNInt integer = CpntypesFactory.INSTANCE.createCPNInt();
@@ -443,7 +449,7 @@ public class ModelScraper extends PacketInspector {
 			string.setRangeHigh(packet.getString());
 			type = string;
 		}
-			;
+
 			break;
 		case 6: {
 			final CPNEnum with = CpntypesFactory.INSTANCE.createCPNEnum();
@@ -452,7 +458,7 @@ public class ModelScraper extends PacketInspector {
 			}
 			type = with;
 		}
-			;
+
 			break;
 		case 7: {
 			final CPNIndex index = CpntypesFactory.INSTANCE.createCPNIndex();
@@ -461,7 +467,7 @@ public class ModelScraper extends PacketInspector {
 			index.setHigh(packet.getString());
 			type = index;
 		}
-			;
+
 			break;
 		case 8: {
 			final CPNList list = CpntypesFactory.INSTANCE.createCPNList();
@@ -470,7 +476,7 @@ public class ModelScraper extends PacketInspector {
 			list.setHigh(packet.getString());
 			type = list;
 		}
-			;
+
 			break;
 		case 9: {
 			final CPNProduct product = CpntypesFactory.INSTANCE.createCPNProduct();
@@ -479,7 +485,7 @@ public class ModelScraper extends PacketInspector {
 			}
 			type = product;
 		}
-			;
+
 			break;
 		case 10: {
 			final CPNRecord record = CpntypesFactory.INSTANCE.createCPNRecord();
@@ -488,7 +494,7 @@ public class ModelScraper extends PacketInspector {
 			}
 			type = record;
 		}
-			;
+
 			break;
 		case 11: {
 			final CPNUnion union = CpntypesFactory.INSTANCE.createCPNUnion();
@@ -497,7 +503,7 @@ public class ModelScraper extends PacketInspector {
 			}
 			type = union;
 		}
-			;
+
 			break;
 		case 12: {
 			final CPNSubset subset = CpntypesFactory.INSTANCE.createCPNSubset();
@@ -505,7 +511,7 @@ public class ModelScraper extends PacketInspector {
 			subset.setBy(packet.getString());
 			type = subset;
 		}
-			;
+
 			break;
 		case 15:
 		case 22: {
@@ -554,6 +560,10 @@ public class ModelScraper extends PacketInspector {
 		n.setText(name);
 	}
 
+	/**
+	 * @return
+	 * @throws Exception
+	 */
 	public PetriNet getPetriNet() throws Exception {
 		if (e != null) { throw e; }
 		if (fullyLoaded) { return petriNet; }

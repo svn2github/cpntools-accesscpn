@@ -204,7 +204,8 @@ public class MarkingImpl extends EObjectImpl implements Marking {
 	 * 
 	 * @generated
 	 */
-	public int getTokenCount() {
+	@Override
+    public int getTokenCount() {
 		return tokenCount;
 	}
 
@@ -213,7 +214,8 @@ public class MarkingImpl extends EObjectImpl implements Marking {
 	 * 
 	 * @generated
 	 */
-	public void setTokenCount(final int newTokenCount) {
+	@Override
+    public void setTokenCount(final int newTokenCount) {
 		final int oldTokenCount = tokenCount;
 		tokenCount = newTokenCount;
 		if (eNotificationRequired()) {
@@ -227,7 +229,8 @@ public class MarkingImpl extends EObjectImpl implements Marking {
 	 * 
 	 * @generated
 	 */
-	public String getMarking() {
+	@Override
+    public String getMarking() {
 		return marking;
 	}
 
@@ -236,7 +239,8 @@ public class MarkingImpl extends EObjectImpl implements Marking {
 	 * 
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public Instance<? extends PlaceNode> getPlaceInstance() {
 		if (placeInstance != null && ((EObject) placeInstance).eIsProxy()) {
 			final InternalEObject oldPlaceInstance = (InternalEObject) placeInstance;
@@ -265,7 +269,8 @@ public class MarkingImpl extends EObjectImpl implements Marking {
 	 * 
 	 * @generated
 	 */
-	public void setPlaceInstance(final Instance<? extends PlaceNode> newPlaceInstance) {
+	@Override
+    public void setPlaceInstance(final Instance<? extends PlaceNode> newPlaceInstance) {
 		final Instance<? extends PlaceNode> oldPlaceInstance = placeInstance;
 		placeInstance = newPlaceInstance;
 		if (eNotificationRequired()) {
@@ -279,7 +284,8 @@ public class MarkingImpl extends EObjectImpl implements Marking {
 	 * 
 	 * @generated
 	 */
-	public List<MultisetEntry> getStructuredMarking() {
+	@Override
+    public List<MultisetEntry> getStructuredMarking() {
 		if (structuredMarking == null) {
 			structuredMarking = new EObjectContainmentEList<MultisetEntry>(MultisetEntry.class, this,
 			        InstancePackageImpl.MARKING__STRUCTURED_MARKING);

@@ -82,7 +82,8 @@ public class CPNAliasImpl extends CPNTypeImpl implements CPNAlias {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getSort() {
+	@Override
+    public String getSort() {
 		return sort;
 	}
 
@@ -91,7 +92,8 @@ public class CPNAliasImpl extends CPNTypeImpl implements CPNAlias {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSort(String newSort) {
+	@Override
+    public void setSort(String newSort) {
 		String oldSort = sort;
 		sort = newSort;
 		if (eNotificationRequired())
@@ -170,7 +172,8 @@ public class CPNAliasImpl extends CPNTypeImpl implements CPNAlias {
 	/**
 	 * @see org.cpntools.accesscpn.model.cpntypes.CPNType#asString()
 	 */
-	public String asString() {
+	@Override
+    public String asString() {
 		return getSort() + postFixAsString();
 	}
 

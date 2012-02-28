@@ -70,7 +70,8 @@ public class DaemonSimulator implements SimulatorImplementation {
 	/**
 	 * @see org.cpntools.accesscpn.engine.SimulatorImplementation#destroy()
 	 */
-	public void destroy() {
+	@Override
+    public void destroy() {
 		try {
 			cpnmld.close();
 		} catch (final IOException e) {
@@ -91,7 +92,8 @@ public class DaemonSimulator implements SimulatorImplementation {
 	/**
 	 * @see org.cpntools.accesscpn.engine.SimulatorImplementation#getBanner()
 	 */
-	public String getBanner() {
+	@Override
+    public String getBanner() {
 		return banner;
 	}
 
@@ -117,7 +119,8 @@ public class DaemonSimulator implements SimulatorImplementation {
 	/**
 	 * @see org.cpntools.accesscpn.engine.SimulatorImplementation#receive()
 	 */
-	public Packet receive() throws IOException {
+	@Override
+    public Packet receive() throws IOException {
 		final Packet bis = new Packet();
 		bis.receive(dmoin);
 		return bis;
@@ -126,7 +129,8 @@ public class DaemonSimulator implements SimulatorImplementation {
 	/**
 	 * @see org.cpntools.accesscpn.engine.SimulatorImplementation#send(org.cpntools.accesscpn.engine.Packet)
 	 */
-	public void send(final Packet p) throws IOException {
+	@Override
+    public void send(final Packet p) throws IOException {
 		p.send(dmoout);
 	}
 
@@ -198,7 +202,8 @@ public class DaemonSimulator implements SimulatorImplementation {
 	/**
 	 * @see org.cpntools.accesscpn.engine.SimulatorImplementation#getEvalBytes(byte[], int, int)
 	 */
-	public int getEvalBytes(final byte[] data, final int start, final int count) throws IOException {
+	@Override
+    public int getEvalBytes(final byte[] data, final int start, final int count) throws IOException {
 		return dmoevalin.read(data, start, count);
 	}
 

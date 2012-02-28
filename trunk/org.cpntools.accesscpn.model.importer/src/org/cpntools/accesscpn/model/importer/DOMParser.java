@@ -203,6 +203,7 @@ public class DOMParser {
 
 		final DocumentBuilder documentBuilder = docfactory.newDocumentBuilder();
 		documentBuilder.setEntityResolver(new EntityResolver() {
+			@Override
 			public InputSource resolveEntity(final String publicId, final String systemId) {
 				final String[] entityPathList = new String[] { "http://cpntools.org/DTD",
 				        "http://www.daimi.au.dk/~cpntools/bin/DTD" };
@@ -516,6 +517,11 @@ public class DOMParser {
 		}
 	}
 
+	/**
+	 * @param modelData
+	 * @param instances
+	 * @param n
+	 */
 	public void processMonitorBlock(final ModelData modelData, final Map<String, Integer> instances, final Node n) {
 		final NodeList nl = n.getChildNodes();
 		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
@@ -605,6 +611,10 @@ public class DOMParser {
 		return result;
 	}
 
+	/**
+	 * @param n
+	 * @return
+	 */
 	public FusionGroup processFusion(final Node n) {
 		final FusionGroup fusionGroup = DOMParser.factory.createFusionGroup();
 		fusionGroup.setId(ParserUtil.getAttr(n, ID));

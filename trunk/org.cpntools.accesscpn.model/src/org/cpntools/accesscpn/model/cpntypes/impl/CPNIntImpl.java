@@ -101,7 +101,8 @@ public class CPNIntImpl extends CPNTypeImpl implements CPNInt {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getLow() {
+	@Override
+    public String getLow() {
 		return low;
 	}
 
@@ -109,7 +110,8 @@ public class CPNIntImpl extends CPNTypeImpl implements CPNInt {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLow(String newLow) {
+	@Override
+    public void setLow(String newLow) {
 		String oldLow = low;
 		low = newLow;
 		if (eNotificationRequired())
@@ -120,7 +122,8 @@ public class CPNIntImpl extends CPNTypeImpl implements CPNInt {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getHigh() {
+	@Override
+    public String getHigh() {
 		return high;
 	}
 
@@ -128,7 +131,8 @@ public class CPNIntImpl extends CPNTypeImpl implements CPNInt {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHigh(String newHigh) {
+	@Override
+    public void setHigh(String newHigh) {
 		String oldHigh = high;
 		high = newHigh;
 		if (eNotificationRequired())
@@ -219,7 +223,8 @@ public class CPNIntImpl extends CPNTypeImpl implements CPNInt {
 	/**
 	 * @see org.cpntools.accesscpn.model.cpntypes.CPNType#asString()
 	 */
-	public String asString() {
+	@Override
+    public String asString() {
 		if (getLow() == null || getHigh() == null || "".equals(getLow()) || "".equals(getHigh())) { return "int"
 		        + postFixAsString(); }
 		return "int with " + getLow() + ".." + getHigh() + postFixAsString();

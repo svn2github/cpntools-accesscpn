@@ -218,7 +218,8 @@ public class FontImpl extends EObjectImpl implements Font {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getFamily() {
+	@Override
+    public String getFamily() {
 		return family;
 	}
 
@@ -227,7 +228,8 @@ public class FontImpl extends EObjectImpl implements Font {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFamily(String newFamily) {
+	@Override
+    public void setFamily(String newFamily) {
 		String oldFamily = family;
 		family = newFamily;
 		if (eNotificationRequired())
@@ -239,7 +241,8 @@ public class FontImpl extends EObjectImpl implements Font {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getStyle() {
+	@Override
+    public String getStyle() {
 		return style;
 	}
 
@@ -248,7 +251,8 @@ public class FontImpl extends EObjectImpl implements Font {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStyle(String newStyle) {
+	@Override
+    public void setStyle(String newStyle) {
 		String oldStyle = style;
 		style = newStyle;
 		if (eNotificationRequired())
@@ -260,7 +264,8 @@ public class FontImpl extends EObjectImpl implements Font {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getWeight() {
+	@Override
+    public String getWeight() {
 		return weight;
 	}
 
@@ -269,7 +274,8 @@ public class FontImpl extends EObjectImpl implements Font {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWeight(String newWeight) {
+	@Override
+    public void setWeight(String newWeight) {
 		String oldWeight = weight;
 		weight = newWeight;
 		if (eNotificationRequired())
@@ -281,7 +287,8 @@ public class FontImpl extends EObjectImpl implements Font {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getSize() {
+	@Override
+    public String getSize() {
 		return size;
 	}
 
@@ -290,7 +297,8 @@ public class FontImpl extends EObjectImpl implements Font {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSize(String newSize) {
+	@Override
+    public void setSize(String newSize) {
 		String oldSize = size;
 		size = newSize;
 		if (eNotificationRequired())
@@ -302,7 +310,8 @@ public class FontImpl extends EObjectImpl implements Font {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Decoration getDecoration() {
+	@Override
+    public Decoration getDecoration() {
 		return decoration;
 	}
 
@@ -311,7 +320,8 @@ public class FontImpl extends EObjectImpl implements Font {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDecoration(Decoration newDecoration) {
+	@Override
+    public void setDecoration(Decoration newDecoration) {
 		Decoration oldDecoration = decoration;
 		decoration = newDecoration;
 		if (eNotificationRequired())
@@ -323,7 +333,8 @@ public class FontImpl extends EObjectImpl implements Font {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Align getAlign() {
+	@Override
+    public Align getAlign() {
 		return align;
 	}
 
@@ -332,7 +343,8 @@ public class FontImpl extends EObjectImpl implements Font {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAlign(Align newAlign) {
+	@Override
+    public void setAlign(Align newAlign) {
 		Align oldAlign = align;
 		align = newAlign == null ? ALIGN_EDEFAULT : newAlign;
 		if (eNotificationRequired())
@@ -344,7 +356,8 @@ public class FontImpl extends EObjectImpl implements Font {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getRotation() {
+	@Override
+    public double getRotation() {
 		return rotation;
 	}
 
@@ -353,7 +366,8 @@ public class FontImpl extends EObjectImpl implements Font {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRotation(double newRotation) {
+	@Override
+    public void setRotation(double newRotation) {
 		double oldRotation = rotation;
 		rotation = newRotation;
 		if (eNotificationRequired())

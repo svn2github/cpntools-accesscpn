@@ -12,7 +12,10 @@ Bundle-Localization: plugin
 Export-Package: .,
  org.cpntools.accesscpn.model.cpntypes.tests,
  org.cpntools.accesscpn.model.declaration.tests,
+ org.cpntools.accesscpn.model.demos.sillytime,
+ org.cpntools.accesscpn.model.demos.statespacegenerator,
  org.cpntools.accesscpn.model.graphics.tests,
+ org.cpntools.accesscpn.model.monitors.tests,
  org.cpntools.accesscpn.model.tests
 Require-Bundle: org.cpntools.accesscpn.model;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,

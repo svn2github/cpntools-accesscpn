@@ -17,6 +17,6 @@ Export-Package: org.cpntools.accesscpn.engine.highlevel,
  org.cpntools.accesscpn.engine.highlevel.utils
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.cpntools.accesscpn.engine;bundle-version="2.0.2",
- org.cpntools.accesscpn.model;bundle-version="2.1.0"
+ org.cpntools.accesscpn.engine,
+ org.cpntools.accesscpn.model
 Bundle-ActivationPolicy: lazy

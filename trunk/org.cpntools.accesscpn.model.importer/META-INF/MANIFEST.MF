@@ -6,7 +6,7 @@ Bundle-Version: 2.1.0
 Require-Bundle: org.cpntools.accesscpn.engine.highlevel;bundle-version="2.1.0",
  org.cpntools.accesscpn.model;bundle-version="2.1.0"
 Export-Package: org.cpntools.accesscpn.model.importer;
-  uses:="org.cpntools.accesscpn.model,
+  uses:="org.cpntools.accesscpn.model, 
    org.cpntools.accesscpn.model.declaration,
    javax.xml.parsers,
    org.cpntools.accesscpn.model.cpntypes,

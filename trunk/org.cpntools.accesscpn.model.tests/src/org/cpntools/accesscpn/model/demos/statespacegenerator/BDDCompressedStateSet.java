@@ -126,7 +126,8 @@ public class BDDCompressedStateSet implements CompressedStateSet {
 		this(allRealPlaceInstances.size());
 	}
 
-	public synchronized boolean add(final CompressedState compressed) {
+	@Override
+    public synchronized boolean add(final CompressedState compressed) {
 		final int[] indices = compressed.getIndices(placeCount);
 		final BDD newState = buildState(indices);
 		if (newState.and(set).isZero()) {
@@ -143,7 +144,8 @@ public class BDDCompressedStateSet implements CompressedStateSet {
 	 * 
 	 * @see CompressedStateSet#addAll(java.util.Collection)
 	 */
-	public synchronized void addAll(final Collection<CompressedState> unchecked) {
+	@Override
+    public synchronized void addAll(final Collection<CompressedState> unchecked) {
 		for (final CompressedState s : unchecked) {
 			final int[] indices = s.getIndices(placeCount);
 			final BDD newState = buildState(indices);
@@ -152,24 +154,28 @@ public class BDDCompressedStateSet implements CompressedStateSet {
 		size += unchecked.size();
 	}
 
-	public synchronized void clear() {
+	@Override
+    public synchronized void clear() {
 		set.andWith(factory.zero());
 	}
 
 	
-	public Iterator<CompressedState> iterator() {
+	@Override
+    public Iterator<CompressedState> iterator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public synchronized void printStats() {
+	@Override
+    public synchronized void printStats() {
 		System.out.println("Variables: " + placeCount + "; size = " + size);
 		System.out.println("SATCount: " + set.satCount() + "; nodeCount: " + set.nodeCount());
 		// factory.reorder(BDDFactory.REORDER_WIN2ITE);
 		// System.out.println("SATCount: " + set.satCount() + "; nodeCount: " + set.nodeCount());
 	}
 
-	public synchronized int size() {
+	@Override
+    public synchronized int size() {
 		return size;
 	}
 

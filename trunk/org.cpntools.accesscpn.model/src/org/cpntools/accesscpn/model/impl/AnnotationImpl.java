@@ -78,7 +78,8 @@ public abstract class AnnotationImpl extends LabelImpl implements Annotation {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Graphics getGraphics() {
+	@Override
+    public Graphics getGraphics() {
 		return graphics;
 	}
 
@@ -100,7 +101,8 @@ public abstract class AnnotationImpl extends LabelImpl implements Annotation {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGraphics(Graphics newGraphics) {
+	@Override
+    public void setGraphics(Graphics newGraphics) {
 		if (newGraphics != graphics) {
 			NotificationChain msgs = null;
 			if (graphics != null)
@@ -118,7 +120,8 @@ public abstract class AnnotationImpl extends LabelImpl implements Annotation {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText() {
+	@Override
+    public String getText() {
 		return text;
 	}
 
@@ -126,7 +129,8 @@ public abstract class AnnotationImpl extends LabelImpl implements Annotation {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setText(String newText) {
+	@Override
+    public void setText(String newText) {
 		String oldText = text;
 		text = newText;
 		if (eNotificationRequired())
@@ -297,7 +301,8 @@ public abstract class AnnotationImpl extends LabelImpl implements Annotation {
 	/**
 	 * @see org.cpntools.accesscpn.model.HLAnnotationAddin#isReady(boolean)
 	 */
-	public boolean isReady(final boolean mayBeEmpty) {
+	@Override
+    public boolean isReady(final boolean mayBeEmpty) {
 		return mayBeEmpty || getText() != null && !"".equals(getText());
 	}
 

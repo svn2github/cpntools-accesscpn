@@ -875,6 +875,7 @@ public class PacketGenerator {
 
 	private void addPlaces(final Packet p, final Monitor monitor) {
 		for (final Object o : monitor.getNodes()) {
+			@SuppressWarnings("unchecked")
 			final org.cpntools.accesscpn.engine.highlevel.instance.Instance<Node> i = (org.cpntools.accesscpn.engine.highlevel.instance.Instance<Node>) o;
 			if (i.getNode() instanceof PlaceNode) {
 				p.addInteger(i.getInstanceNumber());
@@ -886,6 +887,7 @@ public class PacketGenerator {
 
 	private void addTransitions(final Packet p, final Monitor monitor) {
 		for (final Object o : monitor.getNodes()) {
+			@SuppressWarnings("unchecked")
 			final org.cpntools.accesscpn.engine.highlevel.instance.Instance<Node> i = (org.cpntools.accesscpn.engine.highlevel.instance.Instance<Node>) o;
 			if (i.getNode() instanceof TransitionNode) {
 				p.addInteger(i.getInstanceNumber());
@@ -897,6 +899,7 @@ public class PacketGenerator {
 	private int countTransitions(final Monitor monitor) {
 		int result = 0;
 		for (final Object o : monitor.getNodes()) {
+			@SuppressWarnings("unchecked")
 			final org.cpntools.accesscpn.engine.highlevel.instance.Instance<Node> i = (org.cpntools.accesscpn.engine.highlevel.instance.Instance<Node>) o;
 			if (i.getNode() instanceof TransitionNode) {
 				result++;
@@ -908,6 +911,7 @@ public class PacketGenerator {
 	private int countPlaces(final Monitor monitor) {
 		int result = 0;
 		for (final Object o : monitor.getNodes()) {
+			@SuppressWarnings("unchecked")
 			final org.cpntools.accesscpn.engine.highlevel.instance.Instance<Node> i = (org.cpntools.accesscpn.engine.highlevel.instance.Instance<Node>) o;
 			if (i.getNode() instanceof PlaceNode) {
 				result++;
@@ -972,6 +976,10 @@ public class PacketGenerator {
 		return p;
 	}
 
+	/**
+	 * @param monitor
+	 * @return
+	 */
 	public Packet constructCheckMonitor(final Monitor monitor) {
 		final Packet p = createMonitoringPacket(monitor, 3);
 		switch (monitor.getKind()) {

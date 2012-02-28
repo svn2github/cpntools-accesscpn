@@ -111,7 +111,8 @@ public class CoordinateImpl extends EObjectImpl implements Coordinate {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getX() {
+	@Override
+    public double getX() {
 		return x;
 	}
 
@@ -120,7 +121,8 @@ public class CoordinateImpl extends EObjectImpl implements Coordinate {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setX(double newX) {
+	@Override
+    public void setX(double newX) {
 		double oldX = x;
 		x = newX;
 		if (eNotificationRequired())
@@ -132,7 +134,8 @@ public class CoordinateImpl extends EObjectImpl implements Coordinate {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getY() {
+	@Override
+    public double getY() {
 		return y;
 	}
 
@@ -141,7 +144,8 @@ public class CoordinateImpl extends EObjectImpl implements Coordinate {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setY(double newY) {
+	@Override
+    public void setY(double newY) {
 		double oldY = y;
 		y = newY;
 		if (eNotificationRequired())

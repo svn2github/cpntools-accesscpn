@@ -75,7 +75,8 @@ public abstract class GraphicsImpl extends EObjectImpl implements Graphics {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public HasGraphics getParent() {
+	@Override
+    public HasGraphics getParent() {
 		if (eContainerFeatureID() != GraphicsPackageImpl.GRAPHICS__PARENT) return null;
 		return (HasGraphics)eContainer();
 	}
@@ -95,7 +96,8 @@ public abstract class GraphicsImpl extends EObjectImpl implements Graphics {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParent(HasGraphics newParent) {
+	@Override
+    public void setParent(HasGraphics newParent) {
 		if (newParent != eInternalContainer() || (eContainerFeatureID() != GraphicsPackageImpl.GRAPHICS__PARENT && newParent != null)) {
 			if (EcoreUtil.isAncestor(this, (EObject)newParent))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());

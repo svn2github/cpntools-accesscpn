@@ -117,7 +117,8 @@ public class ToolInfoImpl extends EObjectImpl implements ToolInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getTool() {
+	@Override
+    public String getTool() {
 		return tool;
 	}
 
@@ -126,7 +127,8 @@ public class ToolInfoImpl extends EObjectImpl implements ToolInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTool(String newTool) {
+	@Override
+    public void setTool(String newTool) {
 		String oldTool = tool;
 		tool = newTool;
 		if (eNotificationRequired())
@@ -138,7 +140,8 @@ public class ToolInfoImpl extends EObjectImpl implements ToolInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getVersion() {
+	@Override
+    public String getVersion() {
 		return version;
 	}
 
@@ -147,7 +150,8 @@ public class ToolInfoImpl extends EObjectImpl implements ToolInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVersion(String newVersion) {
+	@Override
+    public void setVersion(String newVersion) {
 		String oldVersion = version;
 		version = newVersion;
 		if (eNotificationRequired())
@@ -159,7 +163,8 @@ public class ToolInfoImpl extends EObjectImpl implements ToolInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public HasToolInfo getParent() {
+	@Override
+    public HasToolInfo getParent() {
 		if (eContainerFeatureID() != ModelPackageImpl.TOOL_INFO__PARENT) return null;
 		return (HasToolInfo)eContainer();
 	}
@@ -179,7 +184,8 @@ public class ToolInfoImpl extends EObjectImpl implements ToolInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParent(HasToolInfo newParent) {
+	@Override
+    public void setParent(HasToolInfo newParent) {
 		if (newParent != eInternalContainer() || (eContainerFeatureID() != ModelPackageImpl.TOOL_INFO__PARENT && newParent != null)) {
 			if (EcoreUtil.isAncestor(this, (EObject)newParent))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());

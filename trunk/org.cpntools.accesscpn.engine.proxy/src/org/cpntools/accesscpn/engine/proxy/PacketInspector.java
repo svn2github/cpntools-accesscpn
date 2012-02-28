@@ -9,17 +9,30 @@ import org.cpntools.accesscpn.engine.Simulator;
 import org.cpntools.accesscpn.engine.Simulator.PacketSent;
 import org.cpntools.accesscpn.engine.highlevel.HighLevelSimulator;
 
+/**
+ * @author michael
+ */
 public abstract class PacketInspector implements Observer {
 	protected final HighLevelSimulator simulator;
 
+	/**
+	 * @param simulator
+	 */
 	public PacketInspector(final HighLevelSimulator simulator) {
 		this.simulator = simulator;
 	}
 
+	/**
+	 * 
+	 */
 	public void attach() {
 		simulator.getSimulator().addObserver(this);
 	}
 
+	/**
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
+	@Override
 	public void update(final Observable arg0, final java.lang.Object arg1) {
 		if (arg1 != null && arg1 instanceof Simulator.PacketSent) {
 			try {

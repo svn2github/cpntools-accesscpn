@@ -92,14 +92,16 @@ public class SimulatorService extends Observable implements Iterable<Simulator>,
 	 * @return an iterator of all simulators
 	 * @see java.lang.Iterable#iterator()
 	 */
-	public Iterator<Simulator> iterator() {
+	@Override
+    public Iterator<Simulator> iterator() {
 		return simulators.iterator();
 	}
 
 	/**
 	 * @see java.lang.Runnable#run()
 	 */
-	public void run() {
+	@Override
+    public void run() {
 		for (final Simulator simulator : new ArrayList<Simulator>(simulators)) {
 			try {
 				simulator.destroy();

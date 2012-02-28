@@ -83,7 +83,8 @@ public class FusionGroupImpl extends PlaceImpl implements FusionGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PetriNet getPetriNet() {
+	@Override
+    public PetriNet getPetriNet() {
 		if (petriNet != null && ((EObject)petriNet).eIsProxy()) {
 			InternalEObject oldPetriNet = (InternalEObject)petriNet;
 			petriNet = (PetriNet)eResolveProxy(oldPetriNet);
@@ -124,7 +125,8 @@ public class FusionGroupImpl extends PlaceImpl implements FusionGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPetriNet(PetriNet newPetriNet) {
+	@Override
+    public void setPetriNet(PetriNet newPetriNet) {
 		if (newPetriNet != petriNet) {
 			NotificationChain msgs = null;
 			if (petriNet != null)

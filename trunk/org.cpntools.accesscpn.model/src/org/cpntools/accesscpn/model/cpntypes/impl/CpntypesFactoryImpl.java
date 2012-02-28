@@ -115,7 +115,8 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CPNUnit createCPNUnit() {
+	@Override
+    public CPNUnit createCPNUnit() {
 		CPNUnitImpl cpnUnit = new CPNUnitImpl();
 		return cpnUnit;
 	}
@@ -124,7 +125,8 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CPNEnum createCPNEnum() {
+	@Override
+    public CPNEnum createCPNEnum() {
 		CPNEnumImpl cpnEnum = new CPNEnumImpl();
 		return cpnEnum;
 	}
@@ -133,7 +135,8 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CPNProduct createCPNProduct() {
+	@Override
+    public CPNProduct createCPNProduct() {
 		CPNProductImpl cpnProduct = new CPNProductImpl();
 		return cpnProduct;
 	}
@@ -142,7 +145,8 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CPNReal createCPNReal() {
+	@Override
+    public CPNReal createCPNReal() {
 		CPNRealImpl cpnReal = new CPNRealImpl();
 		return cpnReal;
 	}
@@ -151,7 +155,8 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CPNIndex createCPNIndex() {
+	@Override
+    public CPNIndex createCPNIndex() {
 		CPNIndexImpl cpnIndex = new CPNIndexImpl();
 		return cpnIndex;
 	}
@@ -160,7 +165,8 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CPNString createCPNString() {
+	@Override
+    public CPNString createCPNString() {
 		CPNStringImpl cpnString = new CPNStringImpl();
 		return cpnString;
 	}
@@ -169,7 +175,8 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CPNAlias createCPNAlias() {
+	@Override
+    public CPNAlias createCPNAlias() {
 		CPNAliasImpl cpnAlias = new CPNAliasImpl();
 		return cpnAlias;
 	}
@@ -178,7 +185,8 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CPNInt createCPNInt() {
+	@Override
+    public CPNInt createCPNInt() {
 		CPNIntImpl cpnInt = new CPNIntImpl();
 		return cpnInt;
 	}
@@ -189,7 +197,8 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * @return a new CPNBool <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CPNBool createCPNBool() {
+	@Override
+    public CPNBool createCPNBool() {
 		CPNBoolImpl cpnBool = new CPNBoolImpl();
 		return cpnBool;
 	}
@@ -198,7 +207,8 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CPNList createCPNList() {
+	@Override
+    public CPNList createCPNList() {
 		CPNListImpl cpnList = new CPNListImpl();
 		return cpnList;
 	}
@@ -207,7 +217,8 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CPNRecord createCPNRecord() {
+	@Override
+    public CPNRecord createCPNRecord() {
 		CPNRecordImpl cpnRecord = new CPNRecordImpl();
 		return cpnRecord;
 	}
@@ -216,7 +227,8 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CPNUnion createCPNUnion() {
+	@Override
+    public CPNUnion createCPNUnion() {
 		CPNUnionImpl cpnUnion = new CPNUnionImpl();
 		return cpnUnion;
 	}
@@ -225,7 +237,8 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CPNSubset createCPNSubset() {
+	@Override
+    public CPNSubset createCPNSubset() {
 		CPNSubsetImpl cpnSubset = new CPNSubsetImpl();
 		return cpnSubset;
 	}
@@ -234,7 +247,8 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NameTypePair createNameTypePair() {
+	@Override
+    public NameTypePair createNameTypePair() {
 		NameTypePairImpl nameTypePair = new NameTypePairImpl();
 		return nameTypePair;
 	}

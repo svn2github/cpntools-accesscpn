@@ -33,28 +33,34 @@ public class CollectionsCompressedStateSet implements CompressedStateSet {
 		synchronizedSet = Collections.synchronizedSet(new HashSet<CompressedState>());
 	}
 
-	public boolean add(final CompressedState compressed) {
+	@Override
+    public boolean add(final CompressedState compressed) {
 		return synchronizedSet.add(compressed);
 	}
 
-	public void addAll(final Collection<CompressedState> unchecked) {
+	@Override
+    public void addAll(final Collection<CompressedState> unchecked) {
 		synchronizedSet.addAll(unchecked);
 	}
 
-	public void clear() {
+	@Override
+    public void clear() {
 		synchronizedSet.clear();
 	}
 
-	public Iterator<CompressedState> iterator() {
+	@Override
+    public Iterator<CompressedState> iterator() {
 		return synchronizedSet.iterator();
 	}
 
-	public void printStats() {
+	@Override
+    public void printStats() {
 		System.out.println("Size: " + synchronizedSet.size());
 
 	}
 
-	public int size() {
+	@Override
+    public int size() {
 		return synchronizedSet.size();
 	}
 

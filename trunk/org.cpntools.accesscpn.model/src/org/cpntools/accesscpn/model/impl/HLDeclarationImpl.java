@@ -92,7 +92,8 @@ public class HLDeclarationImpl extends AnnotationImpl implements HLDeclaration {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getId() {
+	@Override
+    public String getId() {
 		return id;
 	}
 
@@ -100,7 +101,8 @@ public class HLDeclarationImpl extends AnnotationImpl implements HLDeclaration {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setId(String newId) {
+	@Override
+    public void setId(String newId) {
 		String oldId = id;
 		id = newId;
 		if (eNotificationRequired())
@@ -111,7 +113,8 @@ public class HLDeclarationImpl extends AnnotationImpl implements HLDeclaration {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeclarationStructure getStructure() {
+	@Override
+    public DeclarationStructure getStructure() {
 		return structure;
 	}
 
@@ -144,7 +147,8 @@ public class HLDeclarationImpl extends AnnotationImpl implements HLDeclaration {
 	/**
 	 * @see org.cpntools.accesscpn.model.HLDeclaration#setStructure(org.cpntools.accesscpn.model.declaration.DeclarationStructure)
 	 */
-	public void setStructure(final org.cpntools.accesscpn.model.declaration.DeclarationStructure newStructure) {
+	@Override
+    public void setStructure(final org.cpntools.accesscpn.model.declaration.DeclarationStructure newStructure) {
 		setStructureGen(newStructure);
 		if (newStructure != null) {
 			super.setText(newStructure.asString());

@@ -42,14 +42,16 @@ public abstract class FilterIterator<T> implements Iterator<T> {
 	/**
 	 * @see java.util.Iterator#hasNext()
 	 */
-	public boolean hasNext() {
+	@Override
+    public boolean hasNext() {
 		return hasNext;
 	}
 
 	/**
 	 * @see java.util.Iterator#next()
 	 */
-	public T next() {
+	@Override
+    public T next() {
 		final T next = nextElement;
 		fill();
 		return next;
@@ -77,7 +79,8 @@ public abstract class FilterIterator<T> implements Iterator<T> {
 	/**
 	 * @see java.util.Iterator#remove()
 	 */
-	public void remove() {
+	@Override
+    public void remove() {
 		throw new UnsupportedOperationException();
 	}
 

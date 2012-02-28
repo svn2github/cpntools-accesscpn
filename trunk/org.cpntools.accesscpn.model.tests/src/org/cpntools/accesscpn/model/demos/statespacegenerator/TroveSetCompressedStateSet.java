@@ -35,11 +35,13 @@ public class TroveSetCompressedStateSet implements CompressedStateSet {
 		 */
 		private static final long serialVersionUID = 1L;
 
-		public int computeHashCode(final byte[] arg0) {
+		@Override
+        public int computeHashCode(final byte[] arg0) {
 			return Arrays.hashCode(arg0);
 		}
 
-		public boolean equals(final byte[] arg0, final byte[] arg1) {
+		@Override
+        public boolean equals(final byte[] arg0, final byte[] arg1) {
 			return Arrays.equals(arg0, arg1);
 		}
 
@@ -51,29 +53,35 @@ public class TroveSetCompressedStateSet implements CompressedStateSet {
 		storage = new TCustomHashSet<byte[]>(new ByteArrayHashStrategy());
 	}
 
-	public synchronized boolean add(final CompressedState compressed) {
+	@Override
+    public synchronized boolean add(final CompressedState compressed) {
 		return storage.add(compressed.getBytes());
 	}
 
-	public synchronized void addAll(final Collection<CompressedState> unchecked) {
+	@Override
+    public synchronized void addAll(final Collection<CompressedState> unchecked) {
 		for (final CompressedState c : unchecked)
 			add(c);
 	}
 
-	public synchronized void clear() {
+	@Override
+    public synchronized void clear() {
 		storage.clear();
 	}
 
-	public Iterator<CompressedState> iterator() {
+	@Override
+    public Iterator<CompressedState> iterator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public synchronized void printStats() {
+	@Override
+    public synchronized void printStats() {
 		System.out.println(storage.size());
 	}
 
-	public synchronized int size() {
+	@Override
+    public synchronized int size() {
 		return storage.size();
 	}
 

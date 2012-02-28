@@ -82,7 +82,8 @@ public class RefTransImpl extends TransitionNodeImpl implements RefTrans {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TransitionNode getRef() {
+	@Override
+    public TransitionNode getRef() {
 		if (ref != null && ((EObject)ref).eIsProxy()) {
 			InternalEObject oldRef = (InternalEObject)ref;
 			ref = (TransitionNode)eResolveProxy(oldRef);
@@ -108,7 +109,8 @@ public class RefTransImpl extends TransitionNodeImpl implements RefTrans {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRef(TransitionNode newRef) {
+	@Override
+    public void setRef(TransitionNode newRef) {
 		TransitionNode oldRef = ref;
 		ref = newRef;
 		if (eNotificationRequired())

@@ -115,7 +115,8 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public Instance<Transition> getTransitionInstance() {
 		if (transitionInstance != null && ((EObject)transitionInstance).eIsProxy()) {
 			InternalEObject oldTransitionInstance = (InternalEObject)transitionInstance;
@@ -140,7 +141,8 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTransitionInstance(Instance<Transition> newTransitionInstance) {
+	@Override
+    public void setTransitionInstance(Instance<Transition> newTransitionInstance) {
 		Instance<Transition> oldTransitionInstance = transitionInstance;
 		transitionInstance = newTransitionInstance;
 		if (eNotificationRequired())
@@ -151,7 +153,8 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<ValueAssignment> getAllAssignments() {
+	@Override
+    public List<ValueAssignment> getAllAssignments() {
 		if (allAssignments == null) {
 			allAssignments = new EObjectContainmentEList<ValueAssignment>(ValueAssignment.class, this, InstancePackageImpl.BINDING__ALL_ASSIGNMENTS);
 		}
@@ -252,7 +255,8 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	/**
 	 * @see org.cpntools.accesscpn.engine.highlevel.instance.Binding#getValueAssignment(java.lang.String)
 	 */
-	public ValueAssignment getValueAssignment(final String name) {
+	@Override
+    public ValueAssignment getValueAssignment(final String name) {
 		if (valueMap != null) return valueMap.get(name);
 		return null;
 	}

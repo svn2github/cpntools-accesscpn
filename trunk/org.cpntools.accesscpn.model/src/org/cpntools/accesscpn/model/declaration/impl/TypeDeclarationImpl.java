@@ -99,7 +99,8 @@ public class TypeDeclarationImpl extends DeclarationStructureImpl implements Typ
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getTypeName() {
+	@Override
+    public String getTypeName() {
 		return typeName;
 	}
 
@@ -107,7 +108,8 @@ public class TypeDeclarationImpl extends DeclarationStructureImpl implements Typ
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTypeName(String newTypeName) {
+	@Override
+    public void setTypeName(String newTypeName) {
 		String oldTypeName = typeName;
 		typeName = newTypeName;
 		if (eNotificationRequired())
@@ -120,7 +122,8 @@ public class TypeDeclarationImpl extends DeclarationStructureImpl implements Typ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CPNType getSort() {
+	@Override
+    public CPNType getSort() {
 		return sort;
 	}
 
@@ -144,7 +147,8 @@ public class TypeDeclarationImpl extends DeclarationStructureImpl implements Typ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSort(CPNType newSort) {
+	@Override
+    public void setSort(CPNType newSort) {
 		if (newSort != sort) {
 			NotificationChain msgs = null;
 			if (sort != null)
@@ -253,14 +257,16 @@ public class TypeDeclarationImpl extends DeclarationStructureImpl implements Typ
 	/**
 	 * @see org.cpntools.accesscpn.model.declaration.DeclarationStructure#asShortString()
 	 */
-	public String asShortString() {
+	@Override
+    public String asShortString() {
 		return "colset " + getTypeName();
 	}
 
 	/**
 	 * @see org.cpntools.accesscpn.model.declaration.DeclarationStructure#asString()
 	 */
-	public String asString() {
+	@Override
+    public String asString() {
 		if (getSort() == null) {
 			return asShortString();
 		} else {

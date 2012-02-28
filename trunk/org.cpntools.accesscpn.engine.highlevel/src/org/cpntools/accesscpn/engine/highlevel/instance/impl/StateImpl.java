@@ -89,7 +89,8 @@ public class StateImpl extends EObjectImpl implements State {
 	/**
 	 * @see org.cpntools.accesscpn.engine.highlevel.instance.State#getMarking(org.cpntools.accesscpn.engine.highlevel.instance.Instance)
 	 */
-	public Marking getMarking(final Instance<? extends PlaceNode> instance) {
+	@Override
+    public Marking getMarking(final Instance<? extends PlaceNode> instance) {
 		if (markingMap == null) return null;
 		return markingMap.get(instance);
 	}
@@ -107,7 +108,8 @@ public class StateImpl extends EObjectImpl implements State {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<Marking> getAllMarkings() {
+	@Override
+    public List<Marking> getAllMarkings() {
 		if (allMarkings == null) {
 			allMarkings = new EObjectContainmentEList<Marking>(Marking.class, this, InstancePackageImpl.STATE__ALL_MARKINGS);
 		}

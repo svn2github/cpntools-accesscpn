@@ -108,7 +108,8 @@ public class InstanceImpl extends NodeImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<ParameterAssignment> getParameterAssignment() {
+	@Override
+    public List<ParameterAssignment> getParameterAssignment() {
 		if (parameterAssignment == null) {
 			parameterAssignment = new EObjectContainmentWithInverseEList<ParameterAssignment>(ParameterAssignment.class, this, ModelPackageImpl.INSTANCE__PARAMETER_ASSIGNMENT, ModelPackageImpl.PARAMETER_ASSIGNMENT__INSTANCE);
 		}
@@ -120,7 +121,8 @@ public class InstanceImpl extends NodeImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getSubPageID() {
+	@Override
+    public String getSubPageID() {
 		return subPageID;
 	}
 
@@ -129,7 +131,8 @@ public class InstanceImpl extends NodeImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSubPageID(String newSubPageID) {
+	@Override
+    public void setSubPageID(String newSubPageID) {
 		String oldSubPageID = subPageID;
 		subPageID = newSubPageID;
 		if (eNotificationRequired())

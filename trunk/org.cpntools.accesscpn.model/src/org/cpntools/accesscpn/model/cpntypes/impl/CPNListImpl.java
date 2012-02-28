@@ -117,7 +117,8 @@ public class CPNListImpl extends CPNTypeImpl implements CPNList {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getLow() {
+	@Override
+    public String getLow() {
 		return low;
 	}
 
@@ -125,7 +126,8 @@ public class CPNListImpl extends CPNTypeImpl implements CPNList {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLow(String newLow) {
+	@Override
+    public void setLow(String newLow) {
 		String oldLow = low;
 		low = newLow;
 		if (eNotificationRequired())
@@ -136,7 +138,8 @@ public class CPNListImpl extends CPNTypeImpl implements CPNList {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getHigh() {
+	@Override
+    public String getHigh() {
 		return high;
 	}
 
@@ -144,7 +147,8 @@ public class CPNListImpl extends CPNTypeImpl implements CPNList {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHigh(String newHigh) {
+	@Override
+    public void setHigh(String newHigh) {
 		String oldHigh = high;
 		high = newHigh;
 		if (eNotificationRequired())
@@ -156,7 +160,8 @@ public class CPNListImpl extends CPNTypeImpl implements CPNList {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getSort() {
+	@Override
+    public String getSort() {
 		return sort;
 	}
 
@@ -165,7 +170,8 @@ public class CPNListImpl extends CPNTypeImpl implements CPNList {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSort(String newSort) {
+	@Override
+    public void setSort(String newSort) {
 		String oldSort = sort;
 		sort = newSort;
 		if (eNotificationRequired())
@@ -268,7 +274,8 @@ public class CPNListImpl extends CPNTypeImpl implements CPNList {
 	/**
 	 * @see org.cpntools.accesscpn.model.cpntypes.CPNType#asString()
 	 */
-	public String asString() {
+	@Override
+    public String asString() {
 		return "list " + getSort() + postFixAsString();
 	}
 

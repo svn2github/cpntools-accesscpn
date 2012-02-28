@@ -122,7 +122,8 @@ public class CPNIndexImpl extends CPNTypeImpl implements CPNIndex {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
+	@Override
+    public String getName() {
 		return name;
 	}
 
@@ -130,7 +131,8 @@ public class CPNIndexImpl extends CPNTypeImpl implements CPNIndex {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
+	@Override
+    public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
@@ -141,7 +143,8 @@ public class CPNIndexImpl extends CPNTypeImpl implements CPNIndex {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getLow() {
+	@Override
+    public String getLow() {
 		return low;
 	}
 
@@ -149,7 +152,8 @@ public class CPNIndexImpl extends CPNTypeImpl implements CPNIndex {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLow(String newLow) {
+	@Override
+    public void setLow(String newLow) {
 		String oldLow = low;
 		low = newLow;
 		if (eNotificationRequired())
@@ -160,7 +164,8 @@ public class CPNIndexImpl extends CPNTypeImpl implements CPNIndex {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getHigh() {
+	@Override
+    public String getHigh() {
 		return high;
 	}
 
@@ -168,7 +173,8 @@ public class CPNIndexImpl extends CPNTypeImpl implements CPNIndex {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHigh(String newHigh) {
+	@Override
+    public void setHigh(String newHigh) {
 		String oldHigh = high;
 		high = newHigh;
 		if (eNotificationRequired())
@@ -271,7 +277,8 @@ public class CPNIndexImpl extends CPNTypeImpl implements CPNIndex {
 	/**
 	 * @see org.cpntools.accesscpn.model.cpntypes.CPNType#asString()
 	 */
-	public String asString() {
+	@Override
+    public String asString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("index ");
 		sb.append(getName());

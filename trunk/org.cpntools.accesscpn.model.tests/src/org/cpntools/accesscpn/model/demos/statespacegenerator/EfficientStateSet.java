@@ -27,11 +27,13 @@ public class EfficientStateSet implements CompressedStateSet {
 	private void init() {
 		storage = new CompressedStoreHashSetImpl.Int32G<CompressedState>(new Deflater<CompressedState>() {
 
-			public void deflate(final CompressedState object, final OutputStream stream) throws IOException {
+			@Override
+            public void deflate(final CompressedState object, final OutputStream stream) throws IOException {
 				stream.write(object.getBytes());
 			}
 		}, 128 * 1024 * 1024, 1024, new EqualOperation<CompressedState>() {
-			public boolean equals(final CompressedState object, final CompressedStore<CompressedState> store,
+			@Override
+            public boolean equals(final CompressedState object, final CompressedStore<CompressedState> store,
 			        final long l) throws StorageException, IOException {
 				final InputStream stream = store.getStreamForObject(l);
 				if (object == null) { return false; }
@@ -41,11 +43,13 @@ public class EfficientStateSet implements CompressedStateSet {
 				return true;
 			}
 		}, new HashOperation<CompressedState>() {
-			public int getHashCode(final CompressedState object) {
+			@Override
+            public int getHashCode(final CompressedState object) {
 				return object.hashCode();
 			}
 
-			public int getHashCode(final CompressedStore<CompressedState> store, final long l) throws StorageException {
+			@Override
+            public int getHashCode(final CompressedStore<CompressedState> store, final long l) throws StorageException {
 				return CompressedState.hashCode(store.getStreamForObject(l), count);
 			}
 

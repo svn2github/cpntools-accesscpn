@@ -167,7 +167,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Arc createArc() {
+	@Override
+    public Arc createArc() {
 		ArcImpl arc = new ArcImpl();
 		return arc;
 	}
@@ -177,7 +178,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Name createName() {
+	@Override
+    public Name createName() {
 		NameImpl name = new NameImpl();
 		return name;
 	}
@@ -187,7 +189,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Page createPage() {
+	@Override
+    public Page createPage() {
 		PageImpl page = new PageImpl();
 		return page;
 	}
@@ -197,7 +200,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PetriNet createPetriNet() {
+	@Override
+    public PetriNet createPetriNet() {
 		PetriNetImpl petriNet = new PetriNetImpl();
 		return petriNet;
 	}
@@ -207,7 +211,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Place createPlace() {
+	@Override
+    public Place createPlace() {
 		PlaceImpl place = new PlaceImpl();
 		return place;
 	}
@@ -217,7 +222,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RefPlace createRefPlace() {
+	@Override
+    public RefPlace createRefPlace() {
 		RefPlaceImpl refPlace = new RefPlaceImpl();
 		return refPlace;
 	}
@@ -227,7 +233,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RefTrans createRefTrans() {
+	@Override
+    public RefTrans createRefTrans() {
 		RefTransImpl refTrans = new RefTransImpl();
 		return refTrans;
 	}
@@ -237,7 +244,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ToolInfo createToolInfo() {
+	@Override
+    public ToolInfo createToolInfo() {
 		ToolInfoImpl toolInfo = new ToolInfoImpl();
 		return toolInfo;
 	}
@@ -247,7 +255,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Transition createTransition() {
+	@Override
+    public Transition createTransition() {
 		TransitionImpl transition = new TransitionImpl();
 		return transition;
 	}
@@ -257,7 +266,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public HLMarking createHLMarking() {
+	@Override
+    public HLMarking createHLMarking() {
 		HLMarkingImpl hlMarking = new HLMarkingImpl();
 		return hlMarking;
 	}
@@ -267,7 +277,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public HLAnnotation createHLAnnotation() {
+	@Override
+    public HLAnnotation createHLAnnotation() {
 		HLAnnotationImpl hlAnnotation = new HLAnnotationImpl();
 		return hlAnnotation;
 	}
@@ -277,7 +288,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Condition createCondition() {
+	@Override
+    public Condition createCondition() {
 		ConditionImpl condition = new ConditionImpl();
 		return condition;
 	}
@@ -287,7 +299,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Code createCode() {
+	@Override
+    public Code createCode() {
 		CodeImpl code = new CodeImpl();
 		return code;
 	}
@@ -297,7 +310,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Time createTime() {
+	@Override
+    public Time createTime() {
 		TimeImpl time = new TimeImpl();
 		return time;
 	}
@@ -307,7 +321,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public HLDeclaration createHLDeclaration() {
+	@Override
+    public HLDeclaration createHLDeclaration() {
 		HLDeclarationImpl hlDeclaration = new HLDeclarationImpl();
 		return hlDeclaration;
 	}
@@ -317,7 +332,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Instance createInstance() {
+	@Override
+    public Instance createInstance() {
 		InstanceImpl instance = new InstanceImpl();
 		return instance;
 	}
@@ -327,7 +343,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ParameterAssignment createParameterAssignment() {
+	@Override
+    public ParameterAssignment createParameterAssignment() {
 		ParameterAssignmentImpl parameterAssignment = new ParameterAssignmentImpl();
 		return parameterAssignment;
 	}
@@ -337,7 +354,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FusionGroup createFusionGroup() {
+	@Override
+    public FusionGroup createFusionGroup() {
 		FusionGroupImpl fusionGroup = new FusionGroupImpl();
 		return fusionGroup;
 	}
@@ -347,7 +365,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Priority createPriority() {
+	@Override
+    public Priority createPriority() {
 		PriorityImpl priority = new PriorityImpl();
 		return priority;
 	}
@@ -357,7 +376,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Sort createSort() {
+	@Override
+    public Sort createSort() {
 		SortImpl sort = new SortImpl();
 		return sort;
 	}

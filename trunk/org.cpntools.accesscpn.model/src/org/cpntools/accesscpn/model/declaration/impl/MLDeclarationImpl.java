@@ -81,7 +81,8 @@ public class MLDeclarationImpl extends DeclarationStructureImpl implements MLDec
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCode() {
+	@Override
+    public String getCode() {
 		return code;
 	}
 
@@ -89,7 +90,8 @@ public class MLDeclarationImpl extends DeclarationStructureImpl implements MLDec
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCode(String newCode) {
+	@Override
+    public void setCode(String newCode) {
 		String oldCode = code;
 		code = newCode;
 		if (eNotificationRequired())
@@ -168,14 +170,16 @@ public class MLDeclarationImpl extends DeclarationStructureImpl implements MLDec
 	/**
 	 * @see org.cpntools.accesscpn.model.declaration.DeclarationStructure#asShortString()
 	 */
-	public String asShortString() {
+	@Override
+    public String asShortString() {
 		return getCode().replaceFirst("[\\n\\r].*", "");
 	}
 
 	/**
 	 * @see org.cpntools.accesscpn.model.declaration.DeclarationStructure#asString()
 	 */
-	public String asString() {
+	@Override
+    public String asString() {
 		return getCode();
 	}
 

@@ -111,7 +111,8 @@ public class NameTypePairImpl extends EObjectImpl implements NameTypePair {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
+	@Override
+    public String getName() {
 		return name;
 	}
 
@@ -120,7 +121,8 @@ public class NameTypePairImpl extends EObjectImpl implements NameTypePair {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
+	@Override
+    public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
@@ -132,7 +134,8 @@ public class NameTypePairImpl extends EObjectImpl implements NameTypePair {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getSort() {
+	@Override
+    public String getSort() {
 		return sort;
 	}
 
@@ -141,7 +144,8 @@ public class NameTypePairImpl extends EObjectImpl implements NameTypePair {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSort(String newSort) {
+	@Override
+    public void setSort(String newSort) {
 		String oldSort = sort;
 		sort = newSort;
 		if (eNotificationRequired())

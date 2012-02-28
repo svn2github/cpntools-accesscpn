@@ -327,14 +327,27 @@ public class ModelData extends PetriNetDataAdapter {
 		return getType(pi.getNode());
 	}
 
+	/**
+	 * @param type
+	 * @return
+	 */
 	public CPNType getRealType(final String type) {
 		return getRealType(getType(type));
 	}
 
+	/**
+	 * @param type
+	 * @return
+	 */
 	public CPNType getRealType(final CPNType type) {
 		return getRealType(type, true);
 	}
 
+	/**
+	 * @param type
+	 * @param traverseSubset
+	 * @return
+	 */
 	public CPNType getRealType(final CPNType type, final boolean traverseSubset) {
 		if (type instanceof CPNAlias) {
 			final CPNAlias alias = (CPNAlias) type;

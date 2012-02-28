@@ -109,7 +109,8 @@ public class ValueAssignmentImpl extends EObjectImpl implements ValueAssignment 
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
+	@Override
+    public String getName() {
 		return name;
 	}
 
@@ -117,7 +118,8 @@ public class ValueAssignmentImpl extends EObjectImpl implements ValueAssignment 
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
+	@Override
+    public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
@@ -128,7 +130,8 @@ public class ValueAssignmentImpl extends EObjectImpl implements ValueAssignment 
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getValue() {
+	@Override
+    public String getValue() {
 		return value;
 	}
 
@@ -136,7 +139,8 @@ public class ValueAssignmentImpl extends EObjectImpl implements ValueAssignment 
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(String newValue) {
+	@Override
+    public void setValue(String newValue) {
 		String oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())

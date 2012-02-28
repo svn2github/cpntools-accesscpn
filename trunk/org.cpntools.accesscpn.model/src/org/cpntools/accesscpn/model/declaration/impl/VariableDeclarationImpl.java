@@ -98,7 +98,8 @@ public class VariableDeclarationImpl extends DeclarationStructureImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getTypeName() {
+	@Override
+    public String getTypeName() {
 		return typeName;
 	}
 
@@ -106,7 +107,8 @@ public class VariableDeclarationImpl extends DeclarationStructureImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTypeName(String newTypeName) {
+	@Override
+    public void setTypeName(String newTypeName) {
 		String oldTypeName = typeName;
 		typeName = newTypeName;
 		if (eNotificationRequired())
@@ -117,7 +119,8 @@ public class VariableDeclarationImpl extends DeclarationStructureImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<String> getVariables() {
+	@Override
+    public List<String> getVariables() {
 		if (variables == null) {
 			variables = new EDataTypeUniqueEList<String>(String.class, this, DeclarationPackageImpl.VARIABLE_DECLARATION__VARIABLES);
 		}
@@ -210,14 +213,16 @@ public class VariableDeclarationImpl extends DeclarationStructureImpl implements
 	/**
 	 * @see org.cpntools.accesscpn.model.declaration.DeclarationStructure#asShortString()
 	 */
-	public String asShortString() {
+	@Override
+    public String asShortString() {
 		return asString();
 	}
 
 	/**
 	 * @see org.cpntools.accesscpn.model.declaration.DeclarationStructure#asString()
 	 */
-	public String asString() {
+	@Override
+    public String asString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("var ");
 		boolean kludge = false;
@@ -237,7 +242,8 @@ public class VariableDeclarationImpl extends DeclarationStructureImpl implements
 	/**
 	 * @see org.cpntools.accesscpn.model.declaration.VariableDeclaration#addVariable(java.lang.String)
 	 */
-	public void addVariable(final String var) {
+	@Override
+    public void addVariable(final String var) {
 		getVariables().add(var);
 	}
 

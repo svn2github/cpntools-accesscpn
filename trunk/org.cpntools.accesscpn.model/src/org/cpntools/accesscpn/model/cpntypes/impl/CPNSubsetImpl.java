@@ -121,7 +121,8 @@ public class CPNSubsetImpl extends CPNTypeImpl implements CPNSubset {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getBy() {
+	@Override
+    public String getBy() {
 		return by;
 	}
 
@@ -129,7 +130,8 @@ public class CPNSubsetImpl extends CPNTypeImpl implements CPNSubset {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBy(String newBy) {
+	@Override
+    public void setBy(String newBy) {
 		String oldBy = by;
 		by = newBy;
 		if (eNotificationRequired())
@@ -140,7 +142,8 @@ public class CPNSubsetImpl extends CPNTypeImpl implements CPNSubset {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getWith() {
+	@Override
+    public String getWith() {
 		return with;
 	}
 
@@ -148,7 +151,8 @@ public class CPNSubsetImpl extends CPNTypeImpl implements CPNSubset {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWith(String newWith) {
+	@Override
+    public void setWith(String newWith) {
 		String oldWith = with;
 		with = newWith;
 		if (eNotificationRequired())
@@ -160,7 +164,8 @@ public class CPNSubsetImpl extends CPNTypeImpl implements CPNSubset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getSort() {
+	@Override
+    public String getSort() {
 		return sort;
 	}
 
@@ -169,7 +174,8 @@ public class CPNSubsetImpl extends CPNTypeImpl implements CPNSubset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSort(String newSort) {
+	@Override
+    public void setSort(String newSort) {
 		String oldSort = sort;
 		sort = newSort;
 		if (eNotificationRequired())
@@ -272,7 +278,8 @@ public class CPNSubsetImpl extends CPNTypeImpl implements CPNSubset {
 	/**
 	 * @see org.cpntools.accesscpn.model.cpntypes.CPNType#asString()
 	 */
-	public String asString() {
+	@Override
+    public String asString() {
 		String appendString = "";
 		if (getBy() != null) {
 			appendString = " by " + getBy();

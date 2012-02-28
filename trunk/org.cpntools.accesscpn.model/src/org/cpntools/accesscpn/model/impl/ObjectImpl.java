@@ -124,7 +124,8 @@ public abstract class ObjectImpl extends HasIdImpl implements org.cpntools.acces
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<ToolInfo> getToolinfo() {
+	@Override
+    public List<ToolInfo> getToolinfo() {
 		if (toolinfo == null) {
 			toolinfo = new EObjectContainmentWithInverseEList<ToolInfo>(ToolInfo.class, this, ModelPackageImpl.OBJECT__TOOLINFO, ModelPackageImpl.TOOL_INFO__PARENT);
 		}
@@ -135,7 +136,8 @@ public abstract class ObjectImpl extends HasIdImpl implements org.cpntools.acces
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Graphics getGraphics() {
+	@Override
+    public Graphics getGraphics() {
 		return graphics;
 	}
 
@@ -157,7 +159,8 @@ public abstract class ObjectImpl extends HasIdImpl implements org.cpntools.acces
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGraphics(Graphics newGraphics) {
+	@Override
+    public void setGraphics(Graphics newGraphics) {
 		if (newGraphics != graphics) {
 			NotificationChain msgs = null;
 			if (graphics != null)
@@ -175,7 +178,8 @@ public abstract class ObjectImpl extends HasIdImpl implements org.cpntools.acces
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List<Label> getLabel() {
+	@Override
+    public List<Label> getLabel() {
 		if (label == null) {
 			label = new EObjectContainmentWithInverseEList<Label>(Label.class, this, ModelPackageImpl.OBJECT__LABEL, ModelPackageImpl.LABEL__PARENT);
 		}
@@ -186,7 +190,8 @@ public abstract class ObjectImpl extends HasIdImpl implements org.cpntools.acces
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Name getName() {
+	@Override
+    public Name getName() {
 		if (name != null && ((EObject)name).eIsProxy()) {
 			InternalEObject oldName = (InternalEObject)name;
 			name = (Name)eResolveProxy(oldName);
@@ -209,7 +214,8 @@ public abstract class ObjectImpl extends HasIdImpl implements org.cpntools.acces
 	/**
 	 * @see org.cpntools.accesscpn.model.HasName#setName(org.cpntools.accesscpn.model.Name)
 	 */
-	public void setName(final Name newName) {
+	@Override
+    public void setName(final Name newName) {
 		if (name != null) {
 			name.setParent(null);
 		}
@@ -234,7 +240,8 @@ public abstract class ObjectImpl extends HasIdImpl implements org.cpntools.acces
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Page getPage() {
+	@Override
+    public Page getPage() {
 		if (eContainerFeatureID() != ModelPackageImpl.OBJECT__PAGE) return null;
 		return (Page)eContainer();
 	}
@@ -252,7 +259,8 @@ public abstract class ObjectImpl extends HasIdImpl implements org.cpntools.acces
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPage(Page newPage) {
+	@Override
+    public void setPage(Page newPage) {
 		if (newPage != eInternalContainer() || (eContainerFeatureID() != ModelPackageImpl.OBJECT__PAGE && newPage != null)) {
 			if (EcoreUtil.isAncestor(this, (EObject)newPage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());

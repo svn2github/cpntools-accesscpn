@@ -155,7 +155,8 @@ public class LineImpl extends EObjectImpl implements Line {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Shape getShape() {
+	@Override
+    public Shape getShape() {
 		return shape;
 	}
 
@@ -164,7 +165,8 @@ public class LineImpl extends EObjectImpl implements Line {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setShape(Shape newShape) {
+	@Override
+    public void setShape(Shape newShape) {
 		Shape oldShape = shape;
 		shape = newShape == null ? SHAPE_EDEFAULT : newShape;
 		if (eNotificationRequired())
@@ -176,7 +178,8 @@ public class LineImpl extends EObjectImpl implements Line {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getColor() {
+	@Override
+    public String getColor() {
 		return color;
 	}
 
@@ -185,7 +188,8 @@ public class LineImpl extends EObjectImpl implements Line {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setColor(String newColor) {
+	@Override
+    public void setColor(String newColor) {
 		String oldColor = color;
 		color = newColor;
 		if (eNotificationRequired())
@@ -197,7 +201,8 @@ public class LineImpl extends EObjectImpl implements Line {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getWidth() {
+	@Override
+    public double getWidth() {
 		return width;
 	}
 
@@ -206,7 +211,8 @@ public class LineImpl extends EObjectImpl implements Line {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWidth(double newWidth) {
+	@Override
+    public void setWidth(double newWidth) {
 		double oldWidth = width;
 		width = newWidth;
 		if (eNotificationRequired())
@@ -218,7 +224,8 @@ public class LineImpl extends EObjectImpl implements Line {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Style getStyle() {
+	@Override
+    public Style getStyle() {
 		return style;
 	}
 
@@ -227,7 +234,8 @@ public class LineImpl extends EObjectImpl implements Line {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStyle(Style newStyle) {
+	@Override
+    public void setStyle(Style newStyle) {
 		Style oldStyle = style;
 		style = newStyle == null ? STYLE_EDEFAULT : newStyle;
 		if (eNotificationRequired())

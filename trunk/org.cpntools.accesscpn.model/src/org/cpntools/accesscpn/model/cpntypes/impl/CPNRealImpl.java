@@ -101,7 +101,8 @@ public class CPNRealImpl extends CPNTypeImpl implements CPNReal {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getHigh() {
+	@Override
+    public double getHigh() {
 		return high;
 	}
 
@@ -109,7 +110,8 @@ public class CPNRealImpl extends CPNTypeImpl implements CPNReal {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHigh(double newHigh) {
+	@Override
+    public void setHigh(double newHigh) {
 		double oldHigh = high;
 		high = newHigh;
 		if (eNotificationRequired())
@@ -120,7 +122,8 @@ public class CPNRealImpl extends CPNTypeImpl implements CPNReal {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getLow() {
+	@Override
+    public double getLow() {
 		return low;
 	}
 
@@ -128,7 +131,8 @@ public class CPNRealImpl extends CPNTypeImpl implements CPNReal {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLow(double newLow) {
+	@Override
+    public void setLow(double newLow) {
 		double oldLow = low;
 		low = newLow;
 		if (eNotificationRequired())
@@ -219,7 +223,8 @@ public class CPNRealImpl extends CPNTypeImpl implements CPNReal {
 	/**
 	 * @see org.cpntools.accesscpn.model.cpntypes.CPNType#asString()
 	 */
-	public String asString() {
+	@Override
+    public String asString() {
 		if (getHigh() == 0.0 && getLow() == 0.0) { return "real" + postFixAsString(); }
 		return "real with " + getLow() + ".." + getHigh() + postFixAsString();
 	}
