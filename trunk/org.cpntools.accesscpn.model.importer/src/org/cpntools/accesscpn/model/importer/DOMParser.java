@@ -403,7 +403,7 @@ public class DOMParser {
 				}
 			} else if (ParserUtil.isElementNodeOfType(currentNode, "lineattr")) {
 				final Line line = GraphicsFactory.INSTANCE.createLine();
-				line.setColor(ParserUtil.getAttr(currentNode, "color"));
+				line.setColor(ParserUtil.getAttr(currentNode, "coluor"));
 				line.setWidth(Double.parseDouble(ParserUtil.getAttr(currentNode, "thick")));
 				graphics.setLine(line);
 			}
@@ -473,11 +473,11 @@ public class DOMParser {
 				graphics.setOffset(position);
 			} else if (ParserUtil.isElementNodeOfType(currentNode, "fillattr")) {
 				final Fill fill = GraphicsFactory.INSTANCE.createFill();
-				fill.setColor(ParserUtil.getAttr(currentNode, "color"));
+				fill.setColor(ParserUtil.getAttr(currentNode, "colour"));
 				graphics.setFill(fill);
 			} else if (ParserUtil.isElementNodeOfType(currentNode, "lineattr")) {
 				final Line line = GraphicsFactory.INSTANCE.createLine();
-				line.setColor(ParserUtil.getAttr(currentNode, "color"));
+				line.setColor(ParserUtil.getAttr(currentNode, "colour"));
 				line.setWidth(Double.parseDouble(ParserUtil.getAttr(currentNode, "thick")));
 				graphics.setLine(line);
 			} else if (ParserUtil.isElementNodeOfType(currentNode, "textattr")) {
@@ -987,11 +987,11 @@ public class DOMParser {
 				nodeGraphics.setPosition(position);
 			} else if (ParserUtil.isElementNodeOfType(currentNode, "fillattr")) {
 				final Fill fill = GraphicsFactory.INSTANCE.createFill();
-				fill.setColor(ParserUtil.getAttr(currentNode, "color"));
+				fill.setColor(ParserUtil.getAttr(currentNode, "colour"));
 				nodeGraphics.setFill(fill);
 			} else if (ParserUtil.isElementNodeOfType(currentNode, "lineattr")) {
 				final Line line = GraphicsFactory.INSTANCE.createLine();
-				line.setColor(ParserUtil.getAttr(currentNode, "color"));
+				line.setColor(ParserUtil.getAttr(currentNode, "colour"));
 				line.setWidth(Double.parseDouble(ParserUtil.getAttr(currentNode, "thick")));
 				nodeGraphics.setLine(line);
 			} else if (ParserUtil.isElementNodeOfType(currentNode, "textattr")) {
