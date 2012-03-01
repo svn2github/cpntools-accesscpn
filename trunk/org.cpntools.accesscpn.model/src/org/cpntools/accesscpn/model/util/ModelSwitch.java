@@ -158,6 +158,7 @@ public class ModelSwitch<T> {
 				Arc arc = (Arc)theEObject;
 				T result = caseArc(arc);
 				if (result == null) result = caseHasId(arc);
+				if (result == null) result = caseHasGraphics(arc);
 				if (result == null) result = caseHLArcAddin(arc);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

@@ -1,21 +1,21 @@
 /************************************************************************/
-/* Access/CPN                                                           */
-/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology    */
+/* Access/CPN */
+/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology */
 /*                                                                      */
-/* This library is free software; you can redistribute it and/or        */
-/* modify it under the terms of the GNU Lesser General Public           */
-/* License as published by the Free Software Foundation; either         */
-/* version 2.1 of the License, or (at your option) any later version.   */
+/* This library is free software; you can redistribute it and/or */
+/* modify it under the terms of the GNU Lesser General Public */
+/* License as published by the Free Software Foundation; either */
+/* version 2.1 of the License, or (at your option) any later version. */
 /*                                                                      */
-/* This library is distributed in the hope that it will be useful,      */
-/* but WITHOUT ANY WARRANTY; without even the implied warranty of       */
-/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
-/* Lesser General Public License for more details.                      */
+/* This library is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU */
+/* Lesser General Public License for more details. */
 /*                                                                      */
-/* You should have received a copy of the GNU Lesser General Public     */
-/* License along with this library; if not, write to the Free Software  */
-/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,           */
-/* MA  02110-1301  USA                                                  */
+/* You should have received a copy of the GNU Lesser General Public */
+/* License along with this library; if not, write to the Free Software */
+/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, */
+/* MA 02110-1301 USA */
 /************************************************************************/
 /**
  * <copyright> </copyright> $Id$
@@ -27,13 +27,13 @@ import java.util.List;
 
 import org.cpntools.accesscpn.model.Arc;
 import org.cpntools.accesscpn.model.Node;
+import org.cpntools.accesscpn.model.graphics.NodeGraphics;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Node</b></em>'. <!-- end-user-doc -->
@@ -86,11 +86,19 @@ public abstract class NodeImpl extends ObjectImpl implements Node {
 	}
 
 	/**
+	 * @see org.cpntools.accesscpn.model.Node#getNodeGraphics()
+	 */
+	@Override
+	public NodeGraphics getNodeGraphics() {
+		return (NodeGraphics) getGraphics();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-    public List<Arc> getSourceArc() {
+	public List<Arc> getSourceArc() {
 		if (sourceArc == null) {
 			sourceArc = new EObjectWithInverseResolvingEList<Arc>(Arc.class, this, ModelPackageImpl.NODE__SOURCE_ARC, ModelPackageImpl.ARC__SOURCE);
 		}
@@ -102,7 +110,7 @@ public abstract class NodeImpl extends ObjectImpl implements Node {
 	 * @generated
 	 */
 	@Override
-    public List<Arc> getTargetArc() {
+	public List<Arc> getTargetArc() {
 		if (targetArc == null) {
 			targetArc = new EObjectWithInverseResolvingEList<Arc>(Arc.class, this, ModelPackageImpl.NODE__TARGET_ARC, ModelPackageImpl.ARC__TARGET);
 		}
@@ -211,7 +219,7 @@ public abstract class NodeImpl extends ObjectImpl implements Node {
 	 * @see org.cpntools.accesscpn.model.HLAnnotationAddin#isReady(boolean)
 	 */
 	@Override
-    public boolean isReady() {
+	public boolean isReady() {
 		return getName().isReady(false);
 	}
 } // NodeImpl

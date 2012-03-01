@@ -5,6 +5,7 @@ package org.cpntools.accesscpn.model.impl;
 
 import org.cpntools.accesscpn.model.Annotation;
 import org.cpntools.accesscpn.model.HLAnnotationAddin;
+import org.cpntools.accesscpn.model.graphics.AnnotationGraphics;
 import org.cpntools.accesscpn.model.graphics.Graphics;
 import org.cpntools.accesscpn.model.graphics.HasGraphics;
 import org.cpntools.accesscpn.model.graphics.impl.GraphicsPackageImpl;
@@ -13,7 +14,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Annotation</b></em>'. <!-- end-user-doc -->
@@ -79,8 +79,12 @@ public abstract class AnnotationImpl extends LabelImpl implements Annotation {
 	 * @generated
 	 */
 	@Override
-    public Graphics getGraphics() {
+	public Graphics getGraphics() {
 		return graphics;
+	}
+
+	public AnnotationGraphics getAnnotationGraphics() {
+		return (AnnotationGraphics) getGraphics();
 	}
 
 	/**
@@ -102,7 +106,7 @@ public abstract class AnnotationImpl extends LabelImpl implements Annotation {
 	 * @generated
 	 */
 	@Override
-    public void setGraphics(Graphics newGraphics) {
+	public void setGraphics(Graphics newGraphics) {
 		if (newGraphics != graphics) {
 			NotificationChain msgs = null;
 			if (graphics != null)
@@ -121,7 +125,7 @@ public abstract class AnnotationImpl extends LabelImpl implements Annotation {
 	 * @generated
 	 */
 	@Override
-    public String getText() {
+	public String getText() {
 		return text;
 	}
 
@@ -130,7 +134,7 @@ public abstract class AnnotationImpl extends LabelImpl implements Annotation {
 	 * @generated
 	 */
 	@Override
-    public void setText(String newText) {
+	public void setText(String newText) {
 		String oldText = text;
 		text = newText;
 		if (eNotificationRequired())
@@ -302,7 +306,7 @@ public abstract class AnnotationImpl extends LabelImpl implements Annotation {
 	 * @see org.cpntools.accesscpn.model.HLAnnotationAddin#isReady(boolean)
 	 */
 	@Override
-    public boolean isReady(final boolean mayBeEmpty) {
+	public boolean isReady(final boolean mayBeEmpty) {
 		return mayBeEmpty || getText() != null && !"".equals(getText());
 	}
 

@@ -265,13 +265,22 @@ public class ModelPackageImpl extends EPackageImpl {
 	public static final int ARC__ID = HAS_ID__ID;
 
 	/**
+	 * The feature id for the '<em><b>Graphics</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ARC__GRAPHICS = HAS_ID_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Hlinscription</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ARC__HLINSCRIPTION = HAS_ID_FEATURE_COUNT + 0;
+	public static final int ARC__HLINSCRIPTION = HAS_ID_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
@@ -280,7 +289,7 @@ public class ModelPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ARC__KIND = HAS_ID_FEATURE_COUNT + 1;
+	public static final int ARC__KIND = HAS_ID_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -289,7 +298,7 @@ public class ModelPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ARC__SOURCE = HAS_ID_FEATURE_COUNT + 2;
+	public static final int ARC__SOURCE = HAS_ID_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -298,7 +307,7 @@ public class ModelPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ARC__TARGET = HAS_ID_FEATURE_COUNT + 3;
+	public static final int ARC__TARGET = HAS_ID_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Page</b></em>' container reference.
@@ -307,7 +316,7 @@ public class ModelPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ARC__PAGE = HAS_ID_FEATURE_COUNT + 4;
+	public static final int ARC__PAGE = HAS_ID_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Arc</em>' class.
@@ -316,7 +325,7 @@ public class ModelPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ARC_FEATURE_COUNT = HAS_ID_FEATURE_COUNT + 5;
+	public static final int ARC_FEATURE_COUNT = HAS_ID_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.cpntools.accesscpn.model.impl.AttributeImpl <em>Attribute</em>}' class.
@@ -3982,6 +3991,7 @@ public class ModelPackageImpl extends EPackageImpl {
 		annotationEClass.getESuperTypes().add(theGraphicsPackage.getHasGraphics());
 		annotationEClass.getESuperTypes().add(this.getHLAnnotationAddin());
 		arcEClass.getESuperTypes().add(this.getHasId());
+		arcEClass.getESuperTypes().add(theGraphicsPackage.getHasGraphics());
 		arcEClass.getESuperTypes().add(this.getHLArcAddin());
 		attributeEClass.getESuperTypes().add(this.getLabel());
 		codeEClass.getESuperTypes().add(this.getAnnotation());
