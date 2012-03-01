@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.cpntools.accesscpn.model.exporter
 Bundle-SymbolicName: org.cpntools.accesscpn.model.exporter
-Bundle-Version: 2.1.0
+Bundle-Version: 2.1.3
 Require-Bundle: org.cpntools.accesscpn.model;bundle-version="2.0.0",
  org.cpntools.accesscpn.model.importer;bundle-version="2.0.0",
  org.eclipse.emf.common;bundle-version="2.5.0",
