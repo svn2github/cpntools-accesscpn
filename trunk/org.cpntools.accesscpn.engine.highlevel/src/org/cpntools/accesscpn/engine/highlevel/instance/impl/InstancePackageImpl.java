@@ -43,6 +43,7 @@ import org.cpntools.accesscpn.model.cpntypes.impl.CpntypesPackageImpl;
 import org.cpntools.accesscpn.model.declaration.impl.DeclarationPackageImpl;
 import org.cpntools.accesscpn.model.graphics.impl.GraphicsPackageImpl;
 import org.cpntools.accesscpn.model.impl.ModelPackageImpl;
+import org.cpntools.accesscpn.model.monitors.impl.MonitorsPackageImpl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -333,36 +334,6 @@ public class InstancePackageImpl extends EPackageImpl {
 	public static final int VALUE_ASSIGNMENT_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '<em>Transition</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.cpntools.accesscpn.model.Transition
-	 * @see org.cpntools.accesscpn.engine.highlevel.instance.impl.InstancePackageImpl#getTransition()
-	 * @generated
-	 */
-	public static final int TRANSITION = 6;
-
-	/**
-	 * The meta object id for the '<em>Instance 1</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.cpntools.accesscpn.model.Instance
-	 * @see org.cpntools.accesscpn.engine.highlevel.instance.impl.InstancePackageImpl#getInstance_1()
-	 * @generated
-	 */
-	public static final int INSTANCE_1 = 7;
-
-	/**
-	 * The meta object id for the '<em>Place Node</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.cpntools.accesscpn.model.PlaceNode
-	 * @see org.cpntools.accesscpn.engine.highlevel.instance.impl.InstancePackageImpl#getPlaceNode()
-	 * @generated
-	 */
-	public static final int PLACE_NODE = 8;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -403,27 +374,6 @@ public class InstancePackageImpl extends EPackageImpl {
 	 * @generated
 	 */
 	private EClass valueAssignmentEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType transitionEDataType = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType instance_1EDataType = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType placeNodeEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -470,6 +420,13 @@ public class InstancePackageImpl extends EPackageImpl {
 		InstancePackageImpl theInstancePackage = (InstancePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof InstancePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new InstancePackageImpl());
 
 		isInited = true;
+
+		// Initialize simple dependencies
+		ModelPackageImpl.eINSTANCE.eClass();
+		GraphicsPackageImpl.eINSTANCE.eClass();
+		DeclarationPackageImpl.eINSTANCE.eClass();
+		CpntypesPackageImpl.eINSTANCE.eClass();
+		MonitorsPackageImpl.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theInstancePackage.createPackageContents();
@@ -729,48 +686,6 @@ public class InstancePackageImpl extends EPackageImpl {
 	}
 
 	/**
-	 * Returns the meta object for data type '{@link org.cpntools.accesscpn.model.Transition <em>Transition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Transition</em>'.
-	 * @see org.cpntools.accesscpn.model.Transition
-	 * @model instanceClass="org.cpntools.accesscpn.model.Transition"
-	 * @generated
-	 */
-	public EDataType getTransition() {
-		return transitionEDataType;
-	}
-
-
-	/**
-	 * Returns the meta object for data type '{@link org.cpntools.accesscpn.model.Instance <em>Instance 1</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Instance 1</em>'.
-	 * @see org.cpntools.accesscpn.model.Instance
-	 * @model instanceClass="org.cpntools.accesscpn.model.Instance"
-	 * @generated
-	 */
-	public EDataType getInstance_1() {
-		return instance_1EDataType;
-	}
-
-
-	/**
-	 * Returns the meta object for data type '{@link org.cpntools.accesscpn.model.PlaceNode <em>Place Node</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Place Node</em>'.
-	 * @see org.cpntools.accesscpn.model.PlaceNode
-	 * @model instanceClass="org.cpntools.accesscpn.model.PlaceNode"
-	 * @generated
-	 */
-	public EDataType getPlaceNode() {
-		return placeNodeEDataType;
-	}
-
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -824,11 +739,6 @@ public class InstancePackageImpl extends EPackageImpl {
 		valueAssignmentEClass = createEClass(VALUE_ASSIGNMENT);
 		createEAttribute(valueAssignmentEClass, VALUE_ASSIGNMENT__NAME);
 		createEAttribute(valueAssignmentEClass, VALUE_ASSIGNMENT__VALUE);
-
-		// Create data types
-		transitionEDataType = createEDataType(TRANSITION);
-		instance_1EDataType = createEDataType(INSTANCE_1);
-		placeNodeEDataType = createEDataType(PLACE_NODE);
 	}
 
 	/**
@@ -854,6 +764,9 @@ public class InstancePackageImpl extends EPackageImpl {
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		ModelPackageImpl theModelPackage = (ModelPackageImpl)EPackage.Registry.INSTANCE.getEPackage(ModelPackageImpl.eNS_URI);
+
 		// Create type parameters
 		ETypeParameter instanceEClass_T = addETypeParameter(instanceEClass, "T");
 
@@ -864,7 +777,7 @@ public class InstancePackageImpl extends EPackageImpl {
 		// Initialize classes and features; add operations and parameters
 		initEClass(bindingEClass, Binding.class, "Binding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		EGenericType g1 = createEGenericType(this.getInstance());
-		EGenericType g2 = createEGenericType(this.getTransition());
+		EGenericType g2 = createEGenericType(theModelPackage.getTransition());
 		g1.getETypeArguments().add(g2);
 		initEReference(getBinding_TransitionInstance(), g1, null, "transitionInstance", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBinding_AllAssignments(), this.getValueAssignment(), null, "allAssignments", null, 0, -1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -873,7 +786,7 @@ public class InstancePackageImpl extends EPackageImpl {
 		g1 = createEGenericType(instanceEClass_T);
 		initEReference(getInstance_Node(), g1, null, "node", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(this.getInstance());
-		g2 = createEGenericType(this.getInstance_1());
+		g2 = createEGenericType(theModelPackage.getInstance());
 		g1.getETypeArguments().add(g2);
 		initEReference(getInstance_TransitionPath(), g1, null, "transitionPath", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -881,7 +794,7 @@ public class InstancePackageImpl extends EPackageImpl {
 		g1 = createEGenericType(this.getInstance());
 		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
-		EGenericType g3 = createEGenericType(this.getPlaceNode());
+		EGenericType g3 = createEGenericType(theModelPackage.getPlaceNode());
 		g2.setEUpperBound(g3);
 		initEReference(getMarking_PlaceInstance(), g1, null, "placeInstance", null, 0, 1, Marking.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMarking_TokenCount(), ecorePackage.getEInt(), "tokenCount", null, 0, 1, Marking.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -898,11 +811,6 @@ public class InstancePackageImpl extends EPackageImpl {
 		initEClass(valueAssignmentEClass, ValueAssignment.class, "ValueAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getValueAssignment_Name(), ecorePackage.getEString(), "name", null, 0, 1, ValueAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getValueAssignment_Value(), ecorePackage.getEString(), "value", null, 0, 1, ValueAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		// Initialize data types
-		initEDataType(transitionEDataType, Transition.class, "Transition", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(instance_1EDataType, org.cpntools.accesscpn.model.Instance.class, "Instance_1", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(placeNodeEDataType, PlaceNode.class, "PlaceNode", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -1085,36 +993,6 @@ public class InstancePackageImpl extends EPackageImpl {
 		 * @generated
 		 */
 		public static final EAttribute VALUE_ASSIGNMENT__VALUE = eINSTANCE.getValueAssignment_Value();
-
-		/**
-		 * The meta object literal for the '<em>Transition</em>' data type.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.cpntools.accesscpn.model.Transition
-		 * @see org.cpntools.accesscpn.engine.highlevel.instance.impl.InstancePackageImpl#getTransition()
-		 * @generated
-		 */
-		public static final EDataType TRANSITION = eINSTANCE.getTransition();
-
-		/**
-		 * The meta object literal for the '<em>Instance 1</em>' data type.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.cpntools.accesscpn.model.Instance
-		 * @see org.cpntools.accesscpn.engine.highlevel.instance.impl.InstancePackageImpl#getInstance_1()
-		 * @generated
-		 */
-		public static final EDataType INSTANCE_1 = eINSTANCE.getInstance_1();
-
-		/**
-		 * The meta object literal for the '<em>Place Node</em>' data type.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.cpntools.accesscpn.model.PlaceNode
-		 * @see org.cpntools.accesscpn.engine.highlevel.instance.impl.InstancePackageImpl#getPlaceNode()
-		 * @generated
-		 */
-		public static final EDataType PLACE_NODE = eINSTANCE.getPlaceNode();
 
 	}
 

@@ -48,22 +48,20 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.cpntools.accesscpn.engine.highlevel.instance.impl.MarkingImpl#getPlaceInstance <em>Place Instance
- * </em>}</li>
- * <li>{@link org.cpntools.accesscpn.engine.highlevel.instance.impl.MarkingImpl#getTokenCount <em>Token Count</em>}</li>
- * <li>{@link org.cpntools.accesscpn.engine.highlevel.instance.impl.MarkingImpl#getMarking <em>Marking</em>}</li>
- * <li>{@link org.cpntools.accesscpn.engine.highlevel.instance.impl.MarkingImpl#getStructuredMarking <em>Structured
- * Marking</em>}</li>
+ *   <li>{@link org.cpntools.accesscpn.engine.highlevel.instance.impl.MarkingImpl#getPlaceInstance <em>Place Instance</em>}</li>
+ *   <li>{@link org.cpntools.accesscpn.engine.highlevel.instance.impl.MarkingImpl#getTokenCount <em>Token Count</em>}</li>
+ *   <li>{@link org.cpntools.accesscpn.engine.highlevel.instance.impl.MarkingImpl#getMarking <em>Marking</em>}</li>
+ *   <li>{@link org.cpntools.accesscpn.engine.highlevel.instance.impl.MarkingImpl#getStructuredMarking <em>Structured Marking</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class MarkingImpl extends EObjectImpl implements Marking {
 	/**
-	 * The cached value of the '{@link #getPlaceInstance() <em>Place Instance</em>}' reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPlaceInstance() <em>Place Instance</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getPlaceInstance()
 	 * @generated
 	 * @ordered
@@ -71,9 +69,9 @@ public class MarkingImpl extends EObjectImpl implements Marking {
 	protected Instance<? extends PlaceNode> placeInstance;
 
 	/**
-	 * The default value of the '{@link #getTokenCount() <em>Token Count</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getTokenCount() <em>Token Count</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getTokenCount()
 	 * @generated
 	 * @ordered
@@ -81,9 +79,9 @@ public class MarkingImpl extends EObjectImpl implements Marking {
 	protected static final int TOKEN_COUNT_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getTokenCount() <em>Token Count</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getTokenCount() <em>Token Count</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getTokenCount()
 	 * @generated
 	 * @ordered
@@ -91,9 +89,9 @@ public class MarkingImpl extends EObjectImpl implements Marking {
 	protected int tokenCount = TOKEN_COUNT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getMarking() <em>Marking</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getMarking() <em>Marking</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getMarking()
 	 * @generated
 	 * @ordered
@@ -101,9 +99,9 @@ public class MarkingImpl extends EObjectImpl implements Marking {
 	protected static final String MARKING_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getMarking() <em>Marking</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getMarking() <em>Marking</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getMarking()
 	 * @generated
 	 * @ordered
@@ -113,7 +111,6 @@ public class MarkingImpl extends EObjectImpl implements Marking {
 	/**
 	 * The cached value of the '{@link #getStructuredMarking() <em>Structured Marking</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getStructuredMarking()
 	 * @generated
 	 * @ordered
@@ -122,7 +119,6 @@ public class MarkingImpl extends EObjectImpl implements Marking {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MarkingImpl() {
@@ -191,7 +187,6 @@ public class MarkingImpl extends EObjectImpl implements Marking {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -201,7 +196,6 @@ public class MarkingImpl extends EObjectImpl implements Marking {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -211,22 +205,18 @@ public class MarkingImpl extends EObjectImpl implements Marking {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-    public void setTokenCount(final int newTokenCount) {
-		final int oldTokenCount = tokenCount;
+    public void setTokenCount(int newTokenCount) {
+		int oldTokenCount = tokenCount;
 		tokenCount = newTokenCount;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, InstancePackageImpl.MARKING__TOKEN_COUNT,
-			        oldTokenCount, tokenCount));
-		}
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, InstancePackageImpl.MARKING__TOKEN_COUNT, oldTokenCount, tokenCount));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -236,20 +226,17 @@ public class MarkingImpl extends EObjectImpl implements Marking {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
     @SuppressWarnings("unchecked")
 	public Instance<? extends PlaceNode> getPlaceInstance() {
-		if (placeInstance != null && ((EObject) placeInstance).eIsProxy()) {
-			final InternalEObject oldPlaceInstance = (InternalEObject) placeInstance;
-			placeInstance = (Instance<? extends PlaceNode>) eResolveProxy(oldPlaceInstance);
+		if (placeInstance != null && ((EObject)placeInstance).eIsProxy()) {
+			InternalEObject oldPlaceInstance = (InternalEObject)placeInstance;
+			placeInstance = (Instance<? extends PlaceNode>)eResolveProxy(oldPlaceInstance);
 			if (placeInstance != oldPlaceInstance) {
-				if (eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-					        InstancePackageImpl.MARKING__PLACE_INSTANCE, oldPlaceInstance, placeInstance));
-				}
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, InstancePackageImpl.MARKING__PLACE_INSTANCE, oldPlaceInstance, placeInstance));
 			}
 		}
 		return placeInstance;
@@ -257,7 +244,6 @@ public class MarkingImpl extends EObjectImpl implements Marking {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Instance<? extends PlaceNode> basicGetPlaceInstance() {
@@ -266,129 +252,118 @@ public class MarkingImpl extends EObjectImpl implements Marking {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-    public void setPlaceInstance(final Instance<? extends PlaceNode> newPlaceInstance) {
-		final Instance<? extends PlaceNode> oldPlaceInstance = placeInstance;
+    public void setPlaceInstance(Instance<? extends PlaceNode> newPlaceInstance) {
+		Instance<? extends PlaceNode> oldPlaceInstance = placeInstance;
 		placeInstance = newPlaceInstance;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, InstancePackageImpl.MARKING__PLACE_INSTANCE,
-			        oldPlaceInstance, placeInstance));
-		}
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, InstancePackageImpl.MARKING__PLACE_INSTANCE, oldPlaceInstance, placeInstance));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
     public List<MultisetEntry> getStructuredMarking() {
 		if (structuredMarking == null) {
-			structuredMarking = new EObjectContainmentEList<MultisetEntry>(MultisetEntry.class, this,
-			        InstancePackageImpl.MARKING__STRUCTURED_MARKING);
+			structuredMarking = new EObjectContainmentEList<MultisetEntry>(MultisetEntry.class, this, InstancePackageImpl.MARKING__STRUCTURED_MARKING);
 		}
 		return structuredMarking;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(final InternalEObject otherEnd, final int featureID,
-	        final NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case InstancePackageImpl.MARKING__STRUCTURED_MARKING:
-			return ((InternalEList<?>) getStructuredMarking()).basicRemove(otherEnd, msgs);
+			case InstancePackageImpl.MARKING__STRUCTURED_MARKING:
+				return ((InternalEList<?>)getStructuredMarking()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case InstancePackageImpl.MARKING__PLACE_INSTANCE:
-			if (resolve) { return getPlaceInstance(); }
-			return basicGetPlaceInstance();
-		case InstancePackageImpl.MARKING__TOKEN_COUNT:
-			return getTokenCount();
-		case InstancePackageImpl.MARKING__MARKING:
-			return getMarking();
-		case InstancePackageImpl.MARKING__STRUCTURED_MARKING:
-			return getStructuredMarking();
+			case InstancePackageImpl.MARKING__PLACE_INSTANCE:
+				if (resolve) return getPlaceInstance();
+				return basicGetPlaceInstance();
+			case InstancePackageImpl.MARKING__TOKEN_COUNT:
+				return getTokenCount();
+			case InstancePackageImpl.MARKING__MARKING:
+				return getMarking();
+			case InstancePackageImpl.MARKING__STRUCTURED_MARKING:
+				return getStructuredMarking();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(final int featureID, final Object newValue) {
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case InstancePackageImpl.MARKING__PLACE_INSTANCE:
-			setPlaceInstance((Instance<? extends PlaceNode>) newValue);
-			return;
-		case InstancePackageImpl.MARKING__TOKEN_COUNT:
-			setTokenCount((Integer) newValue);
-			return;
-		case InstancePackageImpl.MARKING__STRUCTURED_MARKING:
-			getStructuredMarking().clear();
-			getStructuredMarking().addAll((Collection<? extends MultisetEntry>) newValue);
-			return;
+			case InstancePackageImpl.MARKING__PLACE_INSTANCE:
+				setPlaceInstance((Instance<? extends PlaceNode>)newValue);
+				return;
+			case InstancePackageImpl.MARKING__TOKEN_COUNT:
+				setTokenCount((Integer)newValue);
+				return;
+			case InstancePackageImpl.MARKING__STRUCTURED_MARKING:
+				getStructuredMarking().clear();
+				getStructuredMarking().addAll((Collection<? extends MultisetEntry>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(final int featureID) {
+	public void eUnset(int featureID) {
 		switch (featureID) {
-		case InstancePackageImpl.MARKING__PLACE_INSTANCE:
-			setPlaceInstance((Instance<? extends PlaceNode>) null);
-			return;
-		case InstancePackageImpl.MARKING__TOKEN_COUNT:
-			setTokenCount(TOKEN_COUNT_EDEFAULT);
-			return;
-		case InstancePackageImpl.MARKING__STRUCTURED_MARKING:
-			getStructuredMarking().clear();
-			return;
+			case InstancePackageImpl.MARKING__PLACE_INSTANCE:
+				setPlaceInstance((Instance<? extends PlaceNode>)null);
+				return;
+			case InstancePackageImpl.MARKING__TOKEN_COUNT:
+				setTokenCount(TOKEN_COUNT_EDEFAULT);
+				return;
+			case InstancePackageImpl.MARKING__STRUCTURED_MARKING:
+				getStructuredMarking().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(final int featureID) {
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case InstancePackageImpl.MARKING__PLACE_INSTANCE:
-			return placeInstance != null;
-		case InstancePackageImpl.MARKING__TOKEN_COUNT:
-			return tokenCount != TOKEN_COUNT_EDEFAULT;
-		case InstancePackageImpl.MARKING__MARKING:
-			return MARKING_EDEFAULT == null ? marking != null : !MARKING_EDEFAULT.equals(marking);
-		case InstancePackageImpl.MARKING__STRUCTURED_MARKING:
-			return structuredMarking != null && !structuredMarking.isEmpty();
+			case InstancePackageImpl.MARKING__PLACE_INSTANCE:
+				return placeInstance != null;
+			case InstancePackageImpl.MARKING__TOKEN_COUNT:
+				return tokenCount != TOKEN_COUNT_EDEFAULT;
+			case InstancePackageImpl.MARKING__MARKING:
+				return MARKING_EDEFAULT == null ? marking != null : !MARKING_EDEFAULT.equals(marking);
+			case InstancePackageImpl.MARKING__STRUCTURED_MARKING:
+				return structuredMarking != null && !structuredMarking.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -40,12 +40,11 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.cpntools.accesscpn.engine.highlevel.instance.impl.InstanceImpl#getNode <em>Node</em>}</li>
- * <li>{@link org.cpntools.accesscpn.engine.highlevel.instance.impl.InstanceImpl#getTransitionPath <em>Transition Path
- * </em>}</li>
+ *   <li>{@link org.cpntools.accesscpn.engine.highlevel.instance.impl.InstanceImpl#getNode <em>Node</em>}</li>
+ *   <li>{@link org.cpntools.accesscpn.engine.highlevel.instance.impl.InstanceImpl#getTransitionPath <em>Transition Path</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class InstanceImpl<T> extends EObjectImpl implements Instance<T> {
@@ -60,9 +59,9 @@ public class InstanceImpl<T> extends EObjectImpl implements Instance<T> {
 	protected T node;
 
 	/**
-	 * The cached value of the '{@link #getTransitionPath() <em>Transition Path</em>}' reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getTransitionPath() <em>Transition Path</em>}' reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getTransitionPath()
 	 * @generated
 	 * @ordered
@@ -73,7 +72,6 @@ public class InstanceImpl<T> extends EObjectImpl implements Instance<T> {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected InstanceImpl() {
@@ -107,7 +105,6 @@ public class InstanceImpl<T> extends EObjectImpl implements Instance<T> {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,20 +114,17 @@ public class InstanceImpl<T> extends EObjectImpl implements Instance<T> {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public T getNode() {
-		if (node != null && ((EObject) node).eIsProxy()) {
-			final InternalEObject oldNode = (InternalEObject) node;
-			node = (T) eResolveProxy(oldNode);
+		if (node != null && ((EObject)node).eIsProxy()) {
+			InternalEObject oldNode = (InternalEObject)node;
+			node = (T)eResolveProxy(oldNode);
 			if (node != oldNode) {
-				if (eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, InstancePackageImpl.INSTANCE__NODE,
-					        oldNode, node));
-				}
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, InstancePackageImpl.INSTANCE__NODE, oldNode, node));
 			}
 		}
 		return node;
@@ -138,7 +132,6 @@ public class InstanceImpl<T> extends EObjectImpl implements Instance<T> {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public T basicGetNode() {
@@ -147,34 +140,29 @@ public class InstanceImpl<T> extends EObjectImpl implements Instance<T> {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public void setNode(final T newNode) {
-		final T oldNode = node;
+	public void setNode(T newNode) {
+		T oldNode = node;
 		node = newNode;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, InstancePackageImpl.INSTANCE__NODE, oldNode, node));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Instance<org.cpntools.accesscpn.model.Instance> getTransitionPath() {
-		if (transitionPath != null && ((EObject) transitionPath).eIsProxy()) {
-			final InternalEObject oldTransitionPath = (InternalEObject) transitionPath;
-			transitionPath = (Instance<org.cpntools.accesscpn.model.Instance>) eResolveProxy(oldTransitionPath);
+		if (transitionPath != null && ((EObject)transitionPath).eIsProxy()) {
+			InternalEObject oldTransitionPath = (InternalEObject)transitionPath;
+			transitionPath = (Instance<org.cpntools.accesscpn.model.Instance>)eResolveProxy(oldTransitionPath);
 			if (transitionPath != oldTransitionPath) {
-				if (eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-					        InstancePackageImpl.INSTANCE__TRANSITION_PATH, oldTransitionPath, transitionPath));
-				}
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, InstancePackageImpl.INSTANCE__TRANSITION_PATH, oldTransitionPath, transitionPath));
 			}
 		}
 		return transitionPath;
@@ -182,7 +170,6 @@ public class InstanceImpl<T> extends EObjectImpl implements Instance<T> {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Instance<org.cpntools.accesscpn.model.Instance> basicGetTransitionPath() {
@@ -191,86 +178,79 @@ public class InstanceImpl<T> extends EObjectImpl implements Instance<T> {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public void setTransitionPath(final Instance<org.cpntools.accesscpn.model.Instance> newTransitionPath) {
-		final Instance<org.cpntools.accesscpn.model.Instance> oldTransitionPath = transitionPath;
+	public void setTransitionPath(Instance<org.cpntools.accesscpn.model.Instance> newTransitionPath) {
+		Instance<org.cpntools.accesscpn.model.Instance> oldTransitionPath = transitionPath;
 		transitionPath = newTransitionPath;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, InstancePackageImpl.INSTANCE__TRANSITION_PATH,
-			        oldTransitionPath, transitionPath));
-		}
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, InstancePackageImpl.INSTANCE__TRANSITION_PATH, oldTransitionPath, transitionPath));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case InstancePackageImpl.INSTANCE__NODE:
-			if (resolve) { return getNode(); }
-			return basicGetNode();
-		case InstancePackageImpl.INSTANCE__TRANSITION_PATH:
-			if (resolve) { return getTransitionPath(); }
-			return basicGetTransitionPath();
+			case InstancePackageImpl.INSTANCE__NODE:
+				if (resolve) return getNode();
+				return basicGetNode();
+			case InstancePackageImpl.INSTANCE__TRANSITION_PATH:
+				if (resolve) return getTransitionPath();
+				return basicGetTransitionPath();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(final int featureID, final Object newValue) {
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case InstancePackageImpl.INSTANCE__NODE:
-			setNode((T) newValue);
-			return;
-		case InstancePackageImpl.INSTANCE__TRANSITION_PATH:
-			setTransitionPath((Instance<org.cpntools.accesscpn.model.Instance>) newValue);
-			return;
+			case InstancePackageImpl.INSTANCE__NODE:
+				setNode((T)newValue);
+				return;
+			case InstancePackageImpl.INSTANCE__TRANSITION_PATH:
+				setTransitionPath((Instance<org.cpntools.accesscpn.model.Instance>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(final int featureID) {
+	public void eUnset(int featureID) {
 		switch (featureID) {
-		case InstancePackageImpl.INSTANCE__NODE:
-			setNode((T) null);
-			return;
-		case InstancePackageImpl.INSTANCE__TRANSITION_PATH:
-			setTransitionPath((Instance<org.cpntools.accesscpn.model.Instance>) null);
-			return;
+			case InstancePackageImpl.INSTANCE__NODE:
+				setNode((T)null);
+				return;
+			case InstancePackageImpl.INSTANCE__TRANSITION_PATH:
+				setTransitionPath((Instance<org.cpntools.accesscpn.model.Instance>)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(final int featureID) {
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case InstancePackageImpl.INSTANCE__NODE:
-			return node != null;
-		case InstancePackageImpl.INSTANCE__TRANSITION_PATH:
-			return transitionPath != null;
+			case InstancePackageImpl.INSTANCE__NODE:
+				return node != null;
+			case InstancePackageImpl.INSTANCE__TRANSITION_PATH:
+				return transitionPath != null;
 		}
 		return super.eIsSet(featureID);
 	}
