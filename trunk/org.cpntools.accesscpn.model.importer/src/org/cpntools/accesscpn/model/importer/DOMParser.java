@@ -34,6 +34,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.cpntools.accesscpn.engine.highlevel.instance.InstanceFactory;
 import org.cpntools.accesscpn.engine.highlevel.instance.adapter.ModelData;
 import org.cpntools.accesscpn.engine.highlevel.instance.adapter.ModelDataAdapterFactory;
+import org.cpntools.accesscpn.model.Annotation;
 import org.cpntools.accesscpn.model.Arc;
 import org.cpntools.accesscpn.model.Code;
 import org.cpntools.accesscpn.model.Condition;
@@ -57,6 +58,14 @@ import org.cpntools.accesscpn.model.Time;
 import org.cpntools.accesscpn.model.Transition;
 import org.cpntools.accesscpn.model.declaration.DeclarationStructure;
 import org.cpntools.accesscpn.model.declaration.MLDeclaration;
+import org.cpntools.accesscpn.model.graphics.AnnotationGraphics;
+import org.cpntools.accesscpn.model.graphics.ArcGraphics;
+import org.cpntools.accesscpn.model.graphics.Coordinate;
+import org.cpntools.accesscpn.model.graphics.Fill;
+import org.cpntools.accesscpn.model.graphics.Font;
+import org.cpntools.accesscpn.model.graphics.GraphicsFactory;
+import org.cpntools.accesscpn.model.graphics.Line;
+import org.cpntools.accesscpn.model.graphics.NodeGraphics;
 import org.cpntools.accesscpn.model.monitors.Monitor;
 import org.cpntools.accesscpn.model.monitors.MonitorType;
 import org.cpntools.accesscpn.model.monitors.MonitorsFactory;
@@ -323,6 +332,7 @@ public class DOMParser {
 		final HLAnnotation annot = DOMParser.factory.createHLAnnotation();
 		annot.setText(ParserUtil.getTextFromChild(n, DOMParser.textNode));
 
+		loadGraphics(annot, n);
 		return annot;
 	}
 
@@ -369,7 +379,36 @@ public class DOMParser {
 			throw new NetStructureException("Unknown arc orientation", n);
 		}
 
+		loadGraphics(arc, n);
 		return arc;
+	}
+
+	private void loadGraphics(final Arc arc, final Node n) {
+		final ArcGraphics graphics = GraphicsFactory.INSTANCE.createArcGraphics();
+
+		final NodeList nl = n.getChildNodes();
+		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
+			final Node currentNode = nl.item(i);
+			if (ParserUtil.isElementNodeOfType(currentNode, "bendpoint")) {
+				final NodeList nl2 = currentNode.getChildNodes();
+				for (int j = 0; j < nl2.getLength(); j++) {
+					final Node bendpoint = nl2.item(j);
+					if (ParserUtil.isElementNodeOfType(bendpoint, "posattr")) {
+
+						final Coordinate position = GraphicsFactory.INSTANCE.createCoordinate();
+						position.setX(Double.parseDouble(ParserUtil.getAttr(bendpoint, "x")));
+						position.setY(Double.parseDouble(ParserUtil.getAttr(bendpoint, "y")));
+						graphics.getPosition().add(position);
+					}
+				}
+			} else if (ParserUtil.isElementNodeOfType(currentNode, "lineattr")) {
+				final Line line = GraphicsFactory.INSTANCE.createLine();
+				line.setColor(ParserUtil.getAttr(currentNode, "color"));
+				line.setWidth(Double.parseDouble(ParserUtil.getAttr(currentNode, "thick")));
+				graphics.setLine(line);
+			}
+		}
+
 	}
 
 	/**
@@ -379,6 +418,7 @@ public class DOMParser {
 	 * @return code
 	 */
 	public Code processCode(final Node n, final Code code) {
+		loadGraphics(code, n);
 		code.setText(ParserUtil.getTextFromChild(n, DOMParser.textNode));
 
 		return code;
@@ -391,6 +431,7 @@ public class DOMParser {
 	 * @return code
 	 */
 	public Priority processPriority(final Node n, final Priority prio) {
+		loadGraphics(prio, n);
 		prio.setText(ParserUtil.getTextFromChild(n, DOMParser.textNode));
 
 		return prio;
@@ -403,9 +444,50 @@ public class DOMParser {
 	 * @return guard
 	 */
 	public Condition processCond(final Node n, final Condition cond) {
+		loadGraphics(cond, n);
 		cond.setText(ParserUtil.getTextFromChild(n, DOMParser.textNode));
 
 		return cond;
+	}
+
+	private void loadGraphics(final Annotation annotation, final Node n) {
+		final AnnotationGraphics graphics = GraphicsFactory.INSTANCE.createAnnotationGraphics();
+		annotation.setGraphics(graphics);
+
+		final NodeList nl = n.getChildNodes();
+		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
+			final Node currentNode = nl.item(i);
+			if (ParserUtil.isElementNodeOfType(currentNode, "posattr")) {
+				final Coordinate position = GraphicsFactory.INSTANCE.createCoordinate();
+				position.setX(Double.parseDouble(ParserUtil.getAttr(currentNode, "x")));
+				position.setY(Double.parseDouble(ParserUtil.getAttr(currentNode, "y")));
+				try {
+					final org.cpntools.accesscpn.model.Node node = (org.cpntools.accesscpn.model.Node) annotation
+					        .getParent();
+					final Coordinate parentPosition = node.getNodeGraphics().getPosition();
+					position.setX(position.getX() - parentPosition.getX());
+					position.setY(position.getY() - parentPosition.getY());
+				} catch (final Exception _) {
+					// Parent was no node or didn't have a position
+				}
+				graphics.setOffset(position);
+			} else if (ParserUtil.isElementNodeOfType(currentNode, "fillattr")) {
+				final Fill fill = GraphicsFactory.INSTANCE.createFill();
+				fill.setColor(ParserUtil.getAttr(currentNode, "color"));
+				graphics.setFill(fill);
+			} else if (ParserUtil.isElementNodeOfType(currentNode, "lineattr")) {
+				final Line line = GraphicsFactory.INSTANCE.createLine();
+				line.setColor(ParserUtil.getAttr(currentNode, "color"));
+				line.setWidth(Double.parseDouble(ParserUtil.getAttr(currentNode, "thick")));
+				graphics.setLine(line);
+			} else if (ParserUtil.isElementNodeOfType(currentNode, "textattr")) {
+				final Font font = GraphicsFactory.INSTANCE.createFont();
+				font.setFamily("Verdana");
+				font.setSize("12");
+				graphics.setFont(font);
+			}
+		}
+
 	}
 
 	/**
@@ -667,6 +749,7 @@ public class DOMParser {
 	 * @return initmark
 	 */
 	public HLMarking processInitmark(final Node n, final HLMarking initmark) {
+		loadGraphics(initmark, n);
 		initmark.setText(ParserUtil.getTextFromChild(n, DOMParser.textNode));
 
 		return initmark;
@@ -769,6 +852,7 @@ public class DOMParser {
 			}
 			idToNodePlaceMap.put(id, refPlace);
 
+			loadGraphics(refPlace, n);
 			return refPlace;
 		} else {
 			final Place place = DOMParser.factory.createPlace();
@@ -779,6 +863,7 @@ public class DOMParser {
 			place.setInitialMarking(initmark);
 			idToNodePlaceMap.put(id, place);
 
+			loadGraphics(place, n);
 			return place;
 		}
 	}
@@ -824,6 +909,7 @@ public class DOMParser {
 		}
 		idToTransitionMap.put(id, instance);
 
+		loadGraphics(instance, n);
 		return instance;
 	}
 
@@ -834,6 +920,7 @@ public class DOMParser {
 	 * @return time region
 	 */
 	public Time processTime(final Node n, final Time time) {
+		loadGraphics(time, n);
 		time.setText(ParserUtil.getTextFromChild(n, DOMParser.textNode));
 		return time;
 	}
@@ -882,7 +969,42 @@ public class DOMParser {
 
 		idToTransitionMap.put(id, transition);
 
+		loadGraphics(transition, n);
 		return transition;
+	}
+
+	private void loadGraphics(final org.cpntools.accesscpn.model.Node node, final Node n) {
+		final NodeGraphics nodeGraphics = GraphicsFactory.INSTANCE.createNodeGraphics();
+		node.setGraphics(nodeGraphics);
+
+		final NodeList nl = n.getChildNodes();
+		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
+			final Node currentNode = nl.item(i);
+			if (ParserUtil.isElementNodeOfType(currentNode, "posattr")) {
+				final Coordinate position = GraphicsFactory.INSTANCE.createCoordinate();
+				position.setX(Double.parseDouble(ParserUtil.getAttr(currentNode, "x")));
+				position.setY(Double.parseDouble(ParserUtil.getAttr(currentNode, "y")));
+				nodeGraphics.setPosition(position);
+			} else if (ParserUtil.isElementNodeOfType(currentNode, "fillattr")) {
+				final Fill fill = GraphicsFactory.INSTANCE.createFill();
+				fill.setColor(ParserUtil.getAttr(currentNode, "color"));
+				nodeGraphics.setFill(fill);
+			} else if (ParserUtil.isElementNodeOfType(currentNode, "lineattr")) {
+				final Line line = GraphicsFactory.INSTANCE.createLine();
+				line.setColor(ParserUtil.getAttr(currentNode, "color"));
+				line.setWidth(Double.parseDouble(ParserUtil.getAttr(currentNode, "thick")));
+				nodeGraphics.setLine(line);
+			} else if (ParserUtil.isElementNodeOfType(currentNode, "textattr")) {
+				// Note in meta model
+			} else if (ParserUtil.isElementNodeOfType(currentNode, "ellipse")
+			        || ParserUtil.isElementNodeOfType(currentNode, "box")) {
+				final Coordinate dimension = GraphicsFactory.INSTANCE.createCoordinate();
+				dimension.setX(Double.parseDouble(ParserUtil.getAttr(currentNode, "w")));
+				dimension.setY(Double.parseDouble(ParserUtil.getAttr(currentNode, "h")));
+				nodeGraphics.setDimension(dimension);
+			}
+		}
+
 	}
 
 	/**
@@ -892,6 +1014,7 @@ public class DOMParser {
 	 * @return type
 	 */
 	public Sort processType(final Node n, final Sort type) {
+		loadGraphics(type, n);
 		type.setText(ParserUtil.getTextFromChild(n, DOMParser.textNode));
 
 		return type;
