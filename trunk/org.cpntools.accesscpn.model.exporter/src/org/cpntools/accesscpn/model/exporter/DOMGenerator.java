@@ -210,7 +210,7 @@ public class DOMGenerator {
 		try {
 			final Line line = a.getArcGraphics().getLine();
 			lineattr.setAttribute("colour", line.getColor());
-			lineattr.setAttribute("thick", "" + line.getWidth());
+			lineattr.setAttribute("thick", "" + Math.round(line.getWidth()));
 		} catch (final Exception _) {
 			lineattr.setAttribute("colour", "Black");
 			lineattr.setAttribute("thick", "1");
@@ -233,8 +233,17 @@ public class DOMGenerator {
 
 		}
 
-		exportLabel(document, arc, a.getHlinscription(), DOMParser.annotNode, a.getId() + "a",
-		        (int) ((source.getA() + destination.getA()) / 2.0), (int) ((source.getB() + destination.getB()) / 2.0));
+		Coordinate position;
+		try {
+			position = a.getHlinscription().getAnnotationGraphics().getOffset();
+		} catch (final Exception _) {
+			position = GraphicsFactory.INSTANCE.createCoordinate();
+			position.setX((source.getA() + destination.getA()) / 2.0);
+			position.setY((source.getB() + destination.getB()) / 2.0);
+		}
+
+		exportLabel(document, arc, a.getHlinscription(), DOMParser.annotNode, a.getId() + "a", position.getX(),
+		        position.getY());
 	}
 
 	private static void exportCPNType(final Document document, final Element color, final CPNAlias type)
@@ -491,7 +500,7 @@ public class DOMGenerator {
 		try {
 			final Line line = label.getAnnotationGraphics().getLine();
 			lineattr.setAttribute("colour", line.getColor());
-			lineattr.setAttribute("thick", "" + line.getWidth());
+			lineattr.setAttribute("thick", "" + Math.round(line.getWidth()));
 
 		} catch (final Exception _) {
 			lineattr.setAttribute("colour", "Black");
@@ -702,16 +711,21 @@ public class DOMGenerator {
 		fillattr.setAttribute("filled", "false");
 
 		final Element lineattr = document.createElement("lineattr");
+		final Element textattr = document.createElement("textattr");
 		place.appendChild(lineattr);
+		place.appendChild(textattr);
 		try {
 			final Line line = o.getNodeGraphics().getLine();
-			fillattr.setAttribute("colour", line.getColor());
-			fillattr.setAttribute("thick", "" + line.getWidth());
+			lineattr.setAttribute("colour", line.getColor());
+			lineattr.setAttribute("thick", "" + Math.round(line.getWidth()));
+			textattr.setAttribute("colour", line.getColor());
 		} catch (final Exception _) {
-			fillattr.setAttribute("colour", "White");
-			fillattr.setAttribute("thick", "1");
+			lineattr.setAttribute("colour", "Black");
+			textattr.setAttribute("colour", "Black");
+			lineattr.setAttribute("thick", "1");
 		}
-		fillattr.setAttribute("pattern", "Solid");
+		lineattr.setAttribute("pattern", "Solid");
+		textattr.setAttribute("bold", "false");
 
 		return position;
 	}

@@ -385,6 +385,7 @@ public class DOMParser {
 
 	private void loadGraphics(final Arc arc, final Node n) {
 		final ArcGraphics graphics = GraphicsFactory.INSTANCE.createArcGraphics();
+		arc.setGraphics(graphics);
 
 		final NodeList nl = n.getChildNodes();
 		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
@@ -819,16 +820,11 @@ public class DOMParser {
 		boolean isFusionPlace = false;
 		String fusionGroupName = null;
 		boolean isPort = false;
-
 		final NodeList nl = n.getChildNodes();
 		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
 			final Node currentNode = nl.item(i);
 			if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.textNode)) {
 				setName(ParserUtil.getTextFromElement(currentNode), name);
-			} else if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.typeNode)) {
-				processType(currentNode, type);
-			} else if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.initmarkNode)) {
-				processInitmark(currentNode, initmark);
 			} else if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.fusioninfoNode)) {
 				isFusionPlace = true;
 				fusionGroupName = ParserUtil.getAttr(currentNode, NAME);
@@ -837,8 +833,10 @@ public class DOMParser {
 			}
 		}
 
+		PlaceNode placeNode;
 		if (isFusionPlace || isPort) {
 			final RefPlace refPlace = DOMParser.factory.createRefPlace();
+			placeNode = refPlace;
 			final String id = ParserUtil.getAttr(n, ID);
 			refPlace.setId(id);
 			refPlace.setName(name);
@@ -852,10 +850,9 @@ public class DOMParser {
 			}
 			idToNodePlaceMap.put(id, refPlace);
 
-			loadGraphics(refPlace, n);
-			return refPlace;
 		} else {
 			final Place place = DOMParser.factory.createPlace();
+			placeNode = place;
 			final String id = ParserUtil.getAttr(n, ID);
 			place.setId(id);
 			place.setName(name);
@@ -863,9 +860,19 @@ public class DOMParser {
 			place.setInitialMarking(initmark);
 			idToNodePlaceMap.put(id, place);
 
-			loadGraphics(place, n);
-			return place;
 		}
+
+		loadGraphics(placeNode, n);
+		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
+			final Node currentNode = nl.item(i);
+			if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.typeNode)) {
+				processType(currentNode, type);
+			} else if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.initmarkNode)) {
+				processInitmark(currentNode, initmark);
+			}
+		}
+
+		return placeNode;
 	}
 
 	/**
@@ -951,6 +958,8 @@ public class DOMParser {
 		transition.setPriority(priority);
 		priority.setText("");
 
+		loadGraphics(transition, n);
+
 		final NodeList nl = n.getChildNodes();
 		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
 			final Node currentNode = nl.item(i);
@@ -969,7 +978,6 @@ public class DOMParser {
 
 		idToTransitionMap.put(id, transition);
 
-		loadGraphics(transition, n);
 		return transition;
 	}
 
