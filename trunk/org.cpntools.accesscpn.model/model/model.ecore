@@ -108,6 +108,8 @@
         eOpposite="monitors.ecore#//Monitor/petriNet"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fusionGroups" upperBound="-1"
         eType="#//FusionGroup" eOpposite="#//FusionGroup/petriNet"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeType" lowerBound="1"
+        eType="#//TimeType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Place" eSuperTypes="#//PlaceNode">
     <eStructuralFeatures xsi:type="ecore:EReference" name="references" upperBound="-1"
@@ -124,6 +126,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Sort" eSuperTypes="#//Annotation"/>
   <eClassifiers xsi:type="ecore:EClass" name="Time" eSuperTypes="#//Annotation"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="TimeType">
+    <eLiterals name="Integer"/>
+    <eLiterals name="Real" value="1"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ToolInfo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tool" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" lowerBound="1"

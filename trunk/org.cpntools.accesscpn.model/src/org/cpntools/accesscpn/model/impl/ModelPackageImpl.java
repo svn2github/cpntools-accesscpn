@@ -40,9 +40,11 @@ import org.cpntools.accesscpn.model.RefPlace;
 import org.cpntools.accesscpn.model.RefTrans;
 import org.cpntools.accesscpn.model.Sort;
 import org.cpntools.accesscpn.model.Time;
+import org.cpntools.accesscpn.model.TimeType;
 import org.cpntools.accesscpn.model.ToolInfo;
 import org.cpntools.accesscpn.model.Transition;
 import org.cpntools.accesscpn.model.TransitionNode;
+import org.cpntools.accesscpn.model.aux.impl.AuxPackageImpl;
 import org.cpntools.accesscpn.model.cpntypes.impl.CpntypesPackageImpl;
 import org.cpntools.accesscpn.model.declaration.impl.DeclarationPackageImpl;
 import org.cpntools.accesscpn.model.graphics.impl.GraphicsPackageImpl;
@@ -53,6 +55,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 
@@ -1833,13 +1836,22 @@ public class ModelPackageImpl extends EPackageImpl {
 	public static final int PETRI_NET__FUSION_GROUPS = HAS_ID_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Time Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PETRI_NET__TIME_TYPE = HAS_ID_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Petri Net</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PETRI_NET_FEATURE_COUNT = HAS_ID_FEATURE_COUNT + 7;
+	public static final int PETRI_NET_FEATURE_COUNT = HAS_ID_FEATURE_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link org.cpntools.accesscpn.model.impl.PriorityImpl <em>Priority</em>}' class.
@@ -2511,6 +2523,16 @@ public class ModelPackageImpl extends EPackageImpl {
 	public static final int HL_ARC_TYPE = 36;
 
 	/**
+	 * The meta object id for the '{@link org.cpntools.accesscpn.model.TimeType <em>Time Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.cpntools.accesscpn.model.TimeType
+	 * @see org.cpntools.accesscpn.model.impl.ModelPackageImpl#getTimeType()
+	 * @generated
+	 */
+	public static final int TIME_TYPE = 37;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2770,6 +2792,13 @@ public class ModelPackageImpl extends EPackageImpl {
 	private EEnum hlArcTypeEEnum = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum timeTypeEEnum = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -2816,6 +2845,7 @@ public class ModelPackageImpl extends EPackageImpl {
 		isInited = true;
 
 		// Obtain or create and register interdependencies
+		AuxPackageImpl theAuxPackage = (AuxPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AuxPackageImpl.eNS_URI) instanceof AuxPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AuxPackageImpl.eNS_URI) : AuxPackageImpl.eINSTANCE);
 		CpntypesPackageImpl theCpntypesPackage = (CpntypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CpntypesPackageImpl.eNS_URI) instanceof CpntypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CpntypesPackageImpl.eNS_URI) : CpntypesPackageImpl.eINSTANCE);
 		DeclarationPackageImpl theDeclarationPackage = (DeclarationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DeclarationPackageImpl.eNS_URI) instanceof DeclarationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DeclarationPackageImpl.eNS_URI) : DeclarationPackageImpl.eINSTANCE);
 		GraphicsPackageImpl theGraphicsPackage = (GraphicsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GraphicsPackageImpl.eNS_URI) instanceof GraphicsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GraphicsPackageImpl.eNS_URI) : GraphicsPackageImpl.eINSTANCE);
@@ -2823,6 +2853,7 @@ public class ModelPackageImpl extends EPackageImpl {
 
 		// Create package meta-data objects
 		theModelPackage.createPackageContents();
+		theAuxPackage.createPackageContents();
 		theCpntypesPackage.createPackageContents();
 		theDeclarationPackage.createPackageContents();
 		theGraphicsPackage.createPackageContents();
@@ -2830,6 +2861,7 @@ public class ModelPackageImpl extends EPackageImpl {
 
 		// Initialize created meta-data
 		theModelPackage.initializePackageContents();
+		theAuxPackage.initializePackageContents();
 		theCpntypesPackage.initializePackageContents();
 		theDeclarationPackage.initializePackageContents();
 		theGraphicsPackage.initializePackageContents();
@@ -3219,6 +3251,19 @@ public class ModelPackageImpl extends EPackageImpl {
 	 */
 	public EReference getPetriNet_FusionGroups() {
 		return (EReference)petriNetEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.cpntools.accesscpn.model.PetriNet#getTimeType <em>Time Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Time Type</em>'.
+	 * @see org.cpntools.accesscpn.model.PetriNet#getTimeType()
+	 * @see #getPetriNet()
+	 * @generated
+	 */
+	public EAttribute getPetriNet_TimeType() {
+		return (EAttribute)petriNetEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -3809,6 +3854,18 @@ public class ModelPackageImpl extends EPackageImpl {
 	}
 
 	/**
+	 * Returns the meta object for enum '{@link org.cpntools.accesscpn.model.TimeType <em>Time Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Time Type</em>'.
+	 * @see org.cpntools.accesscpn.model.TimeType
+	 * @generated
+	 */
+	public EEnum getTimeType() {
+		return timeTypeEEnum;
+	}
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3923,6 +3980,7 @@ public class ModelPackageImpl extends EPackageImpl {
 		createEReference(petriNetEClass, PETRI_NET__PAGE);
 		createEReference(petriNetEClass, PETRI_NET__MONITORS);
 		createEReference(petriNetEClass, PETRI_NET__FUSION_GROUPS);
+		createEAttribute(petriNetEClass, PETRI_NET__TIME_TYPE);
 
 		placeEClass = createEClass(PLACE);
 		createEReference(placeEClass, PLACE__REFERENCES);
@@ -3952,6 +4010,7 @@ public class ModelPackageImpl extends EPackageImpl {
 
 		// Create enums
 		hlArcTypeEEnum = createEEnum(HL_ARC_TYPE);
+		timeTypeEEnum = createEEnum(TIME_TYPE);
 	}
 
 	/**
@@ -4118,6 +4177,7 @@ public class ModelPackageImpl extends EPackageImpl {
 		initEReference(getPetriNet_Page(), this.getPage(), this.getPage_PetriNet(), "page", null, 1, -1, PetriNet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPetriNet_Monitors(), theMonitorsPackage.getMonitor(), theMonitorsPackage.getMonitor_PetriNet(), "monitors", null, 0, -1, PetriNet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPetriNet_FusionGroups(), this.getFusionGroup(), this.getFusionGroup_PetriNet(), "fusionGroups", null, 0, -1, PetriNet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPetriNet_TimeType(), this.getTimeType(), "timeType", null, 1, 1, PetriNet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(placeEClass, Place.class, "Place", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPlace_References(), this.getRefPlace(), this.getRefPlace_Ref(), "references", null, 0, -1, Place.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4149,6 +4209,10 @@ public class ModelPackageImpl extends EPackageImpl {
 		initEEnum(hlArcTypeEEnum, HLArcType.class, "HLArcType");
 		addEEnumLiteral(hlArcTypeEEnum, HLArcType.NORMAL);
 		addEEnumLiteral(hlArcTypeEEnum, HLArcType.TEST);
+
+		initEEnum(timeTypeEEnum, TimeType.class, "TimeType");
+		addEEnumLiteral(timeTypeEEnum, TimeType.INTEGER);
+		addEEnumLiteral(timeTypeEEnum, TimeType.REAL);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -4432,6 +4496,14 @@ public class ModelPackageImpl extends EPackageImpl {
 		 * @generated
 		 */
 		public static final EReference PETRI_NET__FUSION_GROUPS = eINSTANCE.getPetriNet_FusionGroups();
+
+		/**
+		 * The meta object literal for the '<em><b>Time Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute PETRI_NET__TIME_TYPE = eINSTANCE.getPetriNet_TimeType();
 
 		/**
 		 * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
@@ -4856,6 +4928,16 @@ public class ModelPackageImpl extends EPackageImpl {
 		 * @generated
 		 */
 		public static final EEnum HL_ARC_TYPE = eINSTANCE.getHLArcType();
+
+		/**
+		 * The meta object literal for the '{@link org.cpntools.accesscpn.model.TimeType <em>Time Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.cpntools.accesscpn.model.TimeType
+		 * @see org.cpntools.accesscpn.model.impl.ModelPackageImpl#getTimeType()
+		 * @generated
+		 */
+		public static final EEnum TIME_TYPE = eINSTANCE.getTimeType();
 
 	}
 

@@ -47,22 +47,22 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.cpntools.accesscpn.model.impl.ArcImpl#getGraphics <em>Graphics</em>}</li>
- * <li>{@link org.cpntools.accesscpn.model.impl.ArcImpl#getHlinscription <em>Hlinscription</em>}</li>
- * <li>{@link org.cpntools.accesscpn.model.impl.ArcImpl#getKind <em>Kind</em>}</li>
- * <li>{@link org.cpntools.accesscpn.model.impl.ArcImpl#getSource <em>Source</em>}</li>
- * <li>{@link org.cpntools.accesscpn.model.impl.ArcImpl#getTarget <em>Target</em>}</li>
- * <li>{@link org.cpntools.accesscpn.model.impl.ArcImpl#getPage <em>Page</em>}</li>
+ *   <li>{@link org.cpntools.accesscpn.model.impl.ArcImpl#getGraphics <em>Graphics</em>}</li>
+ *   <li>{@link org.cpntools.accesscpn.model.impl.ArcImpl#getHlinscription <em>Hlinscription</em>}</li>
+ *   <li>{@link org.cpntools.accesscpn.model.impl.ArcImpl#getKind <em>Kind</em>}</li>
+ *   <li>{@link org.cpntools.accesscpn.model.impl.ArcImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.cpntools.accesscpn.model.impl.ArcImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.cpntools.accesscpn.model.impl.ArcImpl#getPage <em>Page</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ArcImpl extends HasIdImpl implements Arc {
 	/**
-	 * The cached value of the '{@link #getGraphics() <em>Graphics</em>}' containment reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getGraphics() <em>Graphics</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getGraphics()
 	 * @generated
 	 * @ordered
@@ -100,9 +100,9 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	protected HLArcType kind = KIND_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
@@ -110,9 +110,9 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	protected Node source;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -121,7 +121,6 @@ public class ArcImpl extends HasIdImpl implements Arc {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ArcImpl() {
@@ -130,7 +129,6 @@ public class ArcImpl extends HasIdImpl implements Arc {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -140,7 +138,6 @@ public class ArcImpl extends HasIdImpl implements Arc {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Graphics getGraphics() {
@@ -149,48 +146,34 @@ public class ArcImpl extends HasIdImpl implements Arc {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetGraphics(final Graphics newGraphics, NotificationChain msgs) {
-		final Graphics oldGraphics = graphics;
+	public NotificationChain basicSetGraphics(Graphics newGraphics, NotificationChain msgs) {
+		Graphics oldGraphics = graphics;
 		graphics = newGraphics;
 		if (eNotificationRequired()) {
-			final ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-			        ModelPackageImpl.ARC__GRAPHICS, oldGraphics, newGraphics);
-			if (msgs == null) {
-				msgs = notification;
-			} else {
-				msgs.add(notification);
-			}
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackageImpl.ARC__GRAPHICS, oldGraphics, newGraphics);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public void setGraphics(final Graphics newGraphics) {
+	public void setGraphics(Graphics newGraphics) {
 		if (newGraphics != graphics) {
 			NotificationChain msgs = null;
-			if (graphics != null) {
-				msgs = ((InternalEObject) graphics).eInverseRemove(this, GraphicsPackageImpl.GRAPHICS__PARENT,
-				        Graphics.class, msgs);
-			}
-			if (newGraphics != null) {
-				msgs = ((InternalEObject) newGraphics).eInverseAdd(this, GraphicsPackageImpl.GRAPHICS__PARENT,
-				        Graphics.class, msgs);
-			}
+			if (graphics != null)
+				msgs = ((InternalEObject)graphics).eInverseRemove(this, GraphicsPackageImpl.GRAPHICS__PARENT, Graphics.class, msgs);
+			if (newGraphics != null)
+				msgs = ((InternalEObject)newGraphics).eInverseAdd(this, GraphicsPackageImpl.GRAPHICS__PARENT, Graphics.class, msgs);
 			msgs = basicSetGraphics(newGraphics, msgs);
-			if (msgs != null) {
-				msgs.dispatch();
-			}
-		} else if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackageImpl.ARC__GRAPHICS, newGraphics,
-			        newGraphics));
+			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackageImpl.ARC__GRAPHICS, newGraphics, newGraphics));
 	}
 
 	/**
@@ -203,19 +186,16 @@ public class ArcImpl extends HasIdImpl implements Arc {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public HLAnnotation getHlinscription() {
-		if (hlinscription != null && ((EObject) hlinscription).eIsProxy()) {
-			final InternalEObject oldHlinscription = (InternalEObject) hlinscription;
-			hlinscription = (HLAnnotation) eResolveProxy(oldHlinscription);
+		if (hlinscription != null && ((EObject)hlinscription).eIsProxy()) {
+			InternalEObject oldHlinscription = (InternalEObject)hlinscription;
+			hlinscription = (HLAnnotation)eResolveProxy(oldHlinscription);
 			if (hlinscription != oldHlinscription) {
-				if (eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackageImpl.ARC__HLINSCRIPTION,
-					        oldHlinscription, hlinscription));
-				}
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackageImpl.ARC__HLINSCRIPTION, oldHlinscription, hlinscription));
 			}
 		}
 		return hlinscription;
@@ -223,7 +203,6 @@ public class ArcImpl extends HasIdImpl implements Arc {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public HLAnnotation basicGetHlinscription() {
@@ -232,22 +211,18 @@ public class ArcImpl extends HasIdImpl implements Arc {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public void setHlinscription(final HLAnnotation newHlinscription) {
-		final HLAnnotation oldHlinscription = hlinscription;
+	public void setHlinscription(HLAnnotation newHlinscription) {
+		HLAnnotation oldHlinscription = hlinscription;
 		hlinscription = newHlinscription;
-		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackageImpl.ARC__HLINSCRIPTION,
-			        oldHlinscription, hlinscription));
-		}
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackageImpl.ARC__HLINSCRIPTION, oldHlinscription, hlinscription));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -257,33 +232,28 @@ public class ArcImpl extends HasIdImpl implements Arc {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public void setKind(final HLArcType newKind) {
-		final HLArcType oldKind = kind;
+	public void setKind(HLArcType newKind) {
+		HLArcType oldKind = kind;
 		kind = newKind == null ? KIND_EDEFAULT : newKind;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackageImpl.ARC__KIND, oldKind, kind));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Node getSource() {
-		if (source != null && ((EObject) source).eIsProxy()) {
-			final InternalEObject oldSource = (InternalEObject) source;
-			source = (Node) eResolveProxy(oldSource);
+		if (source != null && ((EObject)source).eIsProxy()) {
+			InternalEObject oldSource = (InternalEObject)source;
+			source = (Node)eResolveProxy(oldSource);
 			if (source != oldSource) {
-				if (eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackageImpl.ARC__SOURCE, oldSource,
-					        source));
-				}
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackageImpl.ARC__SOURCE, oldSource, source));
 			}
 		}
 		return source;
@@ -291,7 +261,6 @@ public class ArcImpl extends HasIdImpl implements Arc {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Node basicGetSource() {
@@ -300,65 +269,49 @@ public class ArcImpl extends HasIdImpl implements Arc {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetSource(final Node newSource, NotificationChain msgs) {
-		final Node oldSource = source;
+	public NotificationChain basicSetSource(Node newSource, NotificationChain msgs) {
+		Node oldSource = source;
 		source = newSource;
 		if (eNotificationRequired()) {
-			final ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-			        ModelPackageImpl.ARC__SOURCE, oldSource, newSource);
-			if (msgs == null) {
-				msgs = notification;
-			} else {
-				msgs.add(notification);
-			}
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackageImpl.ARC__SOURCE, oldSource, newSource);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public void setSource(final Node newSource) {
+	public void setSource(Node newSource) {
 		if (newSource != source) {
 			NotificationChain msgs = null;
-			if (source != null) {
-				msgs = ((InternalEObject) source).eInverseRemove(this, ModelPackageImpl.NODE__SOURCE_ARC, Node.class,
-				        msgs);
-			}
-			if (newSource != null) {
-				msgs = ((InternalEObject) newSource).eInverseAdd(this, ModelPackageImpl.NODE__SOURCE_ARC, Node.class,
-				        msgs);
-			}
+			if (source != null)
+				msgs = ((InternalEObject)source).eInverseRemove(this, ModelPackageImpl.NODE__SOURCE_ARC, Node.class, msgs);
+			if (newSource != null)
+				msgs = ((InternalEObject)newSource).eInverseAdd(this, ModelPackageImpl.NODE__SOURCE_ARC, Node.class, msgs);
 			msgs = basicSetSource(newSource, msgs);
-			if (msgs != null) {
-				msgs.dispatch();
-			}
-		} else if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackageImpl.ARC__SOURCE, newSource, newSource));
+			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackageImpl.ARC__SOURCE, newSource, newSource));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Node getTarget() {
-		if (target != null && ((EObject) target).eIsProxy()) {
-			final InternalEObject oldTarget = (InternalEObject) target;
-			target = (Node) eResolveProxy(oldTarget);
+		if (target != null && ((EObject)target).eIsProxy()) {
+			InternalEObject oldTarget = (InternalEObject)target;
+			target = (Node)eResolveProxy(oldTarget);
 			if (target != oldTarget) {
-				if (eNotificationRequired()) {
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackageImpl.ARC__TARGET, oldTarget,
-					        target));
-				}
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackageImpl.ARC__TARGET, oldTarget, target));
 			}
 		}
 		return target;
@@ -366,7 +319,6 @@ public class ArcImpl extends HasIdImpl implements Arc {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Node basicGetTarget() {
@@ -375,301 +327,260 @@ public class ArcImpl extends HasIdImpl implements Arc {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(final Node newTarget, NotificationChain msgs) {
-		final Node oldTarget = target;
+	public NotificationChain basicSetTarget(Node newTarget, NotificationChain msgs) {
+		Node oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired()) {
-			final ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-			        ModelPackageImpl.ARC__TARGET, oldTarget, newTarget);
-			if (msgs == null) {
-				msgs = notification;
-			} else {
-				msgs.add(notification);
-			}
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackageImpl.ARC__TARGET, oldTarget, newTarget);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public void setTarget(final Node newTarget) {
+	public void setTarget(Node newTarget) {
 		if (newTarget != target) {
 			NotificationChain msgs = null;
-			if (target != null) {
-				msgs = ((InternalEObject) target).eInverseRemove(this, ModelPackageImpl.NODE__TARGET_ARC, Node.class,
-				        msgs);
-			}
-			if (newTarget != null) {
-				msgs = ((InternalEObject) newTarget).eInverseAdd(this, ModelPackageImpl.NODE__TARGET_ARC, Node.class,
-				        msgs);
-			}
+			if (target != null)
+				msgs = ((InternalEObject)target).eInverseRemove(this, ModelPackageImpl.NODE__TARGET_ARC, Node.class, msgs);
+			if (newTarget != null)
+				msgs = ((InternalEObject)newTarget).eInverseAdd(this, ModelPackageImpl.NODE__TARGET_ARC, Node.class, msgs);
 			msgs = basicSetTarget(newTarget, msgs);
-			if (msgs != null) {
-				msgs.dispatch();
-			}
-		} else if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackageImpl.ARC__TARGET, newTarget, newTarget));
+			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackageImpl.ARC__TARGET, newTarget, newTarget));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Page getPage() {
-		if (eContainerFeatureID() != ModelPackageImpl.ARC__PAGE) { return null; }
-		return (Page) eContainer();
+		if (eContainerFeatureID() != ModelPackageImpl.ARC__PAGE) return null;
+		return (Page)eContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetPage(final Page newPage, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newPage, ModelPackageImpl.ARC__PAGE, msgs);
+	public NotificationChain basicSetPage(Page newPage, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newPage, ModelPackageImpl.ARC__PAGE, msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public void setPage(final Page newPage) {
-		if (newPage != eInternalContainer() || eContainerFeatureID() != ModelPackageImpl.ARC__PAGE && newPage != null) {
-			if (EcoreUtil.isAncestor(this, (EObject) newPage)) { throw new IllegalArgumentException(
-			        "Recursive containment not allowed for " + toString()); }
+	public void setPage(Page newPage) {
+		if (newPage != eInternalContainer() || (eContainerFeatureID() != ModelPackageImpl.ARC__PAGE && newPage != null)) {
+			if (EcoreUtil.isAncestor(this, (EObject)newPage))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null) {
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			}
-			if (newPage != null) {
-				msgs = ((InternalEObject) newPage).eInverseAdd(this, ModelPackageImpl.PAGE__ARC, Page.class, msgs);
-			}
+			if (newPage != null)
+				msgs = ((InternalEObject)newPage).eInverseAdd(this, ModelPackageImpl.PAGE__ARC, Page.class, msgs);
 			msgs = basicSetPage(newPage, msgs);
-			if (msgs != null) {
-				msgs.dispatch();
-			}
-		} else if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackageImpl.ARC__PAGE, newPage, newPage));
+			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackageImpl.ARC__PAGE, newPage, newPage));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(final InternalEObject otherEnd, final int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ModelPackageImpl.ARC__GRAPHICS:
-			if (graphics != null) {
-				msgs = ((InternalEObject) graphics).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-				        - ModelPackageImpl.ARC__GRAPHICS, null, msgs);
-			}
-			return basicSetGraphics((Graphics) otherEnd, msgs);
-		case ModelPackageImpl.ARC__SOURCE:
-			if (source != null) {
-				msgs = ((InternalEObject) source).eInverseRemove(this, ModelPackageImpl.NODE__SOURCE_ARC, Node.class,
-				        msgs);
-			}
-			return basicSetSource((Node) otherEnd, msgs);
-		case ModelPackageImpl.ARC__TARGET:
-			if (target != null) {
-				msgs = ((InternalEObject) target).eInverseRemove(this, ModelPackageImpl.NODE__TARGET_ARC, Node.class,
-				        msgs);
-			}
-			return basicSetTarget((Node) otherEnd, msgs);
-		case ModelPackageImpl.ARC__PAGE:
-			if (eInternalContainer() != null) {
-				msgs = eBasicRemoveFromContainer(msgs);
-			}
-			return basicSetPage((Page) otherEnd, msgs);
+			case ModelPackageImpl.ARC__GRAPHICS:
+				if (graphics != null)
+					msgs = ((InternalEObject)graphics).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ModelPackageImpl.ARC__GRAPHICS, null, msgs);
+				return basicSetGraphics((Graphics)otherEnd, msgs);
+			case ModelPackageImpl.ARC__SOURCE:
+				if (source != null)
+					msgs = ((InternalEObject)source).eInverseRemove(this, ModelPackageImpl.NODE__SOURCE_ARC, Node.class, msgs);
+				return basicSetSource((Node)otherEnd, msgs);
+			case ModelPackageImpl.ARC__TARGET:
+				if (target != null)
+					msgs = ((InternalEObject)target).eInverseRemove(this, ModelPackageImpl.NODE__TARGET_ARC, Node.class, msgs);
+				return basicSetTarget((Node)otherEnd, msgs);
+			case ModelPackageImpl.ARC__PAGE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetPage((Page)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(final InternalEObject otherEnd, final int featureID,
-	        final NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ModelPackageImpl.ARC__GRAPHICS:
-			return basicSetGraphics(null, msgs);
-		case ModelPackageImpl.ARC__SOURCE:
-			return basicSetSource(null, msgs);
-		case ModelPackageImpl.ARC__TARGET:
-			return basicSetTarget(null, msgs);
-		case ModelPackageImpl.ARC__PAGE:
-			return basicSetPage(null, msgs);
+			case ModelPackageImpl.ARC__GRAPHICS:
+				return basicSetGraphics(null, msgs);
+			case ModelPackageImpl.ARC__SOURCE:
+				return basicSetSource(null, msgs);
+			case ModelPackageImpl.ARC__TARGET:
+				return basicSetTarget(null, msgs);
+			case ModelPackageImpl.ARC__PAGE:
+				return basicSetPage(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(final NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-		case ModelPackageImpl.ARC__PAGE:
-			return eInternalContainer().eInverseRemove(this, ModelPackageImpl.PAGE__ARC, Page.class, msgs);
+			case ModelPackageImpl.ARC__PAGE:
+				return eInternalContainer().eInverseRemove(this, ModelPackageImpl.PAGE__ARC, Page.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ModelPackageImpl.ARC__GRAPHICS:
-			return getGraphics();
-		case ModelPackageImpl.ARC__HLINSCRIPTION:
-			if (resolve) { return getHlinscription(); }
-			return basicGetHlinscription();
-		case ModelPackageImpl.ARC__KIND:
-			return getKind();
-		case ModelPackageImpl.ARC__SOURCE:
-			if (resolve) { return getSource(); }
-			return basicGetSource();
-		case ModelPackageImpl.ARC__TARGET:
-			if (resolve) { return getTarget(); }
-			return basicGetTarget();
-		case ModelPackageImpl.ARC__PAGE:
-			return getPage();
+			case ModelPackageImpl.ARC__GRAPHICS:
+				return getGraphics();
+			case ModelPackageImpl.ARC__HLINSCRIPTION:
+				if (resolve) return getHlinscription();
+				return basicGetHlinscription();
+			case ModelPackageImpl.ARC__KIND:
+				return getKind();
+			case ModelPackageImpl.ARC__SOURCE:
+				if (resolve) return getSource();
+				return basicGetSource();
+			case ModelPackageImpl.ARC__TARGET:
+				if (resolve) return getTarget();
+				return basicGetTarget();
+			case ModelPackageImpl.ARC__PAGE:
+				return getPage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public void eSet(final int featureID, final Object newValue) {
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ModelPackageImpl.ARC__GRAPHICS:
-			setGraphics((Graphics) newValue);
-			return;
-		case ModelPackageImpl.ARC__HLINSCRIPTION:
-			setHlinscription((HLAnnotation) newValue);
-			return;
-		case ModelPackageImpl.ARC__KIND:
-			setKind((HLArcType) newValue);
-			return;
-		case ModelPackageImpl.ARC__SOURCE:
-			setSource((Node) newValue);
-			return;
-		case ModelPackageImpl.ARC__TARGET:
-			setTarget((Node) newValue);
-			return;
-		case ModelPackageImpl.ARC__PAGE:
-			setPage((Page) newValue);
-			return;
+			case ModelPackageImpl.ARC__GRAPHICS:
+				setGraphics((Graphics)newValue);
+				return;
+			case ModelPackageImpl.ARC__HLINSCRIPTION:
+				setHlinscription((HLAnnotation)newValue);
+				return;
+			case ModelPackageImpl.ARC__KIND:
+				setKind((HLArcType)newValue);
+				return;
+			case ModelPackageImpl.ARC__SOURCE:
+				setSource((Node)newValue);
+				return;
+			case ModelPackageImpl.ARC__TARGET:
+				setTarget((Node)newValue);
+				return;
+			case ModelPackageImpl.ARC__PAGE:
+				setPage((Page)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(final int featureID) {
+	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ModelPackageImpl.ARC__GRAPHICS:
-			setGraphics((Graphics) null);
-			return;
-		case ModelPackageImpl.ARC__HLINSCRIPTION:
-			setHlinscription((HLAnnotation) null);
-			return;
-		case ModelPackageImpl.ARC__KIND:
-			setKind(KIND_EDEFAULT);
-			return;
-		case ModelPackageImpl.ARC__SOURCE:
-			setSource((Node) null);
-			return;
-		case ModelPackageImpl.ARC__TARGET:
-			setTarget((Node) null);
-			return;
-		case ModelPackageImpl.ARC__PAGE:
-			setPage((Page) null);
-			return;
+			case ModelPackageImpl.ARC__GRAPHICS:
+				setGraphics((Graphics)null);
+				return;
+			case ModelPackageImpl.ARC__HLINSCRIPTION:
+				setHlinscription((HLAnnotation)null);
+				return;
+			case ModelPackageImpl.ARC__KIND:
+				setKind(KIND_EDEFAULT);
+				return;
+			case ModelPackageImpl.ARC__SOURCE:
+				setSource((Node)null);
+				return;
+			case ModelPackageImpl.ARC__TARGET:
+				setTarget((Node)null);
+				return;
+			case ModelPackageImpl.ARC__PAGE:
+				setPage((Page)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(final int featureID) {
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ModelPackageImpl.ARC__GRAPHICS:
-			return graphics != null;
-		case ModelPackageImpl.ARC__HLINSCRIPTION:
-			return hlinscription != null;
-		case ModelPackageImpl.ARC__KIND:
-			return kind != KIND_EDEFAULT;
-		case ModelPackageImpl.ARC__SOURCE:
-			return source != null;
-		case ModelPackageImpl.ARC__TARGET:
-			return target != null;
-		case ModelPackageImpl.ARC__PAGE:
-			return getPage() != null;
+			case ModelPackageImpl.ARC__GRAPHICS:
+				return graphics != null;
+			case ModelPackageImpl.ARC__HLINSCRIPTION:
+				return hlinscription != null;
+			case ModelPackageImpl.ARC__KIND:
+				return kind != KIND_EDEFAULT;
+			case ModelPackageImpl.ARC__SOURCE:
+				return source != null;
+			case ModelPackageImpl.ARC__TARGET:
+				return target != null;
+			case ModelPackageImpl.ARC__PAGE:
+				return getPage() != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(final int derivedFeatureID, final Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == HasGraphics.class) {
 			switch (derivedFeatureID) {
-			case ModelPackageImpl.ARC__GRAPHICS:
-				return GraphicsPackageImpl.HAS_GRAPHICS__GRAPHICS;
-			default:
-				return -1;
+				case ModelPackageImpl.ARC__GRAPHICS: return GraphicsPackageImpl.HAS_GRAPHICS__GRAPHICS;
+				default: return -1;
 			}
 		}
 		if (baseClass == HLArcAddin.class) {
 			switch (derivedFeatureID) {
-			case ModelPackageImpl.ARC__HLINSCRIPTION:
-				return ModelPackageImpl.HL_ARC_ADDIN__HLINSCRIPTION;
-			case ModelPackageImpl.ARC__KIND:
-				return ModelPackageImpl.HL_ARC_ADDIN__KIND;
-			default:
-				return -1;
+				case ModelPackageImpl.ARC__HLINSCRIPTION: return ModelPackageImpl.HL_ARC_ADDIN__HLINSCRIPTION;
+				case ModelPackageImpl.ARC__KIND: return ModelPackageImpl.HL_ARC_ADDIN__KIND;
+				default: return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -677,27 +588,21 @@ public class ArcImpl extends HasIdImpl implements Arc {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(final int baseFeatureID, final Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == HasGraphics.class) {
 			switch (baseFeatureID) {
-			case GraphicsPackageImpl.HAS_GRAPHICS__GRAPHICS:
-				return ModelPackageImpl.ARC__GRAPHICS;
-			default:
-				return -1;
+				case GraphicsPackageImpl.HAS_GRAPHICS__GRAPHICS: return ModelPackageImpl.ARC__GRAPHICS;
+				default: return -1;
 			}
 		}
 		if (baseClass == HLArcAddin.class) {
 			switch (baseFeatureID) {
-			case ModelPackageImpl.HL_ARC_ADDIN__HLINSCRIPTION:
-				return ModelPackageImpl.ARC__HLINSCRIPTION;
-			case ModelPackageImpl.HL_ARC_ADDIN__KIND:
-				return ModelPackageImpl.ARC__KIND;
-			default:
-				return -1;
+				case ModelPackageImpl.HL_ARC_ADDIN__HLINSCRIPTION: return ModelPackageImpl.ARC__HLINSCRIPTION;
+				case ModelPackageImpl.HL_ARC_ADDIN__KIND: return ModelPackageImpl.ARC__KIND;
+				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -705,14 +610,13 @@ public class ArcImpl extends HasIdImpl implements Arc {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) { return super.toString(); }
+		if (eIsProxy()) return super.toString();
 
-		final StringBuffer result = new StringBuffer(super.toString());
+		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (kind: ");
 		result.append(kind);
 		result.append(')');
@@ -746,7 +650,8 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	public Transition getTransition() {
 		if (getSource() != null && getSource() instanceof Transition) { return (Transition) getSource(); }
 		if (getTarget() != null && getTarget() instanceof Transition) { return (Transition) getTarget(); }
-		throw new IllegalStateException("Arc is not connected to a transition");
+		throw new IllegalStateException("Arc (" + getId() + ") from " + getSource() + " to " + getTarget()
+		        + " is not connected to a transition");
 	}
 
 	/**

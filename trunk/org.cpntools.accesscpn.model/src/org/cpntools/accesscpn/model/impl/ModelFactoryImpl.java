@@ -45,6 +45,7 @@ import org.cpntools.accesscpn.model.RefPlace;
 import org.cpntools.accesscpn.model.RefTrans;
 import org.cpntools.accesscpn.model.Sort;
 import org.cpntools.accesscpn.model.Time;
+import org.cpntools.accesscpn.model.TimeType;
 import org.cpntools.accesscpn.model.ToolInfo;
 import org.cpntools.accesscpn.model.Transition;
 import org.eclipse.emf.ecore.EClass;
@@ -142,6 +143,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 		switch (eDataType.getClassifierID()) {
 			case ModelPackageImpl.HL_ARC_TYPE:
 				return createHLArcTypeFromString(eDataType, initialValue);
+			case ModelPackageImpl.TIME_TYPE:
+				return createTimeTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -157,6 +160,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 		switch (eDataType.getClassifierID()) {
 			case ModelPackageImpl.HL_ARC_TYPE:
 				return convertHLArcTypeToString(eDataType, instanceValue);
+			case ModelPackageImpl.TIME_TYPE:
+				return convertTimeTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -399,6 +404,26 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * @generated
 	 */
 	public String convertHLArcTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TimeType createTimeTypeFromString(EDataType eDataType, String initialValue) {
+		TimeType result = TimeType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertTimeTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

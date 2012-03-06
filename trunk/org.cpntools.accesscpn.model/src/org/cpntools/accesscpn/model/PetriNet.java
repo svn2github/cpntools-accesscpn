@@ -70,6 +70,21 @@ public interface PetriNet extends HasId, HasToolInfo, HasLabel, HasName {
 	List<FusionGroup> getFusionGroups();
 
 	/**
+	 * @model required="true"
+	 */
+	TimeType getTimeType();
+
+	/**
+	 * Sets the value of the '{@link org.cpntools.accesscpn.model.PetriNet#getTimeType <em>Time Type</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Time Type</em>' attribute.
+	 * @see org.cpntools.accesscpn.model.TimeType
+	 * @see #getTimeType()
+	 * @generated
+	 */
+	void setTimeType(TimeType value);
+
+	/**
 	 * Return whether this model is timed (i.e., if it contains a timed declaration)
 	 * 
 	 * @return

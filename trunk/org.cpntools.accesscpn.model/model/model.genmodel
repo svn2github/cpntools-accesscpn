@@ -14,6 +14,10 @@
       <genEnumLiterals ecoreEnumLiteral="model.ecore#//HLArcType/Normal"/>
       <genEnumLiterals ecoreEnumLiteral="model.ecore#//HLArcType/Test"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//TimeType">
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//TimeType/Integer"/>
+      <genEnumLiterals ecoreEnumLiteral="model.ecore#//TimeType/Real"/>
+    </genEnums>
     <genClasses image="false" ecoreClass="model.ecore#//Annotation"/>
     <genClasses ecoreClass="model.ecore#//Arc">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Arc/source"/>
@@ -93,6 +97,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//PetriNet/page"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//PetriNet/monitors"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//PetriNet/fusionGroups"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute model.ecore#//PetriNet/timeType"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//Place">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Place/references"/>
@@ -114,6 +119,13 @@
     </genClasses>
     <genClasses ecoreClass="model.ecore#//Transition"/>
     <genClasses image="false" ecoreClass="model.ecore#//TransitionNode"/>
+  </genPackages>
+  <genPackages prefix="Aux" basePackage="org.cpntools.accesscpn.model" disposableProviderFactory="true"
+      ecorePackage="aux.ecore#/">
+    <genClasses image="false" ecoreClass="aux.ecore#//Aux"/>
+    <genClasses ecoreClass="aux.ecore#//Text">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute aux.ecore#//Text/text"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Cpntypes" basePackage="org.cpntools.accesscpn.model" disposableProviderFactory="true"
       generateExampleClass="false" ecorePackage="cpntypes.ecore#/">

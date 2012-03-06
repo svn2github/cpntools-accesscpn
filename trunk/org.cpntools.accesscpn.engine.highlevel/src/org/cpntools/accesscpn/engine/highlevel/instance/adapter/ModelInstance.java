@@ -101,6 +101,7 @@ public class ModelInstance extends PetriNetDataAdapter {
 	private Map<Page, List<Instance<Page>>> instances = null;
 
 	private Map<Instance<Page>, Instance<Page>> pageInstances = null;
+	private Map<Instance<Page>, List<Instance<Page>>> subPages = null;
 
 	private final Map<Node, List<? extends Instance<Node>>> allInstances = new HashMap<Node, List<? extends Instance<Node>>>();
 
@@ -114,6 +115,28 @@ public class ModelInstance extends PetriNetDataAdapter {
 		if (getPetriNet() == null) { return null; }
 		if (page == null) { return null; }
 		return getInstances().get(page);
+	}
+
+	public synchronized Collection<Instance<Page>> getAllSubpages(final Instance<Page> page) {
+		if (getPetriNet() == null) { return null; }
+		if (page == null) { return null; }
+		if (subPages == null) {
+			subPages = new HashMap<Instance<Page>, List<Instance<Page>>>();
+		}
+		List<Instance<Page>> result = subPages.get(page);
+		if (result == null) {
+			result = new ArrayList<Instance<Page>>();
+			for (final org.cpntools.accesscpn.model.Instance i : page.getNode().instance()) {
+				final Page subpage = getModelData().getPage(i.getSubPageID());
+				for (final Instance<Page> pi : getAllInstances(subpage)) {
+					if (pi.getTransitionPath().getNode().equals(i)) {
+						result.add(pi);
+					}
+				}
+			}
+			subPages.put(page, result);
+		}
+		return result;
 	}
 
 	/**

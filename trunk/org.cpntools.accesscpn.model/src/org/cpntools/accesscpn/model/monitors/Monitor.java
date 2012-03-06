@@ -167,8 +167,7 @@ public interface Monitor extends HasId, HasName {
 
 	/**
 	 * Sets the value of the '{@link org.cpntools.accesscpn.model.monitors.Monitor#getAction <em>Action</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Action</em>' reference.
 	 * @see #getAction()
 	 * @generated

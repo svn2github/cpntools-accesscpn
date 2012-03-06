@@ -55,7 +55,10 @@ import org.cpntools.accesscpn.model.Priority;
 import org.cpntools.accesscpn.model.RefPlace;
 import org.cpntools.accesscpn.model.Sort;
 import org.cpntools.accesscpn.model.Time;
+import org.cpntools.accesscpn.model.TimeType;
 import org.cpntools.accesscpn.model.Transition;
+import org.cpntools.accesscpn.model.aux.AuxFactory;
+import org.cpntools.accesscpn.model.aux.Text;
 import org.cpntools.accesscpn.model.declaration.DeclarationStructure;
 import org.cpntools.accesscpn.model.declaration.MLDeclaration;
 import org.cpntools.accesscpn.model.graphics.AnnotationGraphics;
@@ -524,18 +527,20 @@ public class DOMParser {
 			}
 		}
 
-		// 3th we parse the pages
+		// 3th we parse the pages and options
 		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
 			final Node currentNode = nl.item(i);
 			if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.pageNode)) {
 				final Page page = processPage(currentNode);
 				page.setPetriNet(petriNet);
+			} else if (ParserUtil.isElementNodeOfType(currentNode, "options")) {
+				processOptions(currentNode, petriNet);
 			}
 		}
 
 		// Fortified we parse the instances. Because the stupid monitors use them. Much hate!
 		final ModelData modelData = (ModelData) ModelDataAdapterFactory.getInstance().adapt(petriNet, ModelData.class);
-		Map<String, Integer> instances = null;
+		Map<String, Object> instances = null;
 		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
 			final Node currentNode = nl.item(i);
 			if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.instancesNode)) {
@@ -555,49 +560,91 @@ public class DOMParser {
 		return petriNet;
 	}
 
+	private void processOptions(final Node currentNode, final PetriNet petriNet) {
+		final NodeList nl = currentNode.getChildNodes();
+		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
+			final Node current = nl.item(i);
+			if (ParserUtil.isElementNodeOfType(current, "option")) {
+				processOption(current, petriNet);
+			}
+		}
+
+	}
+
+	private void processOption(final Node current, final PetriNet petriNet) {
+		if ("realtimestamp".equals(ParserUtil.getAttr(current, "name"))) {
+			final NodeList nl = current.getChildNodes();
+			for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
+				final Node node = nl.item(i);
+				if (ParserUtil.isElementNodeOfType(node, "value")) {
+					if (getBoolean(node)) {
+						petriNet.setTimeType(TimeType.REAL);
+					} else {
+						petriNet.setTimeType(TimeType.INTEGER);
+					}
+				}
+			}
+		}
+
+	}
+
+	private boolean getBoolean(final Node current) {
+		return "true".equals(ParserUtil.getTextFromChild(current, "boolean"));
+	}
+
 	/**
 	 * @param modelData
 	 * @param n
 	 * @return
 	 */
-	public Map<String, Integer> processInstances(final ModelData modelData, final Node n) {
-		final Map<String, Integer> result = new HashMap<String, Integer>();
+	public Map<String, Object> processInstances(final ModelData modelData, final Node n) {
+		final Map<String, Object> result = new HashMap<String, Object>();
 		final Map<String, Integer> current = new HashMap<String, Integer>();
 		final NodeList nl = n.getChildNodes();
 		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
 			final Node currentNode = nl.item(i);
 			if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.instanceNode)) {
-				processInstance(modelData, result, current, currentNode);
+				processInstance(modelData, result, current, currentNode, null);
 			}
 		}
 		return result;
 	}
 
-	private void processInstance(final ModelData modelData, final Map<String, Integer> result,
-	        final Map<String, Integer> current, final Node n) {
+	private void processInstance(final ModelData modelData, final Map<String, Object> result,
+	        final Map<String, Integer> current, final Node n,
+	        final org.cpntools.accesscpn.engine.highlevel.instance.Instance<Instance> parent) {
 		final String id = ParserUtil.getAttr(n, ID);
 		String pageId = ParserUtil.getAttr(n, "page");
+		org.cpntools.accesscpn.engine.highlevel.instance.Instance<Instance> i = null;
 		if (pageId == null || "".equals(pageId)) {
 			final String transition = ParserUtil.getAttr(n, "trans");
 			final Instance instance = modelData.getInstance(transition);
 			assert instance != null;
 			pageId = instance.getSubPageID();
+			i = InstanceFactory.INSTANCE.createInstance(instance, increment(current, id, pageId));
+			i.setTransitionPath(parent);
+			result.put(id, i);
+		} else {
+			result.put(id, increment(current, id, pageId));
 		}
+		final NodeList nl = n.getChildNodes();
+		for (int j = 0, cnt = nl.getLength(); j < cnt; j++) {
+			final Node currentNode = nl.item(j);
+			if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.instanceNode)) {
+				processInstance(modelData, result, current, currentNode, i);
+			}
+		}
+	}
+
+	private int increment(final Map<String, Integer> current, final String id, final String pageId) {
 		Integer number = current.get(pageId);
 		if (number == null) {
 			number = 1;
 		} else {
 			number = number + 1;
 		}
-		result.put(id, number);
 		current.put(pageId, number);
-		final NodeList nl = n.getChildNodes();
-		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
-			final Node currentNode = nl.item(i);
-			if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.instanceNode)) {
-				processInstance(modelData, result, current, currentNode);
-			}
-		}
+		return number;
 	}
 
 	/**
@@ -605,7 +652,7 @@ public class DOMParser {
 	 * @param instances
 	 * @param n
 	 */
-	public void processMonitorBlock(final ModelData modelData, final Map<String, Integer> instances, final Node n) {
+	public void processMonitorBlock(final ModelData modelData, final Map<String, Object> instances, final Node n) {
 		final NodeList nl = n.getChildNodes();
 		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
 			final Node currentNode = nl.item(i);
@@ -624,7 +671,7 @@ public class DOMParser {
 	 * @param n
 	 * @return
 	 */
-	public Monitor processMonitor(final ModelData modelData, final Map<String, Integer> instances, final Node n) {
+	public Monitor processMonitor(final ModelData modelData, final Map<String, Object> instances, final Node n) {
 		final Monitor result = MonitorsFactory.INSTANCE.createMonitor();
 		result.setId(ParserUtil.getAttr(n, ID));
 		final String name = ParserUtil.getAttr(n, NAME);
@@ -672,8 +719,17 @@ public class DOMParser {
 				}
 			} else if (ParserUtil.isElementNodeOfType(currentNode, "node")) {
 				final String id = ParserUtil.getAttr(currentNode, IDREF);
-				final Integer instance = instances.get(ParserUtil.getAttr(currentNode, "pageinstanceidref"));
-				result.getNodes().add(InstanceFactory.INSTANCE.createInstance(modelData.getNode(id), instance));
+				final Object instance = instances.get(ParserUtil.getAttr(currentNode, "pageinstanceidref"));
+				if (instance instanceof org.cpntools.accesscpn.engine.highlevel.instance.Instance<?>) {
+					final org.cpntools.accesscpn.engine.highlevel.instance.Instance<Instance> ii = (org.cpntools.accesscpn.engine.highlevel.instance.Instance<Instance>) instance;
+					final org.cpntools.accesscpn.engine.highlevel.instance.Instance<org.cpntools.accesscpn.model.Node> iii = InstanceFactory.INSTANCE
+					        .createInstance(modelData.getNode(id), ii.getInstanceNumber());
+					iii.setTransitionPath(ii);
+					result.getNodes().add(iii);
+				} else if (instance instanceof Integer) {
+					result.getNodes().add(
+					        InstanceFactory.INSTANCE.createInstance(modelData.getNode(id), (Integer) instance));
+				}
 			} else if (ParserUtil.isElementNodeOfType(currentNode, "option")) {
 				final String nme = ParserUtil.getAttr(currentNode, NAME);
 				final String value = ParserUtil.getAttr(currentNode, "value");
@@ -773,7 +829,7 @@ public class DOMParser {
 
 		final NodeList nl = n.getChildNodes();
 
-		// 1st we parse the page name, places and transitions
+		// 1st we parse the page name, places, transitions, and aux
 		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
 			final Node currentNode = nl.item(i);
 			if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.pageattrNode)) {
@@ -793,6 +849,10 @@ public class DOMParser {
 					final Transition transition = processTrans(currentNode);
 					transition.setPage(page);
 				}
+			} else if (ParserUtil.isElementNodeOfType(currentNode, "Aux")) {
+				if (ParserUtil.containsChild(currentNode, "text")) {
+					processAuxText(currentNode).setPage(page);
+				}
 			}
 		}
 
@@ -806,6 +866,20 @@ public class DOMParser {
 		}
 
 		return page;
+	}
+
+	private Text processAuxText(final Node n) {
+		final Text text = AuxFactory.INSTANCE.createText();
+		text.setId(ParserUtil.getAttr(n, ID));
+		final NodeList nl = n.getChildNodes();
+		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
+			final Node currentNode = nl.item(i);
+			if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.textNode)) {
+				text.setText(ParserUtil.getTextFromElement(currentNode));
+			}
+		}
+		text.setGraphics(loadGraphics(n));
+		return text;
 	}
 
 	/**
@@ -862,7 +936,7 @@ public class DOMParser {
 
 		}
 
-		loadGraphics(placeNode, n);
+		placeNode.setGraphics(loadGraphics(n));
 		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
 			final Node currentNode = nl.item(i);
 			if (ParserUtil.isElementNodeOfType(currentNode, DOMParser.typeNode)) {
@@ -916,7 +990,7 @@ public class DOMParser {
 		}
 		idToTransitionMap.put(id, instance);
 
-		loadGraphics(instance, n);
+		instance.setGraphics(loadGraphics(n));
 		return instance;
 	}
 
@@ -958,7 +1032,7 @@ public class DOMParser {
 		transition.setPriority(priority);
 		priority.setText("");
 
-		loadGraphics(transition, n);
+		transition.setGraphics(loadGraphics(n));
 
 		final NodeList nl = n.getChildNodes();
 		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
@@ -981,9 +1055,8 @@ public class DOMParser {
 		return transition;
 	}
 
-	private void loadGraphics(final org.cpntools.accesscpn.model.Node node, final Node n) {
+	private NodeGraphics loadGraphics(final Node n) {
 		final NodeGraphics nodeGraphics = GraphicsFactory.INSTANCE.createNodeGraphics();
-		node.setGraphics(nodeGraphics);
 
 		final NodeList nl = n.getChildNodes();
 		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
@@ -1013,6 +1086,7 @@ public class DOMParser {
 			}
 		}
 
+		return nodeGraphics;
 	}
 
 	/**

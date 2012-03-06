@@ -7,6 +7,7 @@
 package org.cpntools.accesscpn.model.monitors.impl;
 
 import java.lang.Object;
+import org.cpntools.accesscpn.model.aux.impl.AuxPackageImpl;
 import org.cpntools.accesscpn.model.cpntypes.impl.CpntypesPackageImpl;
 
 import org.cpntools.accesscpn.model.declaration.impl.DeclarationPackageImpl;
@@ -26,6 +27,7 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -337,6 +339,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 
 		// Obtain or create and register interdependencies
 		ModelPackageImpl theModelPackage = (ModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModelPackageImpl.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModelPackageImpl.eNS_URI) : ModelPackageImpl.eINSTANCE);
+		AuxPackageImpl theAuxPackage = (AuxPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AuxPackageImpl.eNS_URI) instanceof AuxPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AuxPackageImpl.eNS_URI) : AuxPackageImpl.eINSTANCE);
 		CpntypesPackageImpl theCpntypesPackage = (CpntypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CpntypesPackageImpl.eNS_URI) instanceof CpntypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CpntypesPackageImpl.eNS_URI) : CpntypesPackageImpl.eINSTANCE);
 		DeclarationPackageImpl theDeclarationPackage = (DeclarationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DeclarationPackageImpl.eNS_URI) instanceof DeclarationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DeclarationPackageImpl.eNS_URI) : DeclarationPackageImpl.eINSTANCE);
 		GraphicsPackageImpl theGraphicsPackage = (GraphicsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GraphicsPackageImpl.eNS_URI) instanceof GraphicsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GraphicsPackageImpl.eNS_URI) : GraphicsPackageImpl.eINSTANCE);
@@ -344,6 +347,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 		// Create package meta-data objects
 		theMonitorsPackage.createPackageContents();
 		theModelPackage.createPackageContents();
+		theAuxPackage.createPackageContents();
 		theCpntypesPackage.createPackageContents();
 		theDeclarationPackage.createPackageContents();
 		theGraphicsPackage.createPackageContents();
@@ -351,6 +355,7 @@ public class MonitorsPackageImpl extends EPackageImpl {
 		// Initialize created meta-data
 		theMonitorsPackage.initializePackageContents();
 		theModelPackage.initializePackageContents();
+		theAuxPackage.initializePackageContents();
 		theCpntypesPackage.initializePackageContents();
 		theDeclarationPackage.initializePackageContents();
 		theGraphicsPackage.initializePackageContents();

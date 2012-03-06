@@ -35,6 +35,7 @@ import org.cpntools.accesscpn.model.Label;
 import org.cpntools.accesscpn.model.Name;
 import org.cpntools.accesscpn.model.Page;
 import org.cpntools.accesscpn.model.PetriNet;
+import org.cpntools.accesscpn.model.TimeType;
 import org.cpntools.accesscpn.model.ToolInfo;
 import org.cpntools.accesscpn.model.monitors.Monitor;
 import org.cpntools.accesscpn.model.monitors.impl.MonitorsPackageImpl;
@@ -63,6 +64,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.cpntools.accesscpn.model.impl.PetriNetImpl#getPage <em>Page</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.impl.PetriNetImpl#getMonitors <em>Monitors</em>}</li>
  *   <li>{@link org.cpntools.accesscpn.model.impl.PetriNetImpl#getFusionGroups <em>Fusion Groups</em>}</li>
+ *   <li>{@link org.cpntools.accesscpn.model.impl.PetriNetImpl#getTimeType <em>Time Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -148,6 +150,26 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 * @ordered
 	 */
 	protected EList<FusionGroup> fusionGroups;
+
+	/**
+	 * The default value of the '{@link #getTimeType() <em>Time Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimeType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final TimeType TIME_TYPE_EDEFAULT = TimeType.INTEGER;
+
+	/**
+	 * The cached value of the '{@link #getTimeType() <em>Time Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimeType()
+	 * @generated
+	 * @ordered
+	 */
+	protected TimeType timeType = TIME_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -282,6 +304,27 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TimeType getTimeType() {
+		return timeType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTimeType(TimeType newTimeType) {
+		TimeType oldTimeType = timeType;
+		timeType = newTimeType == null ? TIME_TYPE_EDEFAULT : newTimeType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackageImpl.PETRI_NET__TIME_TYPE, oldTimeType, timeType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
     public String getKind() {
 		return kind;
@@ -366,6 +409,8 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 				return getMonitors();
 			case ModelPackageImpl.PETRI_NET__FUSION_GROUPS:
 				return getFusionGroups();
+			case ModelPackageImpl.PETRI_NET__TIME_TYPE:
+				return getTimeType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -404,6 +449,9 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 				getFusionGroups().clear();
 				getFusionGroups().addAll((Collection<? extends FusionGroup>)newValue);
 				return;
+			case ModelPackageImpl.PETRI_NET__TIME_TYPE:
+				setTimeType((TimeType)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -436,6 +484,9 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 			case ModelPackageImpl.PETRI_NET__FUSION_GROUPS:
 				getFusionGroups().clear();
 				return;
+			case ModelPackageImpl.PETRI_NET__TIME_TYPE:
+				setTimeType(TIME_TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -461,6 +512,8 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 				return monitors != null && !monitors.isEmpty();
 			case ModelPackageImpl.PETRI_NET__FUSION_GROUPS:
 				return fusionGroups != null && !fusionGroups.isEmpty();
+			case ModelPackageImpl.PETRI_NET__TIME_TYPE:
+				return timeType != TIME_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -60,6 +60,7 @@ import org.cpntools.accesscpn.model.RefPlace;
 import org.cpntools.accesscpn.model.RefTrans;
 import org.cpntools.accesscpn.model.Sort;
 import org.cpntools.accesscpn.model.Time;
+import org.cpntools.accesscpn.model.TimeType;
 import org.cpntools.accesscpn.model.ToolInfo;
 import org.cpntools.accesscpn.model.Transition;
 import org.cpntools.accesscpn.model.TransitionNode;
