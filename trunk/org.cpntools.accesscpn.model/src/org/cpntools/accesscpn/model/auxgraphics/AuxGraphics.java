@@ -1,4 +1,4 @@
-package org.cpntools.accesscpn.model.aux;
+package org.cpntools.accesscpn.model.auxgraphics;
 
 import org.cpntools.accesscpn.model.graphics.NodeGraphics;
 
@@ -6,7 +6,7 @@ import org.cpntools.accesscpn.model.graphics.NodeGraphics;
  * @model abstract="true"
  * @author michael
  */
-public interface Aux extends org.cpntools.accesscpn.model.Object {
+public interface AuxGraphics extends org.cpntools.accesscpn.model.Object {
 
 	/**
 	 * @see org.cpntools.accesscpn.model.graphics.HasGraphics#getGraphics()

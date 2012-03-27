@@ -1,9 +1,9 @@
 /**
  * <copyright> </copyright> $Id$
  */
-package org.cpntools.accesscpn.model.aux.impl;
+package org.cpntools.accesscpn.model.auxgraphics.impl;
 
-import org.cpntools.accesscpn.model.aux.Text;
+import org.cpntools.accesscpn.model.auxgraphics.Text;
 import org.cpntools.accesscpn.model.graphics.NodeGraphics;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
@@ -14,13 +14,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.cpntools.accesscpn.model.aux.impl.TextImpl#getText <em>Text</em>}</li>
+ * <li>{@link org.cpntools.accesscpn.model.auxgraphics.impl.TextImpl#getText <em>Text</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class TextImpl extends AuxImpl implements Text {
+public class TextImpl extends AuxGraphicsImpl implements Text {
 	/**
 	 * The default value of the '{@link #getText() <em>Text</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
@@ -57,7 +57,7 @@ public class TextImpl extends AuxImpl implements Text {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AuxPackageImpl.Literals.TEXT;
+		return AuxgraphicsPackageImpl.Literals.TEXT;
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class TextImpl extends AuxImpl implements Text {
 		final String oldText = text;
 		text = newText;
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, AuxPackageImpl.TEXT__TEXT, oldText, text));
+			eNotify(new ENotificationImpl(this, Notification.SET, AuxgraphicsPackageImpl.TEXT__TEXT, oldText, text));
 		}
 	}
 
@@ -90,7 +90,7 @@ public class TextImpl extends AuxImpl implements Text {
 	@Override
 	public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
 		switch (featureID) {
-		case AuxPackageImpl.TEXT__TEXT:
+		case AuxgraphicsPackageImpl.TEXT__TEXT:
 			return getText();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -104,7 +104,7 @@ public class TextImpl extends AuxImpl implements Text {
 	@Override
 	public void eSet(final int featureID, final Object newValue) {
 		switch (featureID) {
-		case AuxPackageImpl.TEXT__TEXT:
+		case AuxgraphicsPackageImpl.TEXT__TEXT:
 			setText((String) newValue);
 			return;
 		}
@@ -119,7 +119,7 @@ public class TextImpl extends AuxImpl implements Text {
 	@Override
 	public void eUnset(final int featureID) {
 		switch (featureID) {
-		case AuxPackageImpl.TEXT__TEXT:
+		case AuxgraphicsPackageImpl.TEXT__TEXT:
 			setText(TEXT_EDEFAULT);
 			return;
 		}
@@ -134,7 +134,7 @@ public class TextImpl extends AuxImpl implements Text {
 	@Override
 	public boolean eIsSet(final int featureID) {
 		switch (featureID) {
-		case AuxPackageImpl.TEXT__TEXT:
+		case AuxgraphicsPackageImpl.TEXT__TEXT:
 			return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
 		}
 		return super.eIsSet(featureID);

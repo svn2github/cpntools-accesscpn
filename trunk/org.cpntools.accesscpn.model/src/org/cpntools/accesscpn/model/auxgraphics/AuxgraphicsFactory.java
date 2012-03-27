@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.cpntools.accesscpn.model.aux;
+package org.cpntools.accesscpn.model.auxgraphics;
 
 
 /**
@@ -14,14 +14,14 @@ package org.cpntools.accesscpn.model.aux;
  * <!-- end-user-doc -->
  * @generated
  */
-public interface AuxFactory {
+public interface AuxgraphicsFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	AuxFactory INSTANCE = org.cpntools.accesscpn.model.aux.impl.AuxFactoryImpl.eINSTANCE;
+	AuxgraphicsFactory INSTANCE = org.cpntools.accesscpn.model.auxgraphics.impl.AuxgraphicsFactoryImpl.eINSTANCE;
 
 	/**
 	 * Returns a new object of class '<em>Text</em>'.
@@ -32,4 +32,4 @@ public interface AuxFactory {
 	 */
 	Text createText();
 
-} //AuxFactory
+} //AuxgraphicsFactory

@@ -4,16 +4,16 @@
  *
  * $Id$
  */
-package org.cpntools.accesscpn.model.aux.util;
+package org.cpntools.accesscpn.model.auxgraphics.util;
 
 import org.cpntools.accesscpn.model.HasId;
 import org.cpntools.accesscpn.model.HasLabel;
 import org.cpntools.accesscpn.model.HasName;
 import org.cpntools.accesscpn.model.HasToolInfo;
 
-import org.cpntools.accesscpn.model.aux.*;
+import org.cpntools.accesscpn.model.auxgraphics.*;
 
-import org.cpntools.accesscpn.model.aux.impl.AuxPackageImpl;
+import org.cpntools.accesscpn.model.auxgraphics.impl.AuxgraphicsPackageImpl;
 
 import org.cpntools.accesscpn.model.graphics.HasGraphics;
 
@@ -29,17 +29,17 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.cpntools.accesscpn.model.aux.impl.AuxPackageImpl
+ * @see org.cpntools.accesscpn.model.auxgraphics.impl.AuxgraphicsPackageImpl
  * @generated
  */
-public class AuxAdapterFactory extends AdapterFactoryImpl {
+public class AuxgraphicsAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static AuxPackageImpl modelPackage;
+	protected static AuxgraphicsPackageImpl modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -47,9 +47,9 @@ public class AuxAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AuxAdapterFactory() {
+	public AuxgraphicsAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = AuxPackageImpl.eINSTANCE;
+			modelPackage = AuxgraphicsPackageImpl.eINSTANCE;
 		}
 	}
 
@@ -78,11 +78,11 @@ public class AuxAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AuxSwitch<Adapter> modelSwitch =
-		new AuxSwitch<Adapter>() {
+	protected AuxgraphicsSwitch<Adapter> modelSwitch =
+		new AuxgraphicsSwitch<Adapter>() {
 			@Override
-			public Adapter caseAux(Aux object) {
-				return createAuxAdapter();
+			public Adapter caseAuxGraphics(AuxGraphics object) {
+				return createAuxGraphicsAdapter();
 			}
 			@Override
 			public Adapter caseText(Text object) {
@@ -133,27 +133,27 @@ public class AuxAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.cpntools.accesscpn.model.aux.Aux <em>Aux</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.cpntools.accesscpn.model.auxgraphics.AuxGraphics <em>Aux Graphics</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.cpntools.accesscpn.model.aux.Aux
+	 * @see org.cpntools.accesscpn.model.auxgraphics.AuxGraphics
 	 * @generated
 	 */
-	public Adapter createAuxAdapter() {
+	public Adapter createAuxGraphicsAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.cpntools.accesscpn.model.aux.Text <em>Text</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.cpntools.accesscpn.model.auxgraphics.Text <em>Text</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.cpntools.accesscpn.model.aux.Text
+	 * @see org.cpntools.accesscpn.model.auxgraphics.Text
 	 * @generated
 	 */
 	public Adapter createTextAdapter() {
@@ -256,4 +256,4 @@ public class AuxAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //AuxAdapterFactory
+} //AuxgraphicsAdapterFactory

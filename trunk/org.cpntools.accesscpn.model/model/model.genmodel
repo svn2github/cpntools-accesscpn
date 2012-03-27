@@ -120,11 +120,11 @@
     <genClasses ecoreClass="model.ecore#//Transition"/>
     <genClasses image="false" ecoreClass="model.ecore#//TransitionNode"/>
   </genPackages>
-  <genPackages prefix="Aux" basePackage="org.cpntools.accesscpn.model" disposableProviderFactory="true"
-      ecorePackage="aux.ecore#/">
-    <genClasses image="false" ecoreClass="aux.ecore#//Aux"/>
-    <genClasses ecoreClass="aux.ecore#//Text">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute aux.ecore#//Text/text"/>
+  <genPackages prefix="Auxgraphics" basePackage="org.cpntools.accesscpn.model" disposableProviderFactory="true"
+      ecorePackage="auxgraphics.ecore#/">
+    <genClasses image="false" ecoreClass="auxgraphics.ecore#//AuxGraphics"/>
+    <genClasses ecoreClass="auxgraphics.ecore#//Text">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute auxgraphics.ecore#//Text/text"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Cpntypes" basePackage="org.cpntools.accesscpn.model" disposableProviderFactory="true"

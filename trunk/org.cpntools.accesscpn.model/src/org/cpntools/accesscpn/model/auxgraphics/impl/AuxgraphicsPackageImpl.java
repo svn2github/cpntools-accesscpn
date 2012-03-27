@@ -4,11 +4,11 @@
  *
  * $Id$
  */
-package org.cpntools.accesscpn.model.aux.impl;
+package org.cpntools.accesscpn.model.auxgraphics.impl;
 
-import org.cpntools.accesscpn.model.aux.Aux;
-import org.cpntools.accesscpn.model.aux.AuxFactory;
-import org.cpntools.accesscpn.model.aux.Text;
+import org.cpntools.accesscpn.model.auxgraphics.AuxGraphics;
+import org.cpntools.accesscpn.model.auxgraphics.AuxgraphicsFactory;
+import org.cpntools.accesscpn.model.auxgraphics.Text;
 
 import org.cpntools.accesscpn.model.cpntypes.impl.CpntypesPackageImpl;
 
@@ -38,18 +38,18 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.cpntools.accesscpn.model.aux.AuxFactory
+ * @see org.cpntools.accesscpn.model.auxgraphics.AuxgraphicsFactory
  * @model kind="package"
  * @generated
  */
-public class AuxPackageImpl extends EPackageImpl {
+public class AuxgraphicsPackageImpl extends EPackageImpl {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String eNAME = "aux";
+	public static final String eNAME = "auxgraphics";
 
 	/**
 	 * The package namespace URI.
@@ -57,7 +57,7 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String eNS_URI = "http:///org/cpntools/accesscpn/model/aux.ecore";
+	public static final String eNS_URI = "http:///org/cpntools/accesscpn/model/auxgraphics.ecore";
 
 	/**
 	 * The package namespace name.
@@ -65,7 +65,7 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String eNS_PREFIX = "org.cpntools.accesscpn.model.aux";
+	public static final String eNS_PREFIX = "org.cpntools.accesscpn.model.auxgraphics";
 
 	/**
 	 * The singleton instance of the package.
@@ -73,17 +73,17 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final AuxPackageImpl eINSTANCE = org.cpntools.accesscpn.model.aux.impl.AuxPackageImpl.init();
+	public static final AuxgraphicsPackageImpl eINSTANCE = org.cpntools.accesscpn.model.auxgraphics.impl.AuxgraphicsPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.cpntools.accesscpn.model.aux.impl.AuxImpl <em>Aux</em>}' class.
+	 * The meta object id for the '{@link org.cpntools.accesscpn.model.auxgraphics.impl.AuxGraphicsImpl <em>Aux Graphics</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.cpntools.accesscpn.model.aux.impl.AuxImpl
-	 * @see org.cpntools.accesscpn.model.aux.impl.AuxPackageImpl#getAux()
+	 * @see org.cpntools.accesscpn.model.auxgraphics.impl.AuxGraphicsImpl
+	 * @see org.cpntools.accesscpn.model.auxgraphics.impl.AuxgraphicsPackageImpl#getAuxGraphics()
 	 * @generated
 	 */
-	public static final int AUX = 0;
+	public static final int AUX_GRAPHICS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -92,7 +92,7 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AUX__ID = ModelPackageImpl.OBJECT__ID;
+	public static final int AUX_GRAPHICS__ID = ModelPackageImpl.OBJECT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Toolinfo</b></em>' containment reference list.
@@ -101,7 +101,7 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AUX__TOOLINFO = ModelPackageImpl.OBJECT__TOOLINFO;
+	public static final int AUX_GRAPHICS__TOOLINFO = ModelPackageImpl.OBJECT__TOOLINFO;
 
 	/**
 	 * The feature id for the '<em><b>Graphics</b></em>' containment reference.
@@ -110,7 +110,7 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AUX__GRAPHICS = ModelPackageImpl.OBJECT__GRAPHICS;
+	public static final int AUX_GRAPHICS__GRAPHICS = ModelPackageImpl.OBJECT__GRAPHICS;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' containment reference list.
@@ -119,7 +119,7 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AUX__LABEL = ModelPackageImpl.OBJECT__LABEL;
+	public static final int AUX_GRAPHICS__LABEL = ModelPackageImpl.OBJECT__LABEL;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' reference.
@@ -128,7 +128,7 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AUX__NAME = ModelPackageImpl.OBJECT__NAME;
+	public static final int AUX_GRAPHICS__NAME = ModelPackageImpl.OBJECT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Page</b></em>' container reference.
@@ -137,23 +137,23 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AUX__PAGE = ModelPackageImpl.OBJECT__PAGE;
+	public static final int AUX_GRAPHICS__PAGE = ModelPackageImpl.OBJECT__PAGE;
 
 	/**
-	 * The number of structural features of the '<em>Aux</em>' class.
+	 * The number of structural features of the '<em>Aux Graphics</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AUX_FEATURE_COUNT = ModelPackageImpl.OBJECT_FEATURE_COUNT + 0;
+	public static final int AUX_GRAPHICS_FEATURE_COUNT = ModelPackageImpl.OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.cpntools.accesscpn.model.aux.impl.TextImpl <em>Text</em>}' class.
+	 * The meta object id for the '{@link org.cpntools.accesscpn.model.auxgraphics.impl.TextImpl <em>Text</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.cpntools.accesscpn.model.aux.impl.TextImpl
-	 * @see org.cpntools.accesscpn.model.aux.impl.AuxPackageImpl#getText()
+	 * @see org.cpntools.accesscpn.model.auxgraphics.impl.TextImpl
+	 * @see org.cpntools.accesscpn.model.auxgraphics.impl.AuxgraphicsPackageImpl#getText()
 	 * @generated
 	 */
 	public static final int TEXT = 1;
@@ -165,7 +165,7 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TEXT__ID = AUX__ID;
+	public static final int TEXT__ID = AUX_GRAPHICS__ID;
 
 	/**
 	 * The feature id for the '<em><b>Toolinfo</b></em>' containment reference list.
@@ -174,7 +174,7 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TEXT__TOOLINFO = AUX__TOOLINFO;
+	public static final int TEXT__TOOLINFO = AUX_GRAPHICS__TOOLINFO;
 
 	/**
 	 * The feature id for the '<em><b>Graphics</b></em>' containment reference.
@@ -183,7 +183,7 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TEXT__GRAPHICS = AUX__GRAPHICS;
+	public static final int TEXT__GRAPHICS = AUX_GRAPHICS__GRAPHICS;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' containment reference list.
@@ -192,7 +192,7 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TEXT__LABEL = AUX__LABEL;
+	public static final int TEXT__LABEL = AUX_GRAPHICS__LABEL;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' reference.
@@ -201,7 +201,7 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TEXT__NAME = AUX__NAME;
+	public static final int TEXT__NAME = AUX_GRAPHICS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Page</b></em>' container reference.
@@ -210,7 +210,7 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TEXT__PAGE = AUX__PAGE;
+	public static final int TEXT__PAGE = AUX_GRAPHICS__PAGE;
 
 	/**
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
@@ -219,7 +219,7 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TEXT__TEXT = AUX_FEATURE_COUNT + 0;
+	public static final int TEXT__TEXT = AUX_GRAPHICS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Text</em>' class.
@@ -228,14 +228,14 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TEXT_FEATURE_COUNT = AUX_FEATURE_COUNT + 1;
+	public static final int TEXT_FEATURE_COUNT = AUX_GRAPHICS_FEATURE_COUNT + 1;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass auxEClass = null;
+	private EClass auxGraphicsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -255,12 +255,12 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.cpntools.accesscpn.model.aux.impl.AuxPackageImpl#eNS_URI
+	 * @see org.cpntools.accesscpn.model.auxgraphics.impl.AuxgraphicsPackageImpl#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private AuxPackageImpl() {
-		super(eNS_URI, ((EFactory)AuxFactory.INSTANCE));
+	private AuxgraphicsPackageImpl() {
+		super(eNS_URI, ((EFactory)AuxgraphicsFactory.INSTANCE));
 	}
 
 	/**
@@ -273,7 +273,7 @@ public class AuxPackageImpl extends EPackageImpl {
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link AuxPackageImpl#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link AuxgraphicsPackageImpl#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -282,11 +282,11 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static AuxPackageImpl init() {
-		if (isInited) return (AuxPackageImpl)EPackage.Registry.INSTANCE.getEPackage(AuxPackageImpl.eNS_URI);
+	public static AuxgraphicsPackageImpl init() {
+		if (isInited) return (AuxgraphicsPackageImpl)EPackage.Registry.INSTANCE.getEPackage(AuxgraphicsPackageImpl.eNS_URI);
 
 		// Obtain or create and register package
-		AuxPackageImpl theAuxPackage = (AuxPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof AuxPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new AuxPackageImpl());
+		AuxgraphicsPackageImpl theAuxgraphicsPackage = (AuxgraphicsPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof AuxgraphicsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new AuxgraphicsPackageImpl());
 
 		isInited = true;
 
@@ -298,7 +298,7 @@ public class AuxPackageImpl extends EPackageImpl {
 		MonitorsPackageImpl theMonitorsPackage = (MonitorsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MonitorsPackageImpl.eNS_URI) instanceof MonitorsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MonitorsPackageImpl.eNS_URI) : MonitorsPackageImpl.eINSTANCE);
 
 		// Create package meta-data objects
-		theAuxPackage.createPackageContents();
+		theAuxgraphicsPackage.createPackageContents();
 		theModelPackage.createPackageContents();
 		theCpntypesPackage.createPackageContents();
 		theDeclarationPackage.createPackageContents();
@@ -306,7 +306,7 @@ public class AuxPackageImpl extends EPackageImpl {
 		theMonitorsPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theAuxPackage.initializePackageContents();
+		theAuxgraphicsPackage.initializePackageContents();
 		theModelPackage.initializePackageContents();
 		theCpntypesPackage.initializePackageContents();
 		theDeclarationPackage.initializePackageContents();
@@ -314,33 +314,33 @@ public class AuxPackageImpl extends EPackageImpl {
 		theMonitorsPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theAuxPackage.freeze();
+		theAuxgraphicsPackage.freeze();
 
   
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(AuxPackageImpl.eNS_URI, theAuxPackage);
-		return theAuxPackage;
+		EPackage.Registry.INSTANCE.put(AuxgraphicsPackageImpl.eNS_URI, theAuxgraphicsPackage);
+		return theAuxgraphicsPackage;
 	}
 
 
 	/**
-	 * Returns the meta object for class '{@link org.cpntools.accesscpn.model.aux.Aux <em>Aux</em>}'.
+	 * Returns the meta object for class '{@link org.cpntools.accesscpn.model.auxgraphics.AuxGraphics <em>Aux Graphics</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Aux</em>'.
-	 * @see org.cpntools.accesscpn.model.aux.Aux
+	 * @return the meta object for class '<em>Aux Graphics</em>'.
+	 * @see org.cpntools.accesscpn.model.auxgraphics.AuxGraphics
 	 * @generated
 	 */
-	public EClass getAux() {
-		return auxEClass;
+	public EClass getAuxGraphics() {
+		return auxGraphicsEClass;
 	}
 
 	/**
-	 * Returns the meta object for class '{@link org.cpntools.accesscpn.model.aux.Text <em>Text</em>}'.
+	 * Returns the meta object for class '{@link org.cpntools.accesscpn.model.auxgraphics.Text <em>Text</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Text</em>'.
-	 * @see org.cpntools.accesscpn.model.aux.Text
+	 * @see org.cpntools.accesscpn.model.auxgraphics.Text
 	 * @generated
 	 */
 	public EClass getText() {
@@ -348,11 +348,11 @@ public class AuxPackageImpl extends EPackageImpl {
 	}
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.cpntools.accesscpn.model.aux.Text#getText <em>Text</em>}'.
+	 * Returns the meta object for the attribute '{@link org.cpntools.accesscpn.model.auxgraphics.Text#getText <em>Text</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Text</em>'.
-	 * @see org.cpntools.accesscpn.model.aux.Text#getText()
+	 * @see org.cpntools.accesscpn.model.auxgraphics.Text#getText()
 	 * @see #getText()
 	 * @generated
 	 */
@@ -367,8 +367,8 @@ public class AuxPackageImpl extends EPackageImpl {
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
-	public AuxFactory getAuxFactory() {
-		return (AuxFactory)getEFactoryInstance();
+	public AuxgraphicsFactory getAuxgraphicsFactory() {
+		return (AuxgraphicsFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -390,7 +390,7 @@ public class AuxPackageImpl extends EPackageImpl {
 		isCreated = true;
 
 		// Create classes and their features
-		auxEClass = createEClass(AUX);
+		auxGraphicsEClass = createEClass(AUX_GRAPHICS);
 
 		textEClass = createEClass(TEXT);
 		createEAttribute(textEClass, TEXT__TEXT);
@@ -427,11 +427,11 @@ public class AuxPackageImpl extends EPackageImpl {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		auxEClass.getESuperTypes().add(theModelPackage.getObject());
-		textEClass.getESuperTypes().add(this.getAux());
+		auxGraphicsEClass.getESuperTypes().add(theModelPackage.getObject());
+		textEClass.getESuperTypes().add(this.getAuxGraphics());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(auxEClass, Aux.class, "Aux", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(auxGraphicsEClass, AuxGraphics.class, "AuxGraphics", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(textEClass, Text.class, "Text", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getText_Text(), ecorePackage.getEString(), "text", null, 0, 1, Text.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -454,21 +454,21 @@ public class AuxPackageImpl extends EPackageImpl {
 	 */
 	public interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.cpntools.accesscpn.model.aux.impl.AuxImpl <em>Aux</em>}' class.
+		 * The meta object literal for the '{@link org.cpntools.accesscpn.model.auxgraphics.impl.AuxGraphicsImpl <em>Aux Graphics</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.cpntools.accesscpn.model.aux.impl.AuxImpl
-		 * @see org.cpntools.accesscpn.model.aux.impl.AuxPackageImpl#getAux()
+		 * @see org.cpntools.accesscpn.model.auxgraphics.impl.AuxGraphicsImpl
+		 * @see org.cpntools.accesscpn.model.auxgraphics.impl.AuxgraphicsPackageImpl#getAuxGraphics()
 		 * @generated
 		 */
-		public static final EClass AUX = eINSTANCE.getAux();
+		public static final EClass AUX_GRAPHICS = eINSTANCE.getAuxGraphics();
 
 		/**
-		 * The meta object literal for the '{@link org.cpntools.accesscpn.model.aux.impl.TextImpl <em>Text</em>}' class.
+		 * The meta object literal for the '{@link org.cpntools.accesscpn.model.auxgraphics.impl.TextImpl <em>Text</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.cpntools.accesscpn.model.aux.impl.TextImpl
-		 * @see org.cpntools.accesscpn.model.aux.impl.AuxPackageImpl#getText()
+		 * @see org.cpntools.accesscpn.model.auxgraphics.impl.TextImpl
+		 * @see org.cpntools.accesscpn.model.auxgraphics.impl.AuxgraphicsPackageImpl#getText()
 		 * @generated
 		 */
 		public static final EClass TEXT = eINSTANCE.getText();
@@ -483,4 +483,4 @@ public class AuxPackageImpl extends EPackageImpl {
 
 	}
 
-} //AuxPackageImpl
+} //AuxgraphicsPackageImpl

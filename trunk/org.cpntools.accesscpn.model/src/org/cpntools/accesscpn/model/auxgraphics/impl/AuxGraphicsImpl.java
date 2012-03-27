@@ -4,9 +4,9 @@
  *
  * $Id$
  */
-package org.cpntools.accesscpn.model.aux.impl;
+package org.cpntools.accesscpn.model.auxgraphics.impl;
 
-import org.cpntools.accesscpn.model.aux.Aux;
+import org.cpntools.accesscpn.model.auxgraphics.AuxGraphics;
 
 import org.cpntools.accesscpn.model.impl.ObjectImpl;
 
@@ -14,20 +14,20 @@ import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Aux</b></em>'.
+ * An implementation of the model object '<em><b>Aux Graphics</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public abstract class AuxImpl extends ObjectImpl implements Aux {
+public abstract class AuxGraphicsImpl extends ObjectImpl implements AuxGraphics {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AuxImpl() {
+	protected AuxGraphicsImpl() {
 		super();
 	}
 
@@ -38,7 +38,7 @@ public abstract class AuxImpl extends ObjectImpl implements Aux {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AuxPackageImpl.Literals.AUX;
+		return AuxgraphicsPackageImpl.Literals.AUX_GRAPHICS;
 	}
 
-} //AuxImpl
+} //AuxGraphicsImpl

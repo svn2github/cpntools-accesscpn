@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.cpntools.accesscpn.model.aux.util;
+package org.cpntools.accesscpn.model.auxgraphics.util;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ import org.cpntools.accesscpn.model.HasLabel;
 import org.cpntools.accesscpn.model.HasName;
 import org.cpntools.accesscpn.model.HasToolInfo;
 
-import org.cpntools.accesscpn.model.aux.*;
+import org.cpntools.accesscpn.model.auxgraphics.*;
 
-import org.cpntools.accesscpn.model.aux.impl.AuxPackageImpl;
+import org.cpntools.accesscpn.model.auxgraphics.impl.AuxgraphicsPackageImpl;
 
 import org.cpntools.accesscpn.model.graphics.HasGraphics;
 
@@ -32,17 +32,17 @@ import org.eclipse.emf.ecore.EObject;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.cpntools.accesscpn.model.aux.impl.AuxPackageImpl
+ * @see org.cpntools.accesscpn.model.auxgraphics.impl.AuxgraphicsPackageImpl
  * @generated
  */
-public class AuxSwitch<T> {
+public class AuxgraphicsSwitch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static AuxPackageImpl modelPackage;
+	protected static AuxgraphicsPackageImpl modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -50,9 +50,9 @@ public class AuxSwitch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AuxSwitch() {
+	public AuxgraphicsSwitch() {
 		if (modelPackage == null) {
-			modelPackage = AuxPackageImpl.eINSTANCE;
+			modelPackage = AuxgraphicsPackageImpl.eINSTANCE;
 		}
 	}
 
@@ -96,22 +96,22 @@ public class AuxSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case AuxPackageImpl.AUX: {
-				Aux aux = (Aux)theEObject;
-				T result = caseAux(aux);
-				if (result == null) result = caseObject(aux);
-				if (result == null) result = caseHasId(aux);
-				if (result == null) result = caseHasToolInfo(aux);
-				if (result == null) result = caseHasGraphics(aux);
-				if (result == null) result = caseHasLabel(aux);
-				if (result == null) result = caseHasName(aux);
+			case AuxgraphicsPackageImpl.AUX_GRAPHICS: {
+				AuxGraphics auxGraphics = (AuxGraphics)theEObject;
+				T result = caseAuxGraphics(auxGraphics);
+				if (result == null) result = caseObject(auxGraphics);
+				if (result == null) result = caseHasId(auxGraphics);
+				if (result == null) result = caseHasToolInfo(auxGraphics);
+				if (result == null) result = caseHasGraphics(auxGraphics);
+				if (result == null) result = caseHasLabel(auxGraphics);
+				if (result == null) result = caseHasName(auxGraphics);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AuxPackageImpl.TEXT: {
+			case AuxgraphicsPackageImpl.TEXT: {
 				Text text = (Text)theEObject;
 				T result = caseText(text);
-				if (result == null) result = caseAux(text);
+				if (result == null) result = caseAuxGraphics(text);
 				if (result == null) result = caseObject(text);
 				if (result == null) result = caseHasId(text);
 				if (result == null) result = caseHasToolInfo(text);
@@ -126,17 +126,17 @@ public class AuxSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Aux</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Aux Graphics</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Aux</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Aux Graphics</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAux(Aux object) {
+	public T caseAuxGraphics(AuxGraphics object) {
 		return null;
 	}
 
@@ -260,4 +260,4 @@ public class AuxSwitch<T> {
 		return null;
 	}
 
-} //AuxSwitch
+} //AuxgraphicsSwitch

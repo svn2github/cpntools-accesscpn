@@ -62,8 +62,8 @@ import org.cpntools.accesscpn.model.RefPlace;
 import org.cpntools.accesscpn.model.RefTrans;
 import org.cpntools.accesscpn.model.TimeType;
 import org.cpntools.accesscpn.model.Transition;
-import org.cpntools.accesscpn.model.aux.Aux;
-import org.cpntools.accesscpn.model.aux.Text;
+import org.cpntools.accesscpn.model.auxgraphics.AuxGraphics;
+import org.cpntools.accesscpn.model.auxgraphics.Text;
 import org.cpntools.accesscpn.model.cpntypes.CPNAlias;
 import org.cpntools.accesscpn.model.cpntypes.CPNBool;
 import org.cpntools.accesscpn.model.cpntypes.CPNEnum;
@@ -709,14 +709,14 @@ public class DOMGenerator {
 			exportObject(document, pageNode, (Transition) o, positions);
 		} else if (o instanceof RefTrans) {
 			exportObject(document, pageNode, (RefTrans) o, positions);
-		} else if (o instanceof Aux) {
-			exportAux(document, pageNode, (Aux) o, positions);
+		} else if (o instanceof AuxGraphics) {
+			exportAux(document, pageNode, (AuxGraphics) o, positions);
 		} else {
 			throw new OperationNotSupportedException();
 		}
 	}
 
-	private static void exportAux(final Document document, final Element pageNode, final Aux o,
+	private static void exportAux(final Document document, final Element pageNode, final AuxGraphics o,
 	        final Map<Object, Position> positions) {
 		if (o instanceof Text) {
 			exportAux(document, pageNode, (Text) o, positions);
@@ -879,8 +879,8 @@ public class DOMGenerator {
 		try {
 			if (o instanceof Node) {
 				g = ((Node) o).getNodeGraphics();
-			} else if (o instanceof Aux) {
-				g = ((Aux) o).getNodeGraphics();
+			} else if (o instanceof AuxGraphics) {
+				g = ((AuxGraphics) o).getNodeGraphics();
 			}
 			position = g.getPosition();
 			posattr.setAttribute("x", "" + position.getX());

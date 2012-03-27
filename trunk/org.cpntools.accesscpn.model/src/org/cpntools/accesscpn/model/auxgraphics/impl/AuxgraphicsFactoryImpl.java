@@ -4,9 +4,9 @@
  *
  * $Id$
  */
-package org.cpntools.accesscpn.model.aux.impl;
+package org.cpntools.accesscpn.model.auxgraphics.impl;
 
-import org.cpntools.accesscpn.model.aux.*;
+import org.cpntools.accesscpn.model.auxgraphics.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -22,14 +22,14 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AuxFactoryImpl extends EFactoryImpl implements AuxFactory {
+public class AuxgraphicsFactoryImpl extends EFactoryImpl implements AuxgraphicsFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final AuxFactoryImpl eINSTANCE = init();
+	public static final AuxgraphicsFactoryImpl eINSTANCE = init();
 
 	/**
 	 * Creates the default factory implementation.
@@ -37,17 +37,17 @@ public class AuxFactoryImpl extends EFactoryImpl implements AuxFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static AuxFactoryImpl init() {
+	public static AuxgraphicsFactoryImpl init() {
 		try {
-			AuxFactoryImpl theAuxFactory = (AuxFactoryImpl)EPackage.Registry.INSTANCE.getEFactory("http:///org/cpntools/accesscpn/model/aux.ecore"); 
-			if (theAuxFactory != null) {
-				return theAuxFactory;
+			AuxgraphicsFactoryImpl theAuxgraphicsFactory = (AuxgraphicsFactoryImpl)EPackage.Registry.INSTANCE.getEFactory("http:///org/cpntools/accesscpn/model/auxgraphics.ecore"); 
+			if (theAuxgraphicsFactory != null) {
+				return theAuxgraphicsFactory;
 			}
 		}
 		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new AuxFactoryImpl();
+		return new AuxgraphicsFactoryImpl();
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class AuxFactoryImpl extends EFactoryImpl implements AuxFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AuxFactoryImpl() {
+	public AuxgraphicsFactoryImpl() {
 		super();
 	}
 
@@ -68,7 +68,7 @@ public class AuxFactoryImpl extends EFactoryImpl implements AuxFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case AuxPackageImpl.TEXT: return (EObject)createText();
+			case AuxgraphicsPackageImpl.TEXT: return (EObject)createText();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -89,8 +89,8 @@ public class AuxFactoryImpl extends EFactoryImpl implements AuxFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AuxPackageImpl getAuxPackage() {
-		return (AuxPackageImpl)getEPackage();
+	public AuxgraphicsPackageImpl getAuxgraphicsPackage() {
+		return (AuxgraphicsPackageImpl)getEPackage();
 	}
 
 	/**
@@ -100,8 +100,8 @@ public class AuxFactoryImpl extends EFactoryImpl implements AuxFactory {
 	 * @generated
 	 */
 	@Deprecated
-	public static AuxPackageImpl getPackage() {
-		return AuxPackageImpl.eINSTANCE;
+	public static AuxgraphicsPackageImpl getPackage() {
+		return AuxgraphicsPackageImpl.eINSTANCE;
 	}
 
-} //AuxFactoryImpl
+} //AuxgraphicsFactoryImpl

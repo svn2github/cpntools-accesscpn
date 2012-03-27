@@ -1,10 +1,10 @@
-package org.cpntools.accesscpn.model.aux;
+package org.cpntools.accesscpn.model.auxgraphics;
 
 /**
  * @model
  * @author michael
  */
-public interface Text extends Aux {
+public interface Text extends AuxGraphics {
 	/**
 	 * @model
 	 * @return
@@ -12,7 +12,7 @@ public interface Text extends Aux {
 	String getText();
 
 	/**
-	 * Sets the value of the '{@link org.cpntools.accesscpn.model.aux.Text#getText <em>Text</em>}' attribute.
+	 * Sets the value of the '{@link org.cpntools.accesscpn.model.auxgraphics.Text#getText <em>Text</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Text</em>' attribute.

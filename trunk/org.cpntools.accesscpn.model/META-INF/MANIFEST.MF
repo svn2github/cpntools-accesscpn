@@ -8,9 +8,9 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.cpntools.accesscpn.model,
- org.cpntools.accesscpn.model.aux,
- org.cpntools.accesscpn.model.aux.impl,
- org.cpntools.accesscpn.model.aux.util,
+ org.cpntools.accesscpn.model.auxgraphics,
+ org.cpntools.accesscpn.model.auxgraphics.impl,
+ org.cpntools.accesscpn.model.auxgraphics.util,
  org.cpntools.accesscpn.model.cpntypes,
  org.cpntools.accesscpn.model.cpntypes.impl,
  org.cpntools.accesscpn.model.cpntypes.util,

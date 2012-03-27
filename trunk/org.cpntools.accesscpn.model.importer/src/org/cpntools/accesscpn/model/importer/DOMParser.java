@@ -57,8 +57,8 @@ import org.cpntools.accesscpn.model.Sort;
 import org.cpntools.accesscpn.model.Time;
 import org.cpntools.accesscpn.model.TimeType;
 import org.cpntools.accesscpn.model.Transition;
-import org.cpntools.accesscpn.model.aux.AuxFactory;
-import org.cpntools.accesscpn.model.aux.Text;
+import org.cpntools.accesscpn.model.auxgraphics.AuxgraphicsFactory;
+import org.cpntools.accesscpn.model.auxgraphics.Text;
 import org.cpntools.accesscpn.model.declaration.DeclarationStructure;
 import org.cpntools.accesscpn.model.declaration.MLDeclaration;
 import org.cpntools.accesscpn.model.graphics.AnnotationGraphics;
@@ -869,7 +869,7 @@ public class DOMParser {
 	}
 
 	private Text processAuxText(final Node n) {
-		final Text text = AuxFactory.INSTANCE.createText();
+		final Text text = AuxgraphicsFactory.INSTANCE.createText();
 		text.setId(ParserUtil.getAttr(n, ID));
 		final NodeList nl = n.getChildNodes();
 		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
