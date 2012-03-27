@@ -1271,6 +1271,23 @@ public class HighLevelSimulator extends AdapterImpl {
 		return null;
 	}
 
+	public int getTokens(final Instance<PlaceNode> pi) throws Exception {
+		final Packet p = send(PacketGenerator.instance.constructGetMarking(Collections.singletonList(pi)));
+		if (p.getInteger() == 1) {
+			if (p.getInteger() == 1) {
+				final int tokens = p.getInteger();
+				if (tokens >= 0) {
+					return tokens;
+				} else {
+					throw new Exception(p.getString());
+				}
+			} else {
+				assert false;
+			}
+		}
+		return 0;
+	}
+
 	/**
 	 * @return
 	 */
