@@ -65,6 +65,7 @@ import org.cpntools.accesscpn.model.Page;
 import org.cpntools.accesscpn.model.PetriNet;
 import org.cpntools.accesscpn.model.Place;
 import org.cpntools.accesscpn.model.PlaceNode;
+import org.cpntools.accesscpn.model.TimeType;
 import org.cpntools.accesscpn.model.Transition;
 import org.cpntools.accesscpn.model.cpntypes.CPNAlias;
 import org.cpntools.accesscpn.model.cpntypes.CPNBool;
@@ -1387,11 +1388,12 @@ public class HighLevelSimulator extends AdapterImpl {
 	}
 
 	/**
+	 * @param timetype
 	 * @throws IOException
 	 *             if an IO error occurred
 	 */
-	public void initialize() throws IOException {
-		send(PacketGenerator.instance.constructInitialize());
+	public void initialize(final TimeType timeType) throws IOException {
+		send(PacketGenerator.instance.constructInitialize(timeType));
 	}
 
 	/**

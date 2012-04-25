@@ -36,6 +36,7 @@ import org.cpntools.accesscpn.model.ParameterAssignment;
 import org.cpntools.accesscpn.model.Place;
 import org.cpntools.accesscpn.model.PlaceNode;
 import org.cpntools.accesscpn.model.RefPlace;
+import org.cpntools.accesscpn.model.TimeType;
 import org.cpntools.accesscpn.model.Transition;
 import org.cpntools.accesscpn.model.TransitionNode;
 import org.cpntools.accesscpn.model.cpntypes.CPNAlias;
@@ -209,10 +210,14 @@ public class PacketGenerator {
 	/**
 	 * @return a packet
 	 */
-	public Packet constructInitialize() {
+	public Packet constructInitialize(final TimeType timeType) {
 		final Packet p = new Packet(100);
-		p.addString("intinf"); //$NON-NLS-1$
-		p.addString("IntInf.fromInt 0"); //$NON-NLS-1$
+		String time = "IntInf";
+		if (timeType == TimeType.REAL) {
+			time = "Real";
+		}
+		p.addString(time.toLowerCase());
+		p.addString(time + ".fromInt 0"); //$NON-NLS-1$
 		p.addString("accesscpndump.sml"); //$NON-NLS-1$
 		return p;
 	}

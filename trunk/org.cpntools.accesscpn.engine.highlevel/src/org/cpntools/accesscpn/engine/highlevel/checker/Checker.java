@@ -113,7 +113,7 @@ public class Checker {
 	 */
 	public void checkInitializing() throws IOException, Exception {
 		// s.evaluate("val _ = CpnMLSys.GramError.debugState:= true;");
-		s.initialize();
+		s.initialize(petriNet.getTimeType());
 		evaluate("CPN\'Settings.use_manbind := true"); //$NON-NLS-1$
 
 		s.initializeSyntaxCheck();
