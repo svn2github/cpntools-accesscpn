@@ -39,8 +39,6 @@ import org.cpntools.accesscpn.model.RefPlace;
 import org.cpntools.accesscpn.model.Transition;
 import org.cpntools.accesscpn.model.impl.PetriNetImpl;
 import org.cpntools.accesscpn.model.monitors.Monitor;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * @author mw
@@ -113,6 +111,10 @@ public class Checker {
 	 */
 	public void checkInitializing() throws IOException, Exception {
 		// s.evaluate("val _ = CpnMLSys.GramError.debugState:= true;");
+		checkInitializing("", "");
+	}
+
+	public void checkInitializing(final String modelPath, final String outputPath) throws Exception {
 		s.initialize(petriNet.getTimeType());
 		evaluate("CPN\'Settings.use_manbind := true"); //$NON-NLS-1$
 
@@ -121,24 +123,11 @@ public class Checker {
 		s.setInitializationSimulationOptions(true, true, random.nextInt() / 2);
 
 		try {
-			final Resource resource = ((PetriNetImpl) petriNet).eResource();
-			if (resource != null) {
-
-				final URI uri = resource.getURI();
-				final String modelName = uri.trimFileExtension().lastSegment();
-				final String modelDir = "";
-				String outputDir = "";
-				if (output != null) {
-					outputDir = output.getAbsolutePath();
-				}
-
-				s.setModelNameModelDirOutputDir(modelName, modelDir, outputDir);
-			}
+			s.setModelNameModelDirOutputDir(petriNet.getName().getText(), modelPath, outputPath);
 		} catch (final Exception e) {
 			throw new Exception(
 			        "Setting of model directory and/or output directory failed.  This is usually not severe.");
 		}
-
 	}
 
 	/**
@@ -168,21 +157,25 @@ public class Checker {
 		}
 	}
 
+	public void checkEntireModel() throws Exception {
+		checkEntireModel("", "");
+	}
+
 	/**
 	 * Check the entire model. This may take a LONG time for large models, and interactive tools should instead do
 	 * checks incrementally showing feedback to the user.
 	 * 
 	 * @throws Exception
 	 */
-	public void checkEntireModel() throws Exception {
+	public void checkEntireModel(final String modelPath, final String outputPath) throws Exception {
 		localCheck();
-		checkInitializing();
+		checkInitializing(modelPath, outputPath);
 		checkDeclarations();
 		generateSerializers();
 		checkPages();
 		generateInstances();
-		initialiseSimulationScheduler();
 		checkMonitors();
+		initialiseSimulationScheduler();
 		instantiateSMLInterface();
 	}
 
@@ -191,6 +184,10 @@ public class Checker {
 	 * @throws IOException
 	 */
 	public void checkMonitors() throws SyntaxCheckerException, IOException {
+		s.setPerformanceReportOptions(true, false, true, false, false, true, true, false, false, false, false, false,
+		        false, false, false, true, false, true, false, false, true, true, false, false, false, true, false);
+		s.setReplicationReportOptions(true, true, false, false, false, true, true, false, false, true, false, false);
+		s.setMonitorOrder(petriNet.getMonitors());
 		for (final Monitor m : petriNet.getMonitors()) {
 			s.checkMonitor(m);
 		}

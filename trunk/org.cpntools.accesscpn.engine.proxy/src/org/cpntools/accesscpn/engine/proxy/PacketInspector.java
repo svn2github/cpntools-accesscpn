@@ -6,6 +6,9 @@ import java.util.Observer;
 
 import org.cpntools.accesscpn.engine.Packet;
 import org.cpntools.accesscpn.engine.Simulator;
+import org.cpntools.accesscpn.engine.Simulator.Input;
+import org.cpntools.accesscpn.engine.Simulator.Message;
+import org.cpntools.accesscpn.engine.Simulator.PacketReceived;
 import org.cpntools.accesscpn.engine.Simulator.PacketSent;
 import org.cpntools.accesscpn.engine.highlevel.HighLevelSimulator;
 
@@ -34,13 +37,54 @@ public abstract class PacketInspector implements Observer {
 	 */
 	@Override
 	public void update(final Observable arg0, final java.lang.Object arg1) {
-		if (arg1 != null && arg1 instanceof Simulator.PacketSent) {
-			try {
-				handlePacket(((PacketSent) arg1).getPacket());
-			} catch (final Exception e) {
-				e.printStackTrace();
+		if (arg1 != null) {
+			if (arg1 instanceof Simulator.PacketSent) {
+				try {
+					handlePacket(((PacketSent) arg1).getPacket());
+				} catch (final Exception e) {
+					e.printStackTrace();
+				}
+			} else if (arg1 instanceof Simulator.PacketReceived) {
+				try {
+					handleReceive(((PacketReceived) arg1).getPacket());
+				} catch (final Exception e) {
+					e.printStackTrace();
+				}
+			} else if (arg1 instanceof Simulator.Message) {
+				try {
+					handleMessage(((Message) arg1));
+				} catch (final Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
+	}
+
+	protected void handleMessage(final Message message) {
+		if (message instanceof Input) {
+			handleInput(((Input) message).getText());
+		} else if (message instanceof org.cpntools.accesscpn.engine.Simulator.Error) {
+			handleError(((org.cpntools.accesscpn.engine.Simulator.Error) message).getText());
+		} else if (message instanceof org.cpntools.accesscpn.engine.Simulator.Output) {
+			handleOutput(((org.cpntools.accesscpn.engine.Simulator.Output) message).getText());
+		}
+
+	}
+
+	protected void handleOutput(final String text) {
+
+	}
+
+	protected void handleError(final String text) {
+
+	}
+
+	protected void handleInput(final String text) {
+
+	}
+
+	protected void handleReceive(final Packet packet) {
+
 	}
 
 	protected void handlePacket(final Packet packet) throws Exception {

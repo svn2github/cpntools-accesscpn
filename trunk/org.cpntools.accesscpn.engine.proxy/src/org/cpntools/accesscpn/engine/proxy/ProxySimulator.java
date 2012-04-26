@@ -134,9 +134,10 @@ public class ProxySimulator extends Thread {
 		final ModelScraper modelScraper = new ModelScraper(simulator);
 		this.modelScraper = modelScraper;
 		simulator.getSimulator().addObserver(modelScraper);
+// simulator.getSimulator().addObserver(new PacketPrinter(simulator));
 		simulator.getSimulator().addObserver(new Observer() {
 			@Override
-            public void update(final Observable arg0, final Object arg1) {
+			public void update(final Observable arg0, final Object arg1) {
 				if (arg1 != null && arg1 instanceof Simulator.SimulatorStateChanged) {
 					final Simulator.SimulatorStateChanged update = (Simulator.SimulatorStateChanged) arg1;
 					final Packet p = new Packet(5, 1);

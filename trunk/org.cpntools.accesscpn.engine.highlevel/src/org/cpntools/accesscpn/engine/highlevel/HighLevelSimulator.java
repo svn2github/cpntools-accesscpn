@@ -494,6 +494,16 @@ public class HighLevelSimulator extends AdapterImpl {
 		} else if (numberOfErrors == -1) { throw new SyntaxFatalErrorException("Fatal error occurred in syntax check"); }
 	}
 
+	public void setMonitorOrder(final Collection<Monitor> monitors) throws IOException {
+		Packet p = new Packet(450);
+		p.addInteger(1);
+		p.addInteger(monitors.size());
+		for (final Monitor m : monitors) {
+			p.addString(m.getId());
+		}
+		p = send(p);
+	}
+
 	/**
 	 * @param monitor
 	 * @throws SyntaxCheckerException
@@ -1945,5 +1955,95 @@ public class HighLevelSimulator extends AdapterImpl {
 		} finally {
 			release();
 		}
+	}
+
+	/**
+	 * @param tavg
+	 * @param tconfidence
+	 * @param tno
+	 * @param tfirst
+	 * @param tlast
+	 * @param tmax
+	 * @param tmin
+	 * @param tss
+	 * @param tssd
+	 * @param tdev
+	 * @param tsum
+	 * @param tvar
+	 * @param tfirsttime
+	 * @param tinterval
+	 * @param tlasttime
+	 * @param avg
+	 * @param confidence
+	 * @param no
+	 * @param first
+	 * @param last
+	 * @param max
+	 * @param min
+	 * @param ss
+	 * @param ssd
+	 * @param dev
+	 * @param sum
+	 * @param var
+	 * @throws IOException
+	 */
+	public void setPerformanceReportOptions(final boolean tavg, final boolean tconfidence, final boolean tno,
+	        final boolean tfirst, final boolean tlast, final boolean tmax, final boolean tmin, final boolean tss,
+	        final boolean tssd, final boolean tdev, final boolean tsum, final boolean tvar, final boolean tfirsttime,
+	        final boolean tinterval, final boolean tlasttime, final boolean avg, final boolean confidence,
+	        final boolean no, final boolean first, final boolean last, final boolean max, final boolean min,
+	        final boolean ss, final boolean ssd, final boolean dev, final boolean sum, final boolean var)
+	        throws IOException {
+		final Packet p = new Packet(200);
+		p.addInteger(13);
+		p.addBoolean(tavg);
+		p.addBoolean(tconfidence);
+		p.addBoolean(tno);
+		p.addBoolean(tfirst);
+		p.addBoolean(tlast);
+		p.addBoolean(tmax);
+		p.addBoolean(tmin);
+		p.addBoolean(tss);
+		p.addBoolean(tssd);
+		p.addBoolean(tdev);
+		p.addBoolean(tsum);
+		p.addBoolean(tvar);
+		p.addBoolean(tfirsttime);
+		p.addBoolean(tinterval);
+		p.addBoolean(tlasttime);
+
+		p.addBoolean(avg);
+		p.addBoolean(confidence);
+		p.addBoolean(no);
+		p.addBoolean(first);
+		p.addBoolean(last);
+		p.addBoolean(max);
+		p.addBoolean(min);
+		p.addBoolean(ss);
+		p.addBoolean(ssd);
+		p.addBoolean(dev);
+		p.addBoolean(sum);
+		p.addBoolean(var);
+		send(p);
+	}
+
+	public void setReplicationReportOptions(final boolean avg, final boolean confidence, final boolean no,
+	        final boolean first, final boolean last, final boolean max, final boolean min, final boolean ss,
+	        final boolean ssd, final boolean dev, final boolean sum, final boolean var) throws IOException {
+		final Packet p = new Packet(200);
+		p.addInteger(14);
+		p.addBoolean(avg);
+		p.addBoolean(confidence);
+		p.addBoolean(no);
+		p.addBoolean(first);
+		p.addBoolean(last);
+		p.addBoolean(max);
+		p.addBoolean(min);
+		p.addBoolean(ss);
+		p.addBoolean(ssd);
+		p.addBoolean(dev);
+		p.addBoolean(sum);
+		p.addBoolean(var);
+		send(p);
 	}
 }

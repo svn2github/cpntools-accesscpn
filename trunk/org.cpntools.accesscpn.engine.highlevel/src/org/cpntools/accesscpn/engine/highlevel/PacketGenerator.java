@@ -929,7 +929,7 @@ public class PacketGenerator {
 		final Packet p = new Packet(450);
 		p.addInteger(cmd);
 		p.addString(monitor.getId());
-		p.addString(monitor.getName().getText());
+		p.addString(monitor.getName().getText().replaceFirst("^[^\\p{Alpha}]*", "").replaceAll("[^\\p{Alnum}]", "_"));
 		return p;
 	}
 
