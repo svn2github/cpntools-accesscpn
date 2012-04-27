@@ -397,6 +397,8 @@ public class HighLevelSimulator extends AdapterImpl {
 
 	private boolean globalFairness;
 
+	private String outputDir;
+
 	private HighLevelSimulator(final Simulator simulator) {
 		this.simulator = simulator;
 		pausebefore = false;
@@ -1732,6 +1734,7 @@ public class HighLevelSimulator extends AdapterImpl {
 	 */
 	public void setModelNameModelDirOutputDir(final String modelName, final String modelDir, final String outputDir)
 	        throws Exception {
+		this.outputDir = outputDir;
 		final Packet p = send(PacketGenerator.instance.constructModelNameModelDirOutputDir(modelName, modelDir,
 		        outputDir));
 		if (!p.getBoolean()) { throw new Exception(p.getString()); }
@@ -1772,24 +1775,45 @@ public class HighLevelSimulator extends AdapterImpl {
 	        final boolean showenabling, final String untilstep, final String addstep, final String untiltime,
 	        final String addtime, final String pausecont, final String reportfunc, final boolean fairBE,
 	        final boolean globalFairness) throws IOException {
-		this.pausebefore = pausebefore;
-		this.pauseafter = pauseafter;
-		this.pauseshow = pauseshow;
-		this.fairBE = fairBE;
-		this.globalFairness = globalFairness;
-		this.reporttrans = reporttrans || reportbinds;
-		this.reportbinds = reportbinds;
-		this.showmarking = showmarking;
-		this.showenabling = showenabling;
-		this.untilstep = untilstep;
-		this.addstep = addstep;
-		this.untiltime = untiltime;
-		this.addtime = addtime;
-		this.pausecont = pausecont;
-		this.reportfunc = reportfunc;
-		send(PacketGenerator.instance.constructSetSimulationOptions(pausebefore, pauseafter, pauseshow,
-		        this.reporttrans, reportbinds, showmarking, showenabling, untilstep, addstep, untiltime, addtime,
-		        pausecont, reportfunc, fairBE, globalFairness));
+		lock();
+		try {
+			this.pausebefore = pausebefore;
+			this.pauseafter = pauseafter;
+			this.pauseshow = pauseshow;
+			this.fairBE = fairBE;
+			this.globalFairness = globalFairness;
+			this.reporttrans = reporttrans || reportbinds;
+			this.reportbinds = reportbinds;
+			this.showmarking = showmarking;
+			this.showenabling = showenabling;
+			this.untilstep = untilstep;
+			this.addstep = addstep;
+			this.untiltime = untiltime;
+			this.addtime = addtime;
+			this.pausecont = pausecont;
+			this.reportfunc = reportfunc;
+			send(PacketGenerator.instance.constructSetSimulationOptions(pausebefore, pauseafter, pauseshow,
+			        this.reporttrans, reportbinds, showmarking, showenabling, untilstep, addstep, untiltime, addtime,
+			        pausecont, reportfunc, fairBE, globalFairness));
+		} finally {
+			release();
+		}
+	}
+
+	public void setStopOptions(final String untilstep, final String addstep, final String untiltime,
+	        final String addtime) throws IOException {
+		lock();
+		try {
+			this.untilstep = untilstep;
+			this.addstep = addstep;
+			this.untiltime = untiltime;
+			this.addtime = addtime;
+			setSimulationOptions(pausebefore, pauseafter, pauseshow, reporttrans, reportbinds, showmarking,
+			        showenabling, untilstep, addstep, untiltime, addtime, pausecont, reportfunc, fairBE, globalFairness);
+			send(PacketGenerator.instance.constructResetSimulationReport());
+		} finally {
+			release();
+		}
 	}
 
 	/**
@@ -2045,5 +2069,9 @@ public class HighLevelSimulator extends AdapterImpl {
 		p.addBoolean(sum);
 		p.addBoolean(var);
 		send(p);
+	}
+
+	public String getOutputDir() {
+		return outputDir;
 	}
 }

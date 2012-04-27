@@ -115,6 +115,9 @@ public class Checker {
 	}
 
 	public void checkInitializing(final String modelPath, final String outputPath) throws Exception {
+		if (outputPath != null && !"".equals(outputPath)) {
+			new File(outputPath).mkdirs();
+		}
 		s.initialize(petriNet.getTimeType());
 		evaluate("CPN\'Settings.use_manbind := true"); //$NON-NLS-1$
 
