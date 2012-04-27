@@ -123,7 +123,7 @@ public class Checker {
 
 		s.initializeSyntaxCheck();
 		s.setSimulationOptions(false, false, false, false, false, true, true, "", "", "", "", "", "", false, false);
-		s.setInitializationSimulationOptions(true, true, random.nextInt() / 2);
+		s.setInitializationSimulationOptions(false, true, random.nextInt() / 2);
 
 		try {
 			s.setModelNameModelDirOutputDir(petriNet.getName().getText(), modelPath, outputPath);
