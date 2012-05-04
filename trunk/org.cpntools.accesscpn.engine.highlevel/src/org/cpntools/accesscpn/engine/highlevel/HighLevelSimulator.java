@@ -2051,6 +2051,15 @@ public class HighLevelSimulator extends AdapterImpl {
 		send(p);
 	}
 
+	public void setConfidenceIntervals(final int... intervals) throws IOException {
+		final Packet p = new Packet(200);
+		p.addInteger(15);
+		for (final int i : intervals) {
+			p.addInteger(i);
+		}
+		send(p);
+	}
+
 	public void setReplicationReportOptions(final boolean avg, final boolean confidence, final boolean no,
 	        final boolean first, final boolean last, final boolean max, final boolean min, final boolean ss,
 	        final boolean ssd, final boolean dev, final boolean sum, final boolean var) throws IOException {

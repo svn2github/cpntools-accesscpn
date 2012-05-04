@@ -32,6 +32,7 @@ import org.cpntools.accesscpn.engine.highlevel.PageSorter;
 import org.cpntools.accesscpn.engine.highlevel.SyntaxCheckerException;
 import org.cpntools.accesscpn.model.FusionGroup;
 import org.cpntools.accesscpn.model.HLDeclaration;
+import org.cpntools.accesscpn.model.Instance;
 import org.cpntools.accesscpn.model.Page;
 import org.cpntools.accesscpn.model.PetriNet;
 import org.cpntools.accesscpn.model.Place;
@@ -122,9 +123,10 @@ public class Checker {
 		evaluate("CPN\'Settings.use_manbind := true"); //$NON-NLS-1$
 
 		s.initializeSyntaxCheck();
-		s.setSimulationOptions(false, false, false, false, false, true, true, "", "", "", "", "", "", false, false);
-		s.setInitializationSimulationOptions(false, true, random.nextInt() / 2);
+		s.setSimulationOptions(false, false, false, true, true, false, false, "", "", "", "", "", "", false, false);
+		s.setInitializationSimulationOptions(false, false, random.nextInt() / 2);
 
+		s.setSimulationOptions(false, false, false, true, true, false, false, "", "", "", "", "", "", true, true);
 		try {
 			s.setModelNameModelDirOutputDir(petriNet.getName().getText(), modelPath, outputPath);
 		} catch (final Exception e) {
@@ -248,9 +250,15 @@ public class Checker {
 			for (final Place place : page.readyPlaces()) {
 				generateInstanceForPlace(place.getId());
 			}
+		}
 
+		for (final Page page : petriNet.getPage()) {
 			for (final Transition transition : page.readyTransitions()) {
 				generateInstanceForTransition(transition.getId());
+			}
+
+			for (final Instance instance : page.instance()) {
+				generateInstanceForTransition(instance.getId());
 			}
 		}
 

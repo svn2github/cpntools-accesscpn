@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.util.EContentAdapter;
  * @author mwesterg
  */
 public class PetriNetDataAdapter extends EContentAdapter {
-	private PetriNet petriNet;
+	protected PetriNet petriNet;
 
 	@Override
 	public void notifyChanged(final Notification notification) {
-		System.out.println(notification);
+// System.out.println(notification);
 		super.notifyChanged(notification);
 	}
 
