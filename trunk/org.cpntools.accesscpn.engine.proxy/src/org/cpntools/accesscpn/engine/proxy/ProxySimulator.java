@@ -33,6 +33,7 @@ import java.util.Observer;
 import org.cpntools.accesscpn.engine.Packet;
 import org.cpntools.accesscpn.engine.Simulator;
 import org.cpntools.accesscpn.engine.highlevel.HighLevelSimulator;
+import org.cpntools.accesscpn.engine.highlevel.PacketPrinter;
 import org.cpntools.accesscpn.model.PetriNet;
 
 public class ProxySimulator extends Thread {
@@ -134,7 +135,7 @@ public class ProxySimulator extends Thread {
 		final ModelScraper modelScraper = new ModelScraper(simulator);
 		this.modelScraper = modelScraper;
 		simulator.getSimulator().addObserver(modelScraper);
-// simulator.getSimulator().addObserver(new PacketPrinter(simulator));
+		simulator.getSimulator().addObserver(new PacketPrinter(simulator));
 		simulator.getSimulator().addObserver(new Observer() {
 			@Override
 			public void update(final Observable arg0, final Object arg1) {

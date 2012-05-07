@@ -1,21 +1,21 @@
 /************************************************************************/
-/* Access/CPN                                                           */
-/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology    */
+/* Access/CPN */
+/* Copyright 2010-2011 AIS Group, Eindhoven University of Technology */
 /*                                                                      */
-/* This library is free software; you can redistribute it and/or        */
-/* modify it under the terms of the GNU Lesser General Public           */
-/* License as published by the Free Software Foundation; either         */
-/* version 2.1 of the License, or (at your option) any later version.   */
+/* This library is free software; you can redistribute it and/or */
+/* modify it under the terms of the GNU Lesser General Public */
+/* License as published by the Free Software Foundation; either */
+/* version 2.1 of the License, or (at your option) any later version. */
 /*                                                                      */
-/* This library is distributed in the hope that it will be useful,      */
-/* but WITHOUT ANY WARRANTY; without even the implied warranty of       */
-/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    */
-/* Lesser General Public License for more details.                      */
+/* This library is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU */
+/* Lesser General Public License for more details. */
 /*                                                                      */
-/* You should have received a copy of the GNU Lesser General Public     */
-/* License along with this library; if not, write to the Free Software  */
-/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,           */
-/* MA  02110-1301  USA                                                  */
+/* You should have received a copy of the GNU Lesser General Public */
+/* License along with this library; if not, write to the Free Software */
+/* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, */
+/* MA 02110-1301 USA */
 /************************************************************************/
 package org.cpntools.accesscpn.engine;
 
@@ -71,7 +71,7 @@ public class DaemonSimulator implements SimulatorImplementation {
 	 * @see org.cpntools.accesscpn.engine.SimulatorImplementation#destroy()
 	 */
 	@Override
-    public void destroy() {
+	public void destroy() {
 		try {
 			cpnmld.close();
 		} catch (final IOException e) {
@@ -93,7 +93,7 @@ public class DaemonSimulator implements SimulatorImplementation {
 	 * @see org.cpntools.accesscpn.engine.SimulatorImplementation#getBanner()
 	 */
 	@Override
-    public String getBanner() {
+	public String getBanner() {
 		return banner;
 	}
 
@@ -120,7 +120,7 @@ public class DaemonSimulator implements SimulatorImplementation {
 	 * @see org.cpntools.accesscpn.engine.SimulatorImplementation#receive()
 	 */
 	@Override
-    public Packet receive() throws IOException {
+	public Packet receive() throws IOException {
 		final Packet bis = new Packet();
 		bis.receive(dmoin);
 		return bis;
@@ -130,7 +130,7 @@ public class DaemonSimulator implements SimulatorImplementation {
 	 * @see org.cpntools.accesscpn.engine.SimulatorImplementation#send(org.cpntools.accesscpn.engine.Packet)
 	 */
 	@Override
-    public void send(final Packet p) throws IOException {
+	public void send(final Packet p) throws IOException {
 		p.send(dmoout);
 	}
 
@@ -203,7 +203,7 @@ public class DaemonSimulator implements SimulatorImplementation {
 	 * @see org.cpntools.accesscpn.engine.SimulatorImplementation#getEvalBytes(byte[], int, int)
 	 */
 	@Override
-    public int getEvalBytes(final byte[] data, final int start, final int count) throws IOException {
+	public int getEvalBytes(final byte[] data, final int start, final int count) throws IOException {
 		return dmoevalin.read(data, start, count);
 	}
 

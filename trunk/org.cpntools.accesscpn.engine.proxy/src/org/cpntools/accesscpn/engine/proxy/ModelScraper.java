@@ -28,6 +28,7 @@ import java.util.Set;
 
 import org.cpntools.accesscpn.engine.Packet;
 import org.cpntools.accesscpn.engine.highlevel.HighLevelSimulator;
+import org.cpntools.accesscpn.engine.highlevel.PacketInspector;
 import org.cpntools.accesscpn.engine.highlevel.checker.Checker;
 import org.cpntools.accesscpn.engine.highlevel.checker.ErrorInitializingSMLInterface;
 import org.cpntools.accesscpn.model.Arc;
