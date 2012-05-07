@@ -191,7 +191,7 @@ public class Checker {
 	public void checkMonitors() throws SyntaxCheckerException, IOException {
 		s.setPerformanceReportOptions(true, false, true, false, false, true, true, false, false, false, false, false,
 		        false, false, false, true, false, true, false, false, true, true, false, false, false, true, false);
-		s.setReplicationReportOptions(true, true, false, false, false, true, true, false, false, true, false, false);
+		s.setReplicationReportOptions(true, true, false, false, false, true, true, false, false, false, false, false);
 		s.setMonitorOrder(petriNet.getMonitors());
 		for (final Monitor m : petriNet.getMonitors()) {
 			s.checkMonitor(m);
