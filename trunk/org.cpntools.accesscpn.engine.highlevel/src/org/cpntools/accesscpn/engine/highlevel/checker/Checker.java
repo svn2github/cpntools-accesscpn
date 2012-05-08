@@ -178,13 +178,15 @@ public class Checker {
 		checkDeclarations();
 		generateSerializers();
 		checkPages();
-		generateInstances();
+		generatePlaceInstances();
 		checkMonitors();
+		generateNonPlaceInstances();
 		initialiseSimulationScheduler();
 		instantiateSMLInterface();
 	}
 
 	/**
+	 * @param b
 	 * @throws SyntaxCheckerException
 	 * @throws IOException
 	 */
@@ -233,7 +235,7 @@ public class Checker {
 	 * @throws IOException
 	 *             if an IO error occurred
 	 */
-	public void generateInstances() throws IOException {
+	public void generatePlaceInstances() throws IOException {
 		for (final FusionGroup fusionGroup : petriNet.getFusionGroups()) {
 			generateInstanceForFusionGroup(fusionGroup.getId());
 		}
@@ -251,7 +253,20 @@ public class Checker {
 				generateInstanceForPlace(place.getId());
 			}
 		}
+	}
 
+	/**
+	 * @deprecated use #generatePlaceInstances and #generateNonPlaceInstances instead (so you can generate monitors
+	 *             inbetween)
+	 * @throws IOException
+	 */
+	@Deprecated
+	public void generateInstances() throws IOException {
+		generatePlaceInstances();
+		generateNonPlaceInstances();
+	}
+
+	public void generateNonPlaceInstances() throws IOException {
 		for (final Page page : petriNet.getPage()) {
 			for (final Transition transition : page.readyTransitions()) {
 				generateInstanceForTransition(transition.getId());
