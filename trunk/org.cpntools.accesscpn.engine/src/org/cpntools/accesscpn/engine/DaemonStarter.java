@@ -76,18 +76,19 @@ public class DaemonStarter implements Runnable {
 		final String archOS = '.' + arch + '-' + platform;
 
 		simulatorDir = new File(getPluginResource("simulator"));
+		System.out.println("simulatordir " + simulatorDir);
 
 		if (!simulatorDir.exists()) {
 			if (!simulatorDir.mkdirs()) { throw new IOException("Could not create dir for storing simulator"); }
 		}
 		if (simulatorDir.isFile()) { throw new IOException("Location for storing simulator exists but is a file"); }
 
-		ensureExists(simulatorDir, "simulator/cpnmld" + archOS);
-		ensureExists(simulatorDir, "simulator/run" + archOS);
-		ensureExists(simulatorDir, "simulator/cpn.ML" + archOS);
+		ensureExists(simulatorDir, "cpnmld" + archOS);
+		ensureExists(simulatorDir, "run" + archOS);
+		ensureExists(simulatorDir, "cpn.ML" + archOS);
 		if (OSValidator.isWindows()) {
-			ensureExists(simulatorDir, "simulator/cygwin1.dll");
-			ensureExists(simulatorDir, "simulator/cyggcc_s-1.dll");
+			ensureExists(simulatorDir, "cygwin1.dll");
+			ensureExists(simulatorDir, "cyggcc_s-1.dll");
 		}
 		cpnmld = new File(simulatorDir, ("cpnmld" + archOS)).toString();
 		run = new File(".", "run" + archOS).toString();
@@ -113,23 +114,20 @@ public class DaemonStarter implements Runnable {
 
 	@SuppressWarnings({ "null", "deprecation" })
 	private void ensureExists(final File dir, final String resource) throws IOException {
-		final File file = new File(new File(dir, ".."), resource);
+		final File file = new File(dir, resource);
+		System.out.println("Looking for " + file);
 		if (file.exists() && file.isFile()) { return; }
 		URL resURL = DaemonStarter.class.getResource("/" + resource);
 		if (resURL == null) {
-			resURL = DaemonStarter.class.getResource("../../../../../../");
-			if (resURL != null) {
-				final String extractFileName = extractFileName(resURL.toString());
-				final File f = new File(extractFileName);
-				File g = new File(f, resource);
-				if (!(g.exists() && g.isFile())) {
-					g = new File(new File(f, ".."), resource);
-				}
-				if (g.exists() && g.isFile()) {
-					resURL = g.toURL();
-				}
-			}
+			resURL = DaemonStarter.class.getResource("../../../../../../" + resource);
 		}
+		if (resURL == null) {
+			resURL = DaemonStarter.class.getResource("../../../../../" + resource);
+		}
+		if (resURL == null) {
+			resURL = DaemonStarter.class.getResource("../../../../" + resource);
+		}
+		System.out.println("Copying [" + resource + "]: " + resURL);
 		final InputStream resourceAsStream = new BufferedInputStream(resURL.openStream());
 		final OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file));
 		final byte[] buffer = new byte[8192];

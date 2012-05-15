@@ -115,7 +115,7 @@ public class Checker {
 		checkInitializing("", "");
 	}
 
-	public void checkInitializing(final String modelPath, final String outputPath) throws Exception {
+	public void checkInitializing(String modelPath, String outputPath) throws Exception {
 		if (outputPath != null && !"".equals(outputPath)) {
 			new File(outputPath).mkdirs();
 		}
@@ -128,6 +128,12 @@ public class Checker {
 
 		s.setSimulationOptions(false, false, false, true, true, false, false, "", "", "", "", "", "", true, true);
 		try {
+			if (modelPath.matches("^([A-Za-z]):\\\\(.*)")) {
+				modelPath = modelPath.replaceFirst("^([A-Za-z]):\\\\(.*)", "/cygdrive/$1/$2").replace('\\', '/');
+			}
+			if (outputPath.matches("^([A-Za-z]):\\\\(.*)")) {
+				outputPath = outputPath.replaceFirst("^([A-Za-z]):\\\\(.*)", "/cygdrive/$1/$2").replace('\\', '/');
+			}
 			s.setModelNameModelDirOutputDir(petriNet.getName().getText(), modelPath, outputPath);
 		} catch (final Exception e) {
 			throw new Exception(
