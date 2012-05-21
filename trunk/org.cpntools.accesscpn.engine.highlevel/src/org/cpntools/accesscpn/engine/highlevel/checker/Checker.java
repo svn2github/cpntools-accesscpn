@@ -136,8 +136,7 @@ public class Checker {
 			}
 			s.setModelNameModelDirOutputDir(petriNet.getName().getText(), modelPath, outputPath);
 		} catch (final Exception e) {
-			throw new Exception(
-			        "Setting of model directory and/or output directory failed.  This is usually not severe.", e);
+			throw new Exception("Setting of model directory and/or output directory failed: " + e, e);
 		}
 	}
 
