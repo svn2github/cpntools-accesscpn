@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.cpntools.accesscpn.model.tests;singleton:=true
-Bundle-Version: 2.1.4
+Bundle-Version: 2.2.0
 Bundle-ClassPath: .,
  lib/javabdd-1.0b2.jar,
  lib/EfficientStorage.jar,
@@ -17,13 +17,13 @@ Export-Package: .,
  org.cpntools.accesscpn.model.graphics.tests,
  org.cpntools.accesscpn.model.monitors.tests,
  org.cpntools.accesscpn.model.tests
-Require-Bundle: org.cpntools.accesscpn.model;visibility:=reexport,
- org.eclipse.emf.ecore.xmi;visibility:=reexport,
+Require-Bundle: org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ org.eclipse.core.runtime,
  org.junit;visibility:=reexport,
- org.cpntools.accesscpn.engine.highlevel,
- org.cpntools.accesscpn.engine,
- org.cpntools.accesscpn.model.importer,
- org.eclipse.core.runtime;bundle-version="3.5.0",
+ org.cpntools.accesscpn.engine.highlevel;bundle-version="2.2.0",
+ org.cpntools.accesscpn.engine;bundle-version="2.2.0",
+ org.cpntools.accesscpn.model;bundle-version="2.2.0";visibility:=reexport,
+ org.cpntools.accesscpn.model.importer;bundle-version="2.2.0",
  org.cpntools.accesscpn.engine.proxy;bundle-version="2.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
