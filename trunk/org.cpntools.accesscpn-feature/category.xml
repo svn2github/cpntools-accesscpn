@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.cpntools.accesscpn.engine.feature_2.2.0.qualifier.jar" id="org.cpntools.accesscpn.engine.feature" version="2.2.0.qualifier">
+      <category name="Access/CPN"/>
+   </feature>
+   <feature url="features/org.cpntools.accesscpn.feature_2.2.0.qualifier.jar" id="org.cpntools.accesscpn.feature" version="2.2.0.qualifier">
+      <category name="Access/CPN"/>
+   </feature>
+   <category-def name="Access/CPN" label="Access/CPN"/>
+</site>
