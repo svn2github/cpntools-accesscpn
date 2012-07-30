@@ -2,7 +2,7 @@
 <feature
       id="org.cpntools.accesscpn.engine.feature"
       label="CPN Tools Simulator for Access CPN"
-      version="2.2.0.qualifier"
+      version="2.2.0"
       provider-name="CPN Tools">
 
    <description url="http://cpntools.org/accesscpn">
@@ -10,7 +10,7 @@
    </description>
 
    <copyright url="http://cpntools.org/license/simulator">
-Copyright © 2010-2012, AIS Group, Eindhoven University of Technology
+      Copyright © 2010-2012, AIS Group, Eindhoven University of Technology
 All rights reserved.
 
 CPN Tools is originally developed by the CPN Group at Aarhus University from 2000 to 2010. The main architects behind the tool are Kurt Jensen, Søren Christensen, Lars M. Kristensen, and Michael Westergaard. From the autumn of 2010, CPN Tools is transferred to the AIS group, Eindhoven University of Technology, The Netherlands.
@@ -26,7 +26,7 @@ THIS SOFTWARE IS PROVIDED BY THE AIS GROUP, EINDHOVEN UNIVERSITY OF TECHNOLOGY A
    </copyright>
 
    <license url="http://cpntools.org/license/simulator">
-The simulator component of CPN Tools is dual-licensed and can be used either under the GNU General Public License (GPL) version 2 or by the below license, which is a 4-clause BSD license.
+      The simulator component of CPN Tools is dual-licensed and can be used either under the GNU General Public License (GPL) version 2 or by the below license, which is a 4-clause BSD license.
 
 4-clause BSD License for CPN Tools Simulator
 

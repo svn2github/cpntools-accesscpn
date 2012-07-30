@@ -2,7 +2,7 @@
 <feature
       id="org.cpntools.accesscpn.feature"
       label="Access/CPN"
-      version="2.2.0.qualifier"
+      version="2.2.0"
       provider-name="www.cpntools.org">
 
    <description url="http://cpntools.org/accesscpn">
