@@ -20,6 +20,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import org.cpntools.accesscpn.engine.protocol.Packet;
+import org.cpntools.accesscpn.engine.protocol.handler.Handler;
 
 /**
  * @author Michael Westergaard
