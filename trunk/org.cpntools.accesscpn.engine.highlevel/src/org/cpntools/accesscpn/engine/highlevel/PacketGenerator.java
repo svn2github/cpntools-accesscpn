@@ -23,9 +23,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.cpntools.accesscpn.engine.Packet;
 import org.cpntools.accesscpn.engine.highlevel.HighLevelSimulator.Bindings;
 import org.cpntools.accesscpn.engine.highlevel.instance.Binding;
+import org.cpntools.accesscpn.engine.protocol.Packet;
 import org.cpntools.accesscpn.model.Arc;
 import org.cpntools.accesscpn.model.HLArcType;
 import org.cpntools.accesscpn.model.HLDeclaration;

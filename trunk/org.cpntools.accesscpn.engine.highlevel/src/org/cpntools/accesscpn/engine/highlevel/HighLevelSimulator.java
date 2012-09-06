@@ -42,7 +42,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.cpntools.accesscpn.engine.Handler;
-import org.cpntools.accesscpn.engine.Packet;
 import org.cpntools.accesscpn.engine.Simulator;
 import org.cpntools.accesscpn.engine.SimulatorService;
 import org.cpntools.accesscpn.engine.highlevel.instance.Binding;
@@ -58,6 +57,7 @@ import org.cpntools.accesscpn.engine.highlevel.instance.adapter.ModelInstanceAda
 import org.cpntools.accesscpn.engine.highlevel.instance.cpnvalues.CPNValue;
 import org.cpntools.accesscpn.engine.highlevel.utils.SingleLineLogFormatter;
 import org.cpntools.accesscpn.engine.highlevel.utils.StreamUtillities;
+import org.cpntools.accesscpn.engine.protocol.Packet;
 import org.cpntools.accesscpn.model.Arc;
 import org.cpntools.accesscpn.model.HLArcType;
 import org.cpntools.accesscpn.model.HLDeclaration;

@@ -1,12 +1,11 @@
 /*
- * BRITNeY Suite Copyright (C) 2004-2006 Michael Westergaard and others This program is free
- * software; you can redistribute it and/or modify it under the terms of the GNU General Public
- * License as published by the Free Software Foundation; either version 2 of the License, or (at
- * your option) any later version. This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
- * PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received
- * a copy of the GNU General Public License along with this program; if not, write to the Free
- * Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * BRITNeY Suite Copyright (C) 2004-2006 Michael Westergaard and others This program is free software; you can
+ * redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later version. This program is distributed in
+ * the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a
+ * copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 package org.cpntools.accesscpn.engine;
 
@@ -19,6 +18,8 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+
+import org.cpntools.accesscpn.engine.protocol.Packet;
 
 /**
  * @author Michael Westergaard
@@ -100,10 +101,9 @@ public final class Simulator extends Observable {
 	public abstract class SimulatorUpdate {
 		// Empty base class
 	}
-	
+
 	/**
 	 * @author mwesterg
-	 *
 	 */
 	public abstract class SimulationExecuted extends SimulatorUpdate {
 		// Empty base calss
@@ -111,7 +111,6 @@ public final class Simulator extends Observable {
 
 	/**
 	 * @author mwesterg
-	 * 
 	 */
 	public static class SimpleInstance {
 		private final int instance;
@@ -143,7 +142,6 @@ public final class Simulator extends Observable {
 
 	/**
 	 * @author mwesterg
-	 * 
 	 */
 	public static class SimpleMarking {
 		private final int count;
@@ -175,7 +173,6 @@ public final class Simulator extends Observable {
 
 	/**
 	 * @author mwesterg
-	 * 
 	 */
 	public class SimulatorStateChanged extends SimulatorUpdate {
 		private final Map<SimpleInstance, SimpleMarking> markings;
@@ -190,7 +187,7 @@ public final class Simulator extends Observable {
 		 * @param step
 		 */
 		public SimulatorStateChanged(final Map<SimpleInstance, SimpleMarking> markings,
-				final Map<SimpleInstance, Boolean> enablings, final String time, final String step) {
+		        final Map<SimpleInstance, Boolean> enablings, final String time, final String step) {
 			this.markings = markings;
 			this.enablings = enablings;
 			this.step = step;
@@ -315,21 +312,19 @@ public final class Simulator extends Observable {
 			try {
 				while (true) {
 					final int count = implementation.getEvalBytes(data, 0, data.length);
-					if (count == -1) return;
+					if (count == -1) { return; }
 					int first = 0;
 					for (int i = 0; i < count; i++) {
 						final byte b = data[i];
 						if (b == 1 || b == 2) {
 							if (b == 1) {
 								if (i != first) {
-									forceNotify(new PartialResult(new String(data, first, i - first
-											- 1), false));
+									forceNotify(new PartialResult(new String(data, first, i - first - 1), false));
 								}
 								evalQueue.put(sb.toString());
 							} else {
 								if (i != first) {
-									forceNotify(new PartialResult(new String(data, first, i - first
-											- 1), true));
+									forceNotify(new PartialResult(new String(data, first, i - first - 1), true));
 								}
 								evalQueue.put(new EvaluationException(sb.toString()));
 							}
@@ -382,7 +377,7 @@ public final class Simulator extends Observable {
 
 	class StateChangedHandler implements Handler {
 		@Override
-        public Object handle(final List<Object> values) {
+		public Object handle(final List<Object> values) {
 			// TODO Auto-generated method stub
 			return null;
 		}
@@ -414,8 +409,8 @@ public final class Simulator extends Observable {
 	 */
 	public String evaluate(final Object source, final String expr) throws Exception {
 		lock();
-		if (!packetQueue.isEmpty()) throw new IOException("PacketQueue contains stale data");
-		if (!evalQueue.isEmpty()) throw new IOException("EvalQueue contains stale data");
+		if (!packetQueue.isEmpty()) { throw new IOException("PacketQueue contains stale data"); }
+		if (!evalQueue.isEmpty()) { throw new IOException("EvalQueue contains stale data"); }
 		forceNotify(new Input(source, expr));
 		final Object result;
 		try {
@@ -430,22 +425,20 @@ public final class Simulator extends Observable {
 				sendLock.unlock();
 			}
 			result = evalQueue.get();
-			if (!(result instanceof String) && !(result instanceof Exception))
-				throw new IOException("Received result of incomprehensible type: " + result);
+			if (!(result instanceof String) && !(result instanceof Exception)) { throw new IOException(
+			        "Received result of incomprehensible type: " + result); }
 		} catch (final Exception e) {
 			if (Simulator.debug) {
 				System.out.println("failed: " + e.getMessage());
 			}
-			if (!packetQueue.isEmpty())
-				throw new IOException("Expected no reply in PacketQueue, got at least one");
-			if (!evalQueue.isEmpty())
-				throw new IOException("Expected no reply in EvalQueue, got at least one");
+			if (!packetQueue.isEmpty()) { throw new IOException("Expected no reply in PacketQueue, got at least one"); }
+			if (!evalQueue.isEmpty()) { throw new IOException("Expected no reply in EvalQueue, got at least one"); }
 			throw e;
 		} finally {
 			release();
 		}
-		if (!packetQueue.isEmpty()) throw new IOException("Expected no reply, got at least one");
-		if (!evalQueue.isEmpty()) throw new IOException("Expected only one eval result; got more");
+		if (!packetQueue.isEmpty()) { throw new IOException("Expected no reply, got at least one"); }
+		if (!evalQueue.isEmpty()) { throw new IOException("Expected only one eval result; got more"); }
 		if (result instanceof String) {
 			if (Simulator.debug) {
 				System.out.println("result: " + result);
@@ -489,8 +482,8 @@ public final class Simulator extends Observable {
 	}
 
 	/**
-	 * Lock the current simulator. This can be used when more than one call to send ore evaluate are
-	 * required. It is not needed for one single call. Unlock the simulator again with release.
+	 * Lock the current simulator. This can be used when more than one call to send ore evaluate are required. It is not
+	 * needed for one single call. Unlock the simulator again with release.
 	 */
 	public void lock() {
 		lock.lock();
@@ -512,8 +505,8 @@ public final class Simulator extends Observable {
 	 */
 	public Packet send(final Packet p) throws IOException {
 		lock();
-		if (!packetQueue.isEmpty()) throw new IOException("PacketQueue contains stale data");
-		if (!evalQueue.isEmpty()) throw new IOException("EvalQueue contains stale data");
+		if (!packetQueue.isEmpty()) { throw new IOException("PacketQueue contains stale data"); }
+		if (!evalQueue.isEmpty()) { throw new IOException("EvalQueue contains stale data"); }
 		forceNotify(new PacketSent(p));
 		try {
 			if (Simulator.debug) {
@@ -529,9 +522,8 @@ public final class Simulator extends Observable {
 			if (Simulator.debug) {
 				System.out.println("receiving: " + result);
 			}
-			if (!packetQueue.isEmpty()) throw new IOException("Expected only one reply, got more");
-			if (!evalQueue.isEmpty())
-				throw new IOException("Expected no eval result; got at least one");
+			if (!packetQueue.isEmpty()) { throw new IOException("Expected only one reply, got more"); }
+			if (!evalQueue.isEmpty()) { throw new IOException("Expected no eval result; got at least one"); }
 			forceNotify(new PacketReceived(result));
 			return result;
 		} finally {
@@ -557,30 +549,27 @@ public final class Simulator extends Observable {
 	 * @param enablings
 	 * @param time
 	 * @param step
-	 * 
 	 */
 	public void refreshViews(final Map<SimpleInstance, SimpleMarking> markings,
-			final Map<SimpleInstance, Boolean> enablings, final String time, final String step) {
+	        final Map<SimpleInstance, Boolean> enablings, final String time, final String step) {
 		forceNotify(new SimulatorStateChanged(markings, enablings, time, step));
 	}
 
 	Packet handle(final Packet p) {
 		try {
-			if (p.isGFCBIS()) return handleRefresh(p);
+			if (p.isGFCBIS()) { return handleRefresh(p); }
 			final Handler h = handlers.get(p.getCommand());
 			final Object result = h.handle(p.getParameters());
-			if (p.getReturnType() != null && !p.getReturnType().equals(Void.class)
-					&& result != null && p.getReturnType().isAssignableFrom(result.getClass()))
-				return new Packet(5, Collections.singletonList(result));
+			if (p.getReturnType() != null && !p.getReturnType().equals(Void.class) && result != null
+			        && p.getReturnType().isAssignableFrom(result.getClass())) { return new Packet(5,
+			        Collections.singletonList(result)); }
 		} catch (final Exception e) {
 			// Ignore if we do not return normally
 		}
-		if (String.class.equals(p.getReturnType()))
-			return new Packet(5, Collections.singletonList("Error in execution"));
-		if (Integer.class.equals(p.getReturnType()))
-			return new Packet(5, Collections.singletonList(-1));
-		if (Boolean.class.equals(p.getReturnType()))
-			return new Packet(5, Collections.singletonList(false));
+		if (String.class.equals(p.getReturnType())) { return new Packet(5,
+		        Collections.singletonList("Error in execution")); }
+		if (Integer.class.equals(p.getReturnType())) { return new Packet(5, Collections.singletonList(-1)); }
+		if (Boolean.class.equals(p.getReturnType())) { return new Packet(5, Collections.singletonList(false)); }
 		return new Packet(5, Collections.emptyList());
 	}
 

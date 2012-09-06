@@ -30,10 +30,10 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.cpntools.accesscpn.engine.Packet;
 import org.cpntools.accesscpn.engine.Simulator;
 import org.cpntools.accesscpn.engine.highlevel.HighLevelSimulator;
 import org.cpntools.accesscpn.engine.highlevel.PacketPrinter;
+import org.cpntools.accesscpn.engine.protocol.Packet;
 import org.cpntools.accesscpn.model.PetriNet;
 
 public class ProxySimulator extends Thread {

@@ -4,12 +4,12 @@ import java.util.NoSuchElementException;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.cpntools.accesscpn.engine.Packet;
 import org.cpntools.accesscpn.engine.Simulator;
 import org.cpntools.accesscpn.engine.Simulator.Input;
 import org.cpntools.accesscpn.engine.Simulator.Message;
 import org.cpntools.accesscpn.engine.Simulator.PacketReceived;
 import org.cpntools.accesscpn.engine.Simulator.PacketSent;
+import org.cpntools.accesscpn.engine.protocol.Packet;
 
 /**
  * @author michael
@@ -51,7 +51,7 @@ public abstract class PacketInspector implements Observer {
 				}
 			} else if (arg1 instanceof Simulator.Message) {
 				try {
-					handleMessage(((Message) arg1));
+					handleMessage((Message) arg1);
 				} catch (final Exception e) {
 					e.printStackTrace();
 				}

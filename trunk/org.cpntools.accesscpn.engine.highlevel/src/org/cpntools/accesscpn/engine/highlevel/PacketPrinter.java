@@ -2,7 +2,7 @@ package org.cpntools.accesscpn.engine.highlevel;
 
 import java.util.Observer;
 
-import org.cpntools.accesscpn.engine.Packet;
+import org.cpntools.accesscpn.engine.protocol.Packet;
 
 public class PacketPrinter extends PacketInspector implements Observer {
 	public PacketPrinter(final HighLevelSimulator simulator) {

@@ -26,11 +26,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.cpntools.accesscpn.engine.Packet;
 import org.cpntools.accesscpn.engine.highlevel.HighLevelSimulator;
 import org.cpntools.accesscpn.engine.highlevel.PacketInspector;
 import org.cpntools.accesscpn.engine.highlevel.checker.Checker;
 import org.cpntools.accesscpn.engine.highlevel.checker.ErrorInitializingSMLInterface;
+import org.cpntools.accesscpn.engine.protocol.Packet;
 import org.cpntools.accesscpn.model.Arc;
 import org.cpntools.accesscpn.model.Code;
 import org.cpntools.accesscpn.model.Condition;
