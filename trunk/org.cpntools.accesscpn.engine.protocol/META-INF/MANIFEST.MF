@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Engine Plug-in
+Bundle-SymbolicName: org.cpntools.accesscpn.engine.protocol;singleton:=true
+Bundle-Version: 3.0.0
+Bundle-ActivationPolicy: lazy
+Export-Package: org.cpntools.accesscpn.engine.protocol
+Bundle-Vendor: CPN Group, University of Aarhus
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
