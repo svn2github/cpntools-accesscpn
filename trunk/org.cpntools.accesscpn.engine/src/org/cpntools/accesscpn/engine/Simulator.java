@@ -21,6 +21,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import org.cpntools.accesscpn.engine.protocol.Packet;
 import org.cpntools.accesscpn.engine.protocol.handler.Handler;
+import org.cpntools.accesscpn.engine.utils.BlockingQueue;
 
 /**
  * @author Michael Westergaard
