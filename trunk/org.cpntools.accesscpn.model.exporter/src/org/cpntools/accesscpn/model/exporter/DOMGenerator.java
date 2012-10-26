@@ -178,7 +178,7 @@ public class DOMGenerator {
 		chars.put(inst, c++);
 		for (final org.cpntools.accesscpn.engine.highlevel.instance.Instance<Page> sspi : modelInstance
 		        .getAllSubpages(spi)) {
-			processChildren(document, instance, spi, chars, result, modelInstance);
+			processChildren(document, instance, sspi, chars, result, modelInstance);
 		}
 	}
 
