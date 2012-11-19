@@ -74,8 +74,6 @@ public class Packet implements Serializable {
 	 *            command type
 	 */
 	public Packet(final int opcode, final int command) {
-		if (opcode != 7 && opcode != 9 && opcode == 5 && command != 1) { throw new IllegalArgumentException(
-		        "Trying to create GPC with wrong opcode"); }
 		if (opcode == 5) {
 			gfcbis = true;
 		}
@@ -220,7 +218,7 @@ public class Packet implements Serializable {
 	 * @return whether this is a BIS type packet
 	 */
 	public boolean isBIS() {
-		return opcode == 9 || opcode == 7;
+		return opcode == 9 || opcode == 7 || opcode == 3 || opcode == 12;
 	}
 
 	/**
@@ -228,6 +226,13 @@ public class Packet implements Serializable {
 	 */
 	public boolean isGFC() {
 		return opcode == 5 || opcode == 6;
+	}
+
+	/**
+	 * @return whether this is a GUI call-back
+	 */
+	public boolean isCB() {
+		return opcode == 3;
 	}
 
 	private void putByteArray(final DataOutputStream out, final byte[] packetdata) throws IOException {
@@ -269,77 +274,7 @@ public class Packet implements Serializable {
 			System.out.println("Packet.recevied opcode: " + opcode);
 		}
 		final List<Integer> seen = new ArrayList<Integer>();
-		if (isGFC()) {
-			// FUCK CPN Tools! Due to misinterpretation of the GFC protocol in CPN Tools,
-			// we need to detect comm from CPN Tools, as it expects GFC packets in BIS format.
-			// The formats are
-			// GFC: opcode, command, #args, rtype, p1, ..., pn
-			// BIS: opcode, #bools, #ints, #strings, b1, .., bn, i1, .., im, s1, .., so
-			//
-			// For GFC command = 2, p1, .., pn are of the format pidir, pitype[, pival]
-			// pidir in 1, 2, 3 and pitype in 1, 2, 3, 4, 5, 6, 8
-			// For BIS #ints >= 4, b1, .., bn in 0, 1, i1 = 1
-			// unification means that
-			// - 0) #bools = command = 2 (or BIS)
-			// - 1) #ints = #args >= 4 (or GFC)
-			// - 2) #strings = rtype in 1, 2, 3, 4, 5, 6, 8 (or BIS)
-			// - 3) b1 = p1dir = 1 (true or IN); if 0 then BIS, if 2/3 then GFC
-			// - 4) b2 = p1type = 1 (true or int); if 0 then BIS, if 2, 3, 4, 5, 6, 8 then GFC
-			// - 5) i1 = p1val = 1 (BIS command) (or GFC)
-			// - 6) i2 = p2dir = 1, 2, 3 (delay) (or BIS)
-			// - 7) i3 = p2type in 1, 2, 3, 4, 5, 6, 8 (places) (or BIS)
-			// - 8) i4 = p2val or p3dir (if p2dir = 2 or p2type = 4) (trans); 2 or GFC (as trans = #bool)
-			// - 7) i3 = 1/2 and #string = 6/8 (or GFC) as #strings = 2 + #trans + 2 * #place = 2 + 2 + 2 * #place = 1,
-// 2, 3, 4, 5, 6, 8 and earlier i3 != 0
-			// - 1) #ints = 4 + #trans + 2 * #place = 4 + 2 + 2 * 1/2 = 8/10 (or GFC)
-			gfcbis = false;
-			if (getIntWithPutback(seen, 0, in) == 2) { // #bools/command
-				if (getIntWithPutback(seen, 1, in) >= 4) { // #ints/#args
-					if (isGFCType(getIntWithPutback(seen, 2, in))) { // #strings/rtype
-						if (getIntWithPutback(seen, 3, in) == 1) { // b1/p1dir
-							if (getIntWithPutback(seen, 4, in) == 1) { // b2/p1type
-								if (getIntWithPutback(seen, 5, in) == 1) { // i1 (command)/p1val
-									if (isGFCDirection(getIntWithPutback(seen, 6, in))) { // i2 (delay)/p2dir
-										if (isGFCType(getIntWithPutback(seen, 7, in))) { // i3 (places)/p2type
-											if (getIntWithPutback(seen, 8, in) == 2) { // i4 (trans)/p2val or p3dir (if
-// p2dir = 2)
-												if (getIntWithPutback(seen, 7, in) == 2
-												        && getIntWithPutback(seen, 2, in) == 8
-												        || getIntWithPutback(seen, 7, in) == 1
-												        && getIntWithPutback(seen, 2, in) == 6) {
-													if (getIntWithPutback(seen, 1, in) == 8
-													        || getIntWithPutback(seen, 1, in) == 10) {
-														gfcbis = true;
-													}
-												}
-											}
-										} else {
-											gfcbis = true;
-										}
-									} else {
-										gfcbis = true;
-									}
-								}
-							} else {
-								if (getIntWithPutback(seen, 4, in) == 0) {
-									gfcbis = true;
-								}
-							}
-						} else {
-							if (getIntWithPutback(seen, 3, in) == 0) {
-								gfcbis = true;
-							}
-						}
-					} else {
-						gfcbis = true;
-					}
-				}
-			} else {
-				gfcbis = true;
-			}
-		}
-
-		if (isBIS() || isGFCBIS()) {
+		if (isBIS()) {
 			if (b != null) {
 				b.clear();
 			} else {
@@ -476,13 +411,6 @@ public class Packet implements Serializable {
 	}
 
 	/**
-	 * @return
-	 */
-	public boolean isGFCBIS() {
-		return isGFC() && gfcbis;
-	}
-
-	/**
 	 * 
 	 */
 	public void reset() {
@@ -503,7 +431,7 @@ public class Packet implements Serializable {
 		}
 		out.writeInt(opcode);
 
-		if (isBIS() || isGFCBIS()) {
+		if (isBIS()) {
 			if (Packet.debug) {
 				System.out.println("Write BIS");
 			}
@@ -592,7 +520,7 @@ public class Packet implements Serializable {
 	public String toString() {
 		final StringBuilder sb = new StringBuilder("Packet\n opcode = ");
 		sb.append(opcode);
-		if (isBIS() || isGFCBIS()) {
+		if (isBIS()) {
 			if (opcode == 9 || opcode == 5) {
 				try {
 					final String cmd = getCommand(i.get(0));

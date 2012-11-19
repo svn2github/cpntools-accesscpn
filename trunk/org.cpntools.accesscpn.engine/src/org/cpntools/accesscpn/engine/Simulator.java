@@ -286,8 +286,12 @@ public final class Simulator extends Observable {
 			try {
 				while (true) {
 					Packet p = implementation.receive();
-					if (p.isGFC()) {
-						p = handle(p);
+					if (p.isGFC() || p.isCB()) {
+						if (p.isCB()) {
+							p = handleRefresh(p);
+						} else {
+							p = handle(p);
+						}
 						sendLock.lock();
 						implementation.send(p);
 						sendLock.unlock();
@@ -559,7 +563,6 @@ public final class Simulator extends Observable {
 
 	Packet handle(final Packet p) {
 		try {
-			if (p.isGFCBIS()) { return handleRefresh(p); }
 			final Handler h = handlers.get(p.getCommand());
 			final Object result = h.handle(p.getParameters());
 			if (p.getReturnType() != null && !p.getReturnType().equals(Void.class) && result != null
@@ -575,7 +578,7 @@ public final class Simulator extends Observable {
 		return new Packet(5, Collections.emptyList());
 	}
 
-	private Packet handleRefresh(final Packet p) {
+	Packet handleRefresh(final Packet p) {
 		p.reset();
 		p.getInteger(); // command = 1
 		final Map<SimpleInstance, Boolean> enablings = new HashMap<SimpleInstance, Boolean>();
