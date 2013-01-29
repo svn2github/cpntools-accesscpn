@@ -49,8 +49,6 @@ public class Packet implements Serializable {
 	List<String> s;
 	Iterator<String> si;
 
-	private boolean gfcbis;
-
 	/**
 	 * 
 	 */
@@ -74,9 +72,6 @@ public class Packet implements Serializable {
 	 *            command type
 	 */
 	public Packet(final int opcode, final int command) {
-		if (opcode == 5) {
-			gfcbis = true;
-		}
 		this.opcode = opcode;
 		b = new ArrayList<Boolean>();
 		i = new ArrayList<Integer>();
@@ -218,7 +213,7 @@ public class Packet implements Serializable {
 	 * @return whether this is a BIS type packet
 	 */
 	public boolean isBIS() {
-		return opcode == 9 || opcode == 7 || opcode == 3 || opcode == 12;
+		return opcode == 9 || opcode == 7 || opcode == 3 || opcode == 12 || opcode == 13;
 	}
 
 	/**
