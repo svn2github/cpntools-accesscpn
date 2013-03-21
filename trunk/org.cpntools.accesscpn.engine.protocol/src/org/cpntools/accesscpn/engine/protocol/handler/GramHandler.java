@@ -19,6 +19,9 @@ import org.cpntools.accesscpn.engine.utils.SingleLineLogFormatter;
 public class GramHandler implements Handler {
 	private static List<Object> handlers = Collections.synchronizedList(new ArrayList<Object>());
 	private static final Logger logger = Logger.getLogger("GramHandler");
+	/**
+	 * 
+	 */
 	public static final boolean DEBUG_GRAM = false;
 
 	static {
@@ -44,6 +47,9 @@ public class GramHandler implements Handler {
 
 	private final LinkedList<Object> localHandlers;
 
+	/**
+	 * 
+	 */
 	public GramHandler() {
 		localHandlers = new LinkedList<Object>();
 	}

@@ -9,6 +9,7 @@ public class DMOSimulatorException extends Exception {
      * 
      */
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("unused")
 	private final Packet p;
 
 	/**

@@ -6,6 +6,11 @@ package org.cpntools.accesscpn.engine.protocol;
 public class UnknownOpcodeException extends DMOSimulatorException {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * @param p
 	 */
 	public UnknownOpcodeException(final Packet p) {

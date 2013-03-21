@@ -397,13 +397,13 @@ public class Packet implements Serializable {
 		}
 	}
 
-	private boolean isGFCDirection(final int value) {
-		return value == 1 || value == 2 || value == 3;
-	}
+// private boolean isGFCDirection(final int value) {
+// return value == 1 || value == 2 || value == 3;
+// }
 
-	private boolean isGFCType(final int value) {
-		return value == 1 || value == 2 || value == 3 || value == 4 || value == 5 || value == 6 || value == 8;
-	}
+// private boolean isGFCType(final int value) {
+// return value == 1 || value == 2 || value == 3 || value == 4 || value == 5 || value == 6 || value == 8;
+// }
 
 	/**
 	 * 
