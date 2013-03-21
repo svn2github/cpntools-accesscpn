@@ -5,8 +5,10 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +20,8 @@ import org.cpntools.accesscpn.engine.utils.SingleLineLogFormatter;
  */
 public class GramHandler implements Handler {
 	private static List<Object> handlers = Collections.synchronizedList(new ArrayList<Object>());
+	private final Map<String, List<Object>> namedHandlers = Collections
+	        .synchronizedMap(new HashMap<String, List<Object>>());
 	private static final Logger logger = Logger.getLogger("GramHandler");
 	/**
 	 * 
@@ -58,9 +62,25 @@ public class GramHandler implements Handler {
 	 * @param newHandlers
 	 *            handler local to this simulator instance
 	 */
-	public synchronized void addLocalHandler(final Object... newHandlers) {
+	public void addLocalHandler(final Object... newHandlers) {
+		addNamedHandler(null, newHandlers);
+	}
+
+	/**
+	 * @param name
+	 * @param newHandlers
+	 */
+	public synchronized void addNamedHandler(final String name, final Object... newHandlers) {
+		List<Object> namedHandler = namedHandlers.get(name);
+		if (name == null) {
+			namedHandler = localHandlers;
+		}
+		if (namedHandler == null) {
+			namedHandler = Collections.synchronizedList(new ArrayList<Object>());
+			namedHandlers.put(name, namedHandler);
+		}
 		for (final Object handler : newHandlers) {
-			localHandlers.add(handler);
+			namedHandler.add(handler);
 		}
 	}
 
@@ -88,7 +108,7 @@ public class GramHandler implements Handler {
 		}
 		final Object o = structured.removeFirst();
 		if (!(o instanceof String)) { return null; }
-		final String name = (String) o;
+		String name = (String) o;
 		final Class<?>[] parameterTypes = new Class<?>[structured.size()];
 		int i = 0;
 		for (final Object p : structured) {
@@ -100,7 +120,20 @@ public class GramHandler implements Handler {
 		}
 		Method m = null;
 		Object p = null;
-		for (final Object handler : localHandlers) {
+		final String[] splitName = name.split("[.]", 2);
+		@SuppressWarnings("hiding")
+		List<Object> handlers = localHandlers;
+		if (splitName.length > 1) {
+			handlers = namedHandlers.get(splitName[0]);
+			name = splitName[1];
+			if (name == null || name.isEmpty()) {
+				handlers = null;
+			}
+			if (handlers == null) {
+				handlers = Collections.emptyList();
+			}
+		}
+		for (final Object handler : handlers) {
 			try {
 				m = handler.getClass().getMethod(name, parameterTypes);
 				p = handler;
