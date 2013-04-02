@@ -450,7 +450,8 @@ public class DOMGenerator {
 
 	private static void exportCPNType(final Document document, final Element color, final CPNReal type)
 	        throws OperationNotSupportedException {
-		throw new OperationNotSupportedException();
+		final Element realNode = document.createElement(DeclarationParser.realNode);
+		color.appendChild(realNode);
 	}
 
 	private static void exportCPNType(final Document document, final Element color, final CPNRecord type) {
