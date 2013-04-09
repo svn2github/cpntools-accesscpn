@@ -1037,6 +1037,8 @@ public class DOMGenerator {
 		exportText(document, trans, o);
 		exportLabel(document, trans, o.getCondition(), DOMParser.condNode, o.getId() + "a", position.getX() - 36,
 		        position.getY() - 24);
+		exportLabel(document, trans, o.getPriority(), DOMParser.priorityNode, o.getId() + "d", position.getX() - 36,
+				position.getY() - 24);		
 		exportLabel(document, trans, o.getTime(), DOMParser.timeNode, o.getId() + "b", position.getX() + 36,
 		        position.getY() + 24);
 		exportLabel(document, trans, o.getCode(), DOMParser.codeNode, o.getId() + "c", position.getX() + 36,
