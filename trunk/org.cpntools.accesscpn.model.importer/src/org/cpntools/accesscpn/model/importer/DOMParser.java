@@ -706,6 +706,8 @@ public class DOMParser {
 				assert decl != null;
 				if ("Init function".equals(nme)) {
 					result.setInit(decl);
+				} else if ("Init".equals(nme)) {
+					result.setInit(decl);
 				} else if ("Stop".equals(nme)) {
 					result.setStop(decl);
 				} else if ("Predicate".equals(nme)) {
