@@ -209,16 +209,31 @@ public class DOMGenerator {
 			final org.cpntools.accesscpn.engine.highlevel.instance.Instance<Node> i = (org.cpntools.accesscpn.engine.highlevel.instance.Instance<Node>) n;
 			final Element node = document.createElement("node");
 			node.setAttribute("idref", i.getNode().getId());
-			final String subPageID = i.getTransitionPath().getNode().getSubPageID();
-			final Page page = modelInstance.getModelData().getPage(subPageID);
-			final org.cpntools.accesscpn.engine.highlevel.instance.Instance<Page> pageInstance = InstanceFactory.INSTANCE
-			        .createInstance(page, i.getTransitionPath());
-			node.setAttribute("pageinstanceidref", instances.get(pageInstance));
+			// TODO: here is something wrong as we cannot export an imported monitor
+			if(i.getTransitionPath() != null){
+				final String subPageID = i.getTransitionPath().getNode().getSubPageID();
+				final Page page = modelInstance.getModelData().getPage(subPageID);
+				final org.cpntools.accesscpn.engine.highlevel.instance.Instance<Page> pageInstance = InstanceFactory.INSTANCE
+				        .createInstance(page, i.getTransitionPath());
+				node.setAttribute("pageinstanceidref", instances.get(pageInstance));
+			}
+			else{
+				// TODO: this is a hack just to make it work
+				String id = i.getNode().getPage().getId() + "itop";
+				node.setAttribute("pageinstanceidref", id);
+			}
 			monitor.appendChild(node);
+		}
+		// TODO: this does not work for write in file
+		// TODO: for write in file and data collector the ordering is different
+		if(m.getKind().getValue() == 4){
+			exportDeclaration(document, m, monitor, m.getInit(), "Init", "a");
 		}
 		exportDeclaration(document, m, monitor, m.getPredicate(), "Predicate", "c");
 		exportDeclaration(document, m, monitor, m.getObserver(), "Observer", "d");
-		exportDeclaration(document, m, monitor, m.getInit(), "Init function", "a");
+		if(m.getKind().getValue() != 4){
+			exportDeclaration(document, m, monitor, m.getInit(), "Init function", "a");
+		}
 		exportDeclaration(document, m, monitor, m.getStop(), "Stop", "b");
 		exportDeclaration(document, m, monitor, m.getAction(), "Action", "e");
 		exportOption(document, monitor, m.isDisabled(), "Disabled");
