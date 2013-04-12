@@ -210,28 +210,27 @@ public class DOMGenerator {
 			final Element node = document.createElement("node");
 			node.setAttribute("idref", i.getNode().getId());
 			// TODO: here is something wrong as we cannot export an imported monitor
-			if(i.getTransitionPath() != null){
+			if (i.getTransitionPath() != null) {
 				final String subPageID = i.getTransitionPath().getNode().getSubPageID();
 				final Page page = modelInstance.getModelData().getPage(subPageID);
 				final org.cpntools.accesscpn.engine.highlevel.instance.Instance<Page> pageInstance = InstanceFactory.INSTANCE
 				        .createInstance(page, i.getTransitionPath());
 				node.setAttribute("pageinstanceidref", instances.get(pageInstance));
-			}
-			else{
+			} else {
 				// TODO: this is a hack just to make it work
-				String id = i.getNode().getPage().getId() + "itop";
+				final String id = i.getNode().getPage().getId() + "itop";
 				node.setAttribute("pageinstanceidref", id);
 			}
 			monitor.appendChild(node);
 		}
 		// TODO: this does not work for write in file
 		// TODO: for write in file and data collector the ordering is different
-		if(m.getKind().getValue() == 4){
+		if (m.getKind().getValue() == 4) {
 			exportDeclaration(document, m, monitor, m.getInit(), "Init", "a");
 		}
 		exportDeclaration(document, m, monitor, m.getPredicate(), "Predicate", "c");
 		exportDeclaration(document, m, monitor, m.getObserver(), "Observer", "d");
-		if(m.getKind().getValue() != 4){
+		if (m.getKind().getValue() != 4) {
 			exportDeclaration(document, m, monitor, m.getInit(), "Init function", "a");
 		}
 		exportDeclaration(document, m, monitor, m.getStop(), "Stop", "b");
@@ -793,46 +792,47 @@ public class DOMGenerator {
 		final Element subst = document.createElement(DOMParser.substNode);
 		subst.setAttribute("subpage", o.getSubPageID());
 		final StringBuilder sb = new StringBuilder();
+		int i = 0;
 		for (final ParameterAssignment pa : o.getParameterAssignment()) {
-//
-// final String refPlaceID = pa.getValue();
-// RefPlace r = null;
-// for (final Page pg : o.getPage().getPetriNet().getPage()) {
-// if (pg.getId().equals(o.getSubPageID())) {
-// for (final org.cpntools.accesscpn.model.Object other : pg.getObject()) {
-// if (other.getId().equals(refPlaceID)) {
-// r = (RefPlace) other;
-// }
-// }
-// }
-// }
-//
-// final boolean p_to_t = r != null ? !r.getSourceArc().isEmpty() : true;
-// final boolean t_to_p = r != null ? !r.getTargetArc().isEmpty() : true;
-//
-// final Element arc = document.createElement(DOMParser.arcNode);
-// arc.setAttribute("id", o.getId() + "arc" + i++);
-//
-// String orientation;
-// if (p_to_t && !t_to_p) {
-// orientation = "PtoT";
-// } else if (!p_to_t && t_to_p) {
-// orientation = "TtoP";
-// } else {
-// orientation = "BOTHDIR";
-// }
-//
-// arc.setAttribute("orientation", orientation);
-// arc.setAttribute("order", "1");
-// pageNode.appendChild(arc);
-// final Element transend = document.createElement(DOMParser.transendNode);
-// transend.setAttribute("idref", o.getId());
-// arc.appendChild(transend);
-// final Element placeend = document.createElement(DOMParser.placeendNode);
-// placeend.setAttribute("idref", pa.getParameter());
-// arc.appendChild(placeend);
-// exportLabel(document, arc, empty, DOMParser.annotNode, o.getId() + "arc" + i++, 0, 0);
-//
+
+			final String refPlaceID = pa.getValue();
+			RefPlace r = null;
+			for (final Page pg : o.getPage().getPetriNet().getPage()) {
+				if (pg.getId().equals(o.getSubPageID())) {
+					for (final org.cpntools.accesscpn.model.Object other : pg.getObject()) {
+						if (other.getId().equals(refPlaceID)) {
+							r = (RefPlace) other;
+						}
+					}
+				}
+			}
+
+			final boolean p_to_t = r != null ? !r.getSourceArc().isEmpty() : true;
+			final boolean t_to_p = r != null ? !r.getTargetArc().isEmpty() : true;
+
+			final Element arc = document.createElement(DOMParser.arcNode);
+			arc.setAttribute("id", o.getId() + "arc" + i++);
+
+			String orientation;
+			if (false && p_to_t && !t_to_p) {
+				orientation = "PtoT";
+			} else if (false && !p_to_t && t_to_p) {
+				orientation = "TtoP";
+			} else {
+				orientation = "BOTHDIR";
+			}
+
+			arc.setAttribute("orientation", orientation);
+			arc.setAttribute("order", "1");
+			pageNode.appendChild(arc);
+			final Element transend = document.createElement(DOMParser.transendNode);
+			transend.setAttribute("idref", o.getId());
+			arc.appendChild(transend);
+			final Element placeend = document.createElement(DOMParser.placeendNode);
+			placeend.setAttribute("idref", pa.getParameter());
+			arc.appendChild(placeend);
+			exportLabel(document, arc, empty, DOMParser.annotNode, o.getId() + "arc" + i++, 0, 0);
+
 			sb.append('(');
 			sb.append(pa.getValue());
 			sb.append(',');
@@ -882,7 +882,7 @@ public class DOMGenerator {
 		exportLabel(document, place, o.getSort(), DOMParser.typeNode, o.getId() + "a", position.getX() + 36,
 		        position.getY() - 24);
 		exportLabel(document, place, o.getInitialMarking(), DOMParser.initmarkNode, o.getId() + "b",
-		        position.getX() + 36, position.getY() - 24);
+		        position.getX() + 36, position.getY() + 24);
 		return position;
 	}
 
@@ -1051,13 +1051,13 @@ public class DOMGenerator {
 
 		exportText(document, trans, o);
 		exportLabel(document, trans, o.getCondition(), DOMParser.condNode, o.getId() + "a", position.getX() - 36,
-		        position.getY() - 24);		
+		        position.getY() - 24);
 		exportLabel(document, trans, o.getTime(), DOMParser.timeNode, o.getId() + "b", position.getX() + 36,
 		        position.getY() + 24);
 		exportLabel(document, trans, o.getCode(), DOMParser.codeNode, o.getId() + "c", position.getX() + 36,
 		        position.getY());
 		exportLabel(document, trans, o.getPriority(), DOMParser.priorityNode, o.getId() + "d", position.getX() - 36,
-				position.getY() - 24);
+		        position.getY() - 24);
 	}
 
 	private static void exportPage(final Document document, final Element rootTreeNode, final Page p,
