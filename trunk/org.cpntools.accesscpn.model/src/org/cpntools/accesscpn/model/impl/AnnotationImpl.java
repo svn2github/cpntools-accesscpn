@@ -83,6 +83,10 @@ public abstract class AnnotationImpl extends LabelImpl implements Annotation {
 		return graphics;
 	}
 
+	/**
+	 * @see org.cpntools.accesscpn.model.Annotation#getAnnotationGraphics()
+	 */
+	@Override
 	public AnnotationGraphics getAnnotationGraphics() {
 		return (AnnotationGraphics) getGraphics();
 	}

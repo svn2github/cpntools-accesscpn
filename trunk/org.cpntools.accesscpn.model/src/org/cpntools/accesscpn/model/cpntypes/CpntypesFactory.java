@@ -114,6 +114,15 @@ public interface CpntypesFactory {
 	CPNInt createCPNInt();
 
 	/**
+	 * Returns a new object of class '<em>CPN Int Inf</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>CPN Int Inf</em>'.
+	 * @generated
+	 */
+	CPNIntInf createCPNIntInf();
+
+	/**
 	 * Returns a new object of class '<em>CPN Bool</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -157,6 +166,15 @@ public interface CpntypesFactory {
 	 * @generated
 	 */
 	CPNSubset createCPNSubset();
+
+	/**
+	 * Returns a new object of class '<em>CPN Time</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>CPN Time</em>'.
+	 * @generated
+	 */
+	CPNTime createCPNTime();
 
 	/**
 	 * Returns a new object of class '<em>Name Type Pair</em>'.

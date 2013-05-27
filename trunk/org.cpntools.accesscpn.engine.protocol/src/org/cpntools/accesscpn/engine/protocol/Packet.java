@@ -213,7 +213,7 @@ public class Packet implements Serializable {
 	 * @return whether this is a BIS type packet
 	 */
 	public boolean isBIS() {
-		return opcode == 9 || opcode == 7 || opcode == 3 || opcode == 12 || opcode == 13;
+		return opcode == 9 || opcode == 7 || opcode == 3 && data == null || opcode == 12 || opcode == 13;
 	}
 
 	/**

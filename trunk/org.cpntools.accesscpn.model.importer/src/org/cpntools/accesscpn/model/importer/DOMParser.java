@@ -378,6 +378,14 @@ public class DOMParser {
 			arc.setSource(idToTransitionMap.get(transIdref));
 			arc.setTarget(idToNodePlaceMap.get(placeIdref));
 			arc.setKind(HLArcType.NORMAL);
+		} else if (orientation.equalsIgnoreCase("inhibitor")) {
+			arc.setSource(idToTransitionMap.get(transIdref));
+			arc.setTarget(idToNodePlaceMap.get(placeIdref));
+			arc.setKind(HLArcType.INHIBITOR);
+		} else if (orientation.equalsIgnoreCase("reset")) {
+			arc.setSource(idToTransitionMap.get(transIdref));
+			arc.setTarget(idToNodePlaceMap.get(placeIdref));
+			arc.setKind(HLArcType.RESET);
 		} else {
 			throw new NetStructureException("Unknown arc orientation", n);
 		}
@@ -723,6 +731,7 @@ public class DOMParser {
 				final String id = ParserUtil.getAttr(currentNode, IDREF);
 				final Object instance = instances.get(ParserUtil.getAttr(currentNode, "pageinstanceidref"));
 				if (instance instanceof org.cpntools.accesscpn.engine.highlevel.instance.Instance<?>) {
+					@SuppressWarnings("unchecked")
 					final org.cpntools.accesscpn.engine.highlevel.instance.Instance<Instance> ii = (org.cpntools.accesscpn.engine.highlevel.instance.Instance<Instance>) instance;
 					final org.cpntools.accesscpn.engine.highlevel.instance.Instance<org.cpntools.accesscpn.model.Node> iii = InstanceFactory.INSTANCE
 					        .createInstance(modelData.getNode(id), ii.getInstanceNumber());
@@ -909,6 +918,7 @@ public class DOMParser {
 			}
 		}
 
+		@SuppressWarnings("hiding")
 		PlaceNode placeNode;
 		if (isFusionPlace || isPort) {
 			final RefPlace refPlace = DOMParser.factory.createRefPlace();

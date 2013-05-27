@@ -31,9 +31,12 @@ public class LoadTest {
 		System.out.println("=======================================================");
 		System.out.println(InstancePrinter.printMonitors(petriNet));
 		final HighLevelSimulator s = HighLevelSimulator.getHighLevelSimulator();
-		final Checker checker = new Checker(petriNet, null, s);
-		checker.checkEntireModel();
+		s.setSimulationReportOptions(false, false, "");
+		final Checker checker = new Checker(petriNet, selectedFile, s);
+		checker.checkEntireModel(selectedFile.getParent(), selectedFile.getParent());
 		System.out.println("Done");
+		System.out.println(s.execute(20));
+		System.out.println(s.getMarking());
 	}
 
 }

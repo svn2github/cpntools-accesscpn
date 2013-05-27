@@ -43,7 +43,23 @@ public enum HLArcType implements InternalHLArcType {
 	 * @generated
 	 * @ordered
 	 */
-	TEST(1, "Test", "Test");
+	TEST(1, "Test", "Test"), /**
+	 * The '<em><b>Inhibitor</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #INHIBITOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	INHIBITOR(2, "Inhibitor", "Inhibitor"), /**
+	 * The '<em><b>Reset</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #RESET_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	RESET(3, "Reset", "Reset");
 	/**
 	 * @model name="Normal"
 	 */
@@ -55,6 +71,36 @@ public enum HLArcType implements InternalHLArcType {
 	public static final int TEST_VALUE = 1;
 
 	/**
+	 * The '<em><b>Inhibitor</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Inhibitor</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #INHIBITOR
+	 * @model name="Inhibitor"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int INHIBITOR_VALUE = 2;
+
+	/**
+	 * The '<em><b>Reset</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Reset</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #RESET
+	 * @model name="Reset"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RESET_VALUE = 3;
+
+	/**
 	 * An array of all the '<em><b>HL Arc Type</b></em>' enumerators.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -62,6 +108,8 @@ public enum HLArcType implements InternalHLArcType {
 	private static final HLArcType[] VALUES_ARRAY = new HLArcType[] {
 			NORMAL,
 			TEST,
+			INHIBITOR,
+			RESET,
 		};
 
 	/**
@@ -123,6 +171,8 @@ public enum HLArcType implements InternalHLArcType {
 		switch (value) {
 			case NORMAL_VALUE: return NORMAL;
 			case TEST_VALUE: return TEST;
+			case INHIBITOR_VALUE: return INHIBITOR;
+			case RESET_VALUE: return RESET;
 		}
 		return null;
 	}

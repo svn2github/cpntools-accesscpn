@@ -28,12 +28,14 @@ import org.cpntools.accesscpn.model.cpntypes.CPNBool;
 import org.cpntools.accesscpn.model.cpntypes.CPNEnum;
 import org.cpntools.accesscpn.model.cpntypes.CPNIndex;
 import org.cpntools.accesscpn.model.cpntypes.CPNInt;
+import org.cpntools.accesscpn.model.cpntypes.CPNIntInf;
 import org.cpntools.accesscpn.model.cpntypes.CPNList;
 import org.cpntools.accesscpn.model.cpntypes.CPNProduct;
 import org.cpntools.accesscpn.model.cpntypes.CPNReal;
 import org.cpntools.accesscpn.model.cpntypes.CPNRecord;
 import org.cpntools.accesscpn.model.cpntypes.CPNString;
 import org.cpntools.accesscpn.model.cpntypes.CPNSubset;
+import org.cpntools.accesscpn.model.cpntypes.CPNTime;
 import org.cpntools.accesscpn.model.cpntypes.CPNUnion;
 import org.cpntools.accesscpn.model.cpntypes.CPNUnit;
 import org.cpntools.accesscpn.model.cpntypes.CpntypesFactory;
@@ -44,7 +46,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
  * @generated
@@ -52,8 +53,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory {
 	/**
 	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static final CpntypesFactoryImpl eINSTANCE = init();
@@ -97,12 +97,14 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 			case CpntypesPackageImpl.CPN_ENUM: return (EObject)createCPNEnum();
 			case CpntypesPackageImpl.CPN_INDEX: return (EObject)createCPNIndex();
 			case CpntypesPackageImpl.CPN_INT: return (EObject)createCPNInt();
+			case CpntypesPackageImpl.CPN_INT_INF: return (EObject)createCPNIntInf();
 			case CpntypesPackageImpl.CPN_LIST: return (EObject)createCPNList();
 			case CpntypesPackageImpl.CPN_PRODUCT: return (EObject)createCPNProduct();
 			case CpntypesPackageImpl.CPN_REAL: return (EObject)createCPNReal();
 			case CpntypesPackageImpl.CPN_RECORD: return (EObject)createCPNRecord();
 			case CpntypesPackageImpl.CPN_STRING: return (EObject)createCPNString();
 			case CpntypesPackageImpl.CPN_SUBSET: return (EObject)createCPNSubset();
+			case CpntypesPackageImpl.CPN_TIME: return (EObject)createCPNTime();
 			case CpntypesPackageImpl.CPN_UNION: return (EObject)createCPNUnion();
 			case CpntypesPackageImpl.CPN_UNIT: return (EObject)createCPNUnit();
 			case CpntypesPackageImpl.NAME_TYPE_PAIR: return (EObject)createNameTypePair();
@@ -116,7 +118,7 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * @generated
 	 */
 	@Override
-    public CPNUnit createCPNUnit() {
+	public CPNUnit createCPNUnit() {
 		CPNUnitImpl cpnUnit = new CPNUnitImpl();
 		return cpnUnit;
 	}
@@ -126,7 +128,7 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * @generated
 	 */
 	@Override
-    public CPNEnum createCPNEnum() {
+	public CPNEnum createCPNEnum() {
 		CPNEnumImpl cpnEnum = new CPNEnumImpl();
 		return cpnEnum;
 	}
@@ -136,7 +138,7 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * @generated
 	 */
 	@Override
-    public CPNProduct createCPNProduct() {
+	public CPNProduct createCPNProduct() {
 		CPNProductImpl cpnProduct = new CPNProductImpl();
 		return cpnProduct;
 	}
@@ -146,7 +148,7 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * @generated
 	 */
 	@Override
-    public CPNReal createCPNReal() {
+	public CPNReal createCPNReal() {
 		CPNRealImpl cpnReal = new CPNRealImpl();
 		return cpnReal;
 	}
@@ -156,7 +158,7 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * @generated
 	 */
 	@Override
-    public CPNIndex createCPNIndex() {
+	public CPNIndex createCPNIndex() {
 		CPNIndexImpl cpnIndex = new CPNIndexImpl();
 		return cpnIndex;
 	}
@@ -166,7 +168,7 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * @generated
 	 */
 	@Override
-    public CPNString createCPNString() {
+	public CPNString createCPNString() {
 		CPNStringImpl cpnString = new CPNStringImpl();
 		return cpnString;
 	}
@@ -176,7 +178,7 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * @generated
 	 */
 	@Override
-    public CPNAlias createCPNAlias() {
+	public CPNAlias createCPNAlias() {
 		CPNAliasImpl cpnAlias = new CPNAliasImpl();
 		return cpnAlias;
 	}
@@ -186,9 +188,19 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * @generated
 	 */
 	@Override
-    public CPNInt createCPNInt() {
+	public CPNInt createCPNInt() {
 		CPNIntImpl cpnInt = new CPNIntImpl();
 		return cpnInt;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CPNIntInf createCPNIntInf() {
+		CPNIntInfImpl cpnIntInf = new CPNIntInfImpl();
+		return cpnIntInf;
 	}
 
 	/**
@@ -198,7 +210,7 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * @generated
 	 */
 	@Override
-    public CPNBool createCPNBool() {
+	public CPNBool createCPNBool() {
 		CPNBoolImpl cpnBool = new CPNBoolImpl();
 		return cpnBool;
 	}
@@ -208,7 +220,7 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * @generated
 	 */
 	@Override
-    public CPNList createCPNList() {
+	public CPNList createCPNList() {
 		CPNListImpl cpnList = new CPNListImpl();
 		return cpnList;
 	}
@@ -218,7 +230,7 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * @generated
 	 */
 	@Override
-    public CPNRecord createCPNRecord() {
+	public CPNRecord createCPNRecord() {
 		CPNRecordImpl cpnRecord = new CPNRecordImpl();
 		return cpnRecord;
 	}
@@ -228,7 +240,7 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * @generated
 	 */
 	@Override
-    public CPNUnion createCPNUnion() {
+	public CPNUnion createCPNUnion() {
 		CPNUnionImpl cpnUnion = new CPNUnionImpl();
 		return cpnUnion;
 	}
@@ -238,7 +250,7 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * @generated
 	 */
 	@Override
-    public CPNSubset createCPNSubset() {
+	public CPNSubset createCPNSubset() {
 		CPNSubsetImpl cpnSubset = new CPNSubsetImpl();
 		return cpnSubset;
 	}
@@ -248,7 +260,17 @@ public class CpntypesFactoryImpl extends EFactoryImpl implements CpntypesFactory
 	 * @generated
 	 */
 	@Override
-    public NameTypePair createNameTypePair() {
+	public CPNTime createCPNTime() {
+		CPNTimeImpl cpnTime = new CPNTimeImpl();
+		return cpnTime;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NameTypePair createNameTypePair() {
 		NameTypePairImpl nameTypePair = new NameTypePairImpl();
 		return nameTypePair;
 	}

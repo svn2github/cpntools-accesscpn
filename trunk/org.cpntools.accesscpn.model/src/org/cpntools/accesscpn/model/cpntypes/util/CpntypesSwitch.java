@@ -48,6 +48,8 @@ import org.cpntools.accesscpn.model.cpntypes.NameTypePair;
 import org.cpntools.accesscpn.model.cpntypes.impl.CpntypesPackageImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.Switch;
 
 /**
  * <!-- begin-user-doc -->
@@ -62,7 +64,7 @@ import org.eclipse.emf.ecore.EObject;
  * @see org.cpntools.accesscpn.model.cpntypes.impl.CpntypesPackageImpl
  * @generated
  */
-public class CpntypesSwitch<T> {
+public class CpntypesSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -84,14 +86,16 @@ public class CpntypesSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @parameter ePackage the package in question.
+	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
-	public T doSwitch(EObject theEObject) {
-		return doSwitch(theEObject.eClass(), theEObject);
+	@Override
+	protected boolean isSwitchFor(EPackage ePackage) {
+		return ePackage == modelPackage;
 	}
 
 	/**
@@ -101,27 +105,8 @@ public class CpntypesSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
-			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
-			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
-		}
-	}
-
-	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
-	 * @generated
-	 */
-	protected T doSwitch(int classifierID, EObject theEObject) {
+	@Override
+ protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case CpntypesPackageImpl.CPN_ALIAS: {
 				CPNAlias cpnAlias = (CPNAlias)theEObject;
@@ -155,6 +140,13 @@ public class CpntypesSwitch<T> {
 				CPNInt cpnInt = (CPNInt)theEObject;
 				T result = caseCPNInt(cpnInt);
 				if (result == null) result = caseCPNType(cpnInt);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CpntypesPackageImpl.CPN_INT_INF: {
+				CPNIntInf cpnIntInf = (CPNIntInf)theEObject;
+				T result = caseCPNIntInf(cpnIntInf);
+				if (result == null) result = caseCPNType(cpnIntInf);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -197,6 +189,13 @@ public class CpntypesSwitch<T> {
 				CPNSubset cpnSubset = (CPNSubset)theEObject;
 				T result = caseCPNSubset(cpnSubset);
 				if (result == null) result = caseCPNType(cpnSubset);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CpntypesPackageImpl.CPN_TIME: {
+				CPNTime cpnTime = (CPNTime)theEObject;
+				T result = caseCPNTime(cpnTime);
+				if (result == null) result = caseCPNType(cpnTime);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -306,6 +305,21 @@ public class CpntypesSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>CPN Int Inf</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>CPN Int Inf</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCPNIntInf(CPNIntInf object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>CPN List</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -396,6 +410,21 @@ public class CpntypesSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>CPN Time</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>CPN Time</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCPNTime(CPNTime object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>CPN Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -466,7 +495,8 @@ public class CpntypesSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	public T defaultCase(EObject object) {
+	@Override
+ public T defaultCase(EObject object) {
 		return null;
 	}
 

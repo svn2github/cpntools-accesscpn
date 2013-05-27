@@ -9,7 +9,13 @@ import java.util.List;
  * @author michael
  */
 public enum TimeType implements InternalTimeType {
-	INTEGER(0, "Integer", "Integer"), REAL(1, "Real", "Real");
+	/**
+	 * 
+	 */
+	INTEGER(0, "Integer", "Integer"), /**
+	 * 
+	 */
+	REAL(1, "Real", "Real");
 
 	/**
 	 * @model name="Integer"
@@ -115,6 +121,7 @@ public enum TimeType implements InternalTimeType {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getValue() {
 	  return value;
 	}
@@ -123,6 +130,7 @@ public enum TimeType implements InternalTimeType {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 	  return name;
 	}
@@ -131,6 +139,7 @@ public enum TimeType implements InternalTimeType {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLiteral() {
 	  return literal;
 	}

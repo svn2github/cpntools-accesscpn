@@ -44,11 +44,14 @@ import org.cpntools.accesscpn.model.cpntypes.CPNBool;
 import org.cpntools.accesscpn.model.cpntypes.CPNEnum;
 import org.cpntools.accesscpn.model.cpntypes.CPNIndex;
 import org.cpntools.accesscpn.model.cpntypes.CPNInt;
+import org.cpntools.accesscpn.model.cpntypes.CPNIntInf;
 import org.cpntools.accesscpn.model.cpntypes.CPNList;
 import org.cpntools.accesscpn.model.cpntypes.CPNProduct;
+import org.cpntools.accesscpn.model.cpntypes.CPNReal;
 import org.cpntools.accesscpn.model.cpntypes.CPNRecord;
 import org.cpntools.accesscpn.model.cpntypes.CPNString;
 import org.cpntools.accesscpn.model.cpntypes.CPNSubset;
+import org.cpntools.accesscpn.model.cpntypes.CPNTime;
 import org.cpntools.accesscpn.model.cpntypes.CPNUnion;
 import org.cpntools.accesscpn.model.cpntypes.CPNUnit;
 import org.cpntools.accesscpn.model.cpntypes.NameTypePair;
@@ -140,7 +143,6 @@ public class PacketGenerator {
 		// Here we ignore unchecked page fusion places
 		constructUncheckedGlobalFusionPlacesAndCount(p, page.readyFusionGroups());
 
-		// Hvordan f�r vi instancerne fra siden?
 		constructUncheckedSubstitutionTransitionsAndCount(p, page.readyInstances());
 
 		constructUncheckedTransitionsAndCount(p, page.readyTransitions());
@@ -429,6 +431,8 @@ public class PacketGenerator {
 			p.addBoolean(true); // Controllable
 
 			final ArrayList<Arc> inOutArcs = new ArrayList<Arc>();
+			final ArrayList<Arc> inhibitorArcs = new ArrayList<Arc>();
+			final ArrayList<Arc> resetArcs = new ArrayList<Arc>();
 			int countInputArcs = 0;
 
 			for (final Arc arc : transition.getTargetArc()) {
@@ -442,6 +446,12 @@ public class PacketGenerator {
 				} else if (arc.getKind() == HLArcType.TEST) {
 					// The arc is an input/output arc
 					inOutArcs.add(arc);
+				} else if (arc.getKind() == HLArcType.INHIBITOR) {
+					// The arc is an input/output arc
+					inhibitorArcs.add(arc);
+				} else if (arc.getKind() == HLArcType.RESET) {
+					// The arc is an input/output arc
+					resetArcs.add(arc);
 				} else {
 					assert false;
 				}
@@ -460,6 +470,12 @@ public class PacketGenerator {
 				} else if (arc.getKind() == HLArcType.TEST) {
 					// The arc is an input/output arc
 					inOutArcs.add(arc);
+				} else if (arc.getKind() == HLArcType.INHIBITOR) {
+					// The arc is an input/output arc
+					inhibitorArcs.add(arc);
+				} else if (arc.getKind() == HLArcType.RESET) {
+					// The arc is an input/output arc
+					resetArcs.add(arc);
 				}
 			}
 			p.addInteger(countOutputArcs);
@@ -470,6 +486,18 @@ public class PacketGenerator {
 				p.addString(arc.getHlinscription().getText());
 			}
 			p.addInteger(inOutArcs.size());
+			for (final Arc arc : inhibitorArcs) {
+				p.addString(arc.getId());
+				p.addString(arc.getOtherEnd(transition).getId());
+				p.addString("");
+			}
+			p.addInteger(inhibitorArcs.size());
+			for (final Arc arc : resetArcs) {
+				p.addString(arc.getId());
+				p.addString(arc.getOtherEnd(transition).getId());
+				p.addString("");
+			}
+			p.addInteger(resetArcs.size());
 		}
 	}
 
@@ -505,6 +533,25 @@ public class PacketGenerator {
 
 	protected Packet constructCPNInt(final Packet p, final CPNInt cpnint) {
 		p.addInteger(3);
+		p.addString(Util.emptyOrNull(cpnint.getLow())); // low
+		p.addString(Util.emptyOrNull(cpnint.getHigh())); // high
+		return p;
+	}
+
+	protected Packet constructCPNReal(final Packet p, final CPNReal cpnint) {
+		p.addInteger(4);
+		p.addString(Util.emptyOrNull(cpnint.getLow())); // low
+		p.addString(Util.emptyOrNull(cpnint.getHigh())); // high
+		return p;
+	}
+
+	protected Packet constructCPNTime(final Packet p, final CPNTime cpnint) {
+		p.addInteger(14);
+		return p;
+	}
+
+	protected Packet constructCPNIntInf(final Packet p, final CPNIntInf cpnint) {
+		p.addInteger(24);
 		p.addString(Util.emptyOrNull(cpnint.getLow())); // low
 		p.addString(Util.emptyOrNull(cpnint.getHigh())); // high
 		return p;
@@ -704,6 +751,21 @@ public class PacketGenerator {
 			@Override
 			public Packet caseCPNSubset(final CPNSubset cpnsubset) {
 				return constructCPNSubset(p, cpnsubset);
+			}
+
+			@Override
+			public Packet caseCPNReal(final CPNReal cpnsubset) {
+				return constructCPNReal(p, cpnsubset);
+			}
+
+			@Override
+			public Packet caseCPNTime(final CPNTime cpnsubset) {
+				return constructCPNTime(p, cpnsubset);
+			}
+
+			@Override
+			public Packet caseCPNIntInf(final CPNIntInf cpnsubset) {
+				return constructCPNIntInf(p, cpnsubset);
 			}
 
 			@Override

@@ -37,9 +37,9 @@ import org.cpntools.accesscpn.model.Page;
 import org.cpntools.accesscpn.model.PetriNet;
 import org.cpntools.accesscpn.model.TimeType;
 import org.cpntools.accesscpn.model.ToolInfo;
+import org.cpntools.accesscpn.model.declaration.TypeDeclaration;
 import org.cpntools.accesscpn.model.monitors.Monitor;
 import org.cpntools.accesscpn.model.monitors.impl.MonitorsPackageImpl;
-import org.cpntools.accesscpn.model.declaration.TypeDeclaration;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -50,7 +50,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Petri Net</b></em>'. <!-- end-user-doc -->
@@ -102,9 +101,9 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	protected Name name;
 
 	/**
-	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getKind()
 	 * @generated
 	 * @ordered
@@ -112,9 +111,9 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	protected static final String KIND_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getKind()
 	 * @generated
 	 * @ordered
@@ -132,9 +131,9 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	protected EList<Page> page;
 
 	/**
-	 * The cached value of the '{@link #getMonitors() <em>Monitors</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getMonitors() <em>Monitors</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getMonitors()
 	 * @generated
 	 * @ordered
@@ -153,8 +152,8 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 
 	/**
 	 * The default value of the '{@link #getTimeType() <em>Time Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getTimeType()
 	 * @generated
 	 * @ordered
@@ -163,8 +162,8 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 
 	/**
 	 * The cached value of the '{@link #getTimeType() <em>Time Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getTimeType()
 	 * @generated
 	 * @ordered
@@ -193,7 +192,7 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 * @generated
 	 */
 	@Override
-    public List<ToolInfo> getToolinfo() {
+	public List<ToolInfo> getToolinfo() {
 		if (toolinfo == null) {
 			toolinfo = new EObjectContainmentWithInverseEList<ToolInfo>(ToolInfo.class, this, ModelPackageImpl.PETRI_NET__TOOLINFO, ModelPackageImpl.TOOL_INFO__PARENT);
 		}
@@ -205,7 +204,7 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 * @generated
 	 */
 	@Override
-    public List<Label> getLabel() {
+	public List<Label> getLabel() {
 		if (label == null) {
 			label = new EObjectContainmentWithInverseEList<Label>(Label.class, this, ModelPackageImpl.PETRI_NET__LABEL, ModelPackageImpl.LABEL__PARENT);
 		}
@@ -217,7 +216,7 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 * @generated
 	 */
 	@Override
-    public Name getName() {
+	public Name getName() {
 		if (name != null && ((EObject)name).eIsProxy()) {
 			InternalEObject oldName = (InternalEObject)name;
 			name = (Name)eResolveProxy(oldName);
@@ -241,7 +240,7 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 * @see org.cpntools.accesscpn.model.HasName#setName(org.cpntools.accesscpn.model.Name)
 	 */
 	@Override
-    public void setName(final Name newName) {
+	public void setName(final Name newName) {
 		if (name != null) {
 			name.setParent(null);
 		}
@@ -267,7 +266,7 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 * @generated
 	 */
 	@Override
-    public List<Page> getPage() {
+	public List<Page> getPage() {
 		if (page == null) {
 			page = new EObjectContainmentWithInverseEList<Page>(Page.class, this, ModelPackageImpl.PETRI_NET__PAGE, ModelPackageImpl.PAGE__PETRI_NET);
 		}
@@ -275,12 +274,11 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-    public List<Monitor> getMonitors() {
+	public List<Monitor> getMonitors() {
 		if (monitors == null) {
 			monitors = new EObjectContainmentWithInverseEList<Monitor>(Monitor.class, this, ModelPackageImpl.PETRI_NET__MONITORS, MonitorsPackageImpl.MONITOR__PETRI_NET);
 		}
@@ -292,7 +290,7 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 * @generated
 	 */
 	@Override
-    public List<FusionGroup> getFusionGroups() {
+	public List<FusionGroup> getFusionGroups() {
 		if (fusionGroups == null) {
 			fusionGroups = new EObjectWithInverseResolvingEList<FusionGroup>(FusionGroup.class, this, ModelPackageImpl.PETRI_NET__FUSION_GROUPS, ModelPackageImpl.FUSION_GROUP__PETRI_NET);
 		}
@@ -300,19 +298,19 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TimeType getTimeType() {
 		return timeType;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTimeType(TimeType newTimeType) {
 		TimeType oldTimeType = timeType;
 		timeType = newTimeType == null ? TIME_TYPE_EDEFAULT : newTimeType;
@@ -321,22 +319,20 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-    public String getKind() {
+	public String getKind() {
 		return kind;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-    public void setKind(String newKind) {
+	public void setKind(String newKind) {
 		String oldKind = kind;
 		kind = newKind;
 		if (eNotificationRequired())
@@ -592,11 +588,11 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 * @see org.cpntools.accesscpn.model.PetriNet#declaration()
 	 */
 	@Override
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public Iterable<HLDeclaration> declaration() {
 		return new Iterable<HLDeclaration>() {
 			@Override
-            public Iterator<HLDeclaration> iterator() {
+			public Iterator<HLDeclaration> iterator() {
 				return (FilterIterator<HLDeclaration>) (FilterIterator<?>) new FilterIterator<Label>(getLabel()
 				        .iterator()) {
 					@Override
@@ -612,16 +608,14 @@ public class PetriNetImpl extends HasIdImpl implements PetriNet {
 	 * @see org.cpntools.accesscpn.model.PetriNet#isTimed()
 	 */
 	@Override
-    public boolean isTimed(){
-	for (HLDeclaration decl : declaration()) {
-		if ((decl.getStructure() != null) && (decl.getStructure() instanceof TypeDeclaration)) {
-			TypeDeclaration structure = (TypeDeclaration) decl.getStructure();
-			if (structure.getSort().getTimed()) {
-				return true;
+	public boolean isTimed() {
+		for (final HLDeclaration decl : declaration()) {
+			if (decl.getStructure() != null && decl.getStructure() instanceof TypeDeclaration) {
+				final TypeDeclaration structure = (TypeDeclaration) decl.getStructure();
+				if (structure.getSort().getTimed()) { return true; }
 			}
 		}
-	}
-	return false;
+		return false;
 	}
 
 } // PetriNetImpl

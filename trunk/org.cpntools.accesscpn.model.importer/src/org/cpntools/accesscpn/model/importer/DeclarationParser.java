@@ -98,7 +98,18 @@ public class DeclarationParser {
 	/**
 	 * 
 	 */
+
 	public static final String realNode = "real";
+
+	/**
+	 * 
+	 */
+	public static final String intinfNode = "intinf";
+
+	/**
+	 * 
+	 */
+	public static final String timeNode = "time";
 	/**
 	 * 
 	 */
@@ -191,8 +202,13 @@ public class DeclarationParser {
 				color.setSort(CPNTypeParser.processAlias(currentNode));
 			} else if (ParserUtil.isElementNodeOfType(currentNode, DeclarationParser.subsetNode)) {
 				color.setSort(CPNTypeParser.processSubset(currentNode));
-			} else if (ParserUtil.isElementNodeOfType(currentNode, DeclarationParser.realNode)) { throw new NetDeclarationException(
-			        "real is not supported", currentNode); }
+			} else if (ParserUtil.isElementNodeOfType(currentNode, DeclarationParser.realNode)) {
+				color.setSort(CPNTypeParser.processReal(currentNode));
+			} else if (ParserUtil.isElementNodeOfType(currentNode, DeclarationParser.timeNode)) {
+				color.setSort(CPNTypeParser.processTime(currentNode));
+			} else if (ParserUtil.isElementNodeOfType(currentNode, DeclarationParser.intinfNode)) {
+				color.setSort(CPNTypeParser.processIntInf(currentNode));
+			}
 		}
 
 		for (final String declare : declares) {

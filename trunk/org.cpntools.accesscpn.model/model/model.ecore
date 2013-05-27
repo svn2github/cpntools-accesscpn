@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model"
-    nsURI="http:///org/cpntools/accesscpn/model.ecore" nsPrefix="org.cpntools.accesscpn.model">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model" nsURI="http:///org/cpntools/accesscpn/model.ecore" nsPrefix="org.cpntools.accesscpn.model">
   <eClassifiers xsi:type="ecore:EClass" name="Annotation" abstract="true" eSuperTypes="#//Label graphics.ecore#//HasGraphics #//HLAnnotationAddin"/>
   <eClassifiers xsi:type="ecore:EClass" name="Arc" eSuperTypes="#//HasId graphics.ecore#//HasGraphics #//HLArcAddin">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
@@ -36,6 +34,8 @@
   <eClassifiers xsi:type="ecore:EEnum" name="HLArcType">
     <eLiterals name="Normal"/>
     <eLiterals name="Test" value="1"/>
+    <eLiterals name="Inhibitor" value="2" literal="Inhibitor"/>
+    <eLiterals name="Reset" value="3" literal="Reset"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="HLDeclaration" eSuperTypes="#//Annotation #//HasId">
     <eStructuralFeatures xsi:type="ecore:EReference" name="structure" eType="ecore:EClass declaration.ecore#//DeclarationStructure"

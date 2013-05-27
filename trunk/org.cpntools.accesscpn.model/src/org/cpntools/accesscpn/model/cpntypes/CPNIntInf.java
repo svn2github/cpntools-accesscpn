@@ -23,7 +23,7 @@ package org.cpntools.accesscpn.model.cpntypes;
  * @model
  * @author michael
  */
-public interface CPNReal extends CPNType {
+public interface CPNIntInf extends CPNType {
 	/**
 	 * @return lower value
 	 * @model required="false"
@@ -31,11 +31,9 @@ public interface CPNReal extends CPNType {
 	public String getLow();
 
 	/**
-	 * Sets the value of the '{@link org.cpntools.accesscpn.model.cpntypes.CPNInt#getLow <em>Low</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Low</em>' attribute.
+	 * Sets the value of the '{@link org.cpntools.accesscpn.model.cpntypes.CPNIntInf#getLow <em>Low</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Low</em>' attribute.
 	 * @see #getLow()
 	 * @generated
 	 */
@@ -48,7 +46,7 @@ public interface CPNReal extends CPNType {
 	public String getHigh();
 
 	/**
-	 * Sets the value of the '{@link org.cpntools.accesscpn.model.cpntypes.CPNReal#getHigh <em>High</em>}' attribute.
+	 * Sets the value of the '{@link org.cpntools.accesscpn.model.cpntypes.CPNIntInf#getHigh <em>High</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>High</em>' attribute.
 	 * @see #getHigh()

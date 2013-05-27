@@ -126,6 +126,10 @@ public class CpntypesAdapterFactory extends AdapterFactoryImpl {
 				return createCPNIntAdapter();
 			}
 			@Override
+			public Adapter caseCPNIntInf(CPNIntInf object) {
+				return createCPNIntInfAdapter();
+			}
+			@Override
 			public Adapter caseCPNList(CPNList object) {
 				return createCPNListAdapter();
 			}
@@ -148,6 +152,10 @@ public class CpntypesAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseCPNSubset(CPNSubset object) {
 				return createCPNSubsetAdapter();
+			}
+			@Override
+			public Adapter caseCPNTime(CPNTime object) {
+				return createCPNTimeAdapter();
 			}
 			@Override
 			public Adapter caseCPNType(CPNType object) {
@@ -256,6 +264,20 @@ public class CpntypesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.cpntools.accesscpn.model.cpntypes.CPNIntInf <em>CPN Int Inf</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.cpntools.accesscpn.model.cpntypes.CPNIntInf
+	 * @generated
+	 */
+	public Adapter createCPNIntInfAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.cpntools.accesscpn.model.cpntypes.CPNList <em>CPN List</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -336,6 +358,20 @@ public class CpntypesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCPNSubsetAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.cpntools.accesscpn.model.cpntypes.CPNTime <em>CPN Time</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.cpntools.accesscpn.model.cpntypes.CPNTime
+	 * @generated
+	 */
+	public Adapter createCPNTimeAdapter() {
 		return null;
 	}
 

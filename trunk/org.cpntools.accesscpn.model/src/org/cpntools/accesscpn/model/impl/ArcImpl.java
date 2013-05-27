@@ -140,6 +140,7 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Graphics getGraphics() {
 		return graphics;
 	}
@@ -162,6 +163,7 @@ public class ArcImpl extends HasIdImpl implements Arc {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGraphics(Graphics newGraphics) {
 		if (newGraphics != graphics) {
 			NotificationChain msgs = null;

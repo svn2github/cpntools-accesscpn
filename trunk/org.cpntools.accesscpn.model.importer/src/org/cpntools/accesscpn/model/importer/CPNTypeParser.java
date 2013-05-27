@@ -24,18 +24,20 @@ import org.cpntools.accesscpn.model.cpntypes.CPNBool;
 import org.cpntools.accesscpn.model.cpntypes.CPNEnum;
 import org.cpntools.accesscpn.model.cpntypes.CPNIndex;
 import org.cpntools.accesscpn.model.cpntypes.CPNInt;
+import org.cpntools.accesscpn.model.cpntypes.CPNIntInf;
 import org.cpntools.accesscpn.model.cpntypes.CPNList;
 import org.cpntools.accesscpn.model.cpntypes.CPNProduct;
+import org.cpntools.accesscpn.model.cpntypes.CPNReal;
 import org.cpntools.accesscpn.model.cpntypes.CPNRecord;
 import org.cpntools.accesscpn.model.cpntypes.CPNString;
 import org.cpntools.accesscpn.model.cpntypes.CPNSubset;
+import org.cpntools.accesscpn.model.cpntypes.CPNTime;
 import org.cpntools.accesscpn.model.cpntypes.CPNType;
 import org.cpntools.accesscpn.model.cpntypes.CPNUnion;
 import org.cpntools.accesscpn.model.cpntypes.CPNUnit;
 import org.cpntools.accesscpn.model.cpntypes.CpntypesFactory;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
 
 /**
  * @author mw
@@ -79,7 +81,8 @@ public class CPNTypeParser {
 	public static final String withNode = "with";
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return type
 	 */
 	public static CPNType processAlias(final Node n) {
@@ -97,7 +100,8 @@ public class CPNTypeParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return type
 	 */
 	public static CPNType processBool(final Node n) {
@@ -127,7 +131,8 @@ public class CPNTypeParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return type
 	 */
 	public static CPNType processEnum(final Node n) {
@@ -145,7 +150,8 @@ public class CPNTypeParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return type
 	 */
 	public static CPNType processIndex(final Node n) {
@@ -171,7 +177,8 @@ public class CPNTypeParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return type
 	 */
 	public static CPNType processInt(final Node n) {
@@ -201,7 +208,77 @@ public class CPNTypeParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 * @return
+	 */
+	public static CPNType processReal(final Node n) {
+		final CPNReal realType = CPNTypeParser.typeFactory.createCPNReal();
+
+		final NodeList nl = n.getChildNodes();
+		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
+			final Node currentNode = nl.item(i);
+			if (ParserUtil.isElementNodeOfType(currentNode, CPNTypeParser.withNode)) {
+				final NodeList withNl = currentNode.getChildNodes();
+				boolean firstValue = true;
+				for (int j = 0, withCnt = withNl.getLength(); j < withCnt; j++) {
+					final Node withCurrentNode = withNl.item(j);
+					if (ParserUtil.isElementNodeOfType(withCurrentNode, CPNTypeParser.mlNode)) {
+						if (firstValue) {
+							realType.setLow(ParserUtil.getTextFromElement(withCurrentNode));
+							firstValue = false;
+						} else {
+							realType.setHigh(ParserUtil.getTextFromElement(withCurrentNode));
+						}
+					}
+				}
+			}
+		}
+
+		return realType;
+	}
+
+	/**
+	 * @param n
+	 * @return
+	 */
+	public static CPNType processIntInf(final Node n) {
+		final CPNIntInf realType = CPNTypeParser.typeFactory.createCPNIntInf();
+
+		final NodeList nl = n.getChildNodes();
+		for (int i = 0, cnt = nl.getLength(); i < cnt; i++) {
+			final Node currentNode = nl.item(i);
+			if (ParserUtil.isElementNodeOfType(currentNode, CPNTypeParser.withNode)) {
+				final NodeList withNl = currentNode.getChildNodes();
+				boolean firstValue = true;
+				for (int j = 0, withCnt = withNl.getLength(); j < withCnt; j++) {
+					final Node withCurrentNode = withNl.item(j);
+					if (ParserUtil.isElementNodeOfType(withCurrentNode, CPNTypeParser.mlNode)) {
+						if (firstValue) {
+							realType.setLow(ParserUtil.getTextFromElement(withCurrentNode));
+							firstValue = false;
+						} else {
+							realType.setHigh(ParserUtil.getTextFromElement(withCurrentNode));
+						}
+					}
+				}
+			}
+		}
+
+		return realType;
+	}
+
+	/**
+	 * @param n
+	 * @return
+	 */
+	public static CPNType processTime(final Node n) {
+		final CPNTime realType = CPNTypeParser.typeFactory.createCPNTime();
+		return realType;
+	}
+
+	/**
+	 * @param n
+	 *            node
 	 * @return type
 	 */
 	public static CPNType processList(final Node n) {
@@ -233,7 +310,8 @@ public class CPNTypeParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return type
 	 */
 	public static CPNType processProduct(final Node n) {
@@ -251,7 +329,8 @@ public class CPNTypeParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return type
 	 */
 	public static CPNType processRecord(final Node n) {
@@ -285,7 +364,8 @@ public class CPNTypeParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return type
 	 */
 	public static CPNType processString(final Node n) {
@@ -329,7 +409,8 @@ public class CPNTypeParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return type
 	 */
 	public static CPNType processSubset(final Node n) {
@@ -351,7 +432,8 @@ public class CPNTypeParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return type
 	 */
 	public static CPNType processUnion(final Node n) {
@@ -381,7 +463,8 @@ public class CPNTypeParser {
 	}
 
 	/**
-	 * @param n node
+	 * @param n
+	 *            node
 	 * @return type
 	 */
 	public static CPNType processUnit(final Node n) {

@@ -14,10 +14,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.cpntools.accesscpn.model.auxgraphics.impl.TextImpl#getText <em>Text</em>}</li>
+ *   <li>{@link org.cpntools.accesscpn.model.auxgraphics.impl.TextImpl#getText <em>Text</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class TextImpl extends AuxGraphicsImpl implements Text {
@@ -43,7 +43,6 @@ public class TextImpl extends AuxGraphicsImpl implements Text {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TextImpl() {
@@ -52,7 +51,6 @@ public class TextImpl extends AuxGraphicsImpl implements Text {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -62,94 +60,88 @@ public class TextImpl extends AuxGraphicsImpl implements Text {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
+	@Override
 	public String getText() {
 		return text;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public void setText(final String newText) {
-		final String oldText = text;
+	@Override
+	public void setText(String newText) {
+		String oldText = text;
 		text = newText;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, AuxgraphicsPackageImpl.TEXT__TEXT, oldText, text));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case AuxgraphicsPackageImpl.TEXT__TEXT:
-			return getText();
+			case AuxgraphicsPackageImpl.TEXT__TEXT:
+				return getText();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public void eSet(final int featureID, final Object newValue) {
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case AuxgraphicsPackageImpl.TEXT__TEXT:
-			setText((String) newValue);
-			return;
+			case AuxgraphicsPackageImpl.TEXT__TEXT:
+				setText((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(final int featureID) {
+	public void eUnset(int featureID) {
 		switch (featureID) {
-		case AuxgraphicsPackageImpl.TEXT__TEXT:
-			setText(TEXT_EDEFAULT);
-			return;
+			case AuxgraphicsPackageImpl.TEXT__TEXT:
+				setText(TEXT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(final int featureID) {
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case AuxgraphicsPackageImpl.TEXT__TEXT:
-			return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
+			case AuxgraphicsPackageImpl.TEXT__TEXT:
+				return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) { return super.toString(); }
+		if (eIsProxy()) return super.toString();
 
-		final StringBuffer result = new StringBuffer(super.toString());
+		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (text: ");
 		result.append(text);
 		result.append(')');
@@ -157,7 +149,7 @@ public class TextImpl extends AuxGraphicsImpl implements Text {
 	}
 
 	/**
-	 * @see org.cpntools.accesscpn.model.aux.Aux#getNodeGraphics()
+	 * @see org.cpntools.accesscpn.model.auxgraphics.AuxGraphics#getNodeGraphics()
 	 */
 	@Override
 	public NodeGraphics getNodeGraphics() {
