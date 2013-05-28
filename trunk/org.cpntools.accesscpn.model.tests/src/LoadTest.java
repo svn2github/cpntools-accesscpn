@@ -32,16 +32,20 @@ public class LoadTest {
 		System.out.println("=======================================================");
 		System.out.println(InstancePrinter.printMonitors(petriNet));
 		final HighLevelSimulator s = HighLevelSimulator.getHighLevelSimulator();
-		s.setSimulationReportOptions(false, false, "");
-		final Checker checker = new Checker(petriNet, selectedFile, s);
 		try {
-			checker.checkEntireModel(selectedFile.getParent(), selectedFile.getParent());
-		} catch (final ErrorInitializingSMLInterface _) {
-			// Ignore
+			s.setSimulationReportOptions(false, false, "");
+			final Checker checker = new Checker(petriNet, selectedFile, s);
+			try {
+				checker.checkEntireModel(selectedFile.getParent(), selectedFile.getParent());
+			} catch (final ErrorInitializingSMLInterface _) {
+				// Ignore
+			}
+			System.out.println("Done");
+			System.out.println(s.execute(20));
+			System.out.println(s.getMarking());
+		} finally {
+			s.destroy();
 		}
-		System.out.println("Done");
-		System.out.println(s.execute(20));
-		System.out.println(s.getMarking());
 	}
 
 }
