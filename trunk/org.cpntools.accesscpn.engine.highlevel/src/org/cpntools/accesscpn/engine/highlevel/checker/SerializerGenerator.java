@@ -27,21 +27,22 @@ import org.cpntools.accesscpn.model.cpntypes.CPNBool;
 import org.cpntools.accesscpn.model.cpntypes.CPNEnum;
 import org.cpntools.accesscpn.model.cpntypes.CPNIndex;
 import org.cpntools.accesscpn.model.cpntypes.CPNInt;
+import org.cpntools.accesscpn.model.cpntypes.CPNIntInf;
 import org.cpntools.accesscpn.model.cpntypes.CPNList;
 import org.cpntools.accesscpn.model.cpntypes.CPNProduct;
+import org.cpntools.accesscpn.model.cpntypes.CPNReal;
 import org.cpntools.accesscpn.model.cpntypes.CPNRecord;
 import org.cpntools.accesscpn.model.cpntypes.CPNString;
 import org.cpntools.accesscpn.model.cpntypes.CPNSubset;
+import org.cpntools.accesscpn.model.cpntypes.CPNTime;
 import org.cpntools.accesscpn.model.cpntypes.CPNType;
 import org.cpntools.accesscpn.model.cpntypes.CPNUnion;
 import org.cpntools.accesscpn.model.cpntypes.CPNUnit;
 import org.cpntools.accesscpn.model.cpntypes.NameTypePair;
 import org.cpntools.accesscpn.model.declaration.TypeDeclaration;
 
-
 /**
  * @author mwesterg
- * 
  */
 public class SerializerGenerator {
 	private static final SerializerGenerator instance = new SerializerGenerator();
@@ -85,6 +86,12 @@ public class SerializerGenerator {
 			generateBool(sb, structure);
 		} else if (type instanceof CPNInt) {
 			generateInt(sb, structure);
+		} else if (type instanceof CPNIntInf) {
+			generateIntInf(sb, structure);
+		} else if (type instanceof CPNReal) {
+			generateReal(sb, structure);
+		} else if (type instanceof CPNTime) {
+			generateTime(sb, structure);
 		} else if (type instanceof CPNString) {
 			generateString(sb, structure);
 		} else if (type instanceof CPNEnum) {
@@ -127,10 +134,9 @@ public class SerializerGenerator {
 			generateFunctionSignature(sb, structure, first);
 			if (t.getSort() != null && !"".equals(t.getSort())) {
 				generateHeadAndBody(sb, t.getName() + " CPN'v", "vLIST [vSTRING \"" + t.getName()
-						+ "\", CPN'serialize'" + t.getSort() + "' CPN'v]");
+				        + "\", CPN'serialize'" + t.getSort() + "' CPN'v]");
 			} else {
-				generateHeadAndBody(sb, t.getName(), "vLIST [vSTRING \"" + t.getName()
-						+ "\", vBOOL false]");
+				generateHeadAndBody(sb, t.getName(), "vLIST [vSTRING \"" + t.getName() + "\", vBOOL false]");
 			}
 			first = false;
 		}
@@ -203,16 +209,15 @@ public class SerializerGenerator {
 	private void generateList(final StringBuilder sb, final TypeDeclaration structure) {
 		final CPNList type = (CPNList) structure.getSort();
 		generateFunctionSignature(sb, structure);
-		generateHeadAndBody(sb, "CPN'v", "vLIST (List.map CPN'serialize'" + type.getSort()
-				+ "' CPN'v)");
+		generateHeadAndBody(sb, "CPN'v", "vLIST (List.map CPN'serialize'" + type.getSort() + "' CPN'v)");
 		generateFinalizer(sb, structure);
 	}
 
 	private void generateIndex(final StringBuilder sb, final TypeDeclaration structure) {
 		final CPNIndex type = (CPNIndex) structure.getSort();
 		generateFunctionSignature(sb, structure);
-		generateHeadAndBody(sb, type.getName() + "(CPN'v)", "vLIST [vSTRING (String.concat[\""
-				+ type.getName() + "(\", Int.toString CPN'v, \")\"]), vINT CPN'v]");
+		generateHeadAndBody(sb, type.getName() + "(CPN'v)", "vLIST [vSTRING (String.concat[\"" + type.getName()
+		        + "(\", Int.toString CPN'v, \")\"]), vINT CPN'v]");
 		generateFinalizer(sb, structure);
 	}
 
@@ -236,6 +241,24 @@ public class SerializerGenerator {
 	private void generateInt(final StringBuilder sb, final TypeDeclaration structure) {
 		generateFunctionSignature(sb, structure);
 		generateHeadAndBody(sb, "CPN'v", "vINT CPN'v");
+		generateFinalizer(sb, structure);
+	}
+
+	private void generateIntInf(final StringBuilder sb, final TypeDeclaration structure) {
+		generateFunctionSignature(sb, structure);
+		generateHeadAndBody(sb, "CPN'v", "vSTRING (" + structure.getTypeName() + ".mkstr CPN'v)");
+		generateFinalizer(sb, structure);
+	}
+
+	private void generateReal(final StringBuilder sb, final TypeDeclaration structure) {
+		generateFunctionSignature(sb, structure);
+		generateHeadAndBody(sb, "CPN'v", "vSTRING (" + structure.getTypeName() + ".mkstr CPN'v)");
+		generateFinalizer(sb, structure);
+	}
+
+	private void generateTime(final StringBuilder sb, final TypeDeclaration structure) {
+		generateFunctionSignature(sb, structure);
+		generateHeadAndBody(sb, "CPN'v", "vSTRING (" + structure.getTypeName() + ".mkstr CPN'v)");
 		generateFinalizer(sb, structure);
 	}
 
@@ -267,8 +290,7 @@ public class SerializerGenerator {
 		}
 	}
 
-	private void generateHeadAndBody(final StringBuilder sb, final String parameter,
-			final String body) {
+	private void generateHeadAndBody(final StringBuilder sb, final String parameter, final String body) {
 		sb.append("(");
 		sb.append(parameter);
 		sb.append(") = ");
@@ -280,8 +302,7 @@ public class SerializerGenerator {
 		generateFunctionSignature(sb, structure, true);
 	}
 
-	private void generateFunctionSignature(final StringBuilder sb, final TypeDeclaration structure,
-			final boolean first) {
+	private void generateFunctionSignature(final StringBuilder sb, final TypeDeclaration structure, final boolean first) {
 		if (first) {
 			sb.append("fun CPN'serialize'");
 		} else {
