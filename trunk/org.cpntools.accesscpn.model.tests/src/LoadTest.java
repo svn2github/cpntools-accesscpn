@@ -5,6 +5,7 @@ import javax.swing.JFileChooser;
 import org.cpntools.accesscpn.engine.highlevel.HighLevelSimulator;
 import org.cpntools.accesscpn.engine.highlevel.InstancePrinter;
 import org.cpntools.accesscpn.engine.highlevel.checker.Checker;
+import org.cpntools.accesscpn.engine.highlevel.checker.ErrorInitializingSMLInterface;
 import org.cpntools.accesscpn.model.ModelPrinter;
 import org.cpntools.accesscpn.model.PetriNet;
 import org.cpntools.accesscpn.model.importer.DOMParser;
@@ -33,7 +34,11 @@ public class LoadTest {
 		final HighLevelSimulator s = HighLevelSimulator.getHighLevelSimulator();
 		s.setSimulationReportOptions(false, false, "");
 		final Checker checker = new Checker(petriNet, selectedFile, s);
-		checker.checkEntireModel(selectedFile.getParent(), selectedFile.getParent());
+		try {
+			checker.checkEntireModel(selectedFile.getParent(), selectedFile.getParent());
+		} catch (final ErrorInitializingSMLInterface _) {
+			// Ignore
+		}
 		System.out.println("Done");
 		System.out.println(s.execute(20));
 		System.out.println(s.getMarking());
