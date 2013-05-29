@@ -238,9 +238,20 @@ public class DOMGenerator {
 		exportOption(document, monitor, m.isDisabled(), "Disabled");
 		exportOption(document, monitor, m.isTimed(), "Timed");
 		exportOption(document, monitor, m.isLogging(), "Logging");
+		if(m.getKind().getValue() == 4){
+			exportOption(document, monitor, m.getExtension(), "File extension");
+		}
 	}
 
 	private static void exportOption(final Document document, final Element monitor, final boolean value,
+	        final String name) {
+		final Element option = document.createElement("option");
+		option.setAttribute("name", name);
+		option.setAttribute("value", "" + value);
+		monitor.appendChild(option);
+	}
+	
+	private static void exportOption(final Document document, final Element monitor, final String value,
 	        final String name) {
 		final Element option = document.createElement("option");
 		option.setAttribute("name", name);
