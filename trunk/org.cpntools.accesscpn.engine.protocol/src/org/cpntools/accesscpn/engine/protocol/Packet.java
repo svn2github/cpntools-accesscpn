@@ -227,7 +227,7 @@ public class Packet implements Serializable {
 	 * @return whether this is a GUI call-back
 	 */
 	public boolean isCB() {
-		return opcode == 3;
+		return opcode == 3 && data == null;
 	}
 
 	private void putByteArray(final DataOutputStream out, final byte[] packetdata) throws IOException {
@@ -264,6 +264,7 @@ public class Packet implements Serializable {
 		if (Packet.debug) {
 			System.out.println("Packet.recevied");
 		}
+		data = null;
 		opcode = in.readInt();
 		if (Packet.debug) {
 			System.out.println("Packet.recevied opcode: " + opcode);
