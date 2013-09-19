@@ -238,7 +238,7 @@ public class DOMGenerator {
 		exportOption(document, monitor, m.isDisabled(), "Disabled");
 		exportOption(document, monitor, m.isTimed(), "Timed");
 		exportOption(document, monitor, m.isLogging(), "Logging");
-		if(m.getKind().getValue() == 4){
+		if (m.getKind().getValue() == 4) {
 			exportOption(document, monitor, m.getExtension(), "File extension");
 		}
 	}
@@ -250,7 +250,7 @@ public class DOMGenerator {
 		option.setAttribute("value", "" + value);
 		monitor.appendChild(option);
 	}
-	
+
 	private static void exportOption(final Document document, final Element monitor, final String value,
 	        final String name) {
 		final Element option = document.createElement("option");
@@ -420,7 +420,7 @@ public class DOMGenerator {
 	        throws OperationNotSupportedException {
 		final Element bool = document.createElement(DeclarationParser.boolNode);
 		color.appendChild(bool);
-		if (type.getTrueValue() != null || type.getFalseValue() != null) { throw new OperationNotSupportedException(); }
+		if (type.getTrueValue() != null || type.getFalseValue() != null) throw new OperationNotSupportedException();
 	}
 
 	private static void exportCPNType(final Document document, final Element color, final CPNEnum type) {
@@ -451,7 +451,7 @@ public class DOMGenerator {
 	        throws OperationNotSupportedException {
 		final Element intNode = document.createElement(DeclarationParser.intNode);
 		color.appendChild(intNode);
-		if (type.getHigh() != null || type.getLow() != null) { throw new OperationNotSupportedException(); }
+		if (type.getHigh() != null || type.getLow() != null) throw new OperationNotSupportedException();
 	}
 
 	private static void exportCPNType(final Document document, final Element color, final CPNList type) {
@@ -500,7 +500,7 @@ public class DOMGenerator {
 		final Element string = document.createElement(DeclarationParser.stringNode);
 		color.appendChild(string);
 		if (type.getLengthHigh() != null || type.getLengthLow() != null || type.getRangeHigh() != null
-		        || type.getRangeLow() != null) { throw new OperationNotSupportedException(); }
+		        || type.getRangeLow() != null) throw new OperationNotSupportedException();
 	}
 
 	private static void exportCPNType(final Document document, final Element color, final CPNSubset type)
@@ -516,9 +516,8 @@ public class DOMGenerator {
 			final Element ml = document.createElement(DeclarationParser.mlNode);
 			ml.setTextContent(type.getBy());
 			by.appendChild(ml);
-		} else {
+		} else
 			throw new OperationNotSupportedException();
-		}
 	}
 
 	private static void exportCPNType(final Document document, final Element color, final CPNType type)
@@ -527,7 +526,7 @@ public class DOMGenerator {
 			final Element timed = document.createElement(DeclarationParser.timedNode);
 			color.appendChild(timed);
 		}
-		if (!type.getDeclares().isEmpty()) { throw new OperationNotSupportedException(); }
+		if (!type.getDeclares().isEmpty()) throw new OperationNotSupportedException();
 		if (type instanceof CPNAlias) {
 			exportCPNType(document, color, (CPNAlias) type);
 		} else if (type instanceof CPNBool) {
@@ -567,7 +566,7 @@ public class DOMGenerator {
 	        throws OperationNotSupportedException {
 		final Element unit = document.createElement(DeclarationParser.unitNode);
 		color.appendChild(unit);
-		if (type.getId() != null) { throw new OperationNotSupportedException(); }
+		if (type.getId() != null) throw new OperationNotSupportedException();
 	}
 
 	private static void exportDeclaration(final Document document, final Element globbox, final Element types,
@@ -646,10 +645,10 @@ public class DOMGenerator {
 	        throws OperationNotSupportedException {
 		final Element globbox = document.createElement(DOMParser.globboxNode);
 		rootTreeNode.appendChild(globbox);
+		final Element parameters = createBlock(document, globbox, "Parameters");
 		final Element types = createBlock(document, globbox, "Types");
 		final Element variables = createBlock(document, globbox, "Variables");
 		final Element functions = createBlock(document, globbox, "Functions");
-		final Element parameters = createBlock(document, globbox, "Parameters");
 		for (final HLDeclaration decl : petriNet.declaration()) {
 			exportDeclaration(document, globbox, types, variables, functions, parameters, decl.getStructure(), decl);
 		}
@@ -737,9 +736,8 @@ public class DOMGenerator {
 			exportObject(document, pageNode, (RefTrans) o, positions);
 		} else if (o instanceof AuxGraphics) {
 			exportAux(document, pageNode, (AuxGraphics) o, positions);
-		} else {
+		} else
 			throw new OperationNotSupportedException();
-		}
 	}
 
 	private static void exportAux(final Document document, final Element pageNode, final AuxGraphics o,
@@ -996,7 +994,7 @@ public class DOMGenerator {
 
 			}
 
-			if (in && out) {
+			if (true || in && out) {
 				label.setAttribute(DOMParser.typeNode, "I/O");
 			} else if (in) {
 				label.setAttribute(DOMParser.typeNode, "In");
