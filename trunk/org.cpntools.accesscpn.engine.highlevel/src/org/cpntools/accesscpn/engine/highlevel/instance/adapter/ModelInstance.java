@@ -314,7 +314,7 @@ public class ModelInstance extends PetriNetDataAdapter {
 		pageInstances = null;
 		allInstances.clear();
 		arcInfos.clear();
-		System.out.println("notifyChanged(" + msg + ")");
+		//System.out.println("notifyChanged(" + msg + ")");
 	}
 
 	/**

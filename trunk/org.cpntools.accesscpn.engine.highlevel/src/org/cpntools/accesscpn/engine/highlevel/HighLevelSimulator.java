@@ -1080,7 +1080,10 @@ public class HighLevelSimulator extends AdapterImpl {
 			for (final Instance<? extends PlaceNode> pi : pis) {
 				final int tokens = p.getInteger();
 				final String marking = p.getString();
-				if (tokens < 0) { throw new Exception(marking); }
+				if (tokens < 0) {
+					System.err.println("Place "+pi+" has "+tokens+", "+marking);
+					throw new Exception(marking);
+				}
 				final Marking m = InstanceFactory.INSTANCE.createMarking(tokens, marking);
 				m.setPlaceInstance(pi);
 				markings.add(m);

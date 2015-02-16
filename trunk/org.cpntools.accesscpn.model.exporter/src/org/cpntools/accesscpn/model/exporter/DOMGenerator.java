@@ -69,12 +69,14 @@ import org.cpntools.accesscpn.model.cpntypes.CPNBool;
 import org.cpntools.accesscpn.model.cpntypes.CPNEnum;
 import org.cpntools.accesscpn.model.cpntypes.CPNIndex;
 import org.cpntools.accesscpn.model.cpntypes.CPNInt;
+import org.cpntools.accesscpn.model.cpntypes.CPNIntInf;
 import org.cpntools.accesscpn.model.cpntypes.CPNList;
 import org.cpntools.accesscpn.model.cpntypes.CPNProduct;
 import org.cpntools.accesscpn.model.cpntypes.CPNReal;
 import org.cpntools.accesscpn.model.cpntypes.CPNRecord;
 import org.cpntools.accesscpn.model.cpntypes.CPNString;
 import org.cpntools.accesscpn.model.cpntypes.CPNSubset;
+import org.cpntools.accesscpn.model.cpntypes.CPNTime;
 import org.cpntools.accesscpn.model.cpntypes.CPNType;
 import org.cpntools.accesscpn.model.cpntypes.CPNUnion;
 import org.cpntools.accesscpn.model.cpntypes.CPNUnit;
@@ -283,6 +285,7 @@ public class DOMGenerator {
 		final Element bool = document.createElement("boolean");
 		bool.setTextContent("" + (petriNet.getTimeType() == TimeType.REAL));
 		value.appendChild(bool);
+		
 	}
 
 	/**
@@ -453,6 +456,13 @@ public class DOMGenerator {
 		color.appendChild(intNode);
 		if (type.getHigh() != null || type.getLow() != null) throw new OperationNotSupportedException();
 	}
+	
+	private static void exportCPNType(final Document document, final Element color, final CPNIntInf type)
+	        throws OperationNotSupportedException {
+		final Element intinfNode = document.createElement(DeclarationParser.intinfNode);
+		color.appendChild(intinfNode);
+		if (type.getHigh() != null || type.getLow() != null) throw new OperationNotSupportedException();
+	}
 
 	private static void exportCPNType(final Document document, final Element color, final CPNList type) {
 		final Element listNode = document.createElement(DeclarationParser.listNode);
@@ -519,6 +529,12 @@ public class DOMGenerator {
 		} else
 			throw new OperationNotSupportedException();
 	}
+	
+	private static void exportCPNType(final Document document, final Element color, final CPNTime type)
+	        throws OperationNotSupportedException {
+		final Element timeNode = document.createElement(DeclarationParser.timeNode);
+		color.appendChild(timeNode);
+	}
 
 	private static void exportCPNType(final Document document, final Element color, final CPNType type)
 	        throws OperationNotSupportedException {
@@ -537,6 +553,8 @@ public class DOMGenerator {
 			exportCPNType(document, color, (CPNIndex) type);
 		} else if (type instanceof CPNInt) {
 			exportCPNType(document, color, (CPNInt) type);
+		} else if (type instanceof CPNIntInf) {
+			exportCPNType(document, color, (CPNIntInf) type);
 		} else if (type instanceof CPNList) {
 			exportCPNType(document, color, (CPNList) type);
 		} else if (type instanceof CPNProduct) {
@@ -549,6 +567,8 @@ public class DOMGenerator {
 			exportCPNType(document, color, (CPNString) type);
 		} else if (type instanceof CPNSubset) {
 			exportCPNType(document, color, (CPNSubset) type);
+		} else if (type instanceof CPNTime) {
+			exportCPNType(document, color, (CPNTime) type);
 		} else if (type instanceof CPNUnion) {
 			exportCPNType(document, color, (CPNUnion) type);
 		} else if (type instanceof CPNUnit) {
@@ -819,28 +839,28 @@ public class DOMGenerator {
 			final boolean p_to_t = r != null ? !r.getSourceArc().isEmpty() : true;
 			final boolean t_to_p = r != null ? !r.getTargetArc().isEmpty() : true;
 
-			final Element arc = document.createElement(DOMParser.arcNode);
-			arc.setAttribute("id", o.getId() + "arc" + i++);
-
-			String orientation;
-			if (false && p_to_t && !t_to_p) {
-				orientation = "PtoT";
-			} else if (false && !p_to_t && t_to_p) {
-				orientation = "TtoP";
-			} else {
-				orientation = "BOTHDIR";
-			}
-
-			arc.setAttribute("orientation", orientation);
-			arc.setAttribute("order", "1");
-			pageNode.appendChild(arc);
-			final Element transend = document.createElement(DOMParser.transendNode);
-			transend.setAttribute("idref", o.getId());
-			arc.appendChild(transend);
-			final Element placeend = document.createElement(DOMParser.placeendNode);
-			placeend.setAttribute("idref", pa.getParameter());
-			arc.appendChild(placeend);
-			exportLabel(document, arc, empty, DOMParser.annotNode, o.getId() + "arc" + i++, 0, 0);
+//			final Element arc = document.createElement(DOMParser.arcNode);
+//			arc.setAttribute("id", o.getId() + "arc" + i++);
+//
+//			String orientation;
+//			if (p_to_t && !t_to_p) {
+//				orientation = "PtoT";
+//			} else if (!p_to_t && t_to_p) {
+//				orientation = "TtoP";
+//			} else {
+//				orientation = "BOTHDIR";
+//			}
+//
+//			arc.setAttribute("orientation", orientation);
+//			arc.setAttribute("order", "1");
+//			pageNode.appendChild(arc);
+//			final Element transend = document.createElement(DOMParser.transendNode);
+//			transend.setAttribute("idref", o.getId());
+//			arc.appendChild(transend);
+//			final Element placeend = document.createElement(DOMParser.placeendNode);
+//			placeend.setAttribute("idref", pa.getParameter());
+//			arc.appendChild(placeend);
+//			exportLabel(document, arc, empty, DOMParser.annotNode, o.getId() + "arc" + i++, 0, 0);
 
 			sb.append('(');
 			sb.append(pa.getValue());
@@ -994,7 +1014,7 @@ public class DOMGenerator {
 
 			}
 
-			if (true || in && out) {
+			if (in && out) {
 				label.setAttribute(DOMParser.typeNode, "I/O");
 			} else if (in) {
 				label.setAttribute(DOMParser.typeNode, "In");
