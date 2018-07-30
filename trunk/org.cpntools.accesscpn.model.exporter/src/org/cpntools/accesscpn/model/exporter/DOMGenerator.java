@@ -454,7 +454,21 @@ public class DOMGenerator {
 	        throws OperationNotSupportedException {
 		final Element intNode = document.createElement(DeclarationParser.intNode);
 		color.appendChild(intNode);
-		if (type.getHigh() != null || type.getLow() != null) throw new OperationNotSupportedException();
+		if (type.getHigh() != null && type.getLow() != null) {
+			final Element withNode = document.createElement(DeclarationParser.withNode);
+			
+			final Element lowNode = document.createElement(DeclarationParser.mlNode);
+			lowNode.setTextContent(type.getLow());
+			withNode.appendChild(lowNode);
+			final Element highNode = document.createElement(DeclarationParser.mlNode);
+			highNode.setTextContent(type.getHigh());
+			withNode.appendChild(highNode);
+			
+			intNode.appendChild(withNode);
+			
+		} else if (type.getHigh() != null || type.getLow() != null) {
+			throw new OperationNotSupportedException();
+		}
 	}
 	
 	private static void exportCPNType(final Document document, final Element color, final CPNIntInf type)
